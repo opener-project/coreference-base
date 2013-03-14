@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<KAF xml:lang="en">
+    <text>
+        <wf sent="1" wid="w1">John</wf>
+        <wf sent="1" wid="w2">is</wf>
+        <wf sent="1" wid="w3">a</wf>
+        <wf sent="1" wid="w4">musician</wf>
+        <wf sent="1" wid="w5">.</wf>
+        <wf sent="2" wid="w6">He</wf>
+        <wf sent="2" wid="w7">played</wf>
+        <wf sent="2" wid="w8">a</wf>
+        <wf sent="2" wid="w9">new</wf>
+        <wf sent="2" wid="w10">song</wf>
+        <wf sent="2" wid="w11">.</wf>
+        <wf sent="3" wid="w12">A</wf>
+        <wf sent="3" wid="w13">girl</wf>
+        <wf sent="3" wid="w14">was</wf>
+        <wf sent="3" wid="w15">listening</wf>
+        <wf sent="3" wid="w16">to</wf>
+        <wf sent="3" wid="w17">the</wf>
+        <wf sent="3" wid="w18">song</wf>
+        <wf sent="3" wid="w19">.</wf>
+        <wf sent="4" wid="w20">"</wf>
+        <wf sent="4" wid="w21">It</wf>
+        <wf sent="4" wid="w22">is</wf>
+        <wf sent="4" wid="w23">my</wf>
+        <wf sent="4" wid="w24">favorite</wf>
+        <wf sent="4" wid="w25">,</wf>
+        <wf sent="4" wid="w26">"</wf>
+        <wf sent="4" wid="w27">John</wf>
+        <wf sent="4" wid="w28">said</wf>
+        <wf sent="4" wid="w29">to</wf>
+        <wf sent="4" wid="w30">her</wf>
+        <wf sent="4" wid="w31">.</wf>
+    </text>
+    <terms>
+        <term pos="NNP" tid="t1">
+            <span>
+                <target id="w1"/>
+            </span>
+        </term>
+        <term pos="VBZ" tid="t2">
+            <span>
+                <target id="w2"/>
+            </span>
+        </term>
+        <term pos="DT" tid="t3">
+            <span>
+                <target id="w3"/>
+            </span>
+        </term>
+        <term pos="NN" tid="t4">
+            <span>
+                <target id="w4"/>
+            </span>
+        </term>
+        <term pos="." tid="t5">
+            <span>
+                <target id="w5"/>
+            </span>
+        </term>
+        <term pos="PRP" tid="t6">
+            <span>
+                <target id="w6"/>
+            </span>
+        </term>
+        <term pos="VBD" tid="t7">
+            <span>
+                <target id="w7"/>
+            </span>
+        </term>
+        <term pos="DT" tid="t8">
+            <span>
+                <target id="w8"/>
+            </span>
+        </term>
+        <term pos="JJ" tid="t9">
+            <span>
+                <target id="w9"/>
+            </span>
+        </term>
+        <term pos="NN" tid="t10">
+            <span>
+                <target id="w10"/>
+            </span>
+        </term>
+        <term pos="." tid="t11">
+            <span>
+                <target id="w11"/>
+            </span>
+        </term>
+        <term pos="DT" tid="t12">
+            <span>
+                <target id="w12"/>
+            </span>
+        </term>
+        <term pos="NN" tid="t13">
+            <span>
+                <target id="w13"/>
+            </span>
+        </term>
+        <term pos="VBD" tid="t14">
+            <span>
+                <target id="w14"/>
+            </span>
+        </term>
+        <term pos="VBG" tid="t15">
+            <span>
+                <target id="w15"/>
+            </span>
+        </term>
+        <term pos="TO" tid="t16">
+            <span>
+                <target id="w16"/>
+            </span>
+        </term>
+        <term pos="DT" tid="t17">
+            <span>
+                <target id="w17"/>
+            </span>
+        </term>
+        <term pos="NN" tid="t18">
+            <span>
+                <target id="w18"/>
+            </span>
+        </term>
+        <term pos="." tid="t19">
+            <span>
+                <target id="w19"/>
+            </span>
+        </term>
+        <term pos="NN" tid="t20">
+            <span>
+                <target id="w20"/>
+            </span>
+        </term>
+        <term pos="PRP" tid="t21">
+            <span>
+                <target id="w21"/>
+            </span>
+        </term>
+        <term pos="VBZ" tid="t22">
+            <span>
+                <target id="w22"/>
+            </span>
+        </term>
+        <term pos="PRP$" tid="t23">
+            <span>
+                <target id="w23"/>
+            </span>
+        </term>
+        <term pos="JJ" tid="t24">
+            <span>
+                <target id="w24"/>
+            </span>
+        </term>
+        <term pos="," tid="t25">
+            <span>
+                <target id="w25"/>
+            </span>
+        </term>
+        <term pos="NN" tid="t26">
+            <span>
+                <target id="w26"/>
+            </span>
+        </term>
+        <term pos="NNP" tid="t27">
+            <span>
+                <target id="w27"/>
+            </span>
+        </term>
+        <term pos="VBD" tid="t28">
+            <span>
+                <target id="w28"/>
+            </span>
+        </term>
+        <term pos="TO" tid="t29">
+            <span>
+                <target id="w29"/>
+            </span>
+        </term>
+        <term pos="PRP" tid="t30">
+            <span>
+                <target id="w30"/>
+            </span>
+        </term>
+        <term pos="." tid="t31">
+            <span>
+                <target id="w31"/>
+            </span>
+        </term>
+    </terms>
+    <entities>
+        <entity eid="e1" type="person">
+            <references>
+                <span>
+                    <target id="t27"/>
+                </span>
+            </references>
+        </entity>
+    </entities>
+</KAF>

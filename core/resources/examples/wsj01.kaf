@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<KAF xml:lang="en">
+    <text>
+        <wf sent="1" wid="w1">Pierre</wf>
+        <wf sent="1" wid="w2">Vinken</wf>
+        <wf sent="1" wid="w3">,</wf>
+        <wf sent="1" wid="w4">61</wf>
+        <wf sent="1" wid="w5">years</wf>
+        <wf sent="1" wid="w6">old</wf>
+        <wf sent="1" wid="w7">,</wf>
+        <wf sent="1" wid="w8">will</wf>
+        <wf sent="1" wid="w9">join</wf>
+        <wf sent="1" wid="w10">the</wf>
+        <wf sent="1" wid="w11">board</wf>
+        <wf sent="1" wid="w12">as</wf>
+        <wf sent="1" wid="w13">a</wf>
+        <wf sent="1" wid="w14">nonexecutive</wf>
+        <wf sent="1" wid="w15">director</wf>
+        <wf sent="1" wid="w16">Nov.</wf>
+        <wf sent="1" wid="w17">29</wf>
+        <wf sent="1" wid="w18">.</wf>
+        <wf sent="2" wid="w19">Mr.</wf>
+        <wf sent="2" wid="w20">Vinken</wf>
+        <wf sent="2" wid="w21">is</wf>
+        <wf sent="2" wid="w22">a</wf>
+        <wf sent="2" wid="w23">chairman</wf>
+        <wf sent="2" wid="w24">of</wf>
+        <wf sent="2" wid="w25">Elsevier</wf>
+        <wf sent="2" wid="w26">N.V.</wf>
+        <wf sent="2" wid="w27">,</wf>
+        <wf sent="2" wid="w28">the</wf>
+        <wf sent="2" wid="w29">Dutch</wf>
+        <wf sent="2" wid="w30">publishing</wf>
+        <wf sent="2" wid="w31">group</wf>
+        <wf sent="2" wid="w32">.</wf>
+    </text>
+    <terms>
+        <term pos="NNP" tid="t1">
+            <span>
+                <target id="w1"/>
+            </span>
+        </term>
+        <term pos="NNP" tid="t2">
+            <span>
+                <target id="w2"/>
+            </span>
+        </term>
+        <term pos="," tid="t3">
+            <span>
+                <target id="w3"/>
+            </span>
+        </term>
+        <term pos="CD" tid="t4">
+            <span>
+                <target id="w4"/>
+            </span>
+        </term>
+        <term pos="NNS" tid="t5">
+            <span>
+                <target id="w5"/>
+            </span>
+        </term>
+        <term pos="JJ" tid="t6">
+            <span>
+                <target id="w6"/>
+            </span>
+        </term>
+        <term pos="," tid="t7">
+            <span>
+                <target id="w7"/>
+            </span>
+        </term>
+        <term pos="MD" tid="t8">
+            <span>
+                <target id="w8"/>
+            </span>
+        </term>
+        <term pos="VB" tid="t9">
+            <span>
+                <target id="w9"/>
+            </span>
+        </term>
+        <term pos="DT" tid="t10">
+            <span>
+                <target id="w10"/>
+            </span>
+        </term>
+        <term pos="NN" tid="t11">
+            <span>
+                <target id="w11"/>
+            </span>
+        </term>
+        <term pos="IN" tid="t12">
+            <span>
+                <target id="w12"/>
+            </span>
+        </term>
+        <term pos="DT" tid="t13">
+            <span>
+                <target id="w13"/>
+            </span>
+        </term>
+        <term pos="JJ" tid="t14">
+            <span>
+                <target id="w14"/>
+            </span>
+        </term>
+        <term pos="NN" tid="t15">
+            <span>
+                <target id="w15"/>
+            </span>
+        </term>
+        <term pos="NNP" tid="t16">
+            <span>
+                <target id="w16"/>
+            </span>
+        </term>
+        <term pos="CD" tid="t17">
+            <span>
+                <target id="w17"/>
+            </span>
+        </term>
+        <term pos="." tid="t18">
+            <span>
+                <target id="w18"/>
+            </span>
+        </term>
+        <term pos="NNP" tid="t19">
+            <span>
+                <target id="w19"/>
+            </span>
+        </term>
+        <term pos="NNP" tid="t20">
+            <span>
+                <target id="w20"/>
+            </span>
+        </term>
+        <term pos="VBZ" tid="t21">
+            <span>
+                <target id="w21"/>
+            </span>
+        </term>
+        <term pos="DT" tid="t22">
+            <span>
+                <target id="w22"/>
+            </span>
+        </term>
+        <term pos="NN" tid="t23">
+            <span>
+                <target id="w23"/>
+            </span>
+        </term>
+        <term pos="IN" tid="t24">
+            <span>
+                <target id="w24"/>
+            </span>
+        </term>
+        <term pos="NNP" tid="t25">
+            <span>
+                <target id="w25"/>
+            </span>
+        </term>
+        <term pos="NNP" tid="t26">
+            <span>
+                <target id="w26"/>
+            </span>
+        </term>
+        <term pos="," tid="t27">
+            <span>
+                <target id="w27"/>
+            </span>
+        </term>
+        <term pos="DT" tid="t28">
+            <span>
+                <target id="w28"/>
+            </span>
+        </term>
+        <term pos="NNP" tid="t29">
+            <span>
+                <target id="w29"/>
+            </span>
+        </term>
+        <term pos="NN" tid="t30">
+            <span>
+                <target id="w30"/>
+            </span>
+        </term>
+        <term pos="NN" tid="t31">
+            <span>
+                <target id="w31"/>
+            </span>
+        </term>
+        <term pos="." tid="t32">
+            <span>
+                <target id="w32"/>
+            </span>
+        </term>
+    </terms>
+    <entities>
+        <entity eid="e1" type="person">
+            <references>
+                <span>
+                    <target id="t1"/>
+                    <target id="t2"/>
+                </span>
+            </references>
+        </entity>
+        <entity eid="e2" type="person">
+            <references>
+                <span>
+                    <target id="t25"/>
+                    <target id="t26"/>
+                </span>
+            </references>
+        </entity>
+        <entity eid="e3" type="misc">
+            <references>
+                <span>
+                    <target id="t29"/>
+                </span>
+            </references>
+        </entity>
+    </entities>
+</KAF>

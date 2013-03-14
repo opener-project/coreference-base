@@ -1,0 +1,4 @@
+(ROOT (S (NP (PRP=H She)) (VP=H (VBP=H go) (S (VP=H (TO to) (VP=H (VB=H england))))) (. .)))
+(ROOT (S (NP (DT The) (NN=H sister)) (VP=H (VBZ=H lives) (PP (IN in) (NP=H (NNP=H England)))) (. .)))
+(ROOT (S (NP (NNP=H Mathews)) (VP=H (VBZ=H lives) (PP (IN in) (NP=H (NNP=H Stocholm)))) (. .)))
+(ROOT (S (NP (NNP=H Luke)) (VP=H (VBZ=H is) (NP (DT a) (NN=H jedy))) (. .)))
