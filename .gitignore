@@ -1,6 +1,21 @@
+*.patch
+*.pyc
+*.log
+*.so
+*.so.old
+*.swp
+target
 *.class
+*.classpath
+*.project
+*.pydevproject
+*.settings
 
-# Package Files #
-*.jar
-*.war
-*.ear
+.settings/*
+tmp/*
+.DS_Store
+.idea/
+*.swp
+pkg/
+Gemfile.lock
+.rvmrc
