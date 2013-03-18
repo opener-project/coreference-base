@@ -30,7 +30,7 @@ The contents of the CorefGraph module are the following:
     + process.py    Main module. Use this to execute the system.
     + pykaf/	    KAF output utilities
     + resources/    Most dictionaries (gender, number, animacy, demonyms) are placed here.
-    +
+    + test/	    Testing funcionalities
 
 - README.md: This README
 
@@ -38,123 +38,70 @@ The contents of the CorefGraph module are the following:
 INSTALLATION
 ============
 
-Installing the ixa-opennlp-tok-en requires the following steps:
+In order to run CorefGraph coreference module you need to install the python graph library
+graph-tool.
 
-If you already have installed in your machine JDK6 and MAVEN 3, please go to step 3
-directly. Otherwise, follow these steps:
+http://projects.skewed.de/graph-tool/
 
-1. Install JDK 1.6
--------------------
+If you run a Debian based linux system such as Ubuntu or Linux Mint, you can easily install
+graph-tool and all its dependencies by apt-get the packages built by the graph-tool developer.
 
-If you do not install JDK 1.6 in a default location, you will probably need to configure the PATH in .bashrc or .bash_profile:
+If you run a Red Hat based server you can try to use alien to generate .rpm packages from the .deb
+ones or you can try and compile from source.
 
-````shell
-export JAVA_HOME=/yourpath/local/java6
-export PATH=${JAVA_HOME}/bin:${PATH}
-````
+USING CorefGraph-en
+===================
 
-If you use tcsh you will need to specify it in your .login as follows:
+CorefGraph-en requires two inputs (you can see examples in the resources/examples directory):
 
-````shell
-setenv JAVA_HOME /usr/java/java16
-setenv PATH ${JAVA_HOME}/bin:${PATH}
-````
-
-If you re-login into your shell and run the command
-
-````shell
-java -version
-````
-
-You should now see that your jdk is 1.6
-
-2. Install MAVEN 3
-------------------
-
-Download MAVEN 3 from
-
-````shell
-wget http://www.apache.org/dyn/closer.cgi/maven/maven-3/3.0.4/binaries/apache-maven-3.0.4-bin.tar.gz
-````
-
-Now you need to configure the PATH. For Bash Shell:
-
-````shell
-export MAVEN_HOME=/home/ragerri/local/apache-maven-3.0.4
-export PATH=${MAVEN_HOME}/bin:${PATH}
-````
-
-For tcsh shell:
-
-````shell
-setenv MAVEN3_HOME ~/local/apache-maven-3.0.4
-setenv PATH ${MAVEN3}/bin:{PATH}
-````
-
-If you re-login into your shell and run the command
-
-````shell
-mvn -version
-````
-
-You should see reference to the MAVEN version you have just installed plus the JDK 6 that is using.
-
-3. Get module from bitbucket
--------------------------
-
-````shell
-hg clone ssh://hg@bitbucket.org/ragerri/ixa-opennlp-tok-en
-````
-
-4. Move into main directory
----------------------------
-
-````shell
-cd ixa-opennlp-tok-en
-````
-
-5. Install module using maven
------------------------------
-
-````shell
-mvn clean install
-````
-
-This step will create a directory called target/ which contains various directories and files.
-Most importantly, there you will find the module executable:
-
-ixa-opennlp-tok-en-1.0.jar
-
-This executable contains every dependency the module needs, so it is completely portable as long
-as you have a JVM 1.6 installed.
-
-The program accepts standard input and outputs tokenized text in KAF.
+1. KAF with <wf>, <terms> and <entities> elements.
+2. Constituent syntactic analysis in Treebank format, one sentence per line.
 
 To run the program execute:
 
 ````shell
-cat file.txt | java -jar $PATH/target/ixa-opennlp-tok-en-1.0.jar
+python process.py -i input.kaf input.treebank
 ````
 
-GENERATING JAVADOC
-==================
+CorefGraph-en will output KAF via standard output with the <coreference> clusters added to the KAF input received. Note
+that for the full functionality of CorefGraph you will need to provide the treebank input with the heads of (at least) the
+Noun Phrases marked, as it can be seen in the treebank input examples in the resource/examples directory. If you do not provide
+heads, only Exact String Match and Precise Constructs will work properly, whereas Strict Head Match and Pronoun Match will not.
 
-You can also generate the javadoc of the module by executing:
+For a full explanation of how the Multi Sieve Pass system works see documentation in resources/doc.
 
-````shell
-mvn javadoc:jar
-````
+ADAPTING CorefGraph-en to your language
+=======================================
 
-Which will create a jar file core/target/ixa-opennlp-tok-en-1.0-javadoc.jar
+There are a number of changes needed to be made to make CorefGraph works for other languages. Although we have try to
+keep the language dependent features to a minimum, you will still need to create some dictionaries for your own language
+and make some very minor changes in the code. Here is the list of very file in the Corefgraph module that needs to be changed:
+
+** features/ grendel.py check POS tags
+** graph/ kaf.py check head =h mentions
+** multisieve/
+    + dictionaries.py
+    + mentionSelection.py, POS and Syntactic tags
+** resources/
+    + animacy.py NE tags
+    + demonym
+        - en,es wiki and txt files
+        - genti.py change parameters of iles and regexp to process
+          wikipedia page
+        - files/ Lin et al gender, number and animacy dictionaries (see references in Multi Sieve papers)
+        - gender.py parameters (although this should not be necessary
+          if files names in files/ directory do not change)
+        - number.py as above
+        - pronouns.py change lists of pronouns depending on language
 
 
-Contact information
+Contact Information
 ===================
 
 ````shell
 Rodrigo Agerri
 IXA NLP Group
 University of the Basque Country (UPV/EHU)
-E-20018 Donostia-San Sebastián
+E-20018 Donostia-San Sebastian
 rodrigo.agerri@ehu.es
 ````
