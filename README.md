@@ -15,7 +15,7 @@ Exact String Matching, Precise Constructs, Strict Head Match and Pronoun Match (
 sieve nomenclature follows Lee et al (2013)). Furthermore, as it has been reported,
 this sieves are responsible for most of the performance in the Stanford system.
 
-The implementation is a result of a collaboration between the IXA NLP (ixa.si.ehu.es) and
+The implementation is a result of a collaboration between the IXA NLP (http://ixa.si.ehu.es) and
 LinguaMedia Groups (http://linguamedia.deusto.es).
 
 Contents
