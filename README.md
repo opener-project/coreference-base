@@ -77,14 +77,14 @@ There are a number of changes needed to be made to make CorefGraph works for oth
 keep the language dependent features to a minimum, you will still need to create some dictionaries for your own language
 and make some very minor changes in the code. Here is the list of very file in the Corefgraph module that needs to be changed:
 
-** features/ grendel.py check POS tags
-** graph/ kaf.py check head =h mentions
-** multisieve/
-    + dictionaries.py
-    + mentionSelection.py, POS and Syntactic tags
-** resources/
-    + animacy.py NE tags
-    + demonym
++ features/ grendel.py check POS tags
++ graph/ kaf.py check head =h mentions
++ multisieve/
+    - dictionaries.py
+    - mentionSelection.py, POS and Syntactic tags
++ resources/
+    - animacy.py NE tags
+    - demonym
         - en,es wiki and txt files
         - genti.py change parameters of iles and regexp to process
           wikipedia page
