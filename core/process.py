@@ -7,7 +7,7 @@ If ontonotes is used evalutates the correfrerence,
 from graph.kaf import KafAndTreeGraphBuilder
 from output.kafwritter import KafDocument
 
-__author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
+__author__ = 'Josu Bermudez <josu.bermudez@deusto.es>, Rodrigo Agerri <rodrigo.agerri@ehu.es>'
 
 import argparse
 import logging

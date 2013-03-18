@@ -1,5 +1,0 @@
-(ROOT (S (NP (NP=H (DT The) (NN=H sister)) (, ,) (NP (NN actress) (NNP Rebeca) (NNP=H Smith)) (, ,)) (VP=H (VBZ is) (VP=H (VBG=H going) (PP (TO to) (NP=H (NNP=H Hollywood))))) (. .)))
-(ROOT (S (NP (PRP=H She)) (VP=H (VBP=H go) (S (VP=H (TO to) (VP=H (VB=H england))))) (. .)))
-(ROOT (S (NP (DT The) (NN=H sister)) (VP=H (VBZ=H lives) (PP (IN in) (NP=H (NNP=H England)))) (. .)))
-(ROOT (S (NP (NNP=H Mathews)) (VP=H (VBZ=H lives) (PP (IN in) (NP=H (NNP=H Stocholm)))) (. .)))
-(ROOT (S (NP (NP=H (NP (NNP=H Israel) (POS 's)) (NNP Deputy) (NNP Defense) (NNP=H Minister)) (, ,) (NP (NNP Jhon) (NNP=H Abrams)) (, ,)) (VP=H (VBD=H said) (ADVP (RB=H no.))) (. .)))

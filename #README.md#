@@ -54,7 +54,7 @@ USING CorefGraph-en
 
 CorefGraph-en requires two inputs (you can see examples in the resources/examples directory):
 
-1. KAF with wf, terms and entities elements.
+1. KAF with <wf>, <terms> and <entities> elements.
 2. Constituent syntactic analysis in Treebank format, one sentence per line.
 
 To run the program execute:
@@ -64,9 +64,11 @@ python process.py -i input.kaf input.treebank
 ````
 
 CorefGraph-en will output KAF via standard output with the <coreference> clusters added to the KAF input received. Note
-that for the full functionality of CorefGraph you will need to provide the treebank input with the heads of (at least) the
+that for the full functionality of CorefGraph you will need to provide the treebank inputy
+
+ith the heads of (at least) the
 Noun Phrases marked, as it can be seen in the treebank input examples in the resource/examples directory. If you do not provide
-heads, only Exact String Match will work properly, whereas Precise Constructs, Strict Head Match and Pronoun Match will not.
+heads, only Exact String Match and Precise Constructs will work properly, whereas Strict Head Match and Pronoun Match will not.
 
 For a full explanation of how the Multi Sieve Pass system works see documentation in resources/doc.
 
@@ -77,14 +79,14 @@ There are a number of changes needed to be made to make CorefGraph works for oth
 keep the language dependent features to a minimum, you will still need to create some dictionaries for your own language
 and make some very minor changes in the code. Here is the list of very file in the Corefgraph module that needs to be changed:
 
-+ features/ grendel.py check POS tags
-+ graph/ kaf.py check head =h mentions
-+ multisieve/
-    - dictionaries.py
-    - mentionSelection.py, POS and Syntactic tags
-+ resources/
-    - animacy.py NE tags
-    - demonym
+** features/ grendel.py check POS tags
+** graph/ kaf.py check head =h mentions
+** multisieve/
+    + dictionaries.py
+    + mentionSelection.py, POS and Syntactic tags
+** resources/
+    + animacy.py NE tags
+    + demonym
         - en,es wiki and txt files
         - genti.py change parameters of iles and regexp to process
           wikipedia page
