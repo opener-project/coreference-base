@@ -71,11 +71,12 @@ class KafDocument:
     def __init__(self, file_name=None, kaf_stream=None, language=None, version=None, kaf_header=None):
         """ Prepare the document basic structure.
         """
+        parser = etree.XMLParser(remove_blank_text=True)
         if file_name:
-            self.tree = etree.parse(file_name)
+            self.tree = etree.parse(file_name, parser=parser)
             self.root = self.tree.getroot()
         elif kaf_stream:
-            self.root = etree.fromstring(kaf_stream)
+            self.root = etree.fromstring(kaf_stream,parser=parser)
             self.tree = etree.ElementTree(self.root)
         else:
             self.root = etree.Element(KAF_TAG, NS)
@@ -359,4 +360,5 @@ class KafDocument:
         """Write document into a file.
         :param output: The output target for the document. May be a file tipe object or a file name."""
         #self.indent(self.root)
-        output.write(etree.tostring(self.root, encoding=encoding, pretty_print=True, xml_declaration=True))
+        output.write(etree.tostring(self.root, encoding=encoding, pretty_print=True, xml_declaration=True,
+                                    with_comments=True))

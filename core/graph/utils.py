@@ -51,22 +51,28 @@ class GraphWrapper():
                     graph.edge_properties[name] = graph.new_edge_property(property_type_name)
 
     if graph_tool.__version__.startswith("2.2.19 "):
-            @classmethod
-            def set_properties(cls, graph=None, node=None, edge=None, graph_properties=None, vertex_properties=None, edge_properties=None):
-                if graph_properties:
-                    for name, property_value in graph_properties.items() :
-                        graph.graph_properties[name] = property_value
-                if vertex_properties:
-                    for name, property_value in vertex_properties.items() :
-                        graph.vertex_properties[name][node] = property_value
-                if edge_properties:
-                    for name, property_value in edge_properties.items() :
-                        graph.edge_properties[name][edge] = property_value
 
-            @classmethod
-            def get_graph_property(cls, graph, property_name):
-                return graph.graph_properties[property_name]
+        @classmethod
+        def set_properties(cls, graph=None, node=None, edge=None, graph_properties=None, vertex_properties=None, edge_properties=None):
+            if graph_properties:
+                for name, property_value in graph_properties.items() :
+                    graph.graph_properties[name] = property_value
+            if vertex_properties:
+                for name, property_value in vertex_properties.items() :
+                    graph.vertex_properties[name][node] = property_value
+            if edge_properties:
+                for name, property_value in edge_properties.items() :
+                    graph.edge_properties[name][edge] = property_value
+
+        @classmethod
+        def get_graph_property(cls, graph, property_name):
+            return graph.graph_properties[property_name]
+
+        @classmethod
+        def set_graph_property(cls, graph, property_name, value):
+            graph.graph_properties[property_name] = value
     else:
+
         @classmethod
         def set_properties(cls, graph=None, node=None, edge=None, graph_properties=None, vertex_properties=None,
                            edge_properties=None):
@@ -83,6 +89,10 @@ class GraphWrapper():
         def get_graph_property(cls, graph, property_name):
             return graph.graph_properties[property_name][graph]
 
+        @classmethod
+        def set_graph_property(cls, graph, property_name, value):
+            graph.graph_properties[property_name][graph] = value
+
     @classmethod
     def node_property(cls, name, graph):
         return graph.vertex_properties[name]
@@ -91,9 +101,6 @@ class GraphWrapper():
     def edge_property(cls, name, graph):
         return graph.edge_properties[name]
 
-    @classmethod
-    def graph_property(cls, property_name, graph):
-        return graph.graph_properties[property_name][graph]
 
     @classmethod
     def get_node_property(cls, node, name, graph=None):

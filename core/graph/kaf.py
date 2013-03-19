@@ -15,7 +15,8 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
 
     def __init__(self, logger=logging.getLogger("OntonotesGraphBuilder")):
         self.logger = logger
-        self.graph_properties["kafhead"] = "object"
+        self.graph_properties["kaf"] = "object"
+        self.vertex_properties["kaf_id"] = "object"
 
     def preprocess_sentences(self, graph, document):
         self.graph = graph
@@ -49,34 +50,41 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
     def parse_kaf(self, graph, kaf_string):
 
         self.graph = graph
-        word_ner = GraphWrapper.node_property("ner", graph=graph)
+        # node and graph properties
+        word_ner = GraphWrapper.node_property(name="ner", graph=graph)
+        word_kaf_id = GraphWrapper.node_property(name="kaf_id", graph=graph)
+
         self.word_pool = []
 
+        # Store original kaf for further recreation
         kaf = KafDocument(kaf_stream=kaf_string)
-
-        if kaf.kaf_header:
-            GraphWrapper.graph_property("kafhead", graph)[graph] = kaf.kaf_header
+        GraphWrapper.set_graph_property(graph=graph, property_name="kaf", value=kaf)
         # Words
         kaf_words = dict([(kaf_word.attrib["wid"], kaf_word.text) for kaf_word in kaf.get_words()])
-
         # Terms
         term_by_id = dict()
         for term in kaf.get_terms():
+            # Fetch the words values
             term_id = term.attrib["tid"]
             words = kaf.get_terms_words(term)
             form = " ".join([kaf_words[word.attrib["id"]] for word in words])
+            kaf_id = "{0}#{1}".format(term_id, "|".join([word.attrib["id"] for word in words]))
             try:
                 lemma = term.attrib["lemma"]
             except KeyError:
                 lemma = form
             pos = term.attrib["pos"]
             label = "\n".join((form, pos, lemma, term_id))
+            #Create word node
             word_node = self.add_word(form=form, wid=term_id, label=label, lemma=lemma, ner="o", pos=pos, head=True)
+            word_kaf_id[word_node] = kaf_id
 
+            # Store the words
             term_by_id[term_id] = word_node
             self.word_pool.append(word_node)
             self.wordup()
-            #A dict of entities that contains a list of references. A reference is a list of terms.
+
+        #A dict of entities that contains a list of references. A reference is a list of terms.
         self.entities_by_id = dict()
         self.entities_by_first_word = defaultdict(set)
         self.entities_by_end_word = defaultdict(set)

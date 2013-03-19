@@ -7,7 +7,7 @@ If ontonotes is used evalutates the correfrerence,
 from graph.kaf import KafAndTreeGraphBuilder
 from output.kafwritter import KafDocument
 
-__author__ = 'Josu Bermudez <josu.bermudez@deusto.es>, Rodrigo Agerri <rodrigo.agerri@ehu.es>'
+__author__ = 'Josu Bermudez <josu.bermudez@deusto.es>,Rodrigo Agerri <rodrigo.agerri@ehu.es>'
 
 import argparse
 import logging
@@ -131,8 +131,8 @@ def main():
     store_analysis(processor.graph, arguments.encoding, arguments.language, arguments.version,
                    arguments.linguistic_parser_name, arguments.linguistic_parser_version,
                    arguments.linguistic_parser_layer)
-    #processor.show_graph()
-    #input("Pulse una tecla")
+    processor.show_graph()
+    input("Pulse una tecla")
 
 
 def store_analysis(result, encoding, language, version, lp_name, lp_version, lp_layer,):
@@ -142,7 +142,8 @@ def store_analysis(result, encoding, language, version, lp_name, lp_version, lp_
      results -- the results of analyzing a corpus. Expected as a list of tuples(file_name, list_of_freeling_elements).
     """
     writer = KafDocument(stream=sys.stdout)
-    writer.store(result,encoding=encoding,language=language, version=version, linguistic_parsers=[(lp_name, lp_version, lp_layer)])
+    writer.store(result, encoding=encoding, language=language, version=version, linguistic_parsers=[
+        (lp_name, lp_version, lp_layer)])
 
 
 def parse_cmd_arguments(logger=logging.getLogger('argsparse')):
