@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<KAF xml:lang="en" version="v1.opener">
+  <kafHeader>
+    <linguisticProcessors layer="tokens">
+      <lp name="ixa-opennlp-tok-en" timestamp="2013-03-78T12:55:18+0100" version="1.0" />
+    </linguisticProcessors>
+    <linguisticProcessors layer="terms">
+      <lp name="ixa-opennlp-pos-en" timestamp="2013-03-78T12:55:19+0100" version="1.0" />
+    </linguisticProcessors>
+    <linguisticProcessors layer="entities">
+      <lp name="ixa-opennlp-nerc-en" timestamp="2013-03-78T12:55:19+0100" version="1.0" />
+    </linguisticProcessors>
+  </kafHeader>
+  <text>
+    <wf wid="w1" sent="1">John</wf>
+    <wf wid="w2" sent="1">is</wf>
+    <wf wid="w3" sent="1">a</wf>
+    <wf wid="w4" sent="1">musician</wf>
+    <wf wid="w5" sent="1">.</wf>
+    <wf wid="w6" sent="2">He</wf>
+    <wf wid="w7" sent="2">played</wf>
+    <wf wid="w8" sent="2">a</wf>
+    <wf wid="w9" sent="2">new</wf>
+    <wf wid="w10" sent="2">song</wf>
+    <wf wid="w11" sent="2">.</wf>
+    <wf wid="w12" sent="3">A</wf>
+    <wf wid="w13" sent="3">girl</wf>
+    <wf wid="w14" sent="3">was</wf>
+    <wf wid="w15" sent="3">listening</wf>
+    <wf wid="w16" sent="3">to</wf>
+    <wf wid="w17" sent="3">the</wf>
+    <wf wid="w18" sent="3">song</wf>
+    <wf wid="w19" sent="3">.</wf>
+    <wf wid="w20" sent="4">"</wf>
+    <wf wid="w21" sent="4">It</wf>
+    <wf wid="w22" sent="4">is</wf>
+    <wf wid="w23" sent="4">my</wf>
+    <wf wid="w24" sent="4">favorite</wf>
+    <wf wid="w25" sent="4">,</wf>
+    <wf wid="w26" sent="4">"</wf>
+    <wf wid="w27" sent="4">John</wf>
+    <wf wid="w28" sent="4">said</wf>
+    <wf wid="w29" sent="4">to</wf>
+    <wf wid="w30" sent="4">her</wf>
+    <wf wid="w31" sent="4">.</wf>
+  </text>
+  <terms>
+    <term tid="1" pos="NNP" lemma="" type="">
+      <span>
+        <!--John-->
+        <target id="1" />
+      </span>
+    </term>
+    <term tid="2" pos="VBZ" lemma="" type="">
+      <span>
+        <!--is-->
+        <target id="2" />
+      </span>
+    </term>
+    <term tid="3" pos="DT" lemma="" type="">
+      <span>
+        <!--a-->
+        <target id="3" />
+      </span>
+    </term>
+    <term tid="4" pos="NN" lemma="" type="">
+      <span>
+        <!--musician-->
+        <target id="4" />
+      </span>
+    </term>
+    <term tid="5" pos="." lemma="" type="">
+      <span>
+        <!--.-->
+        <target id="5" />
+      </span>
+    </term>
+    <term tid="6" pos="PRP" lemma="" type="">
+      <span>
+        <!--He-->
+        <target id="6" />
+      </span>
+    </term>
+    <term tid="7" pos="VBD" lemma="" type="">
+      <span>
+        <!--played-->
+        <target id="7" />
+      </span>
+    </term>
+    <term tid="8" pos="DT" lemma="" type="">
+      <span>
+        <!--a-->
+        <target id="8" />
+      </span>
+    </term>
+    <term tid="9" pos="JJ" lemma="" type="">
+      <span>
+        <!--new-->
+        <target id="9" />
+      </span>
+    </term>
+    <term tid="10" pos="NN" lemma="" type="">
+      <span>
+        <!--song-->
+        <target id="10" />
+      </span>
+    </term>
+    <term tid="11" pos="." lemma="" type="">
+      <span>
+        <!--.-->
+        <target id="11" />
+      </span>
+    </term>
+    <term tid="12" pos="DT" lemma="" type="">
+      <span>
+        <!--A-->
+        <target id="12" />
+      </span>
+    </term>
+    <term tid="13" pos="NN" lemma="" type="">
+      <span>
+        <!--girl-->
+        <target id="13" />
+      </span>
+    </term>
+    <term tid="14" pos="VBD" lemma="" type="">
+      <span>
+        <!--was-->
+        <target id="14" />
+      </span>
+    </term>
+    <term tid="15" pos="VBG" lemma="" type="">
+      <span>
+        <!--listening-->
+        <target id="15" />
+      </span>
+    </term>
+    <term tid="16" pos="TO" lemma="" type="">
+      <span>
+        <!--to-->
+        <target id="16" />
+      </span>
+    </term>
+    <term tid="17" pos="DT" lemma="" type="">
+      <span>
+        <!--the-->
+        <target id="17" />
+      </span>
+    </term>
+    <term tid="18" pos="NN" lemma="" type="">
+      <span>
+        <!--song-->
+        <target id="18" />
+      </span>
+    </term>
+    <term tid="19" pos="." lemma="" type="">
+      <span>
+        <!--.-->
+        <target id="19" />
+      </span>
+    </term>
+    <term tid="20" pos="NN" lemma="" type="">
+      <span>
+        <!--"-->
+        <target id="20" />
+      </span>
+    </term>
+    <term tid="21" pos="PRP" lemma="" type="">
+      <span>
+        <!--It-->
+        <target id="21" />
+      </span>
+    </term>
+    <term tid="22" pos="VBZ" lemma="" type="">
+      <span>
+        <!--is-->
+        <target id="22" />
+      </span>
+    </term>
+    <term tid="23" pos="PRP$" lemma="" type="">
+      <span>
+        <!--my-->
+        <target id="23" />
+      </span>
+    </term>
+    <term tid="24" pos="JJ" lemma="" type="">
+      <span>
+        <!--favorite-->
+        <target id="24" />
+      </span>
+    </term>
+    <term tid="25" pos="," lemma="" type="">
+      <span>
+        <!--,-->
+        <target id="25" />
+      </span>
+    </term>
+    <term tid="26" pos="NN" lemma="" type="">
+      <span>
+        <!--"-->
+        <target id="26" />
+      </span>
+    </term>
+    <term tid="27" pos="NNP" lemma="" type="">
+      <span>
+        <!--John-->
+        <target id="27" />
+      </span>
+    </term>
+    <term tid="28" pos="VBD" lemma="" type="">
+      <span>
+        <!--said-->
+        <target id="28" />
+      </span>
+    </term>
+    <term tid="29" pos="TO" lemma="" type="">
+      <span>
+        <!--to-->
+        <target id="29" />
+      </span>
+    </term>
+    <term tid="30" pos="PRP" lemma="" type="">
+      <span>
+        <!--her-->
+        <target id="30" />
+      </span>
+    </term>
+    <term tid="31" pos="." lemma="" type="">
+      <span>
+        <!--.-->
+        <target id="31" />
+      </span>
+    </term>
+  </terms>
+  <entities>
+    <entity eid="e1" type="person">
+      <references>
+        <span>
+          <!--John -->
+          <target id="t27" />
+        </span>
+      </references>
+    </entity>
+  </entities>
+</KAF>
