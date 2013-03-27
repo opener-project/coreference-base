@@ -4,10 +4,10 @@ __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
 from logging import getLogger
 
-from resources.gender import female_pronouns, male_pronouns, neutral_pronouns, female_words, male_words,\
+from features.gender import female_pronouns, male_pronouns, neutral_pronouns, female_words, male_words,\
     neutral_words, female_names, male_names, counter
-from resources.number import plural_pronouns, plural_words, singular_pronouns, singular_words, unknown_ne_tag
-from resources.animacy import animate_words, inanimate_words, inanimate_pronouns, animate_pronouns,\
+from features.number import plural_pronouns, plural_words, singular_pronouns, singular_words, unknown_ne_tag
+from features.animacy import animate_words, inanimate_words, inanimate_pronouns, animate_pronouns,\
     animate_ne, inanimate_ne
 
 import resources.pronouns

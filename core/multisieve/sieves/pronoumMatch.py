@@ -8,6 +8,8 @@ class PronounMatch(Sieve):
     """ To mentions are coreferent if their surfaces are equals."""
     SENTENCE_DISTANCE_LIMIT = 3
 
+    sort_name = "PM"
+
     def __init__(self, multi_sieve_processor):
         Sieve.__init__(self, multi_sieve_processor)
 
@@ -17,7 +19,7 @@ class PronounMatch(Sieve):
     def are_coreferent(self, entity, index, candidate):
         #if self.graph_builder.sentence_distance(entity[index], candidate) > self.SENTENCE_DISTANCE_LIMIT:
         #    return False
-        a = 3
+        a = 2
         if ((
                 UNKNOWN in self.entity_property(entity, "gender") or
                 UNKNOWN in self.candidate_property(candidate, "gender") or

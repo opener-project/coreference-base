@@ -13,6 +13,9 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
     """Extract the info from KAF documents and TreeBank
     """
 
+    noun_phrase_tag = "NP"
+    conjuntion_tag = "CC"
+
     def __init__(self, logger=logging.getLogger("OntonotesGraphBuilder")):
         self.logger = logger
         self.graph_properties["kaf"] = "object"
@@ -51,7 +54,6 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
 
         self.graph = graph
         # node and graph properties
-        word_ner = GraphWrapper.node_property(name="ner", graph=graph)
         word_kaf_id = GraphWrapper.node_property(name="kaf_id", graph=graph)
 
         self.word_pool = []
@@ -76,7 +78,7 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
             pos = term.attrib["pos"]
             label = "\n".join((form, pos, lemma, term_id))
             #Create word node
-            word_node = self.add_word(form=form, wid=term_id, label=label, lemma=lemma, ner="o", pos=pos, head=True)
+            word_node = self.add_word(form=form, wid=term_id, label=label, lemma=lemma, ner="o", pos=pos, head=False)
             word_kaf_id[word_node] = kaf_id
 
             # Store the words
@@ -86,31 +88,65 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
 
         #A dict of entities that contains a list of references. A reference is a list of terms.
         self.entities_by_id = dict()
-        self.entities_by_first_word = defaultdict(set)
-        self.entities_by_end_word = defaultdict(set)
+        self.entities_by_word = defaultdict(set)
 
         # Entities
-        for entity in kaf.get_entities():
-            entity_id = entity.attrib["eid"],
-            entity_type = entity.attrib["type"]
-            references = []
-            for reference in kaf.get_entity_references(entity):
-                new_reference = []
+        for kaf_entity in kaf.get_entities():
+            entity_type = kaf_entity.attrib["type"]
+            entity_id = kaf_entity.attrib["eid"]
+            entity = self.add_named_entity(graph=graph, entity_type=entity_type, entity_id=entity_id)
+            self.entities_by_id[entity_id] = entity
+            for reference in kaf.get_entity_references(kaf_entity):
+                new_mention = []
                 for term in kaf.get_entity_reference_span(reference):
                     word_node = term_by_id[term.attrib["id"]]
-                    word_ner[word_node] = entity_type
-                    new_reference.append(word_node)
-                self.entities_by_first_word[new_reference[0]].add(entity_id)
-                self.entities_by_end_word[new_reference[-1]].add(entity_id)
-                references.append(new_reference)
-            self.entities_by_id[entity_id] = (entity_type, references)
+                    #word_ner[word_node] = entity_type
+                    self.entities_by_word[word_node] = (entity, new_mention)
+                    new_mention.append(word_node)
+
+    def unlink(self, parent, child):
+        GraphWrapper.unlink(parent, child)
+
+    def process_entities(self, graph, entities):
+        node_ner = GraphWrapper.node_property("ner", self.graph)
+        node_form = GraphWrapper.node_property("form", self.graph)
+        node_head = GraphWrapper.node_property("head", self.graph)
+        node_id = GraphWrapper.node_property("id", self.graph)
+        for entity, mention in entities:
+            parents = set([self.get_syntactic_parent(word) for word in mention])
+            # If all mention words have the same parent we can produce a safe ner mention
+            if len(parents) == 1 and not None in parents:
+                parent = parents.pop()
+                entity_type = node_ner[entity]
+                entity_id = node_id[entity]
+                # If the Ner mention covers all the constituent word, the constituent is assigned as Ner
+                if self.get_chunk_children(parent) == mention:
+                    node_ner[parent] = entity_type
+                    self.add_named_mention(named_entity=entity, mention=parent)
+                else:
+                    # Create a new constituent to cover the Ner mention
+                    head = False
+                    form = ""
+                    ner_constituent = self.add_chunk(form=form, graph=graph, head=head, label=form, lemma="",
+                                                     ner=entity_type, tag="NE:{0}".format(entity_type))
+                    for word in mention:
+                        form += node_form[word]
+                        head = head or node_head[word]
+                        self.unlink(parent, word)
+                        self.syntactic_terminal_link(parent_node=ner_constituent, terminal_node=word)
+                    node_form[ner_constituent] = form
+                    node_head[ner_constituent] = head
+                    self.add_named_mention(named_entity=entity, mention=ner_constituent)
+                    self.syntax_tree_link(ner_constituent, parent)
 
     def parse_syntax(self, graph, sentence, syntactic_root, sentenceNamespace, syntax_count=0):
         # Convert the syntactic tree
         self.syntax_count = syntax_count
+
         syntactic_tree = tree.Tree(sentence)
         self.word_count += 1
-        node_ner = GraphWrapper.node_property("ner", self.graph)
+
+        entities = []
 
         def Iterate_Syntax(graph, syntactic_tree, parent_node):
             """Walk recursively over the syntax tree and add their info to the graph."""
@@ -120,17 +156,20 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
                 # the tree node is a leaf
                 # Get the word node pointed by the leaf
                 word_node = self.word_pool.pop(0)
-                if "=H" in leaf or "-H" in leaf:
+                text_leaf = str(leaf)
+                treebank_word = leaf[0]
+                if "=H" in text_leaf or "-H" in text_leaf:
                     self.set_head(word_node)
                     #Link the word to the node
                 self.syntactic_terminal_link(parent_node=parent_node, terminal_node=word_node)
                 #link the word to the sentence
                 self.link_word(sentence_root_node=syntactic_root, word_node=word_node)
                 # Generate the text
-                content_text = leaf
-                if node_ner[word_node] != "o":
-                    return content_text, self.entities_by_first_word[word_node], self.entities_by_end_word[word_node]
-                return content_text, set(), set()
+                content_text = treebank_word
+                # Enlist entities that appears in the phrase
+                if word_node in self.entities_by_word:
+                    entities.append(self.entities_by_word.pop(word_node))
+                return content_text
 
             def syntax_branch_process(parent_node, syntactic_tree):
                 # Create a node for this element
@@ -142,45 +181,36 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
                 self.syntax_tree_link(new_node, parent_node)
                 # Process the children
                 content_text = []
-                ner_begins = None
-                ner_ends = None
+
                 for child in syntactic_tree:
-                    # Fetch the text contained and ner by the node
-                    content_text_part, more_ner_begins, more_ner_ends = Iterate_Syntax(
+                    # Fetch the text contained
+                    content_text_part = Iterate_Syntax(
                         graph=graph, syntactic_tree=child, parent_node=new_node)
                     # Append the text
                     content_text.append(content_text_part)
-                    # Only filed first time
-                    if ner_begins is None:
-                        ner_begins = more_ner_begins
-                        # Refiled every time
-                    ner_ends = more_ner_ends
                     # Rebuild the attributes composed from children info
                 content_text = " ".join(content_text)
-                ner_ids = ner_begins.intersection(ner_ends)
-                ner = "o"
-                for ner_id in ner_ids:
-                    # The type of the entity is on the first place of tuple
-                    ner = self.entities_by_id[ner_id][0]
 
                 # Set the rebuild attributes
                 GraphWrapper.set_properties(graph, node=new_node, vertex_properties={
-                    'label': "\n".join((content_text, tag, ner)),
+                    'label': "\n".join((content_text, tag)),
                     'lemma': content_text,
                     'form': content_text,
-                    'ner': ner,
+                    'ner': "o",
                 })
-                return content_text, ner_begins, ner_ends
+                return content_text
 
                 # Determine if the syntactic tree Node is as branch or a leaf
 
-            if type(syntactic_tree) == tree.Tree:
-                content_text, ner_begins, ner_ends = syntax_branch_process(parent_node, syntactic_tree)
+            if len(syntactic_tree) > 1 or type(syntactic_tree[0]) != str:
+                content_text = syntax_branch_process(parent_node, syntactic_tree)
                 self.syntax_count += 1
             else:
-                content_text, ner_begins, ner_ends = syntax_leaf_process(parent_node, syntactic_tree)
-            return content_text, ner_begins, ner_ends
+                content_text = syntax_leaf_process(parent_node, syntactic_tree)
+            return content_text
 
             # Call to the recursive function
 
-        return Iterate_Syntax(graph=graph, syntactic_tree=syntactic_tree, parent_node=syntactic_root)
+        Iterate_Syntax(graph=graph, syntactic_tree=syntactic_tree, parent_node=syntactic_root)
+
+        self.process_entities(graph=graph, entities=entities)

@@ -17,6 +17,10 @@ class BaseGraphBuilder():
     entity_edge_type = "refers"
     entity_edge_label = "refers"
 
+    named_entity_node_type = "named_entity"
+    named_entity_edge_type = "named_refers"
+    named_entity_edge_label = "named_refers"
+
     syntactic_node_type = "chunk"
     syntactic_edge_type = "syntactic"
     syntactic_edge_label = "syntactic"
@@ -29,12 +33,13 @@ class BaseGraphBuilder():
 
     color = {word_node_type: 'tomato',
              'chunk': 'blue',
-             'root': 'purple'
-    }
+             'root': 'purple',
+             'entity': 'pink',
+             'named_entity': 'green'}
     shape = {word_node_type: 'box',
              'chunk': 'box',
-             'root': 'box'
-    }
+             'root': 'box',
+             'entity': 'oval'}
 
     word_count = 0
     sentence_count = 0
@@ -139,15 +144,30 @@ class BaseGraphBuilder():
                                          )
         return new_node
 
-    def add_entity(self, graph, mentions):
+    def add_entity(self, graph, mentions, log=None):
         new_node = GraphWrapper.new_node(graph,
                                          type=self.entity_node_type,
-                                         color=self.color['chunk'],
-                                         shape=self.shape['chunk'],
+                                         color=self.color['entity'],
+                                         shape=self.shape['entity'],
+                                         label=log
                                          )
         for mention in mentions:
             GraphWrapper.link(self.graph, new_node, mention, self.entity_edge_type, label=self.entity_edge_label)
         return new_node
+
+    def add_named_entity(self, graph, entity_type, entity_id, log=None):
+        new_entity = GraphWrapper.new_node(graph,
+                                           type=self.named_entity_node_type,
+                                           color=self.color['named_entity'],
+                                           shape=self.shape['entity'],
+                                           label=log,
+                                           tag=entity_type,
+                                           id=entity_id,)
+        return new_entity
+
+    def add_named_mention(self, named_entity, mention):
+        GraphWrapper.link(self.graph, named_entity, mention, self.named_entity_edge_type,
+                          label=self.named_entity_edge_label)
 
     def syntax_tree_link(self, child, parent):
         GraphWrapper.link(self.graph, origin=parent, target=child,
@@ -220,7 +240,7 @@ class BaseGraphBuilder():
             return None
 
     @classmethod
-    def get_chunk_words(cls, chunk):
+    def get_constituent_words(cls, chunk):
 
         node_type = GraphWrapper.node_property("type", chunk.get_graph())
 
@@ -241,6 +261,11 @@ class BaseGraphBuilder():
     def get_entity_mentions(cls, entity):
         return GraphWrapper.get_filtered_by_type_out_neighbours(entity, cls.entity_edge_type)
 
+    @classmethod
+    def get_chunk_children(cls, chunk):
+        return GraphWrapper.get_filtered_by_type_out_neighbours(chunk, cls.syntactic_edge_type)
+
+    @classmethod
     def get_chunk_head_word(cls, chunk):
         node_type = GraphWrapper.node_property("type", chunk.get_graph())
         head = GraphWrapper.node_property("head", chunk.get_graph())
@@ -277,15 +302,8 @@ class BaseGraphBuilder():
     def extract_entities(cls, graph):
         return GraphWrapper.get_all_vertex_by_type(graph, cls.entity_node_type)
 
-    def same_sentence(self, nodeA, nodeB):
-        return GraphWrapper.get_node_property(
-            nodeA, "sentence_root", self.graph) == GraphWrapper.get_node_property(nodeB, "sentence_root", self.graph)
 
-    def sentence_distance(self, nodeA, nodeB):
-        root_a = GraphWrapper.get_node_property(
-            nodeA, "sentence_root", self.graph)
-        root_b = GraphWrapper.get_node_property(nodeB, "sentence_root", self.graph)
-        return abs(GraphWrapper.get_node_property(root_a, "ord") - GraphWrapper.get_node_property(root_b, "ord"))
+
 
     @classmethod
     def get_compose_id(cls, sentenceNamespace, word_id, separator="_"):

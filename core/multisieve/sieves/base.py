@@ -1,15 +1,20 @@
 from graph.utils import GraphWrapper
 from output.progressbar import Fraction, ProgressBar
+from ..syntatic_tree_utils import SyntacticTreeUtils
+
 __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
 
 class Sieve(object):
 
+    sort_name = "XXX"
+
     def __init__(self, multi_sieve_processor):
 
         self.multi_sieve_processor = multi_sieve_processor
         self.graph = self.multi_sieve_processor.graph
-        self.graph_builder = GraphWrapper.get_graph_property(self.graph, 'graph_builder')
+
+        self.tree_utils = SyntacticTreeUtils(graph=self.graph)
 
         self.relation_value = GraphWrapper.edge_property("value", self.graph)
         self.relation_type = GraphWrapper.edge_property("type", self.graph)
@@ -25,13 +30,13 @@ class Sieve(object):
         self.mention_animacy = GraphWrapper.node_property("animate", self.graph)
         self.mention_number = GraphWrapper.node_property("number", self.graph)
 
-    def link(self, entity, candidates, candidate):
+    def link(self, entity, candidates,log, candidate_index, candidate):
         """Link the candidate to the entity. Remove from candidates.
         :param candidate: The candidate that is going to be promoted into mention entity.
         :param candidates: The candidate list of the entity.
         :param entity: The entity that is going to receive the mention
         """
-        candidates.remove(candidate)
+        candidates[candidate_index].remove(candidate)
         entity.append(candidate)
 
     def are_coreferent(self, entity, index, candidate):
@@ -65,9 +70,9 @@ class Sieve(object):
         """
         # For each cluster visit the others
         index = 0
-        for entity, candidates in clusters:
+        for entity, candidates, log in clusters:
             forward_index = index + 1
-            for new_entity, new_candidates in clusters[forward_index:]:
+            for new_entity, new_candidates, new_log in clusters[forward_index:]:
                 # Search if any other cluster is linked to this cluster
                 for mention in entity:
                     # Search for a common mention
@@ -78,6 +83,8 @@ class Sieve(object):
                             if new_mention not in entity:
                                 entity.append(new_mention)
                                 candidates.append(new_candidates[mention_index])
+                                log.append(self.sort_name + "|" + new_log[mention_index])
+
                         #TODO Add the mention in correct position of the cluster
                         # Extract the mixed cluster
                         del clusters[forward_index]
@@ -96,13 +103,13 @@ class Sieve(object):
         # TODO Question: merge after each link or at the end?
         widgets = ['Passing sieve {0}: '.format(self.__class__), Fraction()]
         progress_bar = ProgressBar(widgets=widgets, maxval=len(clusters), force_update=True).start()
-        for cluster_index, (entity, candidates) in enumerate(clusters):
-            index = self.valid_entity_index(entity)
-            if index is not None:
-                for candidate in candidates[index]:
-                    if self.are_coreferent(entity, index, candidate):
+        for cluster_index, (entity, candidates, log) in enumerate(clusters):
+            candidate_index = self.valid_entity_index(entity)
+            if candidate_index is not None:
+                for candidate in candidates[candidate_index]:
+                    if self.are_coreferent(entity, candidate_index, candidate):
                         # If passed the sieve link candidate and stop search for that entity
-                        self.link(entity, candidates[index], candidate)
+                        self.link(entity, candidates, log ,candidate_index, candidate)
                         # Break the search of candidates for this mention. Only one is elected
                         break
             progress_bar.update(cluster_index + 1)
@@ -114,7 +121,7 @@ class Sieve(object):
         """ Return all the entities where a mention appears.
         :param mention: The mention whose entities are fetched.
         """
-        return [entity for entity, candidates in self.clusters if mention in entity]
+        return [entity for entity, candidates, log in self.clusters if mention in entity]
 
     def get_terminal_head(self, mention):
         """ Get the head WORD of a mention.
@@ -134,12 +141,6 @@ class Sieve(object):
                         # Everything gone wrong
         return None
 
-    def get_sibling(self, mention):
-        syntactic_father = [relation.source()
-                            for relation in mention.in_edges() if self.relation_type[relation] == "syntactic"]
-        return [relation.target()
-                for relation in syntactic_father[0].out_edges() if self.relation_type[relation] == "syntactic"]
-
     def entity_property(self, entity, property_name):
         return set([GraphWrapper.node_property(property_name, self.graph)[mention]
                     for mention in entity])
@@ -147,5 +148,3 @@ class Sieve(object):
     def candidate_property(self, candidate, property_name):
         return set([GraphWrapper.node_property(property_name, self.graph)[mention]
                     for entity_involved in self.entities_of_a_mention(candidate) for mention in entity_involved])
-
-

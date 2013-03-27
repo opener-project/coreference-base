@@ -14,8 +14,6 @@ Class for representing hierarchical language structures, such as
 syntax trees and morphological trees.
 """
 
-# TODO: add LabelledTree (can be used for dependency trees)
-
 import re
 import string
 

@@ -2,17 +2,15 @@
 """
 Process a corpus of ontonotes or directory form and generates a output in CONLL format.
 
-If ontonotes is used evalutates the correfrerence,
 """
 from graph.kaf import KafAndTreeGraphBuilder
 from output.kafwritter import KafDocument
 
-__author__ = 'Josu Bermudez <josu.bermudez@deusto.es>,Rodrigo Agerri <rodrigo.agerri@ehu.es>'
+__author__ = 'Josu Bermudez <josu.bermudez@deusto.es>, Rodrigo Agerri <rodrigo.agerri@ehu.es>'
 
 import argparse
 import logging
 import sys
-import simplejson
 
 from output.progressbar import ProgressBar, Fraction
 
@@ -37,7 +35,7 @@ class TextProcessor:
         """
         # Graph attributes
         self.graph = self.graph_builder.new_graph()
-        self.CP = CoreferenceProcessor(self.graph, self.graph_builder, singletons=True,
+        self.CP = CoreferenceProcessor(self.graph, self.graph_builder, singletons=False,
                                        logger=self.logger)
         self.graph_builder.set_graph(self.graph)
         self.gender = self.graph_builder.get_property("gender")
@@ -73,7 +71,7 @@ class TextProcessor:
         candidatures = self.CP.get_candidates()
         widgets = ['Setting gender ', Fraction()]
         progress_bar = ProgressBar(widgets=widgets, maxval=len(candidatures), force_update=True).start()
-        for index, (entity, candidates) in enumerate(candidatures):
+        for index, (entity, candidates, log) in enumerate(candidatures):
             mention = entity[0]
             pos = self.pos[mention]
             ner = self.ner[mention]
@@ -131,8 +129,8 @@ def main():
     store_analysis(processor.graph, arguments.encoding, arguments.language, arguments.version,
                    arguments.linguistic_parser_name, arguments.linguistic_parser_version,
                    arguments.linguistic_parser_layer)
-    processor.show_graph()
-    input("Pulse una tecla")
+#    processor.show_graph()
+#    input("Pulse una tecla")
 
 
 def store_analysis(result, encoding, language, version, lp_name, lp_version, lp_layer,):
@@ -164,6 +162,7 @@ def parse_cmd_arguments(logger=logging.getLogger('argsparse')):
                         action='store', default="0.8")
     parser.add_argument('-linguisticParserLayer', '-lpl', dest='linguistic_parser_layer',
                         action='store', default="coreference")
+    parser.add_argument('-singleton', action='store_true')
 
     return parser.parse_args()
 

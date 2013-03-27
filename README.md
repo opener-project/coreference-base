@@ -47,7 +47,7 @@ If you run a Debian based linux system such as Ubuntu or Linux Mint, you can eas
 graph-tool and all its dependencies by apt-get the packages built by the graph-tool developer.
 
 If you run a Red Hat based server you can try to use alien to generate .rpm packages from the .deb
-ones or you can try and compile from source.
+ones or you can try and compile from source (good luck).
 
 USING CorefGraph-en
 ===================
@@ -55,7 +55,7 @@ USING CorefGraph-en
 CorefGraph-en requires two inputs (you can see examples in the resources/examples directory):
 
 1. KAF with wf, terms and entities elements.
-2. Constituent syntactic analysis in Treebank format, one sentence per line.
+2. Constituent syntactic analysis in Treebank format, one sentence per line with heads marked.
 
 To run the program execute:
 

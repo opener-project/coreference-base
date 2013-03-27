@@ -3,6 +3,9 @@ import multisieve.dictionaries as dictionaries
 
 
 class RoleAppositiveConstruction(Sieve):
+
+    sort_name = "RAC"
+
     def __init__(self, multi_sieve_processor):
         Sieve.__init__(self, multi_sieve_processor)
 
@@ -38,6 +41,8 @@ class RoleAppositiveConstruction(Sieve):
 class AcronymMatch(Sieve):
     """ A demonym is coreferent to their location."""
 
+    sort_name = "AMC"
+
     def __init__(self, multi_sieve_processor):
         Sieve.__init__(self, multi_sieve_processor)
 
@@ -67,6 +72,8 @@ class AcronymMatch(Sieve):
 class RelativePronoun(Sieve):
     """ A relative pronoun is referent to the NP that modified."""
 
+    sort_name = "RPC"
+
     def __init__(self, multi_sieve_processor):
         Sieve.__init__(self, multi_sieve_processor)
 
@@ -81,35 +88,29 @@ class RelativePronoun(Sieve):
         if candidate_tag != dictionaries.noun_phrase_tag:
             return False
             # TODO is the only valid conection?
-        return set(filter(lambda X: self.mention_tag[X] in
-                            dictionaries.subordinated_clause_tag, entity[index].in_neighbours())).intersection(
-                                set(filter(lambda X: self.mention_tag[X] in
-                                    dictionaries.subordinated_clause_tag, candidate.out_neighbours())))
+        return self.tree_utils.is_relative_pronoun(candidate, entity, index)
 
 
 class PredicativeNominativeConstruction(Sieve):
     """ The mention and the candidate are in a subject-object copulative relation ."""
+    sort_name = "PNC"
 
     def __init__(self, multi_sieve_processor):
         Sieve.__init__(self, multi_sieve_processor)
+
+
 
     def validate(self, mention):
         """Entity must be relative pronoun."""
         # The head is in a copula dependency
         # The mention is nominal o pronominal
 
-        siblings = self.get_sibling(mention)
-        mention_index = siblings.index(mention)
-
-        if mention_index > 0 and \
-                self.mention_form[siblings[mention_index - 1]].split()[-1] in dictionaries.copulative_verbs:
-            return True
-        return False
+        return self.tree_utils.is_predicative_nominative(mention)
 
     def are_coreferent(self, entity, index, candidate):
         """ Candidate is the NP that the relative pronoun modified."""
-        mention_parent = self.graph_builder.get_syntactic_parent(entity[index])
-        siblings = self.get_sibling(mention_parent)
+        mention_parent = self.tree_utils.get_syntactic_parent(entity[index])
+        siblings = self.tree_utils.get_sibling(mention_parent)
         mention_index = siblings.index(mention_parent)
 
         if siblings[mention_index - 1] == candidate:
@@ -120,28 +121,15 @@ class PredicativeNominativeConstruction(Sieve):
 class AppositiveConstruction(Sieve):
     """Two nominal mentions  in an appositive construction are coreferent
     """
+    sort_name = "ACC"
 
     def __init__(self, multi_sieve_processor):
         Sieve.__init__(self, multi_sieve_processor)
 
     def validate(self, mention):
         """Entity must be in appositive construction"""
-        siblings = self.get_sibling(mention)
-
-        for sibling in siblings:
-            if self.mention_tag[sibling] == dictionaries.conjuntion_tag:
-                return False
-
-        if len(siblings) == 3:
-            return self.mention_tag[siblings[0]] == dictionaries.noun_phrase_tag and self.mention_form[
-                siblings[1]] == ","
-        elif len(siblings) > 3:
-            return self.mention_tag[siblings[0]] == dictionaries.noun_phrase_tag and self.mention_form[
-                siblings[1]] == "," \
-                and self.mention_form[siblings[3]] == ","
-        else:
-            return False
+        return self.tree_utils.is_appositive_construction(mention=mention)
 
     def are_coreferent(self, entity, index, candidate):
         """Candidate is The NP that cover the apossitive construction."""
-        return candidate == self.graph_builder.get_syntactic_parent(entity[index])
+        return candidate == self.tree_utils.get_syntactic_parent(entity[index])

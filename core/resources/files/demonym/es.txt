@@ -1,0 +1,265 @@
+Abjasia	abjasio	abjasia
+Afganistán	afgano	afgana
+Albania	albanés	albansa
+Alemania	alemán	alemna
+Berl	berlinés	berlinsa
+Andorra	andorrano	andorrana
+Andorra la Vieja	andorrano	andorrana
+Angola	angoleño	angoleña	angolano	angolana
+Antigua y Barbuda	antiguano	antiguana
+Arabia Saudita	saudí	saudita
+Argelia	argelino	argelina
+Argel	argelino	argelina
+Argentina	argentino	argentina
+Buenos Aires	porteño	porteña
+Armenia	armenio	armenia
+Aruba	arubeño	a.{{cita	requerida}}
+Australia	australiano	australiana
+Canberra	canberrano	canberrana	camberrano	camberrana
+Austria	austriaco	austriaca	austríaco	austríaca
+Viena	vienés	viensa
+Azerbaiyán	azerbaiyano	azerbaiyana
+Bahamas	bahameño	bahameña
+Baréin	bahreiní
+Bangladesh	bangladesí
+Barbados	barbadense
+Bélgica	belga
+Bruselas	bruselense
+Belice	beliceño	beliceña
+Benín	beninés	beninsa
+Bermudas	bermudeño	ña
+Bielorrusia	bielorruso	bielorrusa
+Birmania	birmano	birmana
+Bolivia	boliviano	boliviana
+Bosnia y Herzegovina	bosnio	bosnia	bosnioherzegovino	bosnioherzegovina
+Botsuana	botsuano	botsuana
+Brasil	brasileño	brasileña	brasilero	brasilera
+Brunéi	bruneano	bruneana
+Bulgaria	búlgaro	búlgara
+Burkina Faso	burkinés
+Burundi	burundés	burundsa
+Bután	butanés	butansa
+Cabo Verde	caboverdiano	caboverdiana
+Camboya	camboyano	camboyana
+Camerún	camerunés	camerunsa
+Canadá	canadiense
+Catar	catarí	qatarí
+Chad	chadiano	chadiana
+Chile	chileno	chilena
+Santiago de Chile	santiaguino	santiaguina
+China	chino	china
+Pek	pekinés	pekinsa
+Chipre	chipriota
+Ciudad del Vaticano	vaticano	vaticana
+Colombia	colombiano	colombiana
+Bogot	bogotano	bogotana
+Comoras	comorense
+Corea del Norte	norcoreano	norcoreana
+Corea del Sur	surcoreano	surcoreana
+Cote d'Ivoire	marfileño	marfileña
+Costa Rica	costarricense
+San Jos	josefino	josefina
+Croacia	croata
+Cuba	cubano	cubana
+La Habana	habanero	habanera
+Curazao	curazaleño	curazaleña
+Dinamarca	danés	dansa
+Copenhague	kobmendense	hafnino	-a	codano	codana
+Dominica	dominiqués	dominiqusa
+Ecuador	ecuatoriano	ecuatoriana
+Quito	quiteño	quiteña
+Egipto	egipcio	egipcia
+El Cairo	cairota
+El Salvador	salvadoreño	salvadoreña
+Abu Dabi	abudabí
+Eritrea	eritreo	eritrea
+Eslovaquia	eslovaco	eslovaca
+Eslovenia	esloveno	eslovena
+España	español	españla
+Madrid	madrileño	madrileña
+Estados Federados de Micronesia	micronesio	micronesia
+Estados Unidos	estadounidense
+Washington D	washingtoniano	washingtoniana
+Estonia	estonio	estonia
+Tallin	tallinesa	tallinés
+Etiopía	etíope
+Filipinas	filipino	filipina
+Manila	manileño	manileña
+Finlandia	finlandés	finlandsa
+Fiji	fiyiano	fiyiana
+Francia	francés	francsa
+Par	parisino	parisina
+Gabón	gabonés	gabonsa
+Gambia	gambiano	gambiana
+Georgia	georgiano	georgiana
+Ghana	ghanés	ghansa
+Gibraltar	gibraltareño	gibraltareña
+Granada	granadino	granadina
+Grecia	griego	griega
+Atenas	ateniense
+Groenlandia	groenlandés	sa
+Guatemala	guatemalteco	guatemalteca
+Guinea	guineano	guineana
+Guinea-Bissau	guineano	guineana
+Guinea Ecuatorial	ecuatoguineano	ecuatoguineana
+Guyana	guyanés	guyansa
+Haití	haitiano	haitiana
+Honduras	hondureño	hondureña
+Tegucigalpa	tegucigalpense
+Hong Kong	hongkonés	sa
+Hungría	húngaro	húngara
+India	indio	india
+Indonesia	indonesio	indonesia
+Iraq	iraquí
+Bagdad	bagdadí
+Irán	iraní
+Irlanda	irlandés	irlandsa
+Dubl	dublinés	dublinsa
+Islandia	islandés	islandsa
+Islas Marshall	marshalés	marshalsa
+Salomón	salomonense
+Israel	israelí
+Jerusal	jerosolimitano	jerosolimitana
+Italia	italiano	italiana
+Roma	romano	romana
+Jamaica	jamaicano	jamaicana	jamaiquino	jamaiquina
+Japón	japonés	japonsa
+Tokio	tokiota
+Jordania	jordano	jordana
+Kazajistán	kazajo	kazaja
+Kenia	keniano	keniana	keniata
+Kyrgyzstan	kirguís	kirguiso	kirguisa
+Kiribati	kiribatiano	kiribatiana
+Kosovo	kosovar
+Kuwait	kuwaití
+Ciudad de Kuwait	kuwaití
+Laos	laosiano	laosiana
+Lesoto	lesotense
+Letonia	letón	letna
+Líbano	libanés	libansa
+Beirut	beirutí
+Liberia	liberiano	liberiana
+Libia	libio	libia
+Tr	tripolitano
+Liechtenstein	liechtensteiniano	liechtensteiniana
+Lituania	lituano	lituana
+Luxemburgo	luxemburgués	luxemburgusa
+Luxemburgo	luxemburgués	luxemburgusa
+Macao	macaense
+Macao	macaense
+Madagascar	malgache
+Malasia	malasio	malasia
+Malaui	malauí
+Maldivas	maldivo	maldiva
+Malí	maliense	malí
+Malta	maltés	maltsa
+Marruecos	marroquí
+Rabat	rabatí
+Mauricio	mauriciano	mauriciana
+Mauritania	mauritano	mauritana
+México	mexicano	mexicana
+Ciudad de M	defeño	defena
+Moldavia	moldavo	moldava
+Mónaco	monegasco	monegasca
+M	monegasco	monegasca
+Mongolia	mongol	mongla
+Montenegro	montenegrino	na
+Mozambique	mozambiqueño	mozambiqueña
+Namibia	namibio	namibia
+Nauru	nauruano	nauruana
+Nepal	nepalés	nepalsa	nepalí
+Nicaragua	nicaragüense
+Managua	managua
+Níger	nigerino	nigerina
+Nigeria	nigeriano	nigeriana
+Noruega	noruego	noruega
+Oslo	osloense
+Nueva Zelanda	neozelandés	neozelandsa
+Omán	omaní
+Países Bajos	neerlandés	neerlandsa
+Pakistán	pakistaní
+Palaos	palauano	palauana
+Palestina	palestino	palestina
+Panamá	panameño	panameña
+Panam	panameño	panameña
+Papúa Nueva Guinea	papú
+Paraguay	paraguayo	paraguaya
+Asunci	asunceno	asuncena	asunceño	asunceña
+Perú	peruano	peruana
+Lima	limeño	limeña
+Polonia	polaco	polaca
+Varsovia	varsoviano	varsoviana
+Portugal	portugués	portugusa
+Lisboa	lisboeta
+Puerto Rico	puertorriqueño	puertorriqueña
+San Juan	sanjuanero	sanjuanera
+Reino Unido	británico	británica
+Londres	londinense
+República Centroafricana	centroafricano
+República Checa	checo	checa
+Praga	praguense
+República de China	taiwanés	sa
+República de Macedonia	macedonio	macedonia
+República del Congo	congoleño	congoleña
+República Democrática del Congo	congoleño	congoleña
+Kinsasa	''kinois''
+República Dominicana	dominicano	dominicana
+Santo Domingo de Guzm	dominicano	dominicana
+Ruanda	ruandés	ruandsa
+Rumania	rumano	rumana
+Rusia	ruso	rusa
+Mosc	moscovita
+Sahara Occidental	sahariano	na
+Samoa	samoano	samoana
+San Cristóbal y Nieves	sancristobaleño	sancristobaleña
+San Marino	sanmarinense
+Ciudad de San Marino	sanmarinense
+San Vicente y las Granadinas	sanvicentino	sanvicentina
+Santa Lucía	santalucense
+Santo Tomé y Príncipe	santotomense
+Senegal	senegalés	senegalsa
+Serbia	serbio	serbia
+Seychelles	seychellense
+Sierra Leona	sierraleonés	sierraleonsa
+Singapur	singapurense
+Singapur	singapurense
+Siria	sirio	a
+Damasco	damasceno	damascena
+Somalia	somalí
+Somalilandia	somalilandés	somalilanesa
+Sri Lanka	ceilanés	ceilansa	ceilandés	-sa	esrilanqués	esrilanqusa
+Suazilandia	suazi
+Sudáfrica	sudafricano	sudafricana
+Sudán	sudanés	sudansa
+Sudán del Sur	sursudanés
+Suecia	sueco	sueca
+Estocolmo	estocolmés	estocolesa
+Suiza	suizo	suiza
+Surinam	surinamés	surinamsa
+Tailandia	tailandés	tailandsa
+Tanzania	tanzano	tanzana
+Tayikistán	tayiko	tayika
+Timor Oriental	timorense
+Togo	togolés	togolsa
+No tiene	-
+Tonga	tongano	tongana
+Trinidad y Tobago	trinitense
+Túnez	tunecino	tunecina
+T	tunecino	tunecina
+Turkmenistán	turcomano	turcomana	turkmeno	turkmena
+Turquía	turco	turca
+Tuvalu	tuvaluano	tuvaluana
+Ucrania	ucraniano	ucraniana
+Uganda	ugandés	ugandsa
+Uruguay	uruguayo	uruguaya
+Montevideo	montevideano	montevideana
+Uzbekistán	uzbeko	uzbeka
+Vanuatu	vanuatuense
+Venezuela	venezolano	venezolana
+Caracas	caraqueño	caraqueña
+Vietnam	vietnamita
+Yemen	yemení
+Yibuti	yibutiano	yibutiana
+Yibuti	yibutiano	yibutiana
+Zambia	zambiano	zambiana
+Zimbabue	zimbabuense

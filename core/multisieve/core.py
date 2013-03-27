@@ -17,9 +17,9 @@ class MultiSieveProcessor():
     """
 
     sieves_configurations = {"base": [ExactMatch],
-                             "full": [ExactMatch, StrictHeadMatching,  AcronymMatch, AppositiveConstruction,
+                             "full": [ExactMatch, RoleAppositiveConstruction, StrictHeadMatching,  AcronymMatch, AppositiveConstruction,
                                       RelativePronoun, PredicativeNominativeConstruction, PronounMatch,
-                                      RoleAppositiveConstruction
+
                                       ]}
 
     def __init__(self, graph, lang_code, sieves_configuration="full"):
@@ -85,16 +85,16 @@ class CoreferenceProcessor:
         widgets = ['Indexing clusters', Fraction()]
         pbar = ProgressBar(widgets=widgets, maxval=len(self.coreference_proposal), force_update=True).start()
         indexed_clusters = 0
-        for index, (entity, candidates) in enumerate(self.coreference_proposal):
+        for index, (entity, candidates, log) in enumerate(self.coreference_proposal):
             pbar.update(index + 1)
             if len(entity) > 1 or self.singletons:
-                self.graph_builder.add_entity(self.graph, entity)
+                self.graph_builder.add_entity(self.graph, entity, log)
                 # Remove the singletons
                 indexed_clusters += 1
                 for mention in entity:
                     # For each mention word assign the cluster id to cluster attribute
                     # and mark start and end with '(' and ')'
-                    tokens = self.graph_builder.get_chunk_words(mention)
+                    tokens = self.graph_builder.get_constituent_words(mention)
                     # Valid for 0, 1 and n list sides
                     if tokens:
                         if len(tokens) == 1:

@@ -8,6 +8,8 @@ __date__ = '14-11-2012'
 class StrictHeadMatching(Sieve):
     """ A relative pronoun is referent to the NP that modified."""
 
+    sort_name = "SHM"
+
     def __init__(self, multi_sieve_processor):
         Sieve.__init__(self, multi_sieve_processor)
 
@@ -17,7 +19,7 @@ class StrictHeadMatching(Sieve):
     def get_head_word_form(self, chunk):
         """ Get the head of a chunk
         """
-        head = self.graph_builder.get_chunk_head_word(chunk)
+        head = self.tree_utils.get_chunk_head_word(chunk)
         if head:
             return self.mention_form[head]
         return None
@@ -26,7 +28,7 @@ class StrictHeadMatching(Sieve):
         """ Get the chunk forms list that are related to a chunk by a mod dependency.
         """
         chunk_head = self.get_head_word_form(chunk)
-        all_mods = set([self.mention_form[word] for word in self.graph_builder.get_chunk_words(chunk)
+        all_mods = set([self.mention_form[word] for word in self.tree_utils.get_chunk_words(chunk)
                         if self.mention_pos[word] in mod_forms]) - set(chunk_head)
         return all_mods
 
@@ -35,7 +37,7 @@ class StrictHeadMatching(Sieve):
         while chunk:
             if chunk == big_chunk:
                 return True
-            chunk = self.graph_builder.get_syntactic_parent(chunk)
+            chunk = self.tree_utils.get_syntactic_parent(chunk)
         return False
 
     def entity_head_match(self, entity, candidate):
@@ -55,9 +57,9 @@ class StrictHeadMatching(Sieve):
         candidate_words = set([self.mention_form[word]
                                for candidate_entity in self.entities_of_a_mention(candidate)
                                for candidate_mention in candidate_entity
-                               for word in self.graph_builder.get_chunk_words(candidate_mention)])
+                               for word in self.tree_utils.get_chunk_words(candidate_mention)])
         entity_words = set([self.mention_form[word]
-                            for n_mention in entity for word in self.graph_builder.get_chunk_words(n_mention)])
+                            for n_mention in entity for word in self.tree_utils.get_chunk_words(n_mention)])
         return len((entity_words - candidate_words) - stop_words) == 0
 
     def compatible_modifiers_only(self, entity, mention, candidate):
@@ -75,7 +77,7 @@ class StrictHeadMatching(Sieve):
         #TODO Aren't Relative pronouns
         # Idem
         #TODO One is included in the other
-        if self.graph_builder.same_sentence(mention, candidate):
+        if self.tree_utils.same_sentence(mention, candidate):
             if self.included(mention, candidate) or self.included(candidate, mention):
                 return True
         return False
