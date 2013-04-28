@@ -1,12 +1,12 @@
-__author__ = 'Josu Bermudez <josu.bermudez@deusto,es>'
+__author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
 import collections
 
 
-def load_file ( file_name):
-    file = open(file_name, 'r')
-    data = [line[:-1] for line in file]
-    file.close()
+def load_file(file_name):
+    data_file = open(file_name, 'r')
+    data = [line[:-1] for line in data_file]
+    data_file.close()
     return data
 
 

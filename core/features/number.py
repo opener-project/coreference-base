@@ -1,5 +1,7 @@
 from features import utils
-from resources import pronouns
+from resources.dictionaries import pronouns
+import properties
+
 
 __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
@@ -10,6 +12,5 @@ unknown_ne_tag = ("o", "org", "organization")
 singular_pronouns = pronouns.singular
 plural_pronouns = pronouns.plural
 
-
-plural_words = utils.load_file("resources/files/number/plural.unigrams.txt")
-singular_words = utils.load_file("resources/files/number/singular.unigrams.txt")
+plural_words = utils.load_file("resources/files/number/{0}.plural.unigrams.txt".format(properties.lang))
+singular_words = utils.load_file("resources/files/number/{0}.singular.unigrams.txt".format(properties.lang))

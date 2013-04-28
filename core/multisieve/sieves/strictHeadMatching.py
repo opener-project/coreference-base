@@ -1,5 +1,6 @@
 from multisieve.sieves.base import Sieve
-from multisieve.dictionaries import mod_forms, stop_words
+from resources.dictionaries import stopwords
+from resources.tagset import pos_tags
 
 __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 __date__ = '14-11-2012'
@@ -29,7 +30,7 @@ class StrictHeadMatching(Sieve):
         """
         chunk_head = self.get_head_word_form(chunk)
         all_mods = set([self.mention_form[word] for word in self.tree_utils.get_chunk_words(chunk)
-                        if self.mention_pos[word] in mod_forms]) - set(chunk_head)
+                        if self.mention_pos[word] in pos_tags.mod_forms]) - set(chunk_head)
         return all_mods
 
     def included(self, small_chunk, big_chunk):
@@ -60,7 +61,7 @@ class StrictHeadMatching(Sieve):
                                for word in self.tree_utils.get_chunk_words(candidate_mention)])
         entity_words = set([self.mention_form[word]
                             for n_mention in entity for word in self.tree_utils.get_chunk_words(n_mention)])
-        return len((entity_words - candidate_words) - stop_words) == 0
+        return len((entity_words - candidate_words) - stopwords.stop_words) == 0
 
     def compatible_modifiers_only(self, entity, mention, candidate):
         """Check if all the modifiers of the candidate appears in the first mention of the entity.
@@ -87,8 +88,3 @@ class StrictHeadMatching(Sieve):
             self.word_inclusion(entity, entity[index], candidate) and \
             self.compatible_modifiers_only(entity, entity[index], candidate) and \
             not(self.i_within_i(entity, entity[index], candidate))
-
-
-
-
-

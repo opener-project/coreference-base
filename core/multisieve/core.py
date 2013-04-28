@@ -75,7 +75,7 @@ class CoreferenceProcessor:
         self.old_sentences = candidates + self.old_sentences
         self.candidatures.extend(sentence_candidatures)
 
-    def resolve(self):
+    def sieves_register(self):
         """ For a candidate marked graph, resolve the coreference.
         """
         # The property that mark coreference in words
@@ -85,10 +85,10 @@ class CoreferenceProcessor:
         widgets = ['Indexing clusters', Fraction()]
         pbar = ProgressBar(widgets=widgets, maxval=len(self.coreference_proposal), force_update=True).start()
         indexed_clusters = 0
-        for index, (entity, candidates, log) in enumerate(self.coreference_proposal):
+        for index, (entity, candidates, sieves_register) in enumerate(self.coreference_proposal):
             pbar.update(index + 1)
             if len(entity) > 1 or self.singletons:
-                self.graph_builder.add_entity(self.graph, entity, log)
+                self.graph_builder.add_entity(mentions=entity, label=sieves_register)
                 # Remove the singletons
                 indexed_clusters += 1
                 for mention in entity:

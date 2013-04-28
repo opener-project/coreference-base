@@ -1,5 +1,6 @@
 from features import utils
-from resources import pronouns
+from resources.dictionaries import pronouns
+import properties
 
 __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
@@ -7,9 +8,8 @@ animate_pronouns = pronouns.animate
 
 inanimate_pronouns = pronouns.inanimate
 
-
-animate_words = utils.load_file("resources/files/animate/animate.unigrams.txt")
-inanimate_words = utils.load_file("resources/files/animate/inanimate.unigrams.txt")
+animate_words = utils.load_file("resources/files/animate/{0}.animate.unigrams.txt".format(properties.lang))
+inanimate_words = utils.load_file("resources/files/animate/{0}.inanimate.unigrams.txt".format(properties.lang))
 
 animate_ne = ("person",
               "per")

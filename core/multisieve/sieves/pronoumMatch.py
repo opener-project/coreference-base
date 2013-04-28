@@ -1,5 +1,7 @@
 from multisieve.sieves.base import Sieve
-from multisieve.dictionaries import UNKNOWN
+from features.grendel import GenderNumberExtractor
+
+UNKNOWN = GenderNumberExtractor.UNKNOWN
 
 __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 

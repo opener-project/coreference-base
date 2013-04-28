@@ -1,6 +1,8 @@
-__author__ = 'nasgar'
+# coding=utf-8
+__author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 from graph.utils import GraphWrapper
-import dictionaries
+from resources.tagset import constituent_tags, pos_tags
+from resources.dictionaries import verbs
 
 
 class SyntacticTreeUtils():
@@ -31,14 +33,14 @@ class SyntacticTreeUtils():
         siblings = self.get_sibling(mention)
 
         for sibling in siblings:
-            if self.mention_tag[sibling] == dictionaries.conjuntion_tag:
+            if self.mention_tag[sibling] == pos_tags.conjuntion:
                 return False
 
         if len(siblings) == 3:
-            return self.mention_tag[siblings[0]] == dictionaries.noun_phrase_tag and \
+            return self.mention_tag[siblings[0]] == constituent_tags.noun_phrase and \
                 self.mention_form[siblings[1]] == ","
         elif len(siblings) > 3:
-            return self.mention_tag[siblings[0]] == dictionaries.noun_phrase_tag and \
+            return self.mention_tag[siblings[0]] == constituent_tags.noun_phrase and \
                 self.mention_form[siblings[1]] == "," and \
                 self.mention_form[siblings[3]] == ","
         else:
@@ -48,18 +50,18 @@ class SyntacticTreeUtils():
         siblings = self.get_sibling(mention)
         mention_index = siblings.index(mention)
         if mention_index > 0 and \
-                self.mention_form[siblings[mention_index - 1]].split()[-1] in dictionaries.copulative_verbs:
+                self.mention_form[siblings[mention_index - 1]].split()[-1] in verbs.copulative:
             return True
         return False
 
-    def is_relative_pronoun(self, candidate, mention):
+    def is_relative_pronoun(self, candidate,mention):
         return set(filter(lambda X: self.mention_tag[X] in
-                       dictionaries.subordinated_clause_tag, mention.in_neighbours())).intersection(
-                set(filter(lambda X: self.mention_tag[X] in
-                    dictionaries.subordinated_clause_tag, candidate.out_neighbours())))
+                          constituent_tags.subordinated, mention.in_neighbours())).intersection(
+                              set(filter(lambda X: self.mention_tag[X] in
+                                  constituent_tags.subordinated, candidate.out_neighbours())))
 
     def get_syntactic_parent(self, mention):
-        return  self.graph_builder.get_syntactic_parent(mention)
+        return self.graph_builder.get_syntactic_parent(mention)
 
     def get_chunk_words(self, mention):
         return self.graph_builder.get_constituent_words(mention)

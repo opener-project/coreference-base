@@ -1,25 +1,28 @@
 from graph.utils import GraphWrapper
-from multisieve import dictionaries
 from multisieve.syntatic_tree_utils import SyntacticTreeUtils
-
+from resources.tagset import pos_tags, constituent_tags, ner_tags
+from resources.dictionaries import stopwords, pronouns, determiners
+from resources.demonym import demonyms
 __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
 
 class SentenceCandidateExtractor:
     """ Extract the candidates of a sentence
     """
-    valid_mention_phrase = ("NP", "WHNP")
-    pronoun_pos = ("PRP", "PRP$")
-    proper_pos = ("NNP", "NNPS")
-    valid_NER = ("PERSON", "NORP", "FACILITY", "ORGANIZATION", "GPE", "LOCATION", "PRODUCT", "EVENT", "WORK OF ART",
-                 "LAW", "LANGUAGE", "DATE", "TIME")
-    invalid_ner = ("PERCENT", "MONEY", "QUANTITY", "ORDINAL", "CARDINAL")
-    non_words = "mm", "hmm", "ahem", "um"
-    invalid_stop_words = {"there", "ltd.", "etc", "'s", "hmm"}
+    cut_NP_tag = "X-NP"
+
+    valid_mention_phrase = (constituent_tags.noun_phrase, constituent_tags.wh_noun_phrase, cut_NP_tag)
+
+    accepted_pronoun_pos = pos_tags.personal_pronouns + pos_tags.relative_pronouns
+
+    # Any phrase as a child of a mention is unacceptable except another NP.
+    invalid_child_tag = set()
+    invalid_child_tag.update(constituent_tags.clauses + constituent_tags.phrases)
+    invalid_child_tag.remove(constituent_tags.noun_phrase)
 
     indefinite_start_particles = set()
-    indefinite_start_particles.update(dictionaries.indefinite_pronouns)
-    indefinite_start_particles.update(dictionaries.indefinite_articles)
+    indefinite_start_particles.update(pronouns.indefinite)
+    indefinite_start_particles.update(determiners.indefinite_articles)
 
     nominal_mention = "nominal_mention"
     proper_mention = "proper_mention"
@@ -79,56 +82,65 @@ class SentenceCandidateExtractor:
             # It's a NP or WHNP
             if self.node_tag[mention_candidate].upper() in self.valid_mention_phrase:
                 first_filter = True
-
         # It's a pronoun
-        elif self.node_pos[mention_candidate].upper() in self.pronoun_pos :
+        elif self.node_pos[mention_candidate].upper() in self.accepted_pronoun_pos:
             first_filter = True
         # Wathever, It's a valid NER?
         ner = self.node_ner[mention_candidate].upper()
-        if ner in self.valid_NER:
+        if ner in ner_tags.mention_ner:
             first_filter = True
 
         # Is a plausible Mention?
         if not first_filter:
             return False
-            # Refine the mentions?
+        # Refine the mentions?
         if not filter_candidates:
             return True
-
-        # Useful characteristic
-        candidate_form = self.node_form[mention_candidate]
-        parent = self.get_syntactic_parent(mention_candidate)
-
+        # No pass filter
         # remove mentions that are numeric entities
-        if ner in self.invalid_ner:
+        if ner in ner_tags.no_mention_ner:
             return False
         # remove mentions with partitive or quantifier expressions
-        if candidate_form.split()[0] in dictionaries.quantifiers:
+        candidate_form = self.node_form[mention_candidate]
+        if candidate_form.split()[0] in determiners.quantifiers:
             return False
         #TODO Improve lone "of" filtering
         if 'of' in candidate_form and len(candidate_form) > 2:
             words = candidate_form.split("of")
-            if words[0].split()[-1].strip() in dictionaries.partitives:
+            if words[0].split()[-1].strip() in determiners.partitives:
                 return False
-            # Remove pleonastic "it" pronouns
+        # Remove pleonastic "it" pronouns
         #TODO Pleonastic it
         # Remove adjectival forms of nations or nationality acronyms
-        if candidate_form in dictionaries.demonyms:
+        if candidate_form in demonyms:
             return False
-            #TODO Nationality acronyms
+        #TODO Nationality acronyms
         # Remove stop words
-        if candidate_form in self.invalid_stop_words:
+        if candidate_form in stopwords.invalid_stop_words:
             return False
 
         # remove mentions that have a larger version
+        # Relative pronouns and appositive constructions avoid this filter
+        # TODO this must be improved
+        if self.tree_utils.is_appositive_construction(mention_candidate):  # or \
+                #self.node_pos[mention_candidate].upper() in self.relative_pronoun_pos:
+            return True
+
+        # Remove mega NPs
+        for index, child in enumerate(self.graph_builder.get_chunk_children(mention_candidate)):
+            if self.node_tag[child] in self.invalid_child_tag:
+                #self.graph_builder.cut_chunk(mention_candidate, index, self.cut_NP_tag)
+                return False
+
+        parent = self.get_syntactic_parent(mention_candidate)
         head = self.graph_builder.get_chunk_head(mention_candidate) or mention_candidate
         # If the head of the mention is a word and the word is in a bigger mention isn't a valid mention
-        if self.node_type[head] == self.graph_builder.word_node_type and \
-                not self.tree_utils.is_appositive_construction(mention_candidate):
-            childrend_pos = set([self.node_pos[child] for child in self.graph_builder.get_chunk_children(mention_candidate)])
+        if self.node_type[head] == self.graph_builder.word_node_type:
+            childrend_pos = set([self.node_pos[child]
+                                 for child in self.graph_builder.get_chunk_children(mention_candidate)])
             # If all children are NNP or NNPS the head is the chunk not a terminal word
             if self.node_type[mention_candidate] == self.graph_builder.word_node_type or \
-                    len(childrend_pos - set(("NNP", "NNPS"))):
+                    len(childrend_pos.difference(pos_tags.proper_nouns)):
                 higher_chunk = parent
                 higher_chunk_head = self.graph_builder.get_chunk_head(parent)
                 while higher_chunk:
@@ -157,7 +169,7 @@ class SentenceCandidateExtractor:
                     head = child
                     break
         # Pronoun mention
-        if head and self.node_pos[head] in self.pronoun_pos:
+        if head and self.node_pos[head] in self.accepted_pronoun_pos:
             return self.pronoun_mention
         # Indefinite Mention
         if len(ordered_children) and (self.node_form[ordered_children[0]] in self.indefinite_start_particles):
@@ -181,19 +193,20 @@ class SentenceCandidateExtractor:
             # Extract the first candidate
             node = nodes.pop(0)
             visited.append(node)
-            if  self.node_tag[node].startswith("S"):
+            if self.node_tag[node] in constituent_tags.clauses:
                 clause_candidatures, clause_candidates = self.process_S_chunk(node, candidates + previous_candidates)
                 candidates.extend(clause_candidates)
                 candidatures.extend(clause_candidatures)
             else:
-                # Order the children of the nodes
-                ordered_children = sorted(GraphWrapper.get_filtered_by_type_out_neighbours(node, "syntactic"),
-                                          key=lambda child: self.node_ord[child], reverse=self.reverse)
-                # Assign a index if the node is candidate for indexing
                 if self.validate_node(node):
                     # Node is a mention
                     # TODO store the textual order of node
+
                     # Determine de mention type
+                    # Order the children of the nodes
+                    ordered_children = sorted(GraphWrapper.get_filtered_by_type_out_neighbours(node, "syntactic"),
+                                              key=lambda child: self.node_ord[child], reverse=self.reverse)
+                    nodes.extend(ordered_children)
                     mention_type = self.select_mention_type(node, ordered_children)
 
                     self.set_mention_type(node, mention_type)
@@ -202,11 +215,13 @@ class SentenceCandidateExtractor:
                                          ["orig:{0}".format(self.node_form[node])]))
                     # Add current node as candidate for the next mentions
                     candidates.append(self.graph.vertex(node))
+
                 else:
-                    ordered_children = sorted(GraphWrapper.get_filtered_by_type_out_neighbours(node, "syntactic"),
-                                              key=lambda child: self.node_ord[child], reverse=self.reverse)
                     # Node is not a mention
                     self.node_mention_type[node] = self.no_mention
+                    # Order the children of the nodes
+                    ordered_children = sorted(GraphWrapper.get_filtered_by_type_out_neighbours(node, "syntactic"),
+                                              key=lambda child: self.node_ord[child], reverse=self.reverse)
                 nodes.extend(ordered_children)
         # Return the candidatures and the candidates for next constituent candidatures
         return candidatures, candidates
@@ -249,5 +264,4 @@ class SentenceCandidateExtractor:
         # Get a Graph that only contains syntax edges
         self.syntax_graph = self.graph_builder.get_syntax_graph(graph=self.graph)
         syntax_root = self.skip_root(self.syntax_graph.vertex(sentence))
-
         return self.process_S_chunk(s_chunk=syntax_root, previous_candidates=previous_sentences_candidates)

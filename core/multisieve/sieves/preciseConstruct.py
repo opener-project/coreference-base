@@ -1,5 +1,6 @@
 from multisieve.sieves.base import Sieve
-import multisieve.dictionaries as dictionaries
+import resources.dictionaries as dictionaries
+from resources.tagset import pos_tags, constituent_tags, ner_tags
 
 
 class RoleAppositiveConstruction(Sieve):
@@ -12,11 +13,11 @@ class RoleAppositiveConstruction(Sieve):
     def is_role_apositive(self, candidate, mention):
 
         candidate_head = self.get_terminal_head(candidate)
-        if self.mention_pos[candidate_head] not in dictionaries.nouns_pos:
+        if self.mention_pos[candidate_head] not in pos_tags.nouns:
             return False
 
         candidate_syntactic_father = self.graph_builder.get_syntactic_parent(candidate)
-        if self.mention_tag[candidate_syntactic_father] != dictionaries.noun_phrase_tag:
+        if self.mention_tag[candidate_syntactic_father] != constituent_tags.noun_phrase:
             return False
 
         return mention == self.graph_builder.get_chunk_head(candidate_syntactic_father)
@@ -24,7 +25,7 @@ class RoleAppositiveConstruction(Sieve):
     def validate(self, mention):
         """Entity must be in appositive construction"""
         # constrain(a)
-        if (self.mention_ner[mention] not in dictionaries.person_ner_tag) or \
+        if (self.mention_ner[mention] not in ner_tags.person_ner_tag) or \
                 (self.mention_ner[self.get_terminal_head(mention=mention)].upper() not in dictionaries.person_ner_tag):
             return False
         return True
@@ -79,16 +80,16 @@ class RelativePronoun(Sieve):
 
     def validate(self, mention):
         """Entity must be relative pronoun."""
-        return self.mention_form[mention] in dictionaries.relative_pronoun
+        return self.mention_form[mention] in pos_tags.relative_pronouns
 
     def are_coreferent(self, entity, index, candidate):
         """ Candicate is the NP that the relative pronoun modified."""
         candidate_tag = self.mention_tag[candidate]
         # TODO only NP candidates?
-        if candidate_tag != dictionaries.noun_phrase_tag:
+        if candidate_tag != constituent_tags.noun_phrase:
             return False
             # TODO is the only valid conection?
-        return self.tree_utils.is_relative_pronoun(candidate, entity, index)
+        return self.tree_utils.is_relative_pronoun(candidate, entity[index])
 
 
 class PredicativeNominativeConstruction(Sieve):
@@ -97,8 +98,6 @@ class PredicativeNominativeConstruction(Sieve):
 
     def __init__(self, multi_sieve_processor):
         Sieve.__init__(self, multi_sieve_processor)
-
-
 
     def validate(self, mention):
         """Entity must be relative pronoun."""

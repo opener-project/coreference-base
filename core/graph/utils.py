@@ -96,6 +96,7 @@ class GraphWrapper():
         def set_graph_property(cls, graph, property_name, value):
             #graph.graph_properties[property_name][graph] = value
             graph.graph_properties[property_name] = value
+
     @classmethod
     def node_property(cls, name, graph):
         return graph.vertex_properties[name]

@@ -2,6 +2,7 @@
 
 __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
+import re
 from logging import getLogger
 
 from features.gender import female_pronouns, male_pronouns, neutral_pronouns, female_words, male_words,\
@@ -10,7 +11,8 @@ from features.number import plural_pronouns, plural_words, singular_pronouns, si
 from features.animacy import animate_words, inanimate_words, inanimate_pronouns, animate_pronouns,\
     animate_ne, inanimate_ne
 
-import resources.pronouns
+from resources.dictionaries import pronouns
+from resources.tagset import pos_tags
 
 
 class GenderNumberExtractor():
@@ -24,7 +26,6 @@ class GenderNumberExtractor():
     PLURAL = "plural"
     ANIMATE = "animate"
     INANIMATE = "inanimate"
-    PRONOMINAL_POS = "prp"
     use_bergsma_gender_lists = True
     use_bergsma_number_lists = True
     use_names_list = True
@@ -50,7 +51,7 @@ class GenderNumberExtractor():
         form = form.lower()
         pos = pos.lower()
         # Pronoun search
-        if pos == self.PRONOMINAL_POS or form in resources.pronouns.all:
+        if pos == pos_tags.pronouns or form in pronouns.all:
             self.logger.debug("Is a pronoun")
             if form in male_pronouns:
                 return self.MALE
@@ -91,7 +92,7 @@ class GenderNumberExtractor():
         form = form.lower()
         pos = pos.lower()
         # Pronouns
-        if pos == self.PRONOMINAL_POS or form in resources.pronouns.all:
+        if pos in pos_tags.pronouns or form in pronouns.all:
             if form in  plural_pronouns:
                 return self.PLURAL
             elif form in singular_pronouns:
@@ -104,7 +105,7 @@ class GenderNumberExtractor():
                 return self.PLURAL
                 # WILD ZONE
         # NER
-        if  ner in unknown_ne_tag:
+        if ner in unknown_ne_tag:
             # Ner are singular by default except organizations
             return self.SINGULAR
          # NOUNS
@@ -124,14 +125,15 @@ class GenderNumberExtractor():
 
     def get_animacy(self, form, pos, ner):
         # Normalize parameters
-        ner = ner.lower()
-        form = form.lower()
-        pos = pos.lower()
+        normalized_ner = ner.lower()
+        normalized_form = form.lower()
+        normalized_form = re.sub("\d", "0", normalized_form)
+        normalized_pos = pos.lower().replace("$", "")
         # Pronouns
-        if pos == self.PRONOMINAL_POS or form in resources.pronouns.all:
-            if form in  inanimate_pronouns:
+        if normalized_pos in pos_tags.pronouns or normalized_form in pronouns.all:
+            if normalized_form in inanimate_pronouns:
                 return self.INANIMATE
-            elif form in animate_pronouns:
+            elif normalized_form in animate_pronouns:
                 return self.ANIMATE
             else:
                 return self.UNKNOWN
@@ -142,10 +144,10 @@ class GenderNumberExtractor():
             if form in inanimate_words:
                 return self.INANIMATE
         # NER
-        elif ner and ner != "o":
-            if ner in animate_ne:
+        elif normalized_ner and normalized_ner != "o":
+            if normalized_ner in animate_ne:
                 return self.ANIMATE
-            elif ner in inanimate_ne:
+            elif normalized_ner in inanimate_ne:
                 return self.INANIMATE
 
         return self.UNKNOWN

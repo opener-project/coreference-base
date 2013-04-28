@@ -3,14 +3,14 @@
 Process a corpus of ontonotes or directory form and generates a output in CONLL format.
 
 """
-from graph.kaf import KafAndTreeGraphBuilder
-from output.kafwritter import KafDocument
-
-__author__ = 'Josu Bermudez <josu.bermudez@deusto.es>, Rodrigo Agerri <rodrigo.agerri@ehu.es>'
+__author__ = 'Josu Bermudez <josu.bermudez@deusto.es>, Rodrigo Agerri rodrigo.agerri@ehu.es'
 
 import argparse
 import logging
 import sys
+
+from graph.kaf import KafAndTreeGraphBuilder
+from output.kafwritter import KafDocument
 
 from output.progressbar import ProgressBar, Fraction
 
@@ -38,14 +38,14 @@ class TextProcessor:
         self.CP = CoreferenceProcessor(self.graph, self.graph_builder, singletons=False,
                                        logger=self.logger)
         self.graph_builder.set_graph(self.graph)
-        self.gender = self.graph_builder.get_property("gender")
-        self.number = self.graph_builder.get_property("number")
-        self.animacy = self.graph_builder.get_property("animate")
+        self.gender = self.graph_builder.get_node_property("gender")
+        self.number = self.graph_builder.get_node_property("number")
+        self.animacy = self.graph_builder.get_node_property("animate")
 
-        self.pos = self.graph_builder.get_property("pos")
-        self.form = self.graph_builder.get_property("form")
-        self.label = self.graph_builder.get_property("label")
-        self.ner = self.graph_builder.get_property("ner")
+        self.pos = self.graph_builder.get_node_property("pos")
+        self.form = self.graph_builder.get_node_property("form")
+        self.label = self.graph_builder.get_node_property("label")
+        self.ner = self.graph_builder.get_node_property("ner")
 
     def build_graph(self, document):
         """ Build a graph form external parser.
@@ -76,21 +76,21 @@ class TextProcessor:
             pos = self.pos[mention]
             ner = self.ner[mention]
             try:
-                form = self.form[self.graph_builder.get_chunk_head_word(mention)]
+                head_word_form = self.form[self.graph_builder.get_chunk_head_word(mention)]
             except Exception as ex:
                 if not error_message:
                     sys.stderr.write("WARNING NO HEAD FOUND without heads strict head match and pronoun sieve will not"
                                  " work correctly\n")
                 error_message = True
-                form = self.form[mention]
-            self.gender[mention] = self.gender_extractor.get_gender(form=form, pos=pos)
-            self.number[mention] = self.gender_extractor.get_number(form=form, pos=pos, ner=ner)
-            self.animacy[mention] = self.gender_extractor.get_animacy(form=form, pos=pos, ner=ner)
+                head_word_form = self.form[mention]
+            self.gender[mention] = self.gender_extractor.get_gender(form=head_word_form, pos=pos)
+            self.number[mention] = self.gender_extractor.get_number(form=head_word_form, pos=pos, ner=ner)
+            self.animacy[mention] = self.gender_extractor.get_animacy(form=head_word_form, pos=pos, ner=ner)
             progress_bar.update(index + 1)
         progress_bar.finish()
-        self.CP.resolve()
+        self.CP.sieves_register()
 
-        self.graph_builder.documentup()
+        self.graph_builder.statistics_document_up()
 
     def show_graph(self):
         """Show the graph in graphviz screen"""
@@ -120,7 +120,6 @@ def main():
         input_text = sys.stdin.read()
         parse_tree = open(arguments.parse_tree, "r").read()
 
-
     parse_tree = clean_treebank(parse_tree)
 
     processor = TextProcessor()
@@ -129,8 +128,6 @@ def main():
     store_analysis(processor.graph, arguments.encoding, arguments.language, arguments.version,
                    arguments.linguistic_parser_name, arguments.linguistic_parser_version,
                    arguments.linguistic_parser_layer)
-#    processor.show_graph()
-#    input("Pulse una tecla")
 
 
 def store_analysis(result, encoding, language, version, lp_name, lp_version, lp_layer,):
@@ -166,6 +163,6 @@ def parse_cmd_arguments(logger=logging.getLogger('argsparse')):
 
     return parser.parse_args()
 
+
 if __name__ == "__main__":
     main()
-
