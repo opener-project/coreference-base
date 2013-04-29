@@ -84,9 +84,10 @@ INSTALLATION
 ============
 
 In order to run CorefGraph coreference module you need to install the python graph library
-graph-tool.
+graph-tool; please install at least version 2.2.20:
 
 http://projects.skewed.de/graph-tool/
+
 
 If you run a Debian based linux system such as Ubuntu or Linux Mint, you can easily install
 graph-tool and all its dependencies by apt-get the packages built by the graph-tool developer.
