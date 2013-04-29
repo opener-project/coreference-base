@@ -85,11 +85,14 @@ class CoreferenceProcessor:
         widgets = ['Indexing clusters', Fraction()]
         pbar = ProgressBar(widgets=widgets, maxval=len(self.coreference_proposal), force_update=True).start()
         indexed_clusters = 0
+        # TODO gestionar los singleton desde el output
         for index, (entity, candidates, sieves_register) in enumerate(self.coreference_proposal):
             pbar.update(index + 1)
+            # remove the singletons
             if len(entity) > 1 or self.singletons:
                 self.graph_builder.add_entity(mentions=entity, label=sieves_register)
                 # Remove the singletons
+                # TODO check if following code is useful
                 indexed_clusters += 1
                 for mention in entity:
                     # For each mention word assign the cluster id to cluster attribute

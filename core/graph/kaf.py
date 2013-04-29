@@ -190,7 +190,7 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
                 # Set the rebuild attributes
                 self.node_label[new_node] = "\n".join((content_text, tag)),
                 self.node_lemma[new_node] = content_text
-                self.node_form[new_node] = content_text,
+                self.node_form[new_node] = content_text
                 self.node_ner[new_node] = "o"
                 return content_text
 
