@@ -1,5 +1,6 @@
 from features import utils
 from resources.dictionaries import pronouns
+from resources.tagset import english_types_ner
 import properties
 
 
@@ -7,7 +8,7 @@ __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
 
 # The o comes from IOB tagging not from first letter of org
-unknown_ne_tag = ("o", "org", "organization")
+single_ne = english_types_ner.single_ner
 # norp?
 singular_pronouns = pronouns.singular
 plural_pronouns = pronouns.plural

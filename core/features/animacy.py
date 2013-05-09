@@ -1,5 +1,6 @@
 from features import utils
 from resources.dictionaries import pronouns
+from resources.tagset import ner_tags
 import properties
 
 __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
@@ -11,29 +12,7 @@ inanimate_pronouns = pronouns.inanimate
 animate_words = utils.load_file("resources/files/animate/{0}.animate.unigrams.txt".format(properties.lang))
 inanimate_words = utils.load_file("resources/files/animate/{0}.inanimate.unigrams.txt".format(properties.lang))
 
-animate_ne = ("person",
-              "per")
+animate_ne = ner_tags.animate
 
-inanimate_ne = ('facility',
-                'norp',
-                'location','loc',
-                'product',
-                'event',
-                'organization','org'
-                'work of art',
-                'law',
-                'language',
-                'date',
-                'time',
-                'percent',
-                'money',
-                'number',
-                'quantity',
-                'ordinal',
-                'cardinal',
-                'misc',
-                'veh',
-                'fac',
-                'gpe',
-                'wea',
-                )
+inanimate_ne = ner_tags.inanimate
+

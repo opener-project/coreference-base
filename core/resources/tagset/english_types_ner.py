@@ -17,4 +17,35 @@ no_mention_ner = ("PERCENT", "MONEY", "QUANTITY", "ORDINAL", "CARDINAL")
 
 person_ner_tag = ("PERSON", "PER")
 
+
+animate = ("person",
+              "per")
+
+
+inanimate = ('facility',
+                'norp',
+                'location', 'loc',
+                'product',
+                'event',
+                'organization', 'org'
+                'work of art',
+                'law',
+                'language',
+                'date',
+                'time',
+                'percent',
+                'money',
+                'number',
+                'quantity',
+                'ordinal',
+                'cardinal',
+                'misc',
+                'veh',
+                'fac',
+                'gpe',
+                'wea',
+                )
+
 all = mention_ner + no_mention_ner + person_ner_tag
+
+single_ner = set(all).difference(("org", "organization"))

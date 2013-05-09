@@ -7,7 +7,7 @@ from logging import getLogger
 
 from features.gender import female_pronouns, male_pronouns, neutral_pronouns, female_words, male_words,\
     neutral_words, female_names, male_names, counter
-from features.number import plural_pronouns, plural_words, singular_pronouns, singular_words, unknown_ne_tag
+from features.number import plural_pronouns, plural_words, singular_pronouns, singular_words, single_ne
 from features.animacy import animate_words, inanimate_words, inanimate_pronouns, animate_pronouns,\
     animate_ne, inanimate_ne
 
@@ -105,7 +105,7 @@ class GenderNumberExtractor():
                 return self.PLURAL
                 # WILD ZONE
         # NER
-        if ner in unknown_ne_tag:
+        if ner in single_ne:
             # Ner are singular by default except organizations
             return self.SINGULAR
          # NOUNS
