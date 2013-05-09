@@ -106,7 +106,7 @@ class SentenceCandidateExtractor:
             return False
         #TODO Improve lone "of" filtering
         if 'of' in candidate_form and len(candidate_form) > 2:
-            words = candidate_form.split("of")
+            words = candidate_form.split(determiners.prep_of)
             if words[0].split()[-1].strip() in determiners.partitives:
                 return False
         # Remove pleonastic "it" pronouns

@@ -28,7 +28,9 @@ class KafDocument(BaseDocument):
             kaf_id = GraphWrapper.node_property(name="kaf_id", graph=graph)
             form = GraphWrapper.node_property(name='form', graph=graph)
             for lp_name, lp_version, lp_layer in linguistic_parsers:
-                kaf_document.add_linguistic_processors(layer=lp_layer, name=lp_name, version=lp_version, time_stamp=time_stamp)
+                kaf_document.add_linguistic_processors(layer=lp_layer, name=lp_name, version=lp_version,
+                                                       time_stamp=time_stamp)
+
             for coref_index, entity in enumerate(BaseGraphBuilder.extract_entities(graph), 1):
                 references = [([kaf_id[word].split("#")[0] for word in BaseGraphBuilder.get_constituent_words(mention)], form[mention])
                               for mention in BaseGraphBuilder.get_entity_mentions(entity)]

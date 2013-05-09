@@ -1,9 +1,9 @@
 #encoding utf-8
 """
-Process a corpus of ontonotes or directory form and generates a output in CONLL format.
+Implements Stanford Multi-Sieve Pass Coreference System as their 2013 Computational Linguistics paper
 
 """
-__author__ = 'Josu Bermudez <josu.bermudez@deusto.es>, Rodrigo Agerri rodrigo.agerri@ehu.es'
+__author__ = 'Josu Bermudez <josu.bermudez@deusto.es>, Rodrigo Agerri <rodrigo.agerri@ehu.es>'
 
 import argparse
 import logging

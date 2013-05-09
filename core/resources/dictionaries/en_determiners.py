@@ -8,3 +8,5 @@ partitives = set(("half", "one", "two", "three", "four", "five", "six", "seven",
     "thousand", "million", "billion", "tens", "dozens", "hundreds", "thousands", "millions", "billions",
     "group", "groups", "bunch", "number", "numbers", "pinch", "amount", "amount", "total", "all", "mile",
     "miles", "pounds"))
+
+prep_of = "of"
