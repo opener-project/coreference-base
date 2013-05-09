@@ -122,7 +122,7 @@ ADAPTING CorefGraph-en to your language
 There are a number of changes needed to be made to make CorefGraph works for other languages. Although we have try to
 keep the language dependent features to a minimum, you will still need to create some dictionaries for your own language
 and make some very minor changes in the code. Here is the list of very file in the Corefgraph module that needs to be changed.
-Every change except one (see below) to be done in the $project/resources directory:
+Every change except one (see below) to be done in the **$project/resources** directory:
 
     + dictionaries/$lang_determiners.py
     + dictionaries/$lang_pronouns.py
@@ -147,7 +147,7 @@ Every change except one (see below) to be done in the $project/resources directo
     + files/number/$lang.plural.unigrams.txt
     + files/number/$lang.singular.unigrams.txt
 
-**IMPORTANT!!!** In the top module directory, you will need to modify properties.py according to the names of the files
+**IMPORTANT!!!** In the top module directory, you will need to modify **properties.py** according to the names of the files
 you generated above for your own language.
 
 Contact Information
