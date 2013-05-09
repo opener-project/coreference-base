@@ -124,30 +124,30 @@ keep the language dependent features to a minimum, you will still need to create
 and make some very minor changes in the code. Here is the list of very file in the Corefgraph module that needs to be changed.
 Every change except one (see below) to be done in the $project/resources directory:
 
-+ dictionaries/$lang_determiners.py
-+ dictionaries/$lang_pronouns.py
-+ dictionaries/$lang_verbs.py
-+ dictionaries/$lang_stopwords.py
+    + dictionaries/$lang_determiners.py
+    + dictionaries/$lang_pronouns.py
+    + dictionaries/$lang_verbs.py
+    + dictionaries/$lang_stopwords.py
 
-+ tagset/$TAGSETNAME_pos.py
-+ tagset/$TAGSETNAME_constituent.py
-+ tagset/$TAGSETNAME_ner.py
+    + tagset/$TAGSETNAME_pos.py
+    + tagset/$TAGSETNAME_constituent.py
+    + tagset/$TAGSETNAME_ner.py
 
-+ files/animate/$lang.animate.txt
-+ files/animate/$lang.inanimate.txt
+    + files/animate/$lang.animate.txt
+    + files/animate/$lang.inanimate.txt
 
-+ files/demonym/$lang.txt
+    + files/demonym/$lang.txt
 
-+ files/gender/$lang.male.unigrams.txt
-+ files/gender/$lang.female.unigrams.txt
-+ files/gender/$lang.neutral.unigrams.txt
-+ files/gender/$lang.namegender.combine.txt
-+ files/gender/$lang.gender.data
+    + files/gender/$lang.male.unigrams.txt
+    + files/gender/$lang.female.unigrams.txt
+    + files/gender/$lang.neutral.unigrams.txt
+    + files/gender/$lang.namegender.combine.txt
+    + files/gender/$lang.gender.data
 
-+ files/number/$lang.plural.unigrams.txt
-+ files/number/$lang.singular.unigrams.txt
+    + files/number/$lang.plural.unigrams.txt
+    + files/number/$lang.singular.unigrams.txt
 
-IMPORTANT!!! In the top module directory, you will need to modify properties.py according to the names of the files
+*IMPORTANT!!!* In the top module directory, you will need to modify properties.py according to the names of the files
 you generated above for your own language.
 
 Contact Information
