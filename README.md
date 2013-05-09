@@ -147,7 +147,7 @@ Every change except one (see below) to be done in the $project/resources directo
     + files/number/$lang.plural.unigrams.txt
     + files/number/$lang.singular.unigrams.txt
 
-*IMPORTANT!!!* In the top module directory, you will need to modify properties.py according to the names of the files
+**IMPORTANT!!!** In the top module directory, you will need to modify properties.py according to the names of the files
 you generated above for your own language.
 
 Contact Information
