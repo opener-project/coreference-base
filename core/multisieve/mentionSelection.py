@@ -206,7 +206,7 @@ class SentenceCandidateExtractor:
                     # Order the children of the nodes
                     ordered_children = sorted(GraphWrapper.get_filtered_by_type_out_neighbours(node, "syntactic"),
                                               key=lambda child: self.node_ord[child], reverse=self.reverse)
-                    nodes.extend(ordered_children)
+                    #nodes.extend(ordered_children)
                     mention_type = self.select_mention_type(node, ordered_children)
 
                     self.set_mention_type(node, mention_type)
