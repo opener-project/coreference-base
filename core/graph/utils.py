@@ -79,7 +79,8 @@ class GraphWrapper():
                            edge_properties=None):
             if graph_properties:
                 for name, property_value in graph_properties.items():
-                    graph.graph_properties[name][graph] = property_value
+                    #graph.graph_properties[name][graph] = property_value
+                    graph.graph_properties[name] = property_value
             if vertex_properties:
                 for name, property_value in vertex_properties.items():
                     graph.vertex_properties[name][node] = property_value
@@ -89,11 +90,13 @@ class GraphWrapper():
 
         @classmethod
         def get_graph_property(cls, graph, property_name):
-            return graph.graph_properties[property_name][graph]
+            #return graph.graph_properties[property_name][graph]
+            return graph.graph_properties[property_name]
 
         @classmethod
         def set_graph_property(cls, graph, property_name, value):
-            graph.graph_properties[property_name][graph] = value
+            #graph.graph_properties[property_name][graph] = value
+            graph.graph_properties[property_name] = value
 
     @classmethod
     def node_property(cls, name, graph):
