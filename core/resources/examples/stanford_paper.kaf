@@ -2,13 +2,13 @@
 <KAF xml:lang="en" version="v1.opener">
   <kafHeader>
     <linguisticProcessors layer="tokens">
-      <lp name="ixa-pipe-tok-en" timestamp="2013-04-112T15:22:16+0200" version="1.0" />
+      <lp name="ixa-pipe-tok-en" timestamp="2013-05-149T12:58:40+0200" version="1.0" />
     </linguisticProcessors>
     <linguisticProcessors layer="terms">
-      <lp name="ixa-pipe-pos-en" timestamp="2013-04-112T15:22:17+0200" version="1.0" />
+      <lp name="ixa-pipe-pos-en" timestamp="2013-05-149T12:58:41+0200" version="1.0" />
     </linguisticProcessors>
     <linguisticProcessors layer="entities">
-      <lp name="ixa-pipe-nerc-en" timestamp="2013-04-112T15:22:17+0200" version="1.0" />
+      <lp name="ixa-pipe-nerc-en" timestamp="2013-05-149T12:58:41+0200" version="1.0" />
     </linguisticProcessors>
   </kafHeader>
   <text>
@@ -31,17 +31,18 @@
     <wf wid="w17" sent="3" offset="66" length="3" para="">the</wf>
     <wf wid="w18" sent="3" offset="70" length="4" para="">song</wf>
     <wf wid="w19" sent="3" offset="74" length="1" para="">.</wf>
-    <wf wid="w20" sent="4" offset="76" length="3" para="">“It</wf>
-    <wf wid="w21" sent="4" offset="80" length="2" para="">is</wf>
-    <wf wid="w22" sent="4" offset="83" length="2" para="">my</wf>
-    <wf wid="w23" sent="4" offset="86" length="8" para="">favorite</wf>
-    <wf wid="w24" sent="4" offset="94" length="1" para="">,</wf>
-    <wf wid="w25" sent="4" offset="95" length="1" para="">”</wf>
-    <wf wid="w26" sent="4" offset="97" length="4" para="">John</wf>
-    <wf wid="w27" sent="4" offset="102" length="4" para="">said</wf>
-    <wf wid="w28" sent="4" offset="107" length="2" para="">to</wf>
-    <wf wid="w29" sent="4" offset="110" length="3" para="">her</wf>
-    <wf wid="w30" sent="4" offset="113" length="1" para="">.</wf>
+    <wf wid="w20" sent="4" offset="76" length="1" para="">"</wf>
+    <wf wid="w21" sent="4" offset="77" length="2" para="">It</wf>
+    <wf wid="w22" sent="4" offset="80" length="2" para="">is</wf>
+    <wf wid="w23" sent="4" offset="83" length="2" para="">my</wf>
+    <wf wid="w24" sent="4" offset="86" length="8" para="">favorite</wf>
+    <wf wid="w25" sent="4" offset="94" length="1" para="">,</wf>
+    <wf wid="w26" sent="4" offset="95" length="1" para="">"</wf>
+    <wf wid="w27" sent="4" offset="97" length="4" para="">John</wf>
+    <wf wid="w28" sent="4" offset="102" length="4" para="">said</wf>
+    <wf wid="w29" sent="4" offset="107" length="2" para="">to</wf>
+    <wf wid="w30" sent="4" offset="110" length="3" para="">her</wf>
+    <wf wid="w31" sent="4" offset="113" length="1" para="">.</wf>
   </text>
   <terms>
     <term tid="t1" pos="R" morphofeat="NNP" lemma="John" type="close">
@@ -158,70 +159,76 @@
         <target id="w19" />
       </span>
     </term>
-    <term tid="t20" pos="R" morphofeat="NNP" lemma="t" type="close">
+    <term tid="t20" pos="N" morphofeat="NN" lemma="&quot;" type="open">
       <span>
-        <!--“It-->
+        <!--"-->
         <target id="w20" />
       </span>
     </term>
-    <term tid="t21" pos="V" morphofeat="VBZ" lemma="be" type="open">
+    <term tid="t21" pos="Q" morphofeat="PRP" lemma="it" type="close">
       <span>
-        <!--is-->
+        <!--It-->
         <target id="w21" />
       </span>
     </term>
-    <term tid="t22" pos="Q" morphofeat="PRP$" lemma="my" type="close">
+    <term tid="t22" pos="V" morphofeat="VBZ" lemma="be" type="open">
       <span>
-        <!--my-->
+        <!--is-->
         <target id="w22" />
       </span>
     </term>
-    <term tid="t23" pos="G" morphofeat="JJ" lemma="favorite" type="open">
+    <term tid="t23" pos="Q" morphofeat="PRP$" lemma="my" type="close">
       <span>
-        <!--favorite-->
+        <!--my-->
         <target id="w23" />
       </span>
     </term>
-    <term tid="t24" pos="O" morphofeat="," lemma="," type="close">
+    <term tid="t24" pos="G" morphofeat="JJ" lemma="favourite" type="open">
       <span>
-        <!--,-->
+        <!--favorite-->
         <target id="w24" />
       </span>
     </term>
-    <term tid="t25" pos="N" morphofeat="NN" lemma="”" type="open">
+    <term tid="t25" pos="O" morphofeat="," lemma="," type="close">
       <span>
-        <!--”-->
+        <!--,-->
         <target id="w25" />
       </span>
     </term>
-    <term tid="t26" pos="R" morphofeat="NNP" lemma="John" type="close">
+    <term tid="t26" pos="N" morphofeat="NN" lemma="&quot;" type="open">
       <span>
-        <!--John-->
+        <!--"-->
         <target id="w26" />
       </span>
     </term>
-    <term tid="t27" pos="V" morphofeat="VBD" lemma="say" type="open">
+    <term tid="t27" pos="R" morphofeat="NNP" lemma="John" type="close">
       <span>
-        <!--said-->
+        <!--John-->
         <target id="w27" />
       </span>
     </term>
-    <term tid="t28" pos="P" morphofeat="TO" lemma="to" type="close">
+    <term tid="t28" pos="V" morphofeat="VBD" lemma="say" type="open">
       <span>
-        <!--to-->
+        <!--said-->
         <target id="w28" />
       </span>
     </term>
-    <term tid="t29" pos="Q" morphofeat="PRP" lemma="her" type="close">
+    <term tid="t29" pos="P" morphofeat="TO" lemma="to" type="close">
       <span>
-        <!--her-->
+        <!--to-->
         <target id="w29" />
       </span>
     </term>
-    <term tid="t30" pos="O" morphofeat="." lemma="." type="close">
+    <term tid="t30" pos="Q" morphofeat="PRP" lemma="her" type="close">
+      <span>
+        <!--her-->
+        <target id="w30" />
+      </span>
+    </term>
+    <term tid="t31" pos="O" morphofeat="." lemma="." type="close">
       <span>
         <!--.-->
-        <target id="w30" />
+        <target id="w31" />
       </span>
     </term>
   </terms>
@@ -230,7 +237,7 @@
       <references>
         <span>
           <!--John -->
-          <target id="t26" />
+          <target id="t27" />
         </span>
       </references>
     </entity>

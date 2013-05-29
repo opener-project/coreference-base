@@ -79,6 +79,10 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
                 lemma = form
             # We want pennTreeBank tagging no kaf tagging
             pos = term.attrib["morphofeat"]
+            ## workaround for encoding issue
+            #form=unicode(form.encode('utf-8'),'utf-8').encode('utf-8')
+            #lemma=unicode(lemma.encode('utf-8'),'utf-8').encode('utf-8')
+            ##
             label = "\n".join((form, pos, lemma, term_id))
             #Create word node
             word_node = self.add_word(form=form, wid=term_id, label=label, lemma=lemma, ner="o", pos=pos, head=False)
