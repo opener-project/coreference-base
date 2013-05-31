@@ -72,17 +72,17 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
             term_id = term.attrib["tid"]
             words = kaf.get_terms_words(term)
             form = " ".join([kaf_words[word.attrib["id"]] for word in words])
+            if isinstance(form, unicode):
+                form = form.encode("utf8")
             kaf_id = "{0}#{1}".format(term_id, "|".join([word.attrib["id"] for word in words]))
             try:
                 lemma = term.attrib["lemma"]
             except KeyError:
                 lemma = form
+            if isinstance(lemma, unicode):
+                lemma = lemma.encode("utf8")
             # We want pennTreeBank tagging no kaf tagging
             pos = term.attrib["morphofeat"]
-            ## workaround for encoding issue
-            #form=unicode(form.encode('utf-8'),'utf-8').encode('utf-8')
-            #lemma=unicode(lemma.encode('utf-8'),'utf-8').encode('utf-8')
-            ##
             label = "\n".join((form, pos, lemma, term_id))
             #Create word node
             word_node = self.add_word(form=form, wid=term_id, label=label, lemma=lemma, ner="o", pos=pos, head=False)

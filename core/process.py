@@ -16,7 +16,7 @@ from output.progressbar import ProgressBar, Fraction
 
 from multisieve.core import CoreferenceProcessor
 from features.grendel import GenderNumberExtractor
-
+import codecs
 
 class TextProcessor:
     """ Process a single text or corpus with several NLP stages managing the result as graphs.
@@ -112,13 +112,18 @@ def main():
     import sys
 
     arguments = parse_cmd_arguments()
-
     if arguments.input:
-        input_text = open(arguments.input[0], "r").read()
-        parse_tree = open(arguments.input[1], "r").read()
+        input_text = codecs.open(filename=arguments.input[0], mode="r").read()
+        parse_tree = codecs.open(filename=arguments.input[1], mode="r").read()
     else:
         input_text = sys.stdin.read()
-        parse_tree = open(arguments.parse_tree, "r").read()
+        parse_tree = codecs.open(filename=arguments.parse_tree, mode="r").read()
+    ## if arguments.input:
+    ##     input_text = open(arguments.input[0], "r").read()
+    ##     parse_tree = open(arguments.input[1], "r").read()
+    ## else:
+    ##     input_text = sys.stdin.read()
+    ##     parse_tree = open(arguments.parse_tree, "r").read()
 
     parse_tree = clean_treebank(parse_tree)
 
