@@ -1,0 +1,867 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<KAF xml:lang="en" version="v1.opener">
+  <kafHeader>
+    <linguisticProcessors layer="tokens">
+      <lp name="ixa-pipe-tok-en" timestamp="2013-04-114T15:07:31+0200" version="1.0"/>
+    </linguisticProcessors>
+    <linguisticProcessors layer="terms">
+      <lp name="ixa-pipe-pos-en" timestamp="2013-04-114T15:07:31+0200" version="1.0"/>
+    </linguisticProcessors>
+    <linguisticProcessors layer="entities">
+      <lp name="ixa-pipe-nerc-en" timestamp="2013-04-114T15:07:32+0200" version="1.0"/>
+    </linguisticProcessors>
+    <linguisticProcessors layer="coreference">
+      <lp timestamp="13-06-17T13:40:38" version="0.8" name="corefgraphEN"/>
+    </linguisticProcessors>
+  </kafHeader>
+  <text>
+    <wf wid="w1" sent="1" offset="0" length="3" para="">The</wf>
+    <wf wid="w2" sent="1" offset="4" length="13" para="">disappearance</wf>
+    <wf wid="w3" sent="1" offset="18" length="2" para="">of</wf>
+    <wf wid="w4" sent="1" offset="21" length="4" para="">York</wf>
+    <wf wid="w5" sent="1" offset="26" length="10" para="">University</wf>
+    <wf wid="w6" sent="1" offset="37" length="4" para="">chef</wf>
+    <wf wid="w7" sent="1" offset="42" length="7" para="">Claudia</wf>
+    <wf wid="w8" sent="1" offset="50" length="8" para="">Lawrence</wf>
+    <wf wid="w9" sent="1" offset="59" length="2" para="">is</wf>
+    <wf wid="w10" sent="1" offset="62" length="3" para="">now</wf>
+    <wf wid="w11" sent="1" offset="66" length="5" para="">being</wf>
+    <wf wid="w12" sent="1" offset="72" length="7" para="">treated</wf>
+    <wf wid="w13" sent="1" offset="80" length="2" para="">as</wf>
+    <wf wid="w14" sent="1" offset="83" length="9" para="">suspected</wf>
+    <wf wid="w15" sent="1" offset="93" length="6" para="">murder</wf>
+    <wf wid="w16" sent="1" offset="99" length="1" para="">,</wf>
+    <wf wid="w17" sent="1" offset="101" length="5" para="">North</wf>
+    <wf wid="w18" sent="1" offset="107" length="9" para="">Yorkshire</wf>
+    <wf wid="w19" sent="1" offset="117" length="6" para="">Police</wf>
+    <wf wid="w20" sent="1" offset="124" length="4" para="">said</wf>
+    <wf wid="w21" sent="1" offset="128" length="1" para="">.</wf>
+    <wf wid="w22" sent="2" offset="130" length="7" para="">However</wf>
+    <wf wid="w23" sent="2" offset="138" length="10" para="">detectives</wf>
+    <wf wid="w24" sent="2" offset="149" length="4" para="">said</wf>
+    <wf wid="w25" sent="2" offset="154" length="4" para="">they</wf>
+    <wf wid="w26" sent="2" offset="159" length="3" para="">had</wf>
+    <wf wid="w27" sent="2" offset="163" length="3" para="">not</wf>
+    <wf wid="w28" sent="2" offset="167" length="5" para="">found</wf>
+    <wf wid="w29" sent="2" offset="173" length="3" para="">any</wf>
+    <wf wid="w30" sent="2" offset="177" length="5" para="">proof</wf>
+    <wf wid="w31" sent="2" offset="183" length="4" para="">that</wf>
+    <wf wid="w32" sent="2" offset="188" length="3" para="">the</wf>
+    <wf wid="w33" sent="2" offset="192" length="11" para="">35-year-old</wf>
+    <wf wid="w34" sent="2" offset="203" length="1" para="">,</wf>
+    <wf wid="w35" sent="2" offset="205" length="3" para="">who</wf>
+    <wf wid="w36" sent="2" offset="209" length="4" para="">went</wf>
+    <wf wid="w37" sent="2" offset="214" length="7" para="">missing</wf>
+    <wf wid="w38" sent="2" offset="222" length="2" para="">on</wf>
+    <wf wid="w39" sent="2" offset="225" length="2" para="">18</wf>
+    <wf wid="w40" sent="2" offset="228" length="5" para="">March</wf>
+    <wf wid="w41" sent="2" offset="233" length="1" para="">,</wf>
+    <wf wid="w42" sent="2" offset="235" length="3" para="">was</wf>
+    <wf wid="w43" sent="2" offset="239" length="4" para="">dead</wf>
+    <wf wid="w44" sent="2" offset="243" length="1" para="">.</wf>
+    <wf wid="w45" sent="3" offset="245" length="3" para="">Her</wf>
+    <wf wid="w46" sent="3" offset="249" length="6" para="">father</wf>
+    <wf wid="w47" sent="3" offset="256" length="5" para="">Peter</wf>
+    <wf wid="w48" sent="3" offset="262" length="8" para="">Lawrence</wf>
+    <wf wid="w49" sent="3" offset="271" length="4" para="">made</wf>
+    <wf wid="w50" sent="3" offset="276" length="1" para="">a</wf>
+    <wf wid="w51" sent="3" offset="278" length="6" para="">direct</wf>
+    <wf wid="w52" sent="3" offset="285" length="6" para="">appeal</wf>
+    <wf wid="w53" sent="3" offset="292" length="2" para="">to</wf>
+    <wf wid="w54" sent="3" offset="295" length="3" para="">his</wf>
+    <wf wid="w55" sent="3" offset="299" length="8" para="">daughter</wf>
+    <wf wid="w56" sent="3" offset="308" length="2" para="">to</wf>
+    <wf wid="w57" sent="3" offset="311" length="7" para="">contact</wf>
+    <wf wid="w58" sent="3" offset="319" length="3" para="">him</wf>
+    <wf wid="w59" sent="3" offset="323" length="4" para="">five</wf>
+    <wf wid="w60" sent="3" offset="328" length="5" para="">weeks</wf>
+    <wf wid="w61" sent="3" offset="334" length="5" para="">after</wf>
+    <wf wid="w62" sent="3" offset="340" length="3" para="">she</wf>
+    <wf wid="w63" sent="3" offset="344" length="11" para="">disappeared</wf>
+    <wf wid="w64" sent="3" offset="355" length="1" para="">.</wf>
+    <wf wid="w65" sent="4" offset="357" length="3" para="">His</wf>
+    <wf wid="w66" sent="4" offset="361" length="4" para="">plea</wf>
+    <wf wid="w67" sent="4" offset="366" length="4" para="">came</wf>
+    <wf wid="w68" sent="4" offset="371" length="2" para="">at</wf>
+    <wf wid="w69" sent="4" offset="374" length="1" para="">a</wf>
+    <wf wid="w70" sent="4" offset="376" length="4" para="">news</wf>
+    <wf wid="w71" sent="4" offset="381" length="10" para="">conference</wf>
+    <wf wid="w72" sent="4" offset="392" length="4" para="">held</wf>
+    <wf wid="w73" sent="4" offset="397" length="7" para="">shortly</wf>
+    <wf wid="w74" sent="4" offset="405" length="5" para="">after</wf>
+    <wf wid="w75" sent="4" offset="411" length="1" para="">a</wf>
+    <wf wid="w76" sent="4" offset="413" length="6" para="">10,000</wf>
+    <wf wid="w77" sent="4" offset="420" length="6" para="">reward</wf>
+    <wf wid="w78" sent="4" offset="427" length="3" para="">was</wf>
+    <wf wid="w79" sent="4" offset="431" length="7" para="">offered</wf>
+    <wf wid="w80" sent="4" offset="439" length="2" para="">to</wf>
+    <wf wid="w81" sent="4" offset="442" length="4" para="">help</wf>
+    <wf wid="w82" sent="4" offset="447" length="4" para="">find</wf>
+    <wf wid="w83" sent="4" offset="452" length="4" para="">Miss</wf>
+    <wf wid="w84" sent="4" offset="457" length="8" para="">Lawrence</wf>
+    <wf wid="w85" sent="4" offset="465" length="1" para="">.</wf>
+    <wf wid="w86" sent="5" offset="467" length="13" para="">Crimestoppers</wf>
+    <wf wid="w87" sent="5" offset="481" length="4" para="">said</wf>
+    <wf wid="w88" sent="5" offset="486" length="3" para="">the</wf>
+    <wf wid="w89" sent="5" offset="490" length="3" para="">sum</wf>
+    <wf wid="w90" sent="5" offset="494" length="4" para="">they</wf>
+    <wf wid="w91" sent="5" offset="499" length="4" para="">were</wf>
+    <wf wid="w92" sent="5" offset="504" length="8" para="">offering</wf>
+    <wf wid="w93" sent="5" offset="513" length="3" para="">was</wf>
+    <wf wid="w94" sent="5" offset="517" length="13" para="">significantly</wf>
+    <wf wid="w95" sent="5" offset="531" length="6" para="">higher</wf>
+    <wf wid="w96" sent="5" offset="538" length="4" para="">than</wf>
+    <wf wid="w97" sent="5" offset="543" length="5" para="">usual</wf>
+    <wf wid="w98" sent="5" offset="549" length="7" para="">because</wf>
+    <wf wid="w99" sent="5" offset="557" length="2" para="">of</wf>
+    <wf wid="w100" sent="5" offset="560" length="6" para="">public</wf>
+    <wf wid="w101" sent="5" offset="567" length="8" para="">interest</wf>
+    <wf wid="w102" sent="5" offset="576" length="2" para="">in</wf>
+    <wf wid="w103" sent="5" offset="579" length="3" para="">the</wf>
+    <wf wid="w104" sent="5" offset="583" length="4" para="">case</wf>
+    <wf wid="w105" sent="5" offset="587" length="1" para="">.</wf>
+  </text>
+  <terms>
+    <term tid="t1" pos="D" morphofeat="DT" lemma="the" type="close">
+      <span>
+        <!--The-->
+        <target id="w1"/>
+      </span>
+    </term>
+    <term tid="t2" pos="N" morphofeat="NN" lemma="disappearance" type="open">
+      <span>
+        <!--disappearance-->
+        <target id="w2"/>
+      </span>
+    </term>
+    <term tid="t3" pos="P" morphofeat="IN" lemma="of" type="close">
+      <span>
+        <!--of-->
+        <target id="w3"/>
+      </span>
+    </term>
+    <term tid="t4" pos="R" morphofeat="NNP" lemma="York" type="close">
+      <span>
+        <!--York-->
+        <target id="w4"/>
+      </span>
+    </term>
+    <term tid="t5" pos="R" morphofeat="NNP" lemma="University" type="close">
+      <span>
+        <!--University-->
+        <target id="w5"/>
+      </span>
+    </term>
+    <term tid="t6" pos="N" morphofeat="NN" lemma="chef" type="open">
+      <span>
+        <!--chef-->
+        <target id="w6"/>
+      </span>
+    </term>
+    <term tid="t7" pos="R" morphofeat="NNP" lemma="Claudia" type="close">
+      <span>
+        <!--Claudia-->
+        <target id="w7"/>
+      </span>
+    </term>
+    <term tid="t8" pos="R" morphofeat="NNP" lemma="Lawrence" type="close">
+      <span>
+        <!--Lawrence-->
+        <target id="w8"/>
+      </span>
+    </term>
+    <term tid="t9" pos="V" morphofeat="VBZ" lemma="be" type="open">
+      <span>
+        <!--is-->
+        <target id="w9"/>
+      </span>
+    </term>
+    <term tid="t10" pos="A" morphofeat="RB" lemma="now" type="open">
+      <span>
+        <!--now-->
+        <target id="w10"/>
+      </span>
+    </term>
+    <term tid="t11" pos="V" morphofeat="VBG" lemma="be" type="open">
+      <span>
+        <!--being-->
+        <target id="w11"/>
+      </span>
+    </term>
+    <term tid="t12" pos="V" morphofeat="VBN" lemma="treat" type="open">
+      <span>
+        <!--treated-->
+        <target id="w12"/>
+      </span>
+    </term>
+    <term tid="t13" pos="P" morphofeat="IN" lemma="as" type="close">
+      <span>
+        <!--as-->
+        <target id="w13"/>
+      </span>
+    </term>
+    <term tid="t14" pos="G" morphofeat="JJ" lemma="suspected" type="open">
+      <span>
+        <!--suspected-->
+        <target id="w14"/>
+      </span>
+    </term>
+    <term tid="t15" pos="N" morphofeat="NN" lemma="murder" type="open">
+      <span>
+        <!--murder-->
+        <target id="w15"/>
+      </span>
+    </term>
+    <term tid="t16" pos="O" morphofeat="," lemma="," type="close">
+      <span>
+        <!--,-->
+        <target id="w16"/>
+      </span>
+    </term>
+    <term tid="t17" pos="G" morphofeat="JJ" lemma="north" type="open">
+      <span>
+        <!--North-->
+        <target id="w17"/>
+      </span>
+    </term>
+    <term tid="t18" pos="N" morphofeat="NN" lemma="yorkshire" type="open">
+      <span>
+        <!--Yorkshire-->
+        <target id="w18"/>
+      </span>
+    </term>
+    <term tid="t19" pos="R" morphofeat="NNP" lemma="Police" type="close">
+      <span>
+        <!--Police-->
+        <target id="w19"/>
+      </span>
+    </term>
+    <term tid="t20" pos="V" morphofeat="VBD" lemma="say" type="open">
+      <span>
+        <!--said-->
+        <target id="w20"/>
+      </span>
+    </term>
+    <term tid="t21" pos="O" morphofeat="." lemma="." type="close">
+      <span>
+        <!--.-->
+        <target id="w21"/>
+      </span>
+    </term>
+    <term tid="t22" pos="A" morphofeat="RB" lemma="however" type="open">
+      <span>
+        <!--However-->
+        <target id="w22"/>
+      </span>
+    </term>
+    <term tid="t23" pos="N" morphofeat="NNS" lemma="detective" type="open">
+      <span>
+        <!--detectives-->
+        <target id="w23"/>
+      </span>
+    </term>
+    <term tid="t24" pos="V" morphofeat="VBD" lemma="say" type="open">
+      <span>
+        <!--said-->
+        <target id="w24"/>
+      </span>
+    </term>
+    <term tid="t25" pos="Q" morphofeat="PRP" lemma="they" type="close">
+      <span>
+        <!--they-->
+        <target id="w25"/>
+      </span>
+    </term>
+    <term tid="t26" pos="V" morphofeat="VBD" lemma="have" type="open">
+      <span>
+        <!--had-->
+        <target id="w26"/>
+      </span>
+    </term>
+    <term tid="t27" pos="A" morphofeat="RB" lemma="not" type="open">
+      <span>
+        <!--not-->
+        <target id="w27"/>
+      </span>
+    </term>
+    <term tid="t28" pos="V" morphofeat="VBN" lemma="find" type="open">
+      <span>
+        <!--found-->
+        <target id="w28"/>
+      </span>
+    </term>
+    <term tid="t29" pos="D" morphofeat="DT" lemma="any" type="close">
+      <span>
+        <!--any-->
+        <target id="w29"/>
+      </span>
+    </term>
+    <term tid="t30" pos="N" morphofeat="NN" lemma="proof" type="open">
+      <span>
+        <!--proof-->
+        <target id="w30"/>
+      </span>
+    </term>
+    <term tid="t31" pos="P" morphofeat="IN" lemma="that" type="close">
+      <span>
+        <!--that-->
+        <target id="w31"/>
+      </span>
+    </term>
+    <term tid="t32" pos="D" morphofeat="DT" lemma="the" type="close">
+      <span>
+        <!--the-->
+        <target id="w32"/>
+      </span>
+    </term>
+    <term tid="t33" pos="G" morphofeat="JJ" lemma="old" type="open">
+      <span>
+        <!--35-year-old-->
+        <target id="w33"/>
+      </span>
+    </term>
+    <term tid="t34" pos="O" morphofeat="," lemma="," type="close">
+      <span>
+        <!--,-->
+        <target id="w34"/>
+      </span>
+    </term>
+    <term tid="t35" pos="Q" morphofeat="WP" lemma="who" type="close">
+      <span>
+        <!--who-->
+        <target id="w35"/>
+      </span>
+    </term>
+    <term tid="t36" pos="V" morphofeat="VBD" lemma="go" type="open">
+      <span>
+        <!--went-->
+        <target id="w36"/>
+      </span>
+    </term>
+    <term tid="t37" pos="V" morphofeat="VBG" lemma="miss" type="open">
+      <span>
+        <!--missing-->
+        <target id="w37"/>
+      </span>
+    </term>
+    <term tid="t38" pos="A" morphofeat="RB" lemma="on" type="open">
+      <span>
+        <!--on-->
+        <target id="w38"/>
+      </span>
+    </term>
+    <term tid="t39" pos="O" morphofeat="CD" lemma="18" type="close">
+      <span>
+        <!--18-->
+        <target id="w39"/>
+      </span>
+    </term>
+    <term tid="t40" pos="R" morphofeat="NNP" lemma="arch" type="close">
+      <span>
+        <!--March-->
+        <target id="w40"/>
+      </span>
+    </term>
+    <term tid="t41" pos="O" morphofeat="," lemma="," type="close">
+      <span>
+        <!--,-->
+        <target id="w41"/>
+      </span>
+    </term>
+    <term tid="t42" pos="V" morphofeat="VBD" lemma="be" type="open">
+      <span>
+        <!--was-->
+        <target id="w42"/>
+      </span>
+    </term>
+    <term tid="t43" pos="G" morphofeat="JJ" lemma="dead" type="open">
+      <span>
+        <!--dead-->
+        <target id="w43"/>
+      </span>
+    </term>
+    <term tid="t44" pos="O" morphofeat="." lemma="." type="close">
+      <span>
+        <!--.-->
+        <target id="w44"/>
+      </span>
+    </term>
+    <term tid="t45" pos="Q" morphofeat="PRP$" lemma="her" type="close">
+      <span>
+        <!--Her-->
+        <target id="w45"/>
+      </span>
+    </term>
+    <term tid="t46" pos="N" morphofeat="NN" lemma="father" type="open">
+      <span>
+        <!--father-->
+        <target id="w46"/>
+      </span>
+    </term>
+    <term tid="t47" pos="R" morphofeat="NNP" lemma="Peter" type="close">
+      <span>
+        <!--Peter-->
+        <target id="w47"/>
+      </span>
+    </term>
+    <term tid="t48" pos="R" morphofeat="NNP" lemma="Lawrence" type="close">
+      <span>
+        <!--Lawrence-->
+        <target id="w48"/>
+      </span>
+    </term>
+    <term tid="t49" pos="V" morphofeat="VBD" lemma="make" type="open">
+      <span>
+        <!--made-->
+        <target id="w49"/>
+      </span>
+    </term>
+    <term tid="t50" pos="D" morphofeat="DT" lemma="a" type="close">
+      <span>
+        <!--a-->
+        <target id="w50"/>
+      </span>
+    </term>
+    <term tid="t51" pos="G" morphofeat="JJ" lemma="direct" type="open">
+      <span>
+        <!--direct-->
+        <target id="w51"/>
+      </span>
+    </term>
+    <term tid="t52" pos="N" morphofeat="NN" lemma="appeal" type="open">
+      <span>
+        <!--appeal-->
+        <target id="w52"/>
+      </span>
+    </term>
+    <term tid="t53" pos="P" morphofeat="TO" lemma="to" type="close">
+      <span>
+        <!--to-->
+        <target id="w53"/>
+      </span>
+    </term>
+    <term tid="t54" pos="Q" morphofeat="PRP$" lemma="his" type="close">
+      <span>
+        <!--his-->
+        <target id="w54"/>
+      </span>
+    </term>
+    <term tid="t55" pos="N" morphofeat="NN" lemma="daughter" type="open">
+      <span>
+        <!--daughter-->
+        <target id="w55"/>
+      </span>
+    </term>
+    <term tid="t56" pos="P" morphofeat="TO" lemma="to" type="close">
+      <span>
+        <!--to-->
+        <target id="w56"/>
+      </span>
+    </term>
+    <term tid="t57" pos="V" morphofeat="VB" lemma="contact" type="open">
+      <span>
+        <!--contact-->
+        <target id="w57"/>
+      </span>
+    </term>
+    <term tid="t58" pos="Q" morphofeat="PRP" lemma="him" type="close">
+      <span>
+        <!--him-->
+        <target id="w58"/>
+      </span>
+    </term>
+    <term tid="t59" pos="O" morphofeat="CD" lemma="five" type="close">
+      <span>
+        <!--five-->
+        <target id="w59"/>
+      </span>
+    </term>
+    <term tid="t60" pos="N" morphofeat="NNS" lemma="week" type="open">
+      <span>
+        <!--weeks-->
+        <target id="w60"/>
+      </span>
+    </term>
+    <term tid="t61" pos="P" morphofeat="IN" lemma="after" type="close">
+      <span>
+        <!--after-->
+        <target id="w61"/>
+      </span>
+    </term>
+    <term tid="t62" pos="Q" morphofeat="PRP" lemma="she" type="close">
+      <span>
+        <!--she-->
+        <target id="w62"/>
+      </span>
+    </term>
+    <term tid="t63" pos="V" morphofeat="VBD" lemma="disappear" type="open">
+      <span>
+        <!--disappeared-->
+        <target id="w63"/>
+      </span>
+    </term>
+    <term tid="t64" pos="O" morphofeat="." lemma="." type="close">
+      <span>
+        <!--.-->
+        <target id="w64"/>
+      </span>
+    </term>
+    <term tid="t65" pos="Q" morphofeat="PRP$" lemma="his" type="close">
+      <span>
+        <!--His-->
+        <target id="w65"/>
+      </span>
+    </term>
+    <term tid="t66" pos="N" morphofeat="NN" lemma="plea" type="open">
+      <span>
+        <!--plea-->
+        <target id="w66"/>
+      </span>
+    </term>
+    <term tid="t67" pos="V" morphofeat="VBD" lemma="come" type="open">
+      <span>
+        <!--came-->
+        <target id="w67"/>
+      </span>
+    </term>
+    <term tid="t68" pos="P" morphofeat="IN" lemma="at" type="close">
+      <span>
+        <!--at-->
+        <target id="w68"/>
+      </span>
+    </term>
+    <term tid="t69" pos="D" morphofeat="DT" lemma="a" type="close">
+      <span>
+        <!--a-->
+        <target id="w69"/>
+      </span>
+    </term>
+    <term tid="t70" pos="N" morphofeat="NN" lemma="news" type="open">
+      <span>
+        <!--news-->
+        <target id="w70"/>
+      </span>
+    </term>
+    <term tid="t71" pos="N" morphofeat="NN" lemma="conference" type="open">
+      <span>
+        <!--conference-->
+        <target id="w71"/>
+      </span>
+    </term>
+    <term tid="t72" pos="V" morphofeat="VBN" lemma="hold" type="open">
+      <span>
+        <!--held-->
+        <target id="w72"/>
+      </span>
+    </term>
+    <term tid="t73" pos="A" morphofeat="RB" lemma="shortly" type="open">
+      <span>
+        <!--shortly-->
+        <target id="w73"/>
+      </span>
+    </term>
+    <term tid="t74" pos="P" morphofeat="IN" lemma="after" type="close">
+      <span>
+        <!--after-->
+        <target id="w74"/>
+      </span>
+    </term>
+    <term tid="t75" pos="D" morphofeat="DT" lemma="a" type="close">
+      <span>
+        <!--a-->
+        <target id="w75"/>
+      </span>
+    </term>
+    <term tid="t76" pos="O" morphofeat="CD" lemma="10,000" type="close">
+      <span>
+        <!--10,000-->
+        <target id="w76"/>
+      </span>
+    </term>
+    <term tid="t77" pos="N" morphofeat="NN" lemma="reward" type="open">
+      <span>
+        <!--reward-->
+        <target id="w77"/>
+      </span>
+    </term>
+    <term tid="t78" pos="V" morphofeat="VBD" lemma="be" type="open">
+      <span>
+        <!--was-->
+        <target id="w78"/>
+      </span>
+    </term>
+    <term tid="t79" pos="V" morphofeat="VBN" lemma="offer" type="open">
+      <span>
+        <!--offered-->
+        <target id="w79"/>
+      </span>
+    </term>
+    <term tid="t80" pos="P" morphofeat="TO" lemma="to" type="close">
+      <span>
+        <!--to-->
+        <target id="w80"/>
+      </span>
+    </term>
+    <term tid="t81" pos="V" morphofeat="VB" lemma="help" type="open">
+      <span>
+        <!--help-->
+        <target id="w81"/>
+      </span>
+    </term>
+    <term tid="t82" pos="V" morphofeat="VB" lemma="find" type="open">
+      <span>
+        <!--find-->
+        <target id="w82"/>
+      </span>
+    </term>
+    <term tid="t83" pos="R" morphofeat="NNP" lemma="Miss" type="close">
+      <span>
+        <!--Miss-->
+        <target id="w83"/>
+      </span>
+    </term>
+    <term tid="t84" pos="R" morphofeat="NNP" lemma="Lawrence" type="close">
+      <span>
+        <!--Lawrence-->
+        <target id="w84"/>
+      </span>
+    </term>
+    <term tid="t85" pos="O" morphofeat="." lemma="." type="close">
+      <span>
+        <!--.-->
+        <target id="w85"/>
+      </span>
+    </term>
+    <term tid="t86" pos="N" morphofeat="NNS" lemma="crimestoppers" type="open">
+      <span>
+        <!--Crimestoppers-->
+        <target id="w86"/>
+      </span>
+    </term>
+    <term tid="t87" pos="V" morphofeat="VBD" lemma="say" type="open">
+      <span>
+        <!--said-->
+        <target id="w87"/>
+      </span>
+    </term>
+    <term tid="t88" pos="D" morphofeat="DT" lemma="the" type="close">
+      <span>
+        <!--the-->
+        <target id="w88"/>
+      </span>
+    </term>
+    <term tid="t89" pos="N" morphofeat="NN" lemma="sum" type="open">
+      <span>
+        <!--sum-->
+        <target id="w89"/>
+      </span>
+    </term>
+    <term tid="t90" pos="Q" morphofeat="PRP" lemma="they" type="close">
+      <span>
+        <!--they-->
+        <target id="w90"/>
+      </span>
+    </term>
+    <term tid="t91" pos="V" morphofeat="VBD" lemma="be" type="open">
+      <span>
+        <!--were-->
+        <target id="w91"/>
+      </span>
+    </term>
+    <term tid="t92" pos="V" morphofeat="VBG" lemma="offer" type="open">
+      <span>
+        <!--offering-->
+        <target id="w92"/>
+      </span>
+    </term>
+    <term tid="t93" pos="V" morphofeat="VBD" lemma="be" type="open">
+      <span>
+        <!--was-->
+        <target id="w93"/>
+      </span>
+    </term>
+    <term tid="t94" pos="A" morphofeat="RB" lemma="significantly" type="open">
+      <span>
+        <!--significantly-->
+        <target id="w94"/>
+      </span>
+    </term>
+    <term tid="t95" pos="G" morphofeat="JJR" lemma="high" type="open">
+      <span>
+        <!--higher-->
+        <target id="w95"/>
+      </span>
+    </term>
+    <term tid="t96" pos="P" morphofeat="IN" lemma="than" type="close">
+      <span>
+        <!--than-->
+        <target id="w96"/>
+      </span>
+    </term>
+    <term tid="t97" pos="G" morphofeat="JJ" lemma="usual" type="open">
+      <span>
+        <!--usual-->
+        <target id="w97"/>
+      </span>
+    </term>
+    <term tid="t98" pos="P" morphofeat="IN" lemma="because" type="close">
+      <span>
+        <!--because-->
+        <target id="w98"/>
+      </span>
+    </term>
+    <term tid="t99" pos="P" morphofeat="IN" lemma="of" type="close">
+      <span>
+        <!--of-->
+        <target id="w99"/>
+      </span>
+    </term>
+    <term tid="t100" pos="G" morphofeat="JJ" lemma="public" type="open">
+      <span>
+        <!--public-->
+        <target id="w100"/>
+      </span>
+    </term>
+    <term tid="t101" pos="N" morphofeat="NN" lemma="interest" type="open">
+      <span>
+        <!--interest-->
+        <target id="w101"/>
+      </span>
+    </term>
+    <term tid="t102" pos="P" morphofeat="IN" lemma="in" type="close">
+      <span>
+        <!--in-->
+        <target id="w102"/>
+      </span>
+    </term>
+    <term tid="t103" pos="D" morphofeat="DT" lemma="the" type="close">
+      <span>
+        <!--the-->
+        <target id="w103"/>
+      </span>
+    </term>
+    <term tid="t104" pos="N" morphofeat="NN" lemma="case" type="open">
+      <span>
+        <!--case-->
+        <target id="w104"/>
+      </span>
+    </term>
+    <term tid="t105" pos="O" morphofeat="." lemma="." type="close">
+      <span>
+        <!--.-->
+        <target id="w105"/>
+      </span>
+    </term>
+  </terms>
+  <entities>
+    <entity eid="e1" type="organization">
+      <references>
+        <span>
+          <!--York University -->
+          <target id="t4"/>
+          <target id="t5"/>
+        </span>
+      </references>
+    </entity>
+    <entity eid="e2" type="person">
+      <references>
+        <span>
+          <!--Claudia Lawrence -->
+          <target id="t7"/>
+          <target id="t8"/>
+        </span>
+      </references>
+    </entity>
+    <entity eid="e3" type="organization">
+      <references>
+        <span>
+          <!--North Yorkshire Police -->
+          <target id="t17"/>
+          <target id="t18"/>
+          <target id="t19"/>
+        </span>
+      </references>
+    </entity>
+    <entity eid="e4" type="person">
+      <references>
+        <span>
+          <!--Peter Lawrence -->
+          <target id="t47"/>
+          <target id="t48"/>
+        </span>
+      </references>
+    </entity>
+    <entity eid="e5" type="misc">
+      <references>
+        <span>
+          <!--Miss Lawrence -->
+          <target id="t83"/>
+          <target id="t84"/>
+        </span>
+      </references>
+    </entity>
+  </entities>
+  <coreferences>
+    <coref coid="co1">
+      <!--However detectives-->
+      <span>
+        <target id="t22"/>
+        <target id="t23"/>
+      </span>
+      <!--they-->
+      <span>
+        <target id="t25"/>
+      </span>
+    </coref>
+    <coref coid="co2">
+      <!--the 35-year-old , who went missing on 18 March-->
+      <span>
+        <target id="t32"/>
+        <target id="t33"/>
+        <target id="t34"/>
+        <target id="t35"/>
+        <target id="t36"/>
+        <target id="t37"/>
+        <target id="t38"/>
+        <target id="t39"/>
+        <target id="t40"/>
+      </span>
+      <!--the 35-year-old-->
+      <span>
+        <target id="t32"/>
+        <target id="t33"/>
+      </span>
+      <!--Her-->
+      <span>
+        <target id="t45"/>
+      </span>
+      <!--she-->
+      <span>
+        <target id="t62"/>
+      </span>
+      <!--they-->
+      <span>
+        <target id="t90"/>
+      </span>
+    </coref>
+    <coref coid="co3">
+      <!--Her father-->
+      <span>
+        <target id="t45"/>
+        <target id="t46"/>
+      </span>
+      <!--him-->
+      <span>
+        <target id="t58"/>
+      </span>
+      <!--his-->
+      <span>
+        <target id="t54"/>
+      </span>
+      <!--His-->
+      <span>
+        <target id="t65"/>
+      </span>
+    </coref>
+  </coreferences>
+</KAF>
