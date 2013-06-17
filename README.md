@@ -95,7 +95,7 @@ graph-tool and all its dependencies by apt-get the packages built by the graph-t
 If you run a Red Hat based server you can try to use alien to generate .rpm packages from the .deb
 ones or you can try and compile from source (good luck).
 
-USING CorefGraph-en
+USING CorefGraph
 ===================
 
 CorefGraph-en requires two inputs (you can see examples in the resources/examples directory):
@@ -106,10 +106,10 @@ CorefGraph-en requires two inputs (you can see examples in the resources/example
 To run the program execute:
 
 ````shell
-python process.py -i input.kaf input.treebank
+python process.py -l (de|en|es|fr|it|nl) -i input.kaf input.treebank
 ````
 
-CorefGraph-en will output KAF via standard output with the <coreference> clusters added to the KAF input received. Note
+Corefgraph will output KAF via standard output with the <coreference> clusters added to the KAF input received. Note
 that for the full functionality of CorefGraph you will need to provide the treebank input with the heads of (at least) the
 Noun Phrases marked, as it can be seen in the treebank input examples in the resource/examples directory. If you do not provide
 heads, only Exact String Match will work properly, whereas Precise Constructs, Strict Head Match and Pronoun Match will not.
