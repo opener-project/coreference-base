@@ -3,6 +3,35 @@ import resources.dictionaries as dictionaries
 from resources.tagset import pos_tags, constituent_tags, ner_tags
 
 
+class AppositiveConstruction(Sieve):
+    """Two nominal mentions  in an appositive construction are coreferent
+    """
+    sort_name = "ACC"
+
+    def __init__(self, multi_sieve_processor):
+        Sieve.__init__(self, multi_sieve_processor)
+
+    def validate(self, mention):
+        """Entity must be in appositive construction"""
+        # If mention is NE use their constituent for syntax checks
+        if mention["type"] == "named_entity":
+            mention_constituent = mention["constituent"]
+        else:
+            mention_constituent = mention
+
+        return super(AppositiveConstruction, self).validate(mention) and \
+            self.tree_utils.is_appositive_construction(mention=mention_constituent)
+
+    def are_coreferent(self, entity, mention, candidate):
+        """Candidate is The NP that cover the appositive construction."""
+        # If candidate or mention are NE use their constituent as mentions
+        if candidate["type"] == "named_entity":
+            candidate = candidate["constituent"]
+        if mention["type"] == "named_entity":
+            mention = mention["constituent"]
+        return candidate == self.tree_utils.get_syntactic_parent(entity[mention])
+
+
 class RoleAppositiveConstruction(Sieve):
 
     sort_name = "RAC"
@@ -10,33 +39,17 @@ class RoleAppositiveConstruction(Sieve):
     def __init__(self, multi_sieve_processor):
         Sieve.__init__(self, multi_sieve_processor)
 
-    def is_role_apositive(self, candidate, mention):
-
-        candidate_head = self.get_terminal_head(candidate)
-        if self.mention_pos[candidate_head] not in pos_tags.nouns:
-            return False
-
-        candidate_syntactic_father = self.graph_builder.get_syntactic_parent(candidate)
-        if self.mention_tag[candidate_syntactic_father] != constituent_tags.noun_phrase:
-            return False
-
-        return mention == self.graph_builder.get_chunk_head(candidate_syntactic_father)
-
     def validate(self, mention):
         """Entity must be in appositive construction"""
-        # constrain(a)
-        if (self.mention_ner[mention] not in ner_tags.person_ner_tag) or \
-                (self.mention_ner[self.get_terminal_head(mention=mention)].upper() not in dictionaries.person_ner_tag):
-            return False
-        return True
+        # constrain(a) The mention must be labeled as person
+        return super(RoleAppositiveConstruction, self).validate(mention) and ner_tags.person(mention["ner"])
 
-    def are_coreferent(self, entity, index, candidate):
+    def are_coreferent(self, entity, mention, candidate):
         """ Candidate is the NP that the relative pronoun modified."""
-        # (b) and (c) constrains
-        if self.mention_gender[candidate] == "NEUTRAL" or self.mention_animacy[candidate] == "INANIMATE":
+        # (b) and (c) constrains The candidate must be animate and can not be neutral.
+        if candidate["gender"] == "NEUTRAL" or candidate["animacy"] == "INANIMATE":
             return False
-
-        return self.is_role_apositive(candidate, entity[index])
+        return self.tree_utils.is_role_appositive(candidate, mention)
 
 
 class AcronymMatch(Sieve):
@@ -50,15 +63,15 @@ class AcronymMatch(Sieve):
     def validate(self, mention):
         """Any mention except pronouns.
         """
-        return self.mention_type[mention] != "pronoun_mention"
+        return super(AcronymMatch, self).validate(mention) and mention["mention"] != "pronoun_mention"
 
-    def are_coreferent(self, entity, index, candidate):
+    def are_coreferent(self, entity, mention, candidate):
         """ Mention and candidate are one demonym of the other."""
         #TODO limpiar acronimos
         #TODO No tiene en cuenta los posibles plurales
-        candidate_form = self.mention_form[candidate]
-        candidate_type = self.mention_type[candidate]
-        mention_form = self.mention_form[entity[index]]
+        candidate_form = candidate["form"]
+        candidate_type = candidate["mention"]
+        mention_form = mention["form"]
 
         if candidate_type == "pronoun_mention":
             return False
@@ -80,16 +93,17 @@ class RelativePronoun(Sieve):
 
     def validate(self, mention):
         """Entity must be relative pronoun."""
-        return self.mention_form[mention] in pos_tags.relative_pronouns
+        return mention["form"] in dictionaries.pronouns.relative
 
-    def are_coreferent(self, entity, index, candidate):
-        """ Candicate is the NP that the relative pronoun modified."""
-        candidate_tag = self.mention_tag[candidate]
-        # TODO only NP candidates?
+    def are_coreferent(self, entity, mention, candidate):
+        """ Candidate is the NP that the relative pronoun modified."""
+        candidate_tag = candidate["tag"]
+        # TODO is the only valid precedent
+        if candidate["type"] == "named_entity":
+            candidate = candidate["constituent"]
         if candidate_tag != constituent_tags.noun_phrase:
             return False
-            # TODO is the only valid conection?
-        return self.tree_utils.is_relative_pronoun(candidate, entity[index])
+        return self.tree_utils.is_relative_pronoun(candidate, mention)
 
 
 class PredicativeNominativeConstruction(Sieve):
@@ -101,34 +115,33 @@ class PredicativeNominativeConstruction(Sieve):
 
     def validate(self, mention):
         """Entity must be relative pronoun."""
-        # The head is in a copula dependency
-        # The mention is nominal o pronominal
+        # If mention is NE use their constituent
+        if mention["type"] == "named_entity":
+            mention_constituent = mention["constituent"]
+        else:
+            mention_constituent = mention
+        return super(PredicativeNominativeConstruction, self).validate(mention) and \
+            self.tree_utils.is_predicative_nominative(mention_constituent)
 
-        return self.tree_utils.is_predicative_nominative(mention)
-
-    def are_coreferent(self, entity, index, candidate):
-        """ Candidate is the NP that the relative pronoun modified."""
-        mention_parent = self.tree_utils.get_syntactic_parent(entity[index])
-        siblings = self.tree_utils.get_sibling(mention_parent)
-        mention_index = siblings.index(mention_parent)
-
-        if siblings[mention_index - 1] == candidate:
-            return True
+    def are_coreferent(self, entity, mention, candidate):
+        """ Candidate is the subject of the predicative-nominative relation of the mention."""
+        # This sieve is full syntactic related so in NE whe use artificial constituent
+        if candidate["type"] == "named_entity":
+            candidate = candidate["constituent"]
+        if mention["type"] == "named_entity":
+            mention = mention["constituent"]
+        # TODO TALK with Rodrigo about THIS
+        if mention["root"] == candidate["root"]:
+            # "S < (NP=m1 $.. (VP < ((/VB/ < /^(am|are|is|was|were|'m|'re|'s|be)$/) $.. NP=m2)))";
+            # "S < (NP=m1 $.. (VP < (VP < ((/VB/ < /^(be|been|being)$/) $.. NP=m2))))";
+            mention_parent = self.tree_utils.get_syntactic_parent(mention)
+            aditional_parent = self.tree_utils.get_syntactic_parent(mention_parent)
+            if constituent_tags.verb_phrases(aditional_parent["tag"]):
+                siblings = self.tree_utils.get_syntactic_sibling(aditional_parent)
+            else:
+                siblings = self.tree_utils.get_syntactic_sibling(mention_parent)
+            # or siblings[X] == candidate?
+            if candidate in siblings:
+                return True
         return False
 
-
-class AppositiveConstruction(Sieve):
-    """Two nominal mentions  in an appositive construction are coreferent
-    """
-    sort_name = "ACC"
-
-    def __init__(self, multi_sieve_processor):
-        Sieve.__init__(self, multi_sieve_processor)
-
-    def validate(self, mention):
-        """Entity must be in appositive construction"""
-        return self.tree_utils.is_appositive_construction(mention=mention)
-
-    def are_coreferent(self, entity, index, candidate):
-        """Candidate is The NP that cover the apossitive construction."""
-        return candidate == self.tree_utils.get_syntactic_parent(entity[index])

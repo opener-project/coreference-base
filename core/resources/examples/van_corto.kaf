@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<KAF xml:lang="es" version="v1.opener">
+  <kafHeader>
+    <linguisticProcessors layer="tokens">
+      <lp name="ixa-pipe-tok-es" timestamp="2013-05-142T15:21:57+0200" version="1.0" />
+    </linguisticProcessors>
+    <linguisticProcessors layer="terms">
+      <lp name="ixa-pipe-pos-es" timestamp="2013-05-142T15:21:58+0200" version="1.0" />
+    </linguisticProcessors>
+    <linguisticProcessors layer="entities">
+      <lp name="ixa-pipe-nerc-es" timestamp="2013-05-142T15:21:58+0200" version="1.0" />
+    </linguisticProcessors>
+  </kafHeader>
+  <text>
+    <wf wid="w1" sent="1" offset="0" length="2" para="">El</wf>
+    <wf wid="w2" sent="1" offset="3" length="5" para="">Museo</wf>
+    <wf wid="w3" sent="1" offset="9" length="3" para="">Van</wf>
+    <wf wid="w4" sent="1" offset="13" length="4" para="">Gogh</wf>
+    <wf wid="w5" sent="1" offset="18" length="2" para="">de</wf>
+    <wf wid="w6" sent="1" offset="21" length="9" para="">Ámsterdam</wf>
+    <wf wid="w7" sent="1" offset="31" length="7" para="">celebra</wf>
+    <wf wid="w8" sent="1" offset="39" length="2" para="">su</wf>
+    <wf wid="w9" sent="1" offset="42" length="3" para="">40º</wf>
+    <wf wid="w10" sent="1" offset="46" length="11" para="">aniversario</wf>
+    <wf wid="w11" sent="1" offset="58" length="9" para="">mostrando</wf>
+    <wf wid="w12" sent="1" offset="68" length="3" para="">las</wf>
+    <wf wid="w13" sent="1" offset="72" length="12" para="">conclusiones</wf>
+    <wf wid="w14" sent="1" offset="85" length="2" para="">de</wf>
+    <wf wid="w15" sent="1" offset="88" length="2" para="">un</wf>
+    <wf wid="w16" sent="1" offset="91" length="7" para="">intenso</wf>
+    <wf wid="w17" sent="1" offset="99" length="5" para="">viaje</wf>
+    <wf wid="w18" sent="1" offset="105" length="2" para="">al</wf>
+    <wf wid="w19" sent="1" offset="108" length="8" para="">universo</wf>
+    <wf wid="w20" sent="1" offset="117" length="6" para="">íntimo</wf>
+    <wf wid="w21" sent="1" offset="124" length="3" para="">del</wf>
+    <wf wid="w22" sent="1" offset="128" length="6" para="">pintor</wf>
+    <wf wid="w23" sent="1" offset="134" length="1" para="">.</wf>
+    <wf wid="w24" sent="2" offset="136" length="3" para="">Han</wf>
+    <wf wid="w25" sent="2" offset="140" length="4" para="">sido</wf>
+    <wf wid="w26" sent="2" offset="145" length="4" para="">ocho</wf>
+    <wf wid="w27" sent="2" offset="150" length="4" para="">años</wf>
+    <wf wid="w28" sent="2" offset="155" length="2" para="">de</wf>
+    <wf wid="w29" sent="2" offset="158" length="15" para="">investigaciones</wf>
+    <wf wid="w30" sent="2" offset="174" length="9" para="">plasmadas</wf>
+    <wf wid="w31" sent="2" offset="184" length="2" para="">en</wf>
+    <wf wid="w32" sent="2" offset="187" length="2" para="">la</wf>
+    <wf wid="w33" sent="2" offset="190" length="7" para="">muestra</wf>
+    <wf wid="w34" sent="2" offset="198" length="3" para="">Van</wf>
+    <wf wid="w35" sent="2" offset="202" length="4" para="">Gogh</wf>
+    <wf wid="w36" sent="2" offset="207" length="2" para="">en</wf>
+    <wf wid="w37" sent="2" offset="210" length="2" para="">su</wf>
+    <wf wid="w38" sent="2" offset="213" length="6" para="">taller</wf>
+    <wf wid="w39" sent="2" offset="220" length="1" para="">(</wf>
+    <wf wid="w40" sent="2" offset="221" length="3" para="">Van</wf>
+    <wf wid="w41" sent="2" offset="225" length="4" para="">Gogh</wf>
+    <wf wid="w42" sent="2" offset="230" length="2" para="">at</wf>
+    <wf wid="w43" sent="2" offset="233" length="4" para="">work</wf>
+    <wf wid="w44" sent="2" offset="237" length="1" para="">)</wf>
+    <wf wid="w45" sent="2" offset="238" length="4" para="">,que</wf>
+    <wf wid="w46" sent="2" offset="243" length="7" para="">ilustra</wf>
+    <wf wid="w47" sent="2" offset="251" length="2" para="">la</wf>
+    <wf wid="w48" sent="2" offset="254" length="9" para="">evolución</wf>
+    <wf wid="w49" sent="2" offset="264" length="2" para="">de</wf>
+    <wf wid="w50" sent="2" offset="267" length="2" para="">un</wf>
+    <wf wid="w51" sent="2" offset="270" length="7" para="">artista</wf>
+    <wf wid="w52" sent="2" offset="278" length="7" para="">rodeado</wf>
+    <wf wid="w53" sent="2" offset="286" length="2" para="">de</wf>
+    <wf wid="w54" sent="2" offset="289" length="9" para="">equívocos</wf>
+    <wf wid="w55" sent="2" offset="298" length="1" para="">.</wf>
+    <wf wid="w56" sent="3" offset="300" length="2" para="">Ni</wf>
+    <wf wid="w57" sent="3" offset="303" length="2" para="">se</wf>
+    <wf wid="w58" sent="3" offset="306" length="5" para="">aisló</wf>
+    <wf wid="w59" sent="3" offset="312" length="2" para="">de</wf>
+    <wf wid="w60" sent="3" offset="315" length="3" para="">sus</wf>
+    <wf wid="w61" sent="3" offset="319" length="7" para="">colegas</wf>
+    <wf wid="w62" sent="3" offset="326" length="1" para="">,</wf>
+    <wf wid="w63" sent="3" offset="328" length="2" para="">ni</wf>
+    <wf wid="w64" sent="3" offset="331" length="5" para="">tenía</wf>
+    <wf wid="w65" sent="3" offset="337" length="2" para="">un</wf>
+    <wf wid="w66" sent="3" offset="340" length="3" para="">don</wf>
+    <wf wid="w67" sent="3" offset="344" length="6" para="">innato</wf>
+    <wf wid="w68" sent="3" offset="351" length="4" para="">para</wf>
+    <wf wid="w69" sent="3" offset="356" length="2" para="">la</wf>
+    <wf wid="w70" sent="3" offset="359" length="7" para="">pintura</wf>
+    <wf wid="w71" sent="3" offset="366" length="1" para="">.</wf>
+  </text>
+  <terms>
+    <term tid="t1" pos="D" morphofeat="DA0MS0" lemma="el" type="close">
+      <span>
+        <!--El-->
+        <target id="w1" />
+      </span>
+    </term>
+    <term tid="t2" pos="R" morphofeat="NP00000" lemma="Museo" type="close">
+      <span>
+        <!--Museo-->
+        <target id="w2" />
+      </span>
+    </term>
+    <term tid="t3" pos="V" morphofeat="VMIP3P0" lemma="ir" type="open">
+      <span>
+        <!--Van-->
+        <target id="w3" />
+      </span>
+    </term>
+    <term tid="t4" pos="R" morphofeat="NP00000" lemma="Gogh" type="close">
+      <span>
+        <!--Gogh-->
+        <target id="w4" />
+      </span>
+    </term>
+    <term tid="t5" pos="P" morphofeat="SPS00" lemma="de" type="close">
+      <span>
+        <!--de-->
+        <target id="w5" />
+      </span>
+    </term>
+    <term tid="t6" pos="R" morphofeat="NP00000" lemma="Ámsterdam" type="close">
+      <span>
+        <!--Ámsterdam-->
+        <target id="w6" />
+      </span>
+    </term>
+    <term tid="t7" pos="V" morphofeat="VMIP3S0" lemma="celebrar" type="open">
+      <span>
+        <!--celebra-->
+        <target id="w7" />
+      </span>
+    </term>
+    <term tid="t8" pos="D" morphofeat="DP3CS0" lemma="su" type="close">
+      <span>
+        <!--su-->
+        <target id="w8" />
+      </span>
+    </term>
+    <term tid="t9" pos="O" morphofeat="Z" lemma="40º" type="close">
+      <span>
+        <!--40º-->
+        <target id="w9" />
+      </span>
+    </term>
+    <term tid="t10" pos="N" morphofeat="NCMS000" lemma="aniversario" type="open">
+      <span>
+        <!--aniversario-->
+        <target id="w10" />
+      </span>
+    </term>
+    <term tid="t11" pos="V" morphofeat="VMG0000" lemma="mostrar" type="open">
+      <span>
+        <!--mostrando-->
+        <target id="w11" />
+      </span>
+    </term>
+    <term tid="t12" pos="D" morphofeat="DA0FP0" lemma="el" type="close">
+      <span>
+        <!--las-->
+        <target id="w12" />
+      </span>
+    </term>
+    <term tid="t13" pos="N" morphofeat="NCFP000" lemma="conclusión" type="open">
+      <span>
+        <!--conclusiones-->
+        <target id="w13" />
+      </span>
+    </term>
+    <term tid="t14" pos="P" morphofeat="SPS00" lemma="de" type="close">
+      <span>
+        <!--de-->
+        <target id="w14" />
+      </span>
+    </term>
+    <term tid="t15" pos="D" morphofeat="DI0MS0" lemma="uno" type="close">
+      <span>
+        <!--un-->
+        <target id="w15" />
+      </span>
+    </term>
+    <term tid="t16" pos="N" morphofeat="NCMS000" lemma="intenso" type="open">
+      <span>
+        <!--intenso-->
+        <target id="w16" />
+      </span>
+    </term>
+    <term tid="t17" pos="V" morphofeat="VMSP3S0" lemma="viajar" type="open">
+      <span>
+        <!--viaje-->
+        <target id="w17" />
+      </span>
+    </term>
+    <term tid="t18" pos="P" morphofeat="SPCMS" lemma="al" type="close">
+      <span>
+        <!--al-->
+        <target id="w18" />
+      </span>
+    </term>
+    <term tid="t19" pos="N" morphofeat="NCMS000" lemma="universo" type="open">
+      <span>
+        <!--universo-->
+        <target id="w19" />
+      </span>
+    </term>
+    <term tid="t20" pos="G" morphofeat="AQ0MS0" lemma="íntimo" type="open">
+      <span>
+        <!--íntimo-->
+        <target id="w20" />
+      </span>
+    </term>
+    <term tid="t21" pos="P" morphofeat="SPCMS" lemma="del" type="close">
+      <span>
+        <!--del-->
+        <target id="w21" />
+      </span>
+    </term>
+    <term tid="t22" pos="N" morphofeat="NCMS000" lemma="pintor" type="open">
+      <span>
+        <!--pintor-->
+        <target id="w22" />
+      </span>
+    </term>
+    <term tid="t23" pos="O" morphofeat="Fp" lemma="." type="close">
+      <span>
+        <!--.-->
+        <target id="w23" />
+      </span>
+    </term>
+    <term tid="t24" pos="V" morphofeat="VAIP3P0" lemma="haber" type="open">
+      <span>
+        <!--Han-->
+        <target id="w24" />
+      </span>
+    </term>
+    <term tid="t25" pos="V" morphofeat="VSP00SM" lemma="ser" type="open">
+      <span>
+        <!--sido-->
+        <target id="w25" />
+      </span>
+    </term>
+    <term tid="t26" pos="D" morphofeat="DN0CP0" lemma="ocho" type="close">
+      <span>
+        <!--ocho-->
+        <target id="w26" />
+      </span>
+    </term>
+    <term tid="t27" pos="N" morphofeat="NCMP000" lemma="año" type="open">
+      <span>
+        <!--años-->
+        <target id="w27" />
+      </span>
+    </term>
+    <term tid="t28" pos="P" morphofeat="SPS00" lemma="de" type="close">
+      <span>
+        <!--de-->
+        <target id="w28" />
+      </span>
+    </term>
+    <term tid="t29" pos="N" morphofeat="NCFP000" lemma="investigación" type="open">
+      <span>
+        <!--investigaciones-->
+        <target id="w29" />
+      </span>
+    </term>
+    <term tid="t30" pos="G" morphofeat="AQ0FPP" lemma="plasmadas" type="open">
+      <span>
+        <!--plasmadas-->
+        <target id="w30" />
+      </span>
+    </term>
+    <term tid="t31" pos="P" morphofeat="SPS00" lemma="en" type="close">
+      <span>
+        <!--en-->
+        <target id="w31" />
+      </span>
+    </term>
+    <term tid="t32" pos="D" morphofeat="DA0FS0" lemma="el" type="close">
+      <span>
+        <!--la-->
+        <target id="w32" />
+      </span>
+    </term>
+    <term tid="t33" pos="N" morphofeat="NCFS000" lemma="muestra" type="open">
+      <span>
+        <!--muestra-->
+        <target id="w33" />
+      </span>
+    </term>
+    <term tid="t34" pos="V" morphofeat="VMIP3P0" lemma="ir" type="open">
+      <span>
+        <!--Van-->
+        <target id="w34" />
+      </span>
+    </term>
+    <term tid="t35" pos="R" morphofeat="NP00000" lemma="Gogh" type="close">
+      <span>
+        <!--Gogh-->
+        <target id="w35" />
+      </span>
+    </term>
+    <term tid="t36" pos="P" morphofeat="SPS00" lemma="en" type="close">
+      <span>
+        <!--en-->
+        <target id="w36" />
+      </span>
+    </term>
+    <term tid="t37" pos="D" morphofeat="DP3CS0" lemma="su" type="close">
+      <span>
+        <!--su-->
+        <target id="w37" />
+      </span>
+    </term>
+    <term tid="t38" pos="N" morphofeat="NCMS000" lemma="taller" type="open">
+      <span>
+        <!--taller-->
+        <target id="w38" />
+      </span>
+    </term>
+    <term tid="t39" pos="O" morphofeat="Fpa" lemma="(" type="close">
+      <span>
+        <!--(-->
+        <target id="w39" />
+      </span>
+    </term>
+    <term tid="t40" pos="R" morphofeat="NP00000" lemma="Van" type="close">
+      <span>
+        <!--Van-->
+        <target id="w40" />
+      </span>
+    </term>
+    <term tid="t41" pos="R" morphofeat="NP00000" lemma="Gogh" type="close">
+      <span>
+        <!--Gogh-->
+        <target id="w41" />
+      </span>
+    </term>
+    <term tid="t42" pos="V" morphofeat="VMIP3S0" lemma="at" type="open">
+      <span>
+        <!--at-->
+        <target id="w42" />
+      </span>
+    </term>
+    <term tid="t43" pos="N" morphofeat="NCFS000" lemma="work" type="open">
+      <span>
+        <!--work-->
+        <target id="w43" />
+      </span>
+    </term>
+    <term tid="t44" pos="O" morphofeat="Fpt" lemma=")" type="close">
+      <span>
+        <!--)-->
+        <target id="w44" />
+      </span>
+    </term>
+    <term tid="t45" pos="C" morphofeat="CC" lemma=",que" type="close">
+      <span>
+        <!--,que-->
+        <target id="w45" />
+      </span>
+    </term>
+    <term tid="t46" pos="V" morphofeat="VMIP3S0" lemma="ilustrar" type="open">
+      <span>
+        <!--ilustra-->
+        <target id="w46" />
+      </span>
+    </term>
+    <term tid="t47" pos="D" morphofeat="DA0FS0" lemma="el" type="close">
+      <span>
+        <!--la-->
+        <target id="w47" />
+      </span>
+    </term>
+    <term tid="t48" pos="N" morphofeat="NCFS000" lemma="evolución" type="open">
+      <span>
+        <!--evolución-->
+        <target id="w48" />
+      </span>
+    </term>
+    <term tid="t49" pos="P" morphofeat="SPS00" lemma="de" type="close">
+      <span>
+        <!--de-->
+        <target id="w49" />
+      </span>
+    </term>
+    <term tid="t50" pos="D" morphofeat="DI0MS0" lemma="uno" type="close">
+      <span>
+        <!--un-->
+        <target id="w50" />
+      </span>
+    </term>
+    <term tid="t51" pos="N" morphofeat="NCCS000" lemma="artista" type="open">
+      <span>
+        <!--artista-->
+        <target id="w51" />
+      </span>
+    </term>
+    <term tid="t52" pos="G" morphofeat="AQ0MSP" lemma="rodeado" type="open">
+      <span>
+        <!--rodeado-->
+        <target id="w52" />
+      </span>
+    </term>
+    <term tid="t53" pos="P" morphofeat="SPS00" lemma="de" type="close">
+      <span>
+        <!--de-->
+        <target id="w53" />
+      </span>
+    </term>
+    <term tid="t54" pos="N" morphofeat="NCMP000" lemma="equívoco" type="open">
+      <span>
+        <!--equívocos-->
+        <target id="w54" />
+      </span>
+    </term>
+    <term tid="t55" pos="O" morphofeat="Fp" lemma="." type="close">
+      <span>
+        <!--.-->
+        <target id="w55" />
+      </span>
+    </term>
+    <term tid="t56" pos="C" morphofeat="CC" lemma="ni" type="close">
+      <span>
+        <!--Ni-->
+        <target id="w56" />
+      </span>
+    </term>
+    <term tid="t57" pos="Q" morphofeat="P00CC000" lemma="se" type="close">
+      <span>
+        <!--se-->
+        <target id="w57" />
+      </span>
+    </term>
+    <term tid="t58" pos="V" morphofeat="VMIS3S0" lemma="aislar" type="open">
+      <span>
+        <!--aisló-->
+        <target id="w58" />
+      </span>
+    </term>
+    <term tid="t59" pos="P" morphofeat="SPS00" lemma="de" type="close">
+      <span>
+        <!--de-->
+        <target id="w59" />
+      </span>
+    </term>
+    <term tid="t60" pos="D" morphofeat="DP3CP0" lemma="su" type="close">
+      <span>
+        <!--sus-->
+        <target id="w60" />
+      </span>
+    </term>
+    <term tid="t61" pos="N" morphofeat="NCCP000" lemma="colega" type="open">
+      <span>
+        <!--colegas-->
+        <target id="w61" />
+      </span>
+    </term>
+    <term tid="t62" pos="O" morphofeat="Fc" lemma="," type="close">
+      <span>
+        <!--,-->
+        <target id="w62" />
+      </span>
+    </term>
+    <term tid="t63" pos="C" morphofeat="CC" lemma="ni" type="close">
+      <span>
+        <!--ni-->
+        <target id="w63" />
+      </span>
+    </term>
+    <term tid="t64" pos="V" morphofeat="VMII3S0" lemma="tener" type="open">
+      <span>
+        <!--tenía-->
+        <target id="w64" />
+      </span>
+    </term>
+    <term tid="t65" pos="D" morphofeat="DI0MS0" lemma="uno" type="close">
+      <span>
+        <!--un-->
+        <target id="w65" />
+      </span>
+    </term>
+    <term tid="t66" pos="N" morphofeat="NCMS000" lemma="don" type="open">
+      <span>
+        <!--don-->
+        <target id="w66" />
+      </span>
+    </term>
+    <term tid="t67" pos="G" morphofeat="AQ0MS0" lemma="innato" type="open">
+      <span>
+        <!--innato-->
+        <target id="w67" />
+      </span>
+    </term>
+    <term tid="t68" pos="P" morphofeat="SPS00" lemma="para" type="close">
+      <span>
+        <!--para-->
+        <target id="w68" />
+      </span>
+    </term>
+    <term tid="t69" pos="D" morphofeat="DA0FS0" lemma="el" type="close">
+      <span>
+        <!--la-->
+        <target id="w69" />
+      </span>
+    </term>
+    <term tid="t70" pos="N" morphofeat="NCFS000" lemma="pintura" type="open">
+      <span>
+        <!--pintura-->
+        <target id="w70" />
+      </span>
+    </term>
+    <term tid="t71" pos="O" morphofeat="Fp" lemma="." type="close">
+      <span>
+        <!--.-->
+        <target id="w71" />
+      </span>
+    </term>
+  </terms>
+  <entities>
+    <entity eid="e1" type="organization">
+      <references>
+        <span>
+          <!--Museo Van Gogh de Ámsterdam -->
+          <target id="t2" />
+          <target id="t3" />
+          <target id="t4" />
+          <target id="t5" />
+          <target id="t6" />
+        </span>
+      </references>
+    </entity>
+    <entity eid="e2" type="person">
+      <references>
+        <span>
+          <!--Van Gogh -->
+          <target id="t34" />
+          <target id="t35" />
+        </span>
+      </references>
+    </entity>
+    <entity eid="e3" type="organization">
+      <references>
+        <span>
+          <!--Van Gogh -->
+          <target id="t40" />
+          <target id="t41" />
+        </span>
+      </references>
+    </entity>
+  </entities>
+</KAF>

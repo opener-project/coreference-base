@@ -15,31 +15,22 @@ class StrictHeadMatching(Sieve):
         Sieve.__init__(self, multi_sieve_processor)
 
     def validate(self, mention):
-        return self.mention_type[mention] != "pronoun_mention"
+        return super(StrictHeadMatching, self).validate(mention) and mention["mention"] != "pronoun_mention"
 
     def get_head_word_form(self, chunk):
         """ Get the head of a chunk
         """
-        head = self.tree_utils.get_chunk_head_word(chunk)
-        if head:
-            return self.mention_form[head]
-        return None
+        head = self.tree_utils.get_constituent_head_word(chunk)
+        # if head is None return None. If not return head form
+        return head and head["form"]
 
     def get_modifiers(self, chunk):
         """ Get the chunk forms list that are related to a chunk by a mod dependency.
         """
         chunk_head = self.get_head_word_form(chunk)
-        all_mods = set([self.mention_form[word] for word in self.tree_utils.get_chunk_words(chunk)
-                        if self.mention_pos[word] in pos_tags.mod_forms]) - set(chunk_head)
+        all_mods = set([word["form"] for word in self.tree_utils.get_constituent_words(chunk)
+                        if pos_tags.mod_forms(word["pos"])]) - set(chunk_head)
         return all_mods
-
-    def included(self, small_chunk, big_chunk):
-        chunk = small_chunk
-        while chunk:
-            if chunk == big_chunk:
-                return True
-            chunk = self.tree_utils.get_syntactic_parent(chunk)
-        return False
 
     def entity_head_match(self, entity, candidate):
         """Checks if the head of the candidate is the head word of any mention of the entity.
@@ -55,12 +46,15 @@ class StrictHeadMatching(Sieve):
 
     def word_inclusion(self, entity, mention, candidate):
         # Change mention / candidates form
-        candidate_words = set([self.mention_form[word]
-                               for candidate_entity in self.entities_of_a_mention(candidate)
-                               for candidate_mention in candidate_entity
-                               for word in self.tree_utils.get_chunk_words(candidate_mention)])
-        entity_words = set([self.mention_form[word]
-                            for n_mention in entity for word in self.tree_utils.get_chunk_words(n_mention)])
+        candidate_words = set([
+            word["form"]
+            for candidate_entity in self.entities_of_a_mention(candidate)
+            for candidate_mention in candidate_entity
+            for word in self.tree_utils.get_constituent_words(self.graph.node[candidate_mention])])
+        entity_words = set([
+            word["form"]
+            for n_mention in entity
+            for word in self.tree_utils.get_constituent_words(n_mention)])
         return len((entity_words - candidate_words) - stopwords.stop_words) == 0
 
     def compatible_modifiers_only(self, entity, mention, candidate):
@@ -79,12 +73,15 @@ class StrictHeadMatching(Sieve):
         # Idem
         #TODO One is included in the other
         if self.tree_utils.same_sentence(mention, candidate):
-            if self.included(mention, candidate) or self.included(candidate, mention):
+            if self.tree_utils.inside(mention["span"], candidate["span"]) or \
+                    self.tree_utils.inside(candidate["span"], mention["span"]):
                 return True
         return False
 
-    def are_coreferent(self, entity, index, candidate):
-        return self.entity_head_match(entity, candidate) and \
-            self.word_inclusion(entity, entity[index], candidate) and \
-            self.compatible_modifiers_only(entity, entity[index], candidate) and \
-            not(self.i_within_i(entity, entity[index], candidate))
+    def are_coreferent(self, entity, mention, candidate):
+        entity_mentions = [self.graph.node[m] for m in entity]
+
+        return self.entity_head_match(entity=entity_mentions, candidate=candidate) and \
+            self.word_inclusion(entity=entity_mentions, mention=mention, candidate=candidate) and \
+            self.compatible_modifiers_only(entity=entity_mentions, mention=mention, candidate=candidate) and \
+            not(self.i_within_i(entity=entity_mentions, mention=mention, candidate=candidate))

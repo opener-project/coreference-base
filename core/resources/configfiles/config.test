@@ -1,0 +1,186 @@
+###
+###  This is a configuration file in the format expected by
+###  ConfigParser.  Any line beginning with a hash mark (#) is a
+###  comment.  Lines beginning with three hash markes are used for
+###  general commentary, lines with only one are example configuration
+###  settings
+###
+###  You must set corpus.data_in or fill out the section db
+###  and will likely want to change other settings
+###
+###  Note that fields that take lists (for example banks) want space
+###  separated elements.  For example:
+###
+###    banks: parse prop coref sense
+###
+###  Also note that all settings in the configuration file may be
+###  overridden on the command line if the tool is using
+###  on.common.util.load_options as all the tools here do.  The syntax
+###  for that is:
+###
+###    python some_tool -c some_config Section.Option=Value
+###
+###  For example:
+###
+###    python load_to_db.py -c config.example corpus.data_in=/corpus/data
+###
+###  Because we use spaces to separate elements of lists, you may need
+###  to put argument values in quotes:
+###
+###    python load_to_db.py -c config.example corpus.banks="name prop"
+###
+###  In general, each section here is used by one api function.
+###
+
+
+[corpus]
+###### This section is used by on.ontonotes.__init__ ######
+###
+###
+### data_in: Where to look for the data
+###
+### this should be a path ending in 'data/'; the root of the ontonotes
+### file system heirarchy.
+
+data_in: /server/conll2011/v2/data/dev/data/
+
+### If you set data_in to a specific parse file, as so:
+#
+# data_in: /path/to/the/data/english/annotations/nw/wsj/00/wsj_0020.parse
+#
+### Then only that document will be loaded and you can ignore the next
+### paragraph on the load variable and leave it unset
+
+
+### What to load:
+###
+### There is a heirarchy: lang / genre / source.  We specify what to
+### load in the form lang-genre-source, with the final term optional.
+###
+### The example configuration below loads only the wsj (which is in
+### english.nw):
+
+load: english
+
+### Note that specific sources are optional.  To load all the chinese
+### broadcast news data, you would set load to:
+#
+# load: chinese-bn
+#
+### One can also load multiple sections, for example if one wants to
+### work with english and chinese broadcast communications data (half
+### of which is parallel):
+#
+# load: english-bc chinese-bc
+#
+### This a flexible configuration system, but if it is not
+### sufficiently flexible, one option would be to look at the source
+### code for on.ontonotes.from_files() to see how to manually and
+### precisely select what data is loaded.
+###
+
+
+### One can also load only some individual documents.  The
+### configuration values that control this are:
+###
+###   suffix, and
+###   prefix
+###
+### The default, if none of these are set, is to load all files
+### for each loaded source regardless of their four digit id.  This is
+### equivalent to the setting either of them to nothing:
+#
+# prefix:
+# suffix:
+#
+###
+### Set them to space separated lists of prefixes and suffixes:
+#
+# suffix: 6 7 8
+# prefix: 00 01 02
+#
+### The above settings would load all files whose id ends in 6, 7, or
+### 8 and whose id starts with 00, 01, or 02.
+###
+
+
+### We can also set the granularity of loading.  A subcorpus is an
+### arbitrary collection of documents, that by default will be all the
+### documents for one source.  If we want to have finer grained
+### divisions, we can.  This means that the code:
+###
+###    # config has corpus.load=english-nw
+###    a_ontonotes = on.ontonotes.from_files(config)
+###    print len(a_ontonotes)
+###
+### Would produce different output for each granularity setting.  If
+### granularity=source, english-nw has both wsj and xinhua, so the
+### ontonotes object would contain two subcorpus instances and it
+### would print "1".  For granularity=section, there are 25 sections
+### in the wsj and 4 in xinhua, so we would have each of these as a
+### subcorpus instance and print "29".  For granularity=file, there
+### are a total of 922 documents in all those sections, so it would
+### create 922 subcorpus objects each containing only a single
+### document.
+### 
+
+granularity: source
+# granularity: section
+# granularity: file
+
+###
+### Once we've selected which documents to put in our subcorpus with
+### on.ontonotes.from_files, we need to decide which banks to load.
+### That is, do we want to load the data in the .prop files?  What
+### about the .coref files?
+###
+
+banks: v2_gold_parse v2_gold_coref v2_gold_name v2_gold_parallel v2_gold_prop v2_gold_speaker
+#banks: v2_gold_parse v2_gold_coref v2_gold_sense v2_gold_name v2_gold_parallel v2_gold_prop v2_gold_speaker
+### You need not load all the banks:
+#
+# banks: parse coref sense
+# banks: parse
+#
+###
+
+
+### The name and sense data included in this distribution is all word
+### indexed.  If you want to process different data with different
+### indexing (indexing that counts traces) then set these varibles
+### apropriately.
+
+wsd-indexing: word
+# word | token | nword_vtoken | notoken_vword
+
+name-indexing: word 
+# word | token
+
+###
+### Normally, when you load senses or propositions, the metadata that
+### tells you how to interpret them is also loaded.  If you don't wish
+### to load these, generally because they are slow to load, you can
+### say so here.  A value of "senses" means "don't load the sense
+### inventories" and a value of "frames" means "don't load the frame
+### files".  One can specify both.
+###
+### The default value is equivalent to "corpus.ignore_inventories="
+### and results in loading both of them as needed.
+###
+#
+# ignore-inventories: senses frames
+
+
+# [db]
+###### This section is used by on.ontonotes.db_cursor as well ######
+###### as other functions that call db_cursor() such as       ######
+###### load_banks                                             ######
+###
+### Configuration information for the db
+#
+# db: ontonotes_v3
+# host: your-mysql-host
+# db-user: your-mysql-user
+#
+
+

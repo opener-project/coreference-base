@@ -1,8 +1,9 @@
 from multisieve.sieves.base import Sieve
 from features.grendel import GenderNumberExtractor
+from resources.tagset import ner_tags
 
 UNKNOWN = GenderNumberExtractor.UNKNOWN
-
+NO_NER = ner_tags.no_ner
 __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
 
@@ -16,12 +17,14 @@ class PronounMatch(Sieve):
         Sieve.__init__(self, multi_sieve_processor)
 
     def validate(self, mention):
-        return self.mention_type[mention] == "pronoun_mention"
+        """ Only pronouns can be used for this sieve"""
+        return mention["mention"] == "pronoun_mention"
 
-    def are_coreferent(self, entity, index, candidate):
-        #if self.graph_builder.sentence_distance(entity[index], candidate) > self.SENTENCE_DISTANCE_LIMIT:
-        #    return False
-        a = 2
+    def are_coreferent(self, entity, mention, candidate):
+        a = 3
+        if self.tree_utils.sentence_distance(mention, candidate) > self.SENTENCE_DISTANCE_LIMIT:
+            return False
+
         if ((
                 UNKNOWN in self.entity_property(entity, "gender") or
                 UNKNOWN in self.candidate_property(candidate, "gender") or
@@ -31,12 +34,12 @@ class PronounMatch(Sieve):
                 UNKNOWN in self.candidate_property(candidate, "number") or
                 self.candidate_property(candidate, "number").intersection(self.entity_property(entity, "number"))) and
             (
-                UNKNOWN in self.entity_property(entity, "animate") or
-                UNKNOWN in self.candidate_property(candidate, "animate") or
-                self.candidate_property(candidate, "animate").intersection(self.entity_property(entity, "animate"))) and
+                UNKNOWN in self.entity_property(entity, "animacy") or
+                UNKNOWN in self.candidate_property(candidate, "animacy") or
+                self.candidate_property(candidate, "animacy").intersection(self.entity_property(entity, "animacy"))) and
             (
-                "o" in self.entity_property(entity, "ner") or
-                "o" in self.candidate_property(candidate, "ner") or
+                NO_NER in self.entity_property(entity, "ner") or
+                NO_NER in self.candidate_property(candidate, "ner") or
                 self.candidate_property(candidate, "ner").intersection(self.entity_property(entity, "ner")))):
             return True
         return False

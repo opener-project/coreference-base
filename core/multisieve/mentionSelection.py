@@ -1,267 +1,248 @@
-from graph.utils import GraphWrapper
-from multisieve.syntatic_tree_utils import SyntacticTreeUtils
+# coding=utf-8
+""" Module that contains all necessary stuff to detect the mentions present in a sentence and supply a ordered list of
+ candidates for each mention.
+
+"""
+from graph.kafx import SyntacticTreeUtils
+
 from resources.tagset import pos_tags, constituent_tags, ner_tags
-from resources.dictionaries import stopwords, pronouns, determiners
+from resources.dictionaries import stopwords, determiners
 from resources.demonym import demonyms
+
 __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
 
 class SentenceCandidateExtractor:
-    """ Extract the candidates of a sentence
+    """ Extract all the mentions of a text. The text if analysed sentence by sentence,
     """
-    cut_NP_tag = "X-NP"
-
-    valid_mention_phrase = (constituent_tags.noun_phrase, constituent_tags.wh_noun_phrase, cut_NP_tag)
-
-    accepted_pronoun_pos = pos_tags.personal_pronouns + pos_tags.relative_pronouns
-
-    # Any phrase as a child of a mention is unacceptable except another NP.
-    invalid_child_tag = set()
-    invalid_child_tag.update(constituent_tags.clauses + constituent_tags.phrases)
-    invalid_child_tag.remove(constituent_tags.noun_phrase)
-
-    indefinite_start_particles = set()
-    indefinite_start_particles.update(pronouns.indefinite)
-    indefinite_start_particles.update(determiners.indefinite_articles)
 
     nominal_mention = "nominal_mention"
     proper_mention = "proper_mention"
     pronoun_mention = "pronoun_mention"
     indefinite_mention = "undefined_mention"
-    no_mention = "no_mention"
+    #no_mention = "no_mention"
 
-    def __init__(self, graph, reverse=False, constituent=False, order_property="ord"):
-        self.constituent = constituent
-        self.reverse = reverse
+    def __init__(self, graph, order_property="ord"):
+
         self.order_property = order_property
-
         self.graph = graph
-
-        GraphWrapper.define_properties(graph=self.graph, vertex_properties={"mention_type": "string"})
-
-        self.graph_builder = GraphWrapper.get_graph_property(graph=graph, property_name="graph_builder")
         self.tree_utils = SyntacticTreeUtils(self.graph)
 
-        self.node_mention_type = GraphWrapper.node_property(name="mention_type", graph=graph)
-        self.node_form = GraphWrapper.node_property(name="form", graph=graph)
-        self.node_pos = GraphWrapper.node_property(name="pos", graph=graph)
-        self.node_ner = GraphWrapper.node_property(name="ner", graph=graph)
-        self.node_type = GraphWrapper.node_property(name="type", graph=graph)
-        self.node_tag = GraphWrapper.node_property(name="tag", graph=graph)
-        self.node_lemma = GraphWrapper.node_property(name="lemma", graph=graph)
-        self.node_head = GraphWrapper.node_property(name="head", graph=graph)
-        self.node_ord = GraphWrapper.node_property(name="ord", graph=graph)
 
-        self.syntactic_node_type = self.graph_builder.syntactic_node_type
-        self.syntactic_edge_type = self.graph_builder.syntactic_edge_type
+    def _inside_ne(self, mention_span):
+        """check if a span is inside any Named entity span of the current sentence and is not the entity.
 
-    def get_syntactic_parent(self, node):
-        """Return the syntactic parent of the chunk
-        :param node: The node chunk or word whose parent is wanted.
-        """
-        parents = GraphWrapper.get_filtered_by_type_in_neighbours(node=node, relation_type=self.syntactic_edge_type)
-        if parents:
-            return parents[0]
-        return None
+        :param span_x: The start of the span(in token counts).
+        :param span_y: The end of the span(in token counts)."""
+        for entity_span in self.named_entities_span:
+            if self.tree_utils.inside(mention_span, entity_span) and not mention_span == entity_span:
+                return True
+        return False
 
-    def get_syntactic_children(self, chunk):
-        """Get the list of the syntactic children of the chunk
-        :param chunk: The chunk whose children of syntactic tree (chunk or word) are wanted.
-        """
-        return GraphWrapper.get_filtered_by_type_out_neighbours(node=chunk, relation_type=self.syntactic_edge_type)
-
-    def validate_node(self, mention_candidate, filter_candidates=True):
+    def validate_node(self, mention_candidate):
         """Determine if a node is a valid mention.
-        :param filter_candidates: The candidate once is determided from a valid source(NP,PRP,NER) is filtered?
         :param mention_candidate: The candidate Node (Word or chunk) to be validates as mention.
         """
+        # Actually is a trigger to insert named entities in their correct place
+        if mention_candidate["id"] in self.named_entities_by_constituent:
+            # Silently insert the Named entity and fails mention
+            named_entity_mention = self.named_entities_by_constituent.pop(mention_candidate["id"])
+            self.add_mention(named_entity_mention)
+            return False
+        #TODO May this not have to null the constituent check
+
+        span = mention_candidate["span"]
+        if span in self.candidates_span or self._inside_ne(span):
+            return False
+
         # Pass filters
         first_filter = False
-        # its a chunk
-        if self.node_type[mention_candidate] == self.syntactic_node_type:
-            # It's a NP or WHNP
-            if self.node_tag[mention_candidate].upper() in self.valid_mention_phrase:
-                first_filter = True
-        # It's a pronoun
-        elif self.node_pos[mention_candidate].upper() in self.accepted_pronoun_pos:
+        # it's a pronoun
+        if "pos" in mention_candidate and pos_tags.personal_pronouns(mention_candidate["pos"]):
             first_filter = True
-        # Wathever, It's a valid NER?
-        ner = self.node_ner[mention_candidate].upper()
-        if ner in ner_tags.mention_ner:
+
+        # it's a Valid constituent
+        elif "tag"in mention_candidate and \
+                constituent_tags.mention_constituents(mention_candidate["tag"]):
             first_filter = True
+
+        # it's part of a enumeration
+        #TODO Check if this have to be promoted to first check
+        elif ("pos" in mention_candidate and pos_tags.enumerable_mention_words(mention_candidate["pos"])) or\
+                ("tag"in mention_candidate and constituent_tags.noun_phrases(mention_candidate["tag"])):
+            mention_candidate_parent = self.tree_utils.get_syntactic_parent(mention_candidate)
+            if "tag" in mention_candidate_parent and constituent_tags.noun_phrases(mention_candidate_parent["tag"]):
+                siblings = self.tree_utils.get_syntactic_sibling(mention_candidate)
+                # Search if the next brothers are suitable list candidates
+                next_siblings = siblings[siblings.index(mention_candidate):]
+                # If a coma or a conjunction if found search for a enumerable
+                for index, brother in enumerate(next_siblings):
+                    if "pos" in brother and (pos_tags.conjunction(brother["pos"]) or brother["pos"] == ","):
+                        for brother in next_siblings[index:]:
+                            if ("pos" in brother and pos_tags.enumerable_mention_words(brother["pos"])) or\
+                                    ("tag"in brother and constituent_tags.noun_phrases(brother["tag"])):
+                                return True
 
         # Is a plausible Mention?
         if not first_filter:
             return False
         # Refine the mentions?
-        if not filter_candidates:
-            return True
-        # No pass filter
-        # remove mentions that are numeric entities
-        if ner in ner_tags.no_mention_ner:
+        form = mention_candidate["form"]
+
+        # TODO Pleonastic it
+
+        # Remove mentions that contains non-words
+        if constituent_tags.mention_constituents(form) in stopwords.non_words:
             return False
-        # remove mentions with partitive or quantifier expressions
-        candidate_form = self.node_form[mention_candidate]
-        if candidate_form.split()[0] in determiners.quantifiers:
+
+        # Remove mentions that starts with quantifiers
+        # candidate_form = self.node_form[mention_candidate]
+        if determiners.quantifiers(form.split()[0]):
             return False
-        #TODO Improve lone "of" filtering
-        if 'of' in candidate_form and len(candidate_form) > 2:
-            words = candidate_form.split(determiners.prep_of)
-            if words[0].split()[-1].strip() in determiners.partitives:
+
+        # Remove mentions that are in a partitive expression: One of then
+        sentence_words = self.tree_utils.get_sentence_words(mention_candidate["root"])
+        sentence_span = mention_candidate["root"]["span"]
+        relative_span = (span[0] - sentence_span[0], span[1] - sentence_span[1])
+
+        if (relative_span[0]-2 > 0) and determiners.partitive_particle(sentence_words[relative_span[0]-1]["form"]) and \
+                determiners.partitives(sentence_words[relative_span[0]-2]["form"]):
+            return False
+
+        head_word = self.tree_utils.get_constituent_head_word(mention_candidate)
+
+        # Remove candidates with a temporal noun as head
+        if pos_tags.singular_noun(head_word["pos"]) and head_word["form"] in stopwords.temporals:
+            return False
+        self.candidates_span.append(span)
+
+        # Money and perceptual NErs
+
+        if head_word["form"] == "%":
+            return False
+        if ner_tags.no_mention_ner(head_word["ner"]):
+            return False
+        # Remove adjectival forms of nations or nationality acronyms(TODO ?)
+        if form in demonyms:
+            return False
+        # Avoid mention if it have the same head word of bigger sentence
+        for mention in self.sentence_mentions_bst_order:
+            x = 1
+            if head_word == mention["head_word"] and self.tree_utils.inside(span, mention["span"]):
+                # Check for apposition or enumeration.
+                for word in sentence_words[mention["span"][0]:mention["span"][1]]:
+                    if pos_tags.conjunction(word["pos"]) or word["form"] == ",":
+                        return True
                 return False
-        # Remove pleonastic "it" pronouns
-        #TODO Pleonastic it
-        # Remove adjectival forms of nations or nationality acronyms
-        if candidate_form in demonyms:
-            return False
-        #TODO Nationality acronyms
-        # Remove stop words
-        if candidate_form in stopwords.invalid_stop_words:
-            return False
-
-        # remove mentions that have a larger version
-        # Relative pronouns and appositive constructions avoid this filter
-        # TODO this must be improved
-        if self.tree_utils.is_appositive_construction(mention_candidate):  # or \
-                #self.node_pos[mention_candidate].upper() in self.relative_pronoun_pos:
-            return True
-
-        # Remove mega NPs
-        for index, child in enumerate(self.graph_builder.get_chunk_children(mention_candidate)):
-            if self.node_tag[child] in self.invalid_child_tag:
-                #self.graph_builder.cut_chunk(mention_candidate, index, self.cut_NP_tag)
-                return False
-
-        parent = self.get_syntactic_parent(mention_candidate)
-        head = self.graph_builder.get_chunk_head(mention_candidate) or mention_candidate
-        # If the head of the mention is a word and the word is in a bigger mention isn't a valid mention
-        if self.node_type[head] == self.graph_builder.word_node_type:
-            childrend_pos = set([self.node_pos[child]
-                                 for child in self.graph_builder.get_chunk_children(mention_candidate)])
-            # If all children are NNP or NNPS the head is the chunk not a terminal word
-            if self.node_type[mention_candidate] == self.graph_builder.word_node_type or \
-                    len(childrend_pos.difference(pos_tags.proper_nouns)):
-                higher_chunk = parent
-                higher_chunk_head = self.graph_builder.get_chunk_head(parent)
-                while higher_chunk:
-                    if self.node_mention_type[higher_chunk] and self.node_mention_type[higher_chunk] != self.no_mention\
-                            and higher_chunk_head and self.node_form[head] in self.node_form[higher_chunk_head]:
-                        return False
-                    higher_chunk = self.get_syntactic_parent(higher_chunk)
-        #print node_form,  self.node_type[mention_candidate]
         return True
 
-    def set_mention_type(self, node, mention_type):
+    def _set_mention_type(self, node, mention_type):
         """ The node is set as a mention of the specify type.
         :param node: The node to be set as mention.
         :param mention_type: The mention type used to set the node.
         """
-        self.node_mention_type[node] = mention_type
+        node["mention"] = mention_type
+        node["label"] = node["label"] + "\n" + mention_type
 
-    def select_mention_type(self, mention, ordered_children):
-        head = None
-        if self.node_type[mention] == self.graph_builder.word_node_type:
-            head = mention
-        else:
-            for child in ordered_children:
-            # Head Child determines mention type
-                if self.node_head[child]:
-                    head = child
-                    break
+    def _select_mention_type(self, mention):
+        """ Determine the type of the mention.
+        :param mention: The mention to be classified.
+        """
+        words = self.tree_utils.get_constituent_words(mention)
+        head = self.tree_utils.get_constituent_head_word(mention)
+        first_pos = words[0]["pos"]
         # Pronoun mention
-        if head and self.node_pos[head] in self.accepted_pronoun_pos:
+        if head and pos_tags.mention_pronouns(head["pos"]):
             return self.pronoun_mention
         # Indefinite Mention
-        if len(ordered_children) and (self.node_form[ordered_children[0]] in self.indefinite_start_particles):
+        if len(words) and pos_tags.indefinite(first_pos) or determiners.indefinite_articles(first_pos):
             return self.indefinite_mention
         # In other case is nominal
         return self.nominal_mention
 
-    def order_constituent(self, root, previous_candidates):
-        """ Order the sentence syntax nodes in filtered breath-first-transverse.
+    def add_mention(self, mention):
+        mention_type = self._select_mention_type(mention)
+        mention["head_word"] = self.tree_utils.get_constituent_head_word(mention)
+        self.sentence_mentions_bst_order.append(mention)
+
+        self._set_mention_type(mention, mention_type)
+        # store an candidature of the current constituent candidates and older constituent
+
+    def extract_mentions_from_constituent(self, root):
+        """ Extract mentions from the sentence and generate a candidate list for each mention.
+        The constituent syntax graph is traversed in filtered breath-first-transverse order. Each element(constituent or
+         word) is evaluated and (if is found valid) added with is coreference candidates to the candidature tuple.
+
         :param root: The root of the sentence syntactic tree.
-        :param previous_candidates: The candidates from previous sentences. Used to attach to founded mentions as
         candidates.
         """
         # The ordered nodes of the constituent tha can be candidates
-        candidates = []
-        nodes = [self.syntax_graph.vertex(root)]
+
+        nodes = [root]
         visited = []
-        candidatures = []
+
         # Process all the nodes
         while nodes:
             # Extract the first candidate
             node = nodes.pop(0)
             visited.append(node)
-            if self.node_tag[node] in constituent_tags.clauses:
-                clause_candidatures, clause_candidates = self.process_S_chunk(node, candidates + previous_candidates)
-                candidates.extend(clause_candidates)
-                candidatures.extend(clause_candidatures)
+            if "tag" in node and constituent_tags.clauses(node["tag"]):
+                self._process_constituent_BFST(node)
             else:
                 if self.validate_node(node):
-                    # Node is a mention
-                    # TODO store the textual order of node
-
-                    # Determine de mention type
-                    # Order the children of the nodes
-                    ordered_children = sorted(GraphWrapper.get_filtered_by_type_out_neighbours(node, "syntactic"),
-                                              key=lambda child: self.node_ord[child], reverse=self.reverse)
-                    #nodes.extend(ordered_children)
-                    mention_type = self.select_mention_type(node, ordered_children)
-
-                    self.set_mention_type(node, mention_type)
-                    # store an candidature of the current constituent candidates and older constituent
-                    candidatures.append(([self.graph.vertex(node)], [candidates + previous_candidates],
-                                         ["orig:{0}".format(self.node_form[node])]))
-                    # Add current node as candidate for the next mentions
-                    candidates.append(self.graph.vertex(node))
-
-                else:
-                    # Node is not a mention
-                    self.node_mention_type[node] = self.no_mention
-                    # Order the children of the nodes
-                    ordered_children = sorted(GraphWrapper.get_filtered_by_type_out_neighbours(node, "syntactic"),
-                                              key=lambda child: self.node_ord[child], reverse=self.reverse)
+                    self.add_mention(node)
+                # Order the children of the nodes
+                ordered_children = sorted(
+                    self.tree_utils.get_constituent_children(node), key=lambda child: child["ord"])
                 nodes.extend(ordered_children)
-        # Return the candidatures and the candidates for next constituent candidatures
-        return candidatures, candidates
 
-    def skip_root(self, sentence_root):
-        """Get the first chunk of the sentence (usually S) Skip al ROOT nodes,created by the parser o the graph builder.
-        Skip all the dummy roots crated by the parsers/graph builder.
-        :param sentence_root: The syntactic tree root node.
+    def _process_constituent_BFST(self, s_chunk):
+        """Process each constituent of the chunk in a breath-first-transverse
+        :param s_chunk: The chunk where each element must be traversed separately
         """
-        #    return next(next(sentence_root.out_neighbours()).out_neighbours())
-        chunk = sentence_root
-        while chunk and (self.node_tag[chunk] == self.graph_builder.root_pos):
-            chunk = next(chunk.out_neighbours())
-        return chunk
-
-    def process_S_chunk(self, s_chunk, previous_candidates):
-        sentence_candidatures = []
-        sentence_candidates = []
         # Visit each constituent in a BFT algorithm
-        ordered_constituents = sorted(s_chunk.out_neighbours(),
-                                      key=lambda child: self.node_ord[child])
+        ordered_constituents = sorted(self.tree_utils.get_constituent_children(s_chunk),
+                                      key=lambda child: child["ord"])
         for constituent in ordered_constituents:
-            # generate  order candidates in this form:
-            #   this_constituent candidates + other constituent candidates_in_LtR + other_sentence_candidates
-            (constituent_candidatures, constituent_candidates) = self.order_constituent(
-                constituent, sentence_candidates + previous_candidates, )
-            # The last constituent is in right place of the sentence
-            # so its candidates are put at last of the list
-            sentence_candidates.extend(constituent_candidates)
-            sentence_candidatures.extend(constituent_candidatures)
-        return sentence_candidatures, sentence_candidates + previous_candidates
+            self.extract_mentions_from_constituent(constituent)
 
-    def process_sentence(self, sentence, previous_sentences_candidates):
-        """ Order all graph syntactic trees in filtered breath-first-transverse.
-        :param previous_sentences_candidates: Candidates form previous sentences used for attach to mentions as
-        candidates.
+    def _process_named_entities(self, sentence):
+        """Add the named entities to the candidates.
+
+        For every entity in the sentence:
+            + Store as a mention
+            + Add their span for the no inside NE restriction
+         : param sentence: The base node for the sentence named entities. usually the root node.
+        """
+        for entity in self.tree_utils.get_sentence_named_entities(sentence):
+            entity_span = entity["span"]
+            # check is not already added
+            if entity_span not in self.candidates_span:
+                # Alocate in the tree
+                constituent = self.tree_utils.allocate_named_entities(entity, sentence)
+                # Add the mention to registers
+                self.candidates_span.append(entity_span)
+                self.named_entities_span.append(entity_span)
+                self.named_entities_by_constituent[constituent["id"]] = entity
+
+    def process_sentence(self, sentence):
+        """ Extract al the mentions of the Order all graph syntactic trees in filtered breath-first-transverse.
+
         :param sentence: The sentence whose mentions are wanted.
         """
-        # Get al the syntax trees trees in order of appear
-        # Get a Graph that only contains syntax edges
-        self.syntax_graph = self.graph_builder.get_syntax_graph(graph=self.graph)
-        syntax_root = self.skip_root(self.syntax_graph.vertex(sentence))
-        return self.process_S_chunk(s_chunk=syntax_root, previous_candidates=previous_sentences_candidates)
+        self.sentence_mentions_bst_order = []
+        self.named_entities_by_constituent = dict()
+        # The spans are used to avoid duplicate mentions and mention inside NE
+        self.candidates_span = []
+        self.named_entities_span = []
+        # Prepare the Named entities before the tree traversal
+        self._process_named_entities(sentence)
+        # Skip useless Root nodes
+        syntax_root = self.tree_utils._skip_root(sentence)
+        # Thought the rabbit hole
+        self._process_constituent_BFST(s_chunk=syntax_root)\
+        # Text apearance order
+        sentence_mentions_textual_order = [mention["id"] for mention in sorted(self.sentence_mentions_bst_order,
+                                                 key=lambda m: m["span"])]
+        sentence_mentions_bst_order = [mention["id"] for mention in self.sentence_mentions_bst_order]
+        return sentence_mentions_bst_order, sentence_mentions_textual_order

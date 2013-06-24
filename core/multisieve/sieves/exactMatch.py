@@ -4,7 +4,7 @@ __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
 
 class ExactMatch(Sieve):
-    """ To mentions are coreferent if their surfaces are equals."""
+    """ Two mentions are coreferent if their surfaces are equals."""
     sort_name = "EM"
 
     def __init__(self, multi_sieve_processor):
@@ -13,11 +13,11 @@ class ExactMatch(Sieve):
     def validate(self, mention):
         """Any mention except pronouns.
         """
-        return self.mention_type[mention] != "pronoun_mention"
+        return mention["mention"] != "pronoun_mention"
 
-    def are_coreferent(self, entity, index, candidate):
+    def are_coreferent(self, entity, mention, candidate):
         """ Candidate an primary mention have same form
         """
-        return self.mention_form[entity[index]].lower() == self.mention_form[candidate].lower()
+        return mention["form"].lower() == candidate["form"].lower()
 
 

@@ -5,7 +5,7 @@ from multisieve.sieves.preciseConstruct import RoleAppositiveConstruction, Acron
     PredicativeNominativeConstruction, AppositiveConstruction
 from multisieve.sieves.pronoumMatch import PronounMatch
 from output.progressbar import ProgressBar, Fraction
-from graph.utils import GraphWrapper
+from graph.xutils import GraphWrapper
 from multisieve.sieves.strictHeadMatching import StrictHeadMatching
 
 __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
@@ -17,23 +17,26 @@ class MultiSieveProcessor():
     """
 
     sieves_configurations = {"base": [ExactMatch],
-                             "full": [ExactMatch, RoleAppositiveConstruction, StrictHeadMatching,  AcronymMatch, AppositiveConstruction,
+                             "full": [ExactMatch, AppositiveConstruction, RoleAppositiveConstruction, StrictHeadMatching,  AcronymMatch,
                                       RelativePronoun, PredicativeNominativeConstruction, PronounMatch,
-
-                                      ]}
-
+                                      ],
+                             "dev": [ExactMatch, AppositiveConstruction, RoleAppositiveConstruction, PredicativeNominativeConstruction,
+                                     RelativePronoun, StrictHeadMatching, AcronymMatch, # PronounMatch,
+                                     ]
+    }
+    ### LOOK OUT!!!
     def __init__(self, graph, lang_code, sieves_configuration="full"):
         self.graph = graph
         self.lang_code = lang_code.lower()
         self.sieves_instances = [sieve_class(self) for sieve_class in self.sieves_configurations[sieves_configuration]]
 
-    def process(self, candidatures):
+    def process(self, clusters, candidates_per_mention, registers):
         """ Process a candidate cluster list thought the sieves using the output of the each sieve as input of the next.
-        :param candidatures: The list of mentions and their candidates.
+        :param clusters: The list of mentions and their candidates.
         """
-        sieve_input = candidatures
+        sieve_input = clusters
         for sieve in self.sieves_instances:
-            sieve_input = sieve.resolve(sieve_input)
+            sieve_input = sieve.resolve(sieve_input, candidates_per_mention, registers)
         return sieve_input
 
 
@@ -41,69 +44,70 @@ class CoreferenceProcessor:
     """ Detect chunks or word of a graph as coreferent with each others.
     """
 
-    def __init__(self, graph, graph_builder, singletons, logger=logging.getLogger("Coreference Resolver"),
+    def __init__(self, graph, singletons, logger=logging.getLogger("Coreference Resolver"),
                  verbose=False):
         self.verbose = verbose
         self.logger = logger
-        self.graph = graph
+        #self.graph = graph
         self.singletons = singletons
-        self.graph_builder = graph_builder
-        self.syntax_graph = self.graph_builder.get_syntax_graph(graph)
+        self.graph_builder = graph.graph["graph_builder"]
 
-        self.candidate_sentence = SentenceCandidateExtractor(graph=self.graph, constituent=True)
-        self.multi_sieve = MultiSieveProcessor(self.graph, "en")
-        self.old_sentences = []
-        self.old_sentences_pronominal = []
-        self.candidatures = []
+        self.candidate_extractor = SentenceCandidateExtractor(graph=graph)
+        self.multi_sieve = MultiSieveProcessor(graph, "en")
+        self.mentions_textual_order = []
+        self.mention_clusters = []
+        self.register = list()
+        self.candidates_per_mention = dict()
 
     def get_clusters(self):
         """ Return the list of mention clusters and their candidates.
         """
-        return self.candidatures
+        return self.mention_clusters
 
     def get_candidates(self):
-        return self.candidatures
+        return self.mention_clusters
+
+    def add_candidatures(self, bsft_order, text_order):
+        """ Add to the candidatures list All the mentions in textual order.
+        :param bsft_order: The sentence mentions in bft per sentence constituent.
+        :param text_order: The sentence mentions in text appearance order .
+        """
+        for mention in text_order:
+            index = bsft_order.index(mention)
+            candidates = bsft_order[:index] + self.mentions_textual_order
+            self.mention_clusters.append([mention])
+            self.candidates_per_mention[mention] = candidates
+            self.register.append(mention + "orig")
+        self.mentions_textual_order.extend(text_order)
 
     def process_sentence(self, sentence_root):
         """ Fetch the sentence mentions and generate candidates for they.
-
         :param sentence_root: The sentence syntactic tree root node.
         """
-        sentence_candidatures, candidates = self.candidate_sentence.process_sentence(
-            sentence=sentence_root,
-            previous_sentences_candidates=self.old_sentences)
-        self.old_sentences = candidates + self.old_sentences
-        self.candidatures.extend(sentence_candidatures)
+        # Extract the mentions
+        mentions_bsft, mentions_text_order = self.candidate_extractor.process_sentence(
+            sentence=sentence_root)
+        # Add new clusters and candidates
+        self.add_candidatures(mentions_bsft, mentions_text_order)
 
-    def sieves_register(self):
+    def resolve_text(self):
         """ For a candidate marked graph, resolve the coreference.
         """
-        # The property that mark coreference in words
-        word_coreference = GraphWrapper.node_property("coreference", self.graph)
-        self.coreference_proposal = self.multi_sieve.process(self.candidatures)
-        # For each custer assign a zero based index as id
+        # Logging
         widgets = ['Indexing clusters', Fraction()]
-        pbar = ProgressBar(widgets=widgets, maxval=len(self.coreference_proposal), force_update=True).start()
         indexed_clusters = 0
-        #TODO gestionar los singletons desde el output
-        for index, (entity, candidates, sieves_register) in enumerate(self.coreference_proposal):
+        # Pass the sieves to resolve the correference
+        coreference_proposal = self.multi_sieve.process(self.mention_clusters, self.candidates_per_mention, self.register)
+        # More log
+        pbar = ProgressBar(widgets=widgets, maxval=len(coreference_proposal) or 1, force_update=True).start()
+        # From the correference cluster add the acceptable result to the graph
+        for index, entity in enumerate(self.mention_clusters):
             pbar.update(index + 1)
             # Remove the singletons
             if len(entity) > 1 or self.singletons:
-                self.graph_builder.add_entity(mentions=entity, label=sieves_register)
-                #TODO test if the next code is useful
+                # Add the entity
+                self.graph_builder.add_entity(
+                    entity_id="EN{0}".format(index), mentions=entity, label=self.register[index])
                 indexed_clusters += 1
-                for mention in entity:
-                    # For each mention word assign the cluster id to cluster attribute
-                    # and mark start and end with '(' and ')'
-                    tokens = self.graph_builder.get_constituent_words(mention)
-                    # Valid for 0, 1 and n list sides
-                    if tokens:
-                        if len(tokens) == 1:
-                            word_coreference[tokens[0]].append("({0})".format(index))
-                        else:
-                            word_coreference[tokens[0]].append("({0}".format(index))
-                            word_coreference[tokens[-1]].append("{0})".format(index))
-                            #for token in tokens[1:-1]:
-                            #    word_coreference[token] .append( str_index)
+        # Log the accepted clusters
         self.logger.info("Indexed clusters: %d", indexed_clusters)

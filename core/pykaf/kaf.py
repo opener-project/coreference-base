@@ -76,7 +76,7 @@ class KafDocument:
             self.tree = etree.parse(file_name, parser=parser)
             self.root = self.tree.getroot()
         elif kaf_stream:
-            self.root = etree.fromstring(kaf_stream,parser=parser)
+            self.root = etree.fromstring(kaf_stream, parser=parser)
             self.tree = etree.ElementTree(self.root)
         else:
             self.root = etree.Element(KAF_TAG, NS)
@@ -350,7 +350,8 @@ class KafDocument:
 
         if references:
             for reference, form in references:
-                entity.append(etree.Comment(form))
+                comment = etree.Comment(form.decode("utf-8"))
+                entity.append(comment)
                 span = etree.SubElement(entity, SPAN_TAG)
                 for token in reference:
                     etree.SubElement(span, TARGET_TAG, {TARGET_ID_ATTRIBUTE: token})
