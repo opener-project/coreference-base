@@ -12,4 +12,5 @@ estar = set(('estoy', 'estás', 'está', 'estamos', 'estáis', 'están', 'estaba
 
 parecer = set(('parezco', 'pareces', 'parece', 'parecemos', 'parecéis', 'parecen','parecía', 'parecías', 'parecía', 'parecíamos', 'parecíais', 'parecían', 'pareceré', 'parecerás', 'parecerá', 'pareceremos', 'pareceréis', 'parecerán', 'parecería', 'parecerías', 'parecería', 'pareceríamos', 'pareceríais', 'parecerían', 'parecí', 'pareciste', 'pareció', 'parecimos', 'parecisteis', 'parecieron', 'parezca', 'parezcas', 'parezca', 'parezcamos', 'parezcáis', 'parezcan', 'pareciera', 'parecieras', 'pareciera', 'pareciéramos', 'parecierais', 'parecieran', 'pareciese', 'parecieses', 'pareciese', 'pareciésemos', 'parecieseis', 'pareciesen', 'pareciere', 'parecieres', 'pareciere', 'pareciéremos', 'pareciereis', 'parecieren', 'parece', 'parezca', 'parezcamos', 'pareced', 'parezcan', 'parecer', 'pareciendo', 'parecido'))
 
-copulative = ser + estar + parecer
+copulative = set()
+copulative.union(ser).union(estar).union(parecer)
