@@ -1,2 +1,2 @@
-(TOP (S (NP (NP=H (NNP Pierre) (NNP=H Vinken)) (, ,) (ADJP (NP (CD 61) (NNS=H years)) (JJ=H old))) (, ,) (VP=H (MD=H will) (VP (VB=H join) (NP (DT the) (NN=H board)) (PP (IN=H as) (NP (NP=H (DT a) (JJ nonexecutive) (NN=H director)) (NP (NNP=H Nov.) (CD 29)))))) (. .)))
-(TOP (S (NP (NNP Mr.) (NNP=H Vinken)) (VP=H (VBZ=H is) (NP (NP=H (DT a) (NN=H chairman)) (PP (IN=H of) (NP (NP=H (NNP Elsevier) (NNP=H N.V.)) (, ,) (NP (DT the) (JJ Dutch) (NN publishing) (NN=H group)))))) (. .)))
+(ROOT (S=H (NP (NP=H (NNP Pierre) (NNP=H Vinken)) (, ,) (ADJP (NP (CD 61) (NNS=H years)) (JJ=H old)) (, ,)) (VP=H (MD=H will) (VP (VB=H join) (NP (DT the) (NN=H board)) (PP (IN=H as) (NP (DT a) (JJ nonexecutive) (NN=H director))) (NP (NNP=H Nov.) (CD 29)))) (. .)))
+(ROOT (S=H (NP (NNP Mr.) (NNP=H Vinken)) (VP=H (VBZ=H is) (NP (NP=H (DT a) (NN=H chairman)) (PP (IN=H of) (NP (NP=H (NNP Elsevier) (NNP=H N.V.)) (, ,) (NP (DT the) (JJ Dutch) (NN publishing) (NN=H group)))))) (. .)))

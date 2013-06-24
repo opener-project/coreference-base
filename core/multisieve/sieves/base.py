@@ -1,6 +1,7 @@
 from graph.kafx import SyntacticTreeUtils
 from graph.xutils import GraphWrapper
 from output.progressbar import Fraction, ProgressBar
+from features.grendel import GenderNumberExtractor
 
 __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
@@ -8,6 +9,8 @@ __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 class Sieve(object):
 
     sort_name = "XXX"
+
+    UNKNOWN = GenderNumberExtractor.UNKNOWN
 
     def __init__(self, multi_sieve_processor):
 
@@ -123,12 +126,22 @@ class Sieve(object):
             for entity in self.clusters if mention["id"] in entity]
 
     def entity_property(self, entity, property_name):
-        return set((
+        """
+
+        """
+        combined_property = set((
             self.graph.node[mention][property_name]
             for mention in entity))
+        if len(combined_property) > 1 and self.UNKNOWN in combined_property:
+            combined_property.remove(self.UNKNOWN)
+        return combined_property
 
     def candidate_property(self, candidate, property_name):
-        return set((
+        combined_property =set((
             property_value
             for entity_involved in self.entities_of_a_mention(candidate)
             for property_value in self.entity_property(entity_involved, property_name)))
+
+        if len(combined_property) > 1 and self.UNKNOWN in combined_property:
+            combined_property.remove(self.UNKNOWN)
+        return combined_property

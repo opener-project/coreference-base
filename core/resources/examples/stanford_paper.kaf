@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<KAF xml:lang="en" version="v1.opener">
+  <kafHeader>
+    <linguisticProcessors layer="tokens">
+      <lp name="ixa-pipe-tok-en" timestamp="2013-04-112T15:22:16+0200" version="1.0" />
+    </linguisticProcessors>
+    <linguisticProcessors layer="terms">
+      <lp name="ixa-pipe-pos-en" timestamp="2013-04-112T15:22:17+0200" version="1.0" />
+    </linguisticProcessors>
+    <linguisticProcessors layer="entities">
+      <lp name="ixa-pipe-nerc-en" timestamp="2013-04-112T15:22:17+0200" version="1.0" />
+    </linguisticProcessors>
+  </kafHeader>
+  <text>
+    <wf wid="w1" sent="1" offset="0" length="4" para="">John</wf>
+    <wf wid="w2" sent="1" offset="5" length="2" para="">is</wf>
+    <wf wid="w3" sent="1" offset="8" length="1" para="">a</wf>
+    <wf wid="w4" sent="1" offset="10" length="8" para="">musician</wf>
+    <wf wid="w5" sent="1" offset="18" length="1" para="">.</wf>
+    <wf wid="w6" sent="2" offset="20" length="2" para="">He</wf>
+    <wf wid="w7" sent="2" offset="23" length="6" para="">played</wf>
+    <wf wid="w8" sent="2" offset="30" length="1" para="">a</wf>
+    <wf wid="w9" sent="2" offset="32" length="3" para="">new</wf>
+    <wf wid="w10" sent="2" offset="36" length="4" para="">song</wf>
+    <wf wid="w11" sent="2" offset="40" length="1" para="">.</wf>
+    <wf wid="w12" sent="3" offset="42" length="1" para="">A</wf>
+    <wf wid="w13" sent="3" offset="44" length="4" para="">girl</wf>
+    <wf wid="w14" sent="3" offset="49" length="3" para="">was</wf>
+    <wf wid="w15" sent="3" offset="53" length="9" para="">listening</wf>
+    <wf wid="w16" sent="3" offset="63" length="2" para="">to</wf>
+    <wf wid="w17" sent="3" offset="66" length="3" para="">the</wf>
+    <wf wid="w18" sent="3" offset="70" length="4" para="">song</wf>
+    <wf wid="w19" sent="3" offset="74" length="1" para="">.</wf>
+    <wf wid="w20" sent="4" offset="76" length="1" para="">“</wf>
+    <wf wid="w21" sent="4" offset="77" length="2" para="">It</wf>
+    <wf wid="w22" sent="4" offset="80" length="2" para="">is</wf>
+    <wf wid="w23" sent="4" offset="83" length="2" para="">my</wf>
+    <wf wid="w24" sent="4" offset="86" length="8" para="">favorite</wf>
+    <wf wid="w25" sent="4" offset="94" length="1" para="">,</wf>
+    <wf wid="w26" sent="4" offset="95" length="1" para="">”</wf>
+    <wf wid="w27" sent="4" offset="97" length="4" para="">John</wf>
+    <wf wid="w28" sent="4" offset="102" length="4" para="">said</wf>
+    <wf wid="w29" sent="4" offset="107" length="2" para="">to</wf>
+    <wf wid="w30" sent="4" offset="110" length="3" para="">her</wf>
+    <wf wid="w31" sent="4" offset="113" length="1" para="">.</wf>
+  </text>
+  <terms>
+    <term tid="t1" pos="R" morphofeat="NNP" lemma="John" type="close">
+      <span>
+        <!--John-->
+        <target id="w1" />
+      </span>
+    </term>
+    <term tid="t2" pos="V" morphofeat="VBZ" lemma="be" type="open">
+      <span>
+        <!--is-->
+        <target id="w2" />
+      </span>
+    </term>
+    <term tid="t3" pos="D" morphofeat="DT" lemma="a" type="close">
+      <span>
+        <!--a-->
+        <target id="w3" />
+      </span>
+    </term>
+    <term tid="t4" pos="N" morphofeat="NN" lemma="musician" type="open">
+      <span>
+        <!--musician-->
+        <target id="w4" />
+      </span>
+    </term>
+    <term tid="t5" pos="O" morphofeat="." lemma="." type="close">
+      <span>
+        <!--.-->
+        <target id="w5" />
+      </span>
+    </term>
+    <term tid="t6" pos="Q" morphofeat="PRP" lemma="he" type="close">
+      <span>
+        <!--He-->
+        <target id="w6" />
+      </span>
+    </term>
+    <term tid="t7" pos="V" morphofeat="VBD" lemma="play" type="open">
+      <span>
+        <!--played-->
+        <target id="w7" />
+      </span>
+    </term>
+    <term tid="t8" pos="D" morphofeat="DT" lemma="a" type="close">
+      <span>
+        <!--a-->
+        <target id="w8" />
+      </span>
+    </term>
+    <term tid="t9" pos="G" morphofeat="JJ" lemma="new" type="open">
+      <span>
+        <!--new-->
+        <target id="w9" />
+      </span>
+    </term>
+    <term tid="t10" pos="N" morphofeat="NN" lemma="song" type="open">
+      <span>
+        <!--song-->
+        <target id="w10" />
+      </span>
+    </term>
+    <term tid="t11" pos="O" morphofeat="." lemma="." type="close">
+      <span>
+        <!--.-->
+        <target id="w11" />
+      </span>
+    </term>
+    <term tid="t12" pos="D" morphofeat="DT" lemma="a" type="close">
+      <span>
+        <!--A-->
+        <target id="w12" />
+      </span>
+    </term>
+    <term tid="t13" pos="N" morphofeat="NN" lemma="girl" type="open">
+      <span>
+        <!--girl-->
+        <target id="w13" />
+      </span>
+    </term>
+    <term tid="t14" pos="V" morphofeat="VBD" lemma="be" type="open">
+      <span>
+        <!--was-->
+        <target id="w14" />
+      </span>
+    </term>
+    <term tid="t15" pos="V" morphofeat="VBG" lemma="listen" type="open">
+      <span>
+        <!--listening-->
+        <target id="w15" />
+      </span>
+    </term>
+    <term tid="t16" pos="P" morphofeat="TO" lemma="to" type="close">
+      <span>
+        <!--to-->
+        <target id="w16" />
+      </span>
+    </term>
+    <term tid="t17" pos="D" morphofeat="DT" lemma="the" type="close">
+      <span>
+        <!--the-->
+        <target id="w17" />
+      </span>
+    </term>
+    <term tid="t18" pos="N" morphofeat="NN" lemma="song" type="open">
+      <span>
+        <!--song-->
+        <target id="w18" />
+      </span>
+    </term>
+    <term tid="t19" pos="O" morphofeat="." lemma="." type="close">
+      <span>
+        <!--.-->
+        <target id="w19" />
+      </span>
+    </term>
+    <term tid="t20" pos="N" morphofeat="NN" lemma="“" type="open">
+      <span>
+        <!--“-->
+        <target id="w20" />
+      </span>
+    </term>
+    <term tid="t21" pos="R" morphofeat="PRP" lemma="it" type="close">
+      <span>
+        <!--It-->
+        <target id="w21" />
+      </span>
+    </term>
+    <term tid="t22" pos="V" morphofeat="VBZ" lemma="be" type="open">
+      <span>
+        <!--is-->
+        <target id="w22" />
+      </span>
+    </term>
+    <term tid="t23" pos="Q" morphofeat="PRP$" lemma="my" type="close">
+      <span>
+        <!--my-->
+        <target id="w23" />
+      </span>
+    </term>
+    <term tid="t24" pos="G" morphofeat="JJ" lemma="favorite" type="open">
+      <span>
+        <!--favorite-->
+        <target id="w24" />
+      </span>
+    </term>
+    <term tid="t25" pos="O" morphofeat="," lemma="," type="close">
+      <span>
+        <!--,-->
+        <target id="w25" />
+      </span>
+    </term>
+    <term tid="t26" pos="N" morphofeat="NN" lemma="”" type="open">
+      <span>
+        <!--”-->
+        <target id="w26" />
+      </span>
+    </term>
+    <term tid="t27" pos="R" morphofeat="NNP" lemma="John" type="close">
+      <span>
+        <!--John-->
+        <target id="w27" />
+      </span>
+    </term>
+    <term tid="t28" pos="V" morphofeat="VBD" lemma="say" type="open">
+      <span>
+        <!--said-->
+        <target id="w28" />
+      </span>
+    </term>
+    <term tid="t29" pos="P" morphofeat="TO" lemma="to" type="close">
+      <span>
+        <!--to-->
+        <target id="w29" />
+      </span>
+    </term>
+    <term tid="t30" pos="Q" morphofeat="PRP" lemma="her" type="close">
+      <span>
+        <!--her-->
+        <target id="w30" />
+      </span>
+    </term>
+    <term tid="t31" pos="O" morphofeat="." lemma="." type="close">
+      <span>
+        <!--.-->
+        <target id="w31" />
+      </span>
+    </term>
+  </terms>
+  <entities>
+    <entity eid="e1" type="person">
+      <references>
+        <span>
+          <!--John -->
+          <target id="t27" />
+        </span>
+      </references>
+    </entity>
+  </entities>
+</KAF>
