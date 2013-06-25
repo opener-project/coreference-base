@@ -1,5 +1,6 @@
 *.patch
 *.pyc
+*.pyo
 *.log
 *.so
 *.so.old
@@ -19,3 +20,7 @@ tmp/*
 pkg/
 Gemfile.lock
 .rvmrc
+
+core/site-packages/pre_install/*
+
+!.gitkeep

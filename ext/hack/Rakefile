@@ -1,0 +1,13 @@
+require 'rake'
+require_relative 'support'
+
+desc 'Verifies the requirements'
+task :requirements do
+  verify_requirements
+end
+
+task :default => :requirements do
+  path = File.join(PYTHON_SITE_PACKAGES, 'pre_install')
+
+  pip_install(PRE_INSTALL_REQUIREMENTS, path)
+end
