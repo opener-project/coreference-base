@@ -11,7 +11,7 @@
       <lp name="ixa-pipe-nerc-en" timestamp="2013-04-114T15:07:32+0200" version="1.0"/>
     </linguisticProcessors>
     <linguisticProcessors layer="coreference">
-      <lp timestamp="13-06-17T13:40:38" version="0.8" name="corefgraphEN"/>
+      <lp name="corefgraphEN" timestamp="13-06-26T15:25:42" version="0.8"/>
     </linguisticProcessors>
   </kafHeader>
   <text>
@@ -803,6 +803,31 @@
   </entities>
   <coreferences>
     <coref coid="co1">
+      <!--His-->
+      <span>
+        <target id="t65"/>
+      </span>
+      <!--York University chef Claudia Lawrence is now being treated as suspected murder-->
+      <span>
+        <target id="t4"/>
+        <target id="t5"/>
+        <target id="t6"/>
+        <target id="t7"/>
+        <target id="t8"/>
+        <target id="t9"/>
+        <target id="t10"/>
+        <target id="t11"/>
+        <target id="t12"/>
+        <target id="t13"/>
+        <target id="t14"/>
+        <target id="t15"/>
+      </span>
+    </coref>
+    <coref coid="co2">
+      <!--who-->
+      <span>
+        <target id="t35"/>
+      </span>
       <!--However detectives-->
       <span>
         <target id="t22"/>
@@ -810,10 +835,22 @@
       </span>
       <!--they-->
       <span>
+        <target id="t90"/>
+      </span>
+      <!--they-->
+      <span>
         <target id="t25"/>
       </span>
     </coref>
-    <coref coid="co2">
+    <coref coid="co3">
+      <!--she-->
+      <span>
+        <target id="t62"/>
+      </span>
+      <!--Her-->
+      <span>
+        <target id="t45"/>
+      </span>
       <!--the 35-year-old , who went missing on 18 March-->
       <span>
         <target id="t32"/>
@@ -826,30 +863,8 @@
         <target id="t39"/>
         <target id="t40"/>
       </span>
-      <!--the 35-year-old-->
-      <span>
-        <target id="t32"/>
-        <target id="t33"/>
-      </span>
-      <!--Her-->
-      <span>
-        <target id="t45"/>
-      </span>
-      <!--she-->
-      <span>
-        <target id="t62"/>
-      </span>
-      <!--they-->
-      <span>
-        <target id="t90"/>
-      </span>
     </coref>
-    <coref coid="co3">
-      <!--Her father-->
-      <span>
-        <target id="t45"/>
-        <target id="t46"/>
-      </span>
+    <coref coid="co4">
       <!--him-->
       <span>
         <target id="t58"/>
@@ -858,9 +873,10 @@
       <span>
         <target id="t54"/>
       </span>
-      <!--His-->
+      <!--Her father-->
       <span>
-        <target id="t65"/>
+        <target id="t45"/>
+        <target id="t46"/>
       </span>
     </coref>
   </coreferences>
