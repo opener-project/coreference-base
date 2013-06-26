@@ -4,10 +4,11 @@ Feature: Using a dutch file as input and other file as an output
   Using a file as an output
 
   Scenario Outline: tokenize dutch input file.
-    Given the fixture file "<input_file>"
+    Given the kaf file "<kaf_file>"
+    And the tree file "<tree_file>"
     And I put them through the kernel
     Then the output should match the fixture "<output_file>"
   Examples:
-    | input_file | output_file |
-    | input.kaf  | output.kaf  |
+    | kaf_file  | tree_file  | output_file |
+    | input.kaf | input.tree | output.kaf  |
 

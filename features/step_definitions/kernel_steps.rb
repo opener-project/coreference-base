@@ -1,12 +1,18 @@
-Given /^the fixture file "(.*?)"$/ do |filename|
-  @input = fixture_file(filename)
-  @filename = filename
+Given /^the kaf file "(.*?)"$/ do |filename|
+  @kaf_input    = fixture_file(filename)
+  @kaf_filename = filename
+end
+
+Given /^the tree file "(.*?)"$/ do |filename|
+  @tree_input    = fixture_file(filename)
+  @tree_filename = filename
 end
 
 Given /^I put them through the kernel$/ do
-  tmp_filename = "output_#{rand(1000)}_#{@filename}"
-  @output    = tmp_file(tmp_filename)
-  output, *_ = kernel.run(File.read(@input))
+  tmp_filename = "output_#{rand(1000)}_#{@kaf_filename}_#{@tree_filename}"
+  @output      = tmp_file(tmp_filename)
+  args         = ["-files #{@kaf_input} #{@tree_input}"]
+  output, _    = kernel(args).run
 
   File.open(@output, 'w') do |handle|
     handle.write(output)
@@ -15,7 +21,8 @@ end
 
 Then /^the output should match the fixture "(.*?)"$/ do |filename|
   fixture_output = File.read(fixture_file(filename))
-  output = File.read(@output)
+  output         = File.read(@output)
+
   output.should eql(fixture_output)
 end
 
@@ -31,4 +38,3 @@ def tmp_file(filename)
     Tempfile.new(filename).path
   end
 end
-

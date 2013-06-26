@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/opener/coreferences/en'
+require_relative '../lib/opener/coreferences/base'
 
-kernel = Opener::Coreferences::EN.new(:args => ARGV)
+kernel = Opener::Coreferences::Base.new(:args => ARGV, :language => 'en')
 input  = STDIN.tty? ? nil : STDIN.read
 
 kernel.run!(input)

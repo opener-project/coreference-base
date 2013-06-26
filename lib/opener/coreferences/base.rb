@@ -1,19 +1,26 @@
 require 'open3'
 
-require_relative 'en/version'
+require_relative 'base/version'
 
 module Opener
   module Coreferences
     ##
-    # Coreference class for the English language.
+    # Coreference class for various languages such as English and Spanish.
     #
     # @!attribute [r] args
     #  @return [Array]
     # @!attribute [r] options
     #  @return [Hash]
     #
-    class EN
+    class Base
       attr_reader :args, :options
+
+      ##
+      # Returns the default language to use.
+      #
+      # @return [String]
+      #
+      DEFAULT_LANGUAGE = 'en'.freeze
 
       ##
       # @param [Hash] options
@@ -32,7 +39,7 @@ module Opener
       # @return [String]
       #
       def command
-        return "python -E -O #{kernel} #{args.join(' ')}"
+        return "python -E -O #{kernel} -l #{language} #{args.join(' ')}"
       end
 
       ##
@@ -42,7 +49,7 @@ module Opener
       # @param [String] input The input to process.
       # @return [Array]
       #
-      def run(input)
+      def run(input = nil)
         unless File.file?(kernel)
           raise "The Python kernel (#{kernel}) does not exist"
         end
@@ -73,6 +80,13 @@ module Opener
       ##
       # @return [String]
       #
+      def language
+        return options[:language] || DEFAULT_LANGUAGE
+      end
+
+      ##
+      # @return [String]
+      #
       def core_dir
         return File.expand_path('../../../../core', __FILE__)
       end
@@ -83,6 +97,6 @@ module Opener
       def kernel
         return File.join(core_dir, 'process.py')
       end
-    end # EN
+    end # Base
   end # Coreferences
 end # Opener
