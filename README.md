@@ -1,6 +1,7 @@
-# English Coreference
+# Coreference
 
-This Gem provides a kernel for English coreference resolution.
+This Gem provides coreference resolution for various languages such as English
+and Spanish.
 
 The CorefGraph-en module provides an implementation of the Multi-Sieve Pass
 system for for Coreference Resolution system originally proposed by the
@@ -29,19 +30,19 @@ The implementation is a result of a collaboration between the IXA NLP
 
 Installing as a regular Gem:
 
-    gem install opener-coreference-en
+    gem install opener-coreference-base
 
 Using Bundler:
 
-    gem 'opener-coreference-en',
-      :git    => 'git@github.com:opener-project/coreference-en.git',
+    gem 'opener-coreference-base',
+      :git    => 'git@github.com:opener-project/coreference-base.git',
       :branch => 'master'
 
 Using specific install:
 
     gem install specific_install
-    gem specific_install opener-coreference-en \
-       -l https://github.com/opener-project/coreference-en.git
+    gem specific_install opener-coreference-base \
+       -l https://github.com/opener-project/coreference-base.git
 
 ## Usage
 
@@ -54,7 +55,7 @@ resources/examples directory):
 
 To run the program execute:
 
-    coreference-en -l (de|en|es|fr|it|nl) -i input.kaf input.treebank
+    coreference-base -l (de|en|es|fr|it|nl) -i input.kaf input.treebank
 
 Corefgraph will output KAF via standard output with the <coreference> clusters
 added to the KAF input received. Note that for the full functionality of
