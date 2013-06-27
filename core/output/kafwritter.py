@@ -25,11 +25,11 @@ class KafDocument(BaseDocument):
 
         if previous_kaf:
             kaf_document = previous_kaf
-            for lp_name, lp_version, lp_layer in linguistic_parsers:
+            for lp_name, lp_version, lp_layer, time_stamp in linguistic_parsers:
                 kaf_document.add_linguistic_processors(layer=lp_layer, name=lp_name, version=lp_version,
                                                        time_stamp=time_stamp)
             for coref_index, entity in enumerate(graphBuilder.extract_entities(graph), 1):
-                references = [([word["id"].split("#")[0] 
+                references = [([word["id"].split("#")[0]
                                 for word in graph_utils.get_constituent_words(mention)], mention["form"])
                                     for mention in graphBuilder.get_entity_mentions(entity)]
                 kaf_document.add_coreference("co{0}".format(coref_index), references)
@@ -59,7 +59,7 @@ class KafDocument(BaseDocument):
                 kaf_document.add_term(tid=term_id, pos=graph_word["pos"], words=words_ids)
 
             for coref_index, entity in enumerate(graphBuilder.extract_entities(graph), 1):
-                references = [([terms_ids[word] 
+                references = [([terms_ids[word]
                                 for word in graphBuilder.get_constituent_words(mention)], mention["form"])
                               for mention in graphBuilder.get_entity_mentions(entity)]
                 kaf_document.add_coreference("co{0}".format(coref_index), references)

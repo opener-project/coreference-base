@@ -10,6 +10,7 @@ import argparse
 import logging
 import os
 import sys
+import time
 
 this_folder = os.path.dirname(os.path.realpath(__file__))
 
@@ -39,7 +40,7 @@ def main():
 
     processor.store_analysis(arguments.encoding, arguments.language, arguments.version,
                    arguments.linguistic_parser_name, arguments.linguistic_parser_version,
-                   arguments.linguistic_parser_layer)
+                   arguments.linguistic_parser_layer,arguments.timestamp)
 
 
 def parse_cmd_arguments(logger=logging.getLogger('argsparse')):
@@ -55,11 +56,12 @@ def parse_cmd_arguments(logger=logging.getLogger('argsparse')):
     parser.add_argument('-version', '-v', dest='version', action='store', default="v1.opener")
     parser.add_argument('-encoding', '-e', dest='encoding', action='store', default="UTF-8")
     parser.add_argument('-linguisticParserName', '-lpn', dest='linguistic_parser_name',
-                        action='store', default="corefgraphEN")
+                        action='store', default="corefgraph")
     parser.add_argument('-linguisticParserVersion', '-lpv', dest='linguistic_parser_version',
                         action='store', default="0.8")
     parser.add_argument('-linguisticParserLayer', '-lpl', dest='linguistic_parser_layer',
                         action='store', default="coreference")
+    parser.add_argument('-timestamp','-t',dest='timestamp',action='store',default=time.strftime("%y-%m-%dT%H:%M:%S"))
     parser.add_argument('-singleton', action='store_true')
 
     return parser.parse_args()

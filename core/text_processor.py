@@ -109,12 +109,20 @@ class TextProcessor:
         self.build_graph(original_text)
         self.post_process_document()
 
-    def store_analysis(self, encoding, language, version, lp_name, lp_version, lp_layer, ):
+    ## def store_analysis(self, encoding, language, version, lp_name, lp_version, lp_layer, ):
+    ##     """ Stores a corpus analysis results into files.
+    ##     """
+    ##     writer = KafDocument(stream=sys.stdout)
+    ##     writer.store(self.graph, encoding=encoding, language=language, version=version, linguistic_parsers=[
+    ##         (lp_name, lp_version, lp_layer)])
+
+    def store_analysis(self, encoding, language, version, lp_name, lp_version, lp_layer, timestamp, ):
         """ Stores a corpus analysis results into files.
         """
         writer = KafDocument(stream=sys.stdout)
         writer.store(self.graph, encoding=encoding, language=language, version=version, linguistic_parsers=[
-            (lp_name, lp_version, lp_layer)])
+            (lp_name, lp_version, lp_layer, timestamp)])
+
 
     def clean_treebank(self, treebank_file):
         """Remove from treebank file all spurious character."""
