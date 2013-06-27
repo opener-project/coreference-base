@@ -1,0 +1,6 @@
+(TOP (S (VP (VAU~RE Ho) (VP (VMA~PA soggiornato) (PP (PREP a) (NP (NOU~PR Pisa))) (PP (PREP nell') (NP (NP (NOU~PR Hotel) (NOU~PR Bologna)) (PP (PREP per) (NP (NUMR tre) (NOU~CP notti))))) (PP (PREP dal) (NP (NP (NUMR 15)) (NOU~CS luglio))))) (NP (NUMR 2013)) (. .)))
+(TOP (S (S (NP (ART~DE L') (NOU~PR hotel)) (VP (VMA~RE è) (ADJP (ADJ~QU ristrutturato)))) (CONJ ed) (PP (PREP in) (NP (NP (ADJ~QU pieno) (NOU~CS centro)) (PP (PREP della) (NP (NOU~CA città))))) (. .)))
+(TOP (S (VP (VAU~RE Ho) (VP (VMA~PA prenotato) (NP (ART~IN una)))) (NP (NOU~CS stanza) (ADJ~QU singola)) (. .)))
+(TOP (S (S (NP (ART~DE Il) (NOU~CS letto)) (VP (VMA~IM era) (PP (PREP ad) (NP (ART~IN una) (NOU~CS piazza))))) (CONJ e) (S (VP (NOU~CS mezzo) (PRN (-LRB- -LRB-) (ADJP (ADVB molto) (ADJ~QU comodo)) (-RRB- -RRB-)) (NP (NOU~CA tv)) (PP (PREP a) (NP (NOU~CS schermo) (ADJ~QU piatto))) (PP (PREP con) (NP (NP (PRDT tutti) (ART~DE i) (ADJ~QU principali) (NOU~CP canali)) (PP (PREP di) (NP (NOU~PR Rai) (CONJ e) (NOU~PR Mediaset))))))) (. .)))
+(TOP (NP (NP (NOU~CS Bagno) (ADJ~QU spazioso)) (PP (PREP con) (NP (ART~IN una) (ADJ~QU comoda) (NOU~CS doccia))) (. .)))
+(TOP (S (NP (ART~DE Gli) (NOU~CP aspetti) (ADJ~QU positivi)) (VP (VAU~RE sono) (VP (: :) (NP (NOU~CS colazione)) (PP (PREP con) (NP (NP (NOU~CS frutta)) (CONJ e) (NP (NOU~CP cornetti)))))) (. .)))
