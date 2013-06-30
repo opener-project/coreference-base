@@ -14,14 +14,11 @@ noun_plural = "NNS"
 proper_noun = "NNP"
 proper_noun_plural = "NNPS"
 
-
-
 adjective = "JJ"
 adjective_comparative = "JJR"
 adjective_superlative = "JJS"
 
 conjunctions = ("CC",)
-
 
 adjetives = list_checker((adjective, adjective_comparative, adjective_superlative))
 
