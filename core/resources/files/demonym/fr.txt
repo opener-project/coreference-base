@@ -1,0 +1,273 @@
+Abkhazie	Abkhaze
+Abyssinie	Abyssinien
+Afghanistan	Afghan
+Afrique du Sud	Sud-Africain
+Albanie	Albanais
+Algérie	Algérien
+Allemagne	Allemand
+Alsace	Alsacien
+Andorre	Andorran
+Angleterre	Anglais
+Angola	Angolais
+Antigua-et-Barbuda	Antiguais-Barbudien	 Antiguais	 Barbudien
+Arabie saoudite	Saoudien
+Aragon	Aragonais
+Arcadie	Arcadien
+Argentine	Argentin
+Arménie	Arménien
+Aruba	Arubéen	 Arubain
+Asie	Asiatique
+Assyrie	Assyrien
+Asturies	Asturien
+Athènes	Athénien
+Australie	Australien
+Autriche	Autrichien
+Azerbaïdjan	Azéri	 Azerbaïdjanais
+Bahamas	Bahaméen	 Bahamien
+Bahreïn	Bahreïni
+Baléares	Baléare
+Bali	Balinais
+Bangladesh	Bangladeshi	 Bangladais
+Barbade	Barbadien
+pays Basque	Basque	 Basquais	 Euscarien
+Bavière	Bavarois
+Bélarus ou Biélorussie	Bélarusse	 Biélorusse
+Belgique	Belge
+Belize	Bélizien
+Bengale	Bengali	 Bengalais
+Bénin	Béninois
+Berlin	Berlinois
+Bermudes	Bermudien
+Bhoutan	Bhoutanais
+Birmanie	Birman
+Bolivie	Bolivien
+Bosnie-Herzégovine	Bosnien
+Bourgogne	Bourguignon
+Brésil	Brésilien
+Bretagne	Breton
+Brunéi or Brunei	Brunéien	 Bruneien
+Bulgarie	Bulgare
+Burundi ou Bouroundi	Burundais	 Bouroundais
+Le Caire	Cairote
+Cambodge	Cambodgien
+Cameroun	Camerounais
+Canada	Canadien
+Canaries	Canarien
+Catalogne	Catalan
+Chaldée	Chaldéen
+Chili	Chilien
+Chine	Chinois
+Chypre	Chypriote	 Cypriote
+Colombie	Colombien
+Colombie-Britannique	Britanno-Colombien
+Comores	Comorien
+Congo	Congolais
+Corée du Nord	Coréen	 Nord-Coréen
+Corée du Sud	Coréen	 Sud-Coréen
+Corse	Corse
+Costa Rica	Costaricain	 Costaricien
+Côte d'Ivoire	Ivoirien
+Crète	Crétois
+Croatie	Croate
+Cuba	Cubain
+Danemark	Danois
+Djibouti	Djiboutien
+Dominique	Dominiquais
+Écosse	Écossais
+Égypte	Égyptien
+Équateur	Équatorien
+Érythrée	Érythréen
+Espagne	Espagnol
+Estonie	Estonien	 Este
+États-Unis d'Amérique / États-Unis	Américain	 États-Unien/Étatsunien/Étasunien Ricain	 Amerloque	 Amerlot
+Éthiopie	Éthiopien
+îles Féroé	Féroïen
+Fidji	Fidjien
+Finlande	Finnois	 Finlandais
+Flandres	Flamand
+France	Français
+Francfort	Francfortois
+Frise	Frison
+Gabon	Gabonais
+Pays de Galles	Gallois
+Gambie	Gambien
+Géorgie	Géorgien
+Ghana	Ghanéen
+Gibraltar	Gibraltarien
+Grande-Bretagne	Britannique	 Grand-Breton
+Grèce	Grec	 Hellène
+Grenade	Grenadien	 Grenadin
+Groenland	Groenlandais
+Guadeloupe	Guadeloupéen
+Guatemala	Guatémaltèque
+Guinée	Guinéen
+Guinée équatoriale	Équato-Guinéen
+Guyana	Guyanien	 Georgetownien
+Haïti	Haïtien
+Hawaï	Hawaïen	 Hawaiien
+Hesse	Hessois
+Honduras	Hondurien
+Hong-Kong	Chinois de Hong-Kong	 Hongkongais
+Hongrie	Hongrois	 Magyar
+Inde	Indien
+Indochine	Indochinois
+Indonésie	Indonésien
+Ingouchie	Ingouche
+Iran	Iranien
+Iraq, Irak	Iraquien	 Irakien	 Iraqien
+Irlande	Irlandais
+Irlande du Nord	Nord-Irlandais
+Islande	Islandais
+Israël	Israélien
+Italie	Italien
+Jamaïque	Jamaïcain
+Japon	Japonais	 Nippon
+Java	Javanais
+Jersey	Jersiais
+Jordanie	Jordanien
+Kazakhstan	Kazakh
+Kenya	Kenyan	 Kényen
+Kirghizstan	Kirghize
+Koweït	Koweïti	 Koweïtien
+Kurdistan	Kurde
+Laos	Laotien
+Lesotho	Lesothan	 Loti
+Lettonie	Letton
+Liban	Libanais
+Libéria ou Liberia	Libérien
+Libye	Libyen
+Liechtenstein	Liechtensteinois
+Lituanie ou Lithuanie	Lituanien	 Lithuanien
+Londres	Londonien
+Luxembourg	Luxembourgeois
+Macédoine	Macédonien
+Madagascar	Malgache
+Madère	Madérien	 Madérois
+Malaisie	Malaisien
+Malawi	Malawien	 Malawite
+Maldives	Maldivien
+Mali	Malien
+Malte	Maltais
+île de Man	Mannois
+Mandchourie	Mandchou
+Maroc	Marocain
+îles Marshall	Marshallais
+Maurice	Mauricien
+Mauritanie	Mauritanien
+Mélanésie	Mélanésien
+Mésopotamie	Mésopotamien
+Mexique	Mexicain
+Micronésie	Micronésien
+Moldavie, Moldova	Moldave	 Moldove
+Monaco	Monégasque
+Mongolie	Mongol
+Monténégro	Monténégrin
+Montserrat	Montserratien
+Moscou	Moscovite
+Mozambique	Mozambicain	 Mozambicais
+Namibie	Namibien
+Nauru	Nauruan
+Népal	Népalais
+Nicaragua	Nicaraguayen
+Nigéria or Nigeria	Nigérian
+Normandie	Normand
+Norvège	Norvégien
+Nouvelle-Calédonie	Néo-Calédonien
+Nouvelle-Écosse	Néo-Écossais
+Nouvelle-Zélande	Néo-Zélandais
+Oman	Omani	 Omanais
+Ossétie	Ossète	 Ossétien
+Ouganda	Ougandais
+Ouzbékistan	Ouzbek	 Ouzbèke	 Ouzbèque
+Pakistan	Pakistanais
+Palaos or Belau	Palaosien
+Palestine	Palestinien
+Panamá or Panama	Panaméen	 Panamien
+Paraguay	Paraguayen
+Paris	Parisien
+Pays-Bas	Néerlandais	 Hollandais
+Pérou	Péruvien
+Perse	Persan	 Perse
+Phénicie	Phénicien
+Philadelphie	Philadelphien
+Philippines	Philippin
+Picardie	Picard
+Piémont	Piémontais
+Pologne	Polonais
+Polynésie	Polynésien
+Polynésie française	Polynésien
+Porto Rico	Portoricain	 Porto-Ricain
+Portugal	Portugais	 Lusitanien
+Provence	Provençal
+Prusse	Prussien
+Qatar	Qatari	 Qatarien
+Québec	Québecois
+République dominicaine	Dominicain
+République tchèque	Tchèque
+Rome	Romain
+Roumanie	Roumain
+Royaume-Uni	Britannique
+Russie	Russe ou Russien
+Rwanda ou Rouanda ou Ruanda	Rwandais	 Rouandais	 Ruandais
+Saint-Vincent-et-les Grenadines	Saint-Vincentais-et-Grenadin	 Saint-Vincentais	 Grenadin
+Sainte-Lucie	Sainte-Lucien
+Salvador	Salvadorien
+Samoa	Samoan
+Samoa américaines	Samoan
+Sardaigne	Sarde
+Savoie	Savoyard
+Saxe	Saxon
+Scandinavie	Scandinave
+Sénégal	Sénégalais
+Serbie	Serbe
+Sercq	Sercquiais
+Siam	Siamois
+Sibérie	Sibérien
+Sicile	Sicilien
+Singapour	Singapourien
+Slovaquie	Slovaque
+Slovénie	Slovène
+Somalie	Somali	 Somalien
+Soudan	Soudanais
+Soudan du Sud	Sud-Soudanais
+Sri Lanka	Sri-Lankais	 Srilankais
+Suède	Suédois
+Suisse	Suisse	 Helvète
+Sumatra	Sumatrien
+Suriname	Surinamais
+Swaziland	Swazi
+Syrie	Syrien
+Tadjikistan	Tadjik
+Tahiti	Tahitien
+Taïwan	Taiwanais
+Tanzanie	Tanzanien
+Tasmanie	Tasmanien
+Tchad	Tchadien
+Tchécoslovaquie	Tchécoslovaque
+Tchétchénie	Tchétchène
+Terre-Neuve-et-Labrador	Terre-Neuvien
+Thaïlande	Thaïlandais	 Thaï
+Tibet	Tibétain
+Timor oriental	Est-Timorais
+Togo	Togolais
+Tokelau or Tokélaou	Tokelauien	 Tokelauan	 Tokélaouan
+Tonga	Tongan	 Tonguien
+Toscane	Toscan
+Trinité-et-Tobago	Trinidadien	 Trinitien	 Tobagonien
+Tunisie	Tunisien
+Turkménistan	Turkmène
+Turquie	Turc
+Tuvalu or Touvalou	Tuvaluan or Touvalouan
+Ukraine	Ukrainien
+URSS	Soviétique
+Uruguay	Uruguayen
+Varsovie	Varsovien
+Venezuela	Vénézuélien	 Vénézolan
+Venise	Vénitien
+Vienne	Viennois
+Vietnam, Viêt Nam	Vietnamien
+Wallonie	Wallon
+Yémen	Yéménite
+Yougoslavie	Yougoslave
+Zambie	Zambien
+Zimbabwe	Zimbabwéen
