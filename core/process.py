@@ -35,6 +35,7 @@ def main():
         input_text = sys.stdin.read()
         parse_tree = codecs.open(filename=arguments.parse_tree, mode="r").read()
 
+
     processor = TextProcessor()
     processor.process_text((input_text.strip(), parse_tree.strip()))
 
