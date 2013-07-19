@@ -7,6 +7,7 @@ Gem::Specification.new do |gem|
   gem.summary     = 'Coreference resolution for various languages.'
   gem.description = gem.summary
   gem.has_rdoc    = 'yard'
+  gem.extensions  = ['ext/hack/Rakefile']
 
   gem.required_ruby_version = '>= 1.9.2'
 
