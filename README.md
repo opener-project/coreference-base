@@ -1,3 +1,5 @@
+[![Build Status](https://drone.io/github.com/opener-project/coreference-base/status.png)](https://drone.io/github.com/opener-project/coreference-base/latest)
+
 # Coreference
 
 This Gem provides coreference resolution for various languages such as English
