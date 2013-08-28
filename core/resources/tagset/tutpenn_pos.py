@@ -8,7 +8,9 @@ personal_pronoun = "PRO~PE"
 possessive_pronoun = "PRO~PO"
 wh_pronoun = "PRO~RE" #in TUT there are distinct tags for relative and interrogative pronouns. Here only relative pro are given
 #wh_possessive_pronoun = "WP$"
-verbs_list = ("VAU~IM","VAU~IN","VAU~RA","VAU~FU","VAU~RE","VAU~CO","VAU~IP","VAU~CG","VAU~GE","VMA~IM","VMA~IN","VMA~RA","VMA~PP","VMA~PA","VMA~FU","VMA~RE","VMA~CO","VMA~CG","VMA~IP","VMO~CG","VMO~CO","VMO~FU","VMO~IM","VMO~RE","VMO~RA","VMO~IP","VMA~GE","VMA~PE")
+
+verbs_list =("VAU~CG","VAU~CO","VAU~FU","VAU~IM","VAU~IN","VAU~PA","VAU~RA","VAU~RE","VMA~CG","VMA~CO","VMA~FU","VMA~GE","VMA~IM","VMA~IN","VMA~IP","VMA~PA","VMA~PE","VMA~RA","VMA~RE","VMO~CG","VMO~CO","VMO~FU","VMO~GE","VMO~IM","VMO~IN","VMO~PA","VMO~RA","VMO~RE")
+
 
 noun = "NOU~CS" #if we add gender features to the tags in TUT we may need to change here
 noun_plural = "NOU~CP" #if we add gender features to the tags in TUT we may need to change here
