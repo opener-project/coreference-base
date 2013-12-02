@@ -1,0 +1,486 @@
+Canada	Canadees	Canadezen	Canadese	Canadesen
+Bhutaan	Bhutaanse	Bhutaansen
+Friesland	Fries	Friezen	Friezin	Friezinnen
+Assen	Assenaar	Assenaars	Assenaren	Assense	Assensen
+Neurenberg	Neurenberger	Neurenbergers	Neurenbergse	Neurenbergsen
+Swaziland	Swazi	Swazi's	Swazische	Swazischen	Swaziër
+Letland	Let	Letten	Letse	Letsen
+Nederland	Nederlander	Nederlanders	Nederlandse	Nederlandsen	kaaskop
+Togo	Togolees	Togolezen	Togolese	Togolesen
+Rusland	Rus	Russen	Russin	Russinnen
+Azoren	Azoriaan	Azorianen	Azoriaanse	Azoriaansen
+Dominica	Dominicaan	Dominicanen	Dominicaanse	Dominicaansen
+Waddeneilanden	Waddeneilander	Waddeneilanders
+Kazachstan	Kazach	Kazachen	Kazachse	Kazachsen
+Holland	Hollander	Hollanders	Hollandse	Hollandsen
+Antwerpen	Antwerpenaar	Antwerpenaars	Antwerpenaren	Antwerpse	Antwerpsen
+Almere	Almeerder	Almeerders	Almeerse	Almeersen
+Oost-Vlaanderen	Oost-Vlaamse	Oost-Vlaamsen	Oost-Vlaming	Oost-Vlamingen
+Caïro	Caïroot	Caïroten	Caïrotische	Caïrotischen
+Bengalen	Bengaal	Bengalen	Bengaalse	Bengaalsen
+Libanon	Libanees	Libanezen	Libanese	Libanesen
+Thracië	Thracische	Thracischen	Thraciër	Thraciërs
+Macau	Macauer	Macauers	Macause	Macausen
+Lapland	Lap	Lappen	Laplandse	Laplandsen
+Aken	Akenaar	Akenaars	Akenaren	Akense	Akensen
+Bourgondië	Bourgondische	Bourgondischen	Bourgondiër	Bourgondiërs
+Madoera	Madoerees	Madoerezen	Madoerese	Madoeresen
+Bakoe	Bakoese	Bakoesen	Bakoeër	Bakoeërs
+Aquitanië	Aquitaan	Aquitanen	Aquitaanse	Aquitaansen
+Polen	Pool	Polen	Poolse	Poolsen
+Bahrein	Bahreiner	Bahreiners	Bahreinse	Bahreinsen
+Sjanghai	Sjanghaier	Sjanghaiers	Sjanghaise	Sjanghaisen
+Betuwe	Betuwer	Betuwers	Betuwse	Betuwsen
+Rico	Puertoricaan	Puertoricanen	Puertoricaanse	Puertoricaansen
+Faso	Burkinees	Burkinezen	Burkinese	Burkinesen
+Nauru	Nauruaan	Nauruanen	Nauruaanse	Nauruaansen
+Rica	Costaricaan	Costaricanen	Costaricaanse	Costaricaansen
+Korea	Koreaan	Koreanen	Koreaanse	Koreaansen
+Montenegro	Montenegrijn	Montenegrijnen	Montenegrijnse	Montenegrijnsen
+Comoren	Comoor	Comoren	Comoorse	Comoorsen
+Lelystad	Lelystadse	Lelystadsen	Lelystatter	Lelystatters
+Zuid-Amerika	Zuid-Amerikaan	Zuid-Amerikanen	Zuid-Amerikaanse	Zuid-Amerikaansen
+Padua	Paduaan	Paduanen	Paduaanse	Paduaansen
+Vuurland	Vuurlander	Vuurlanders	Vuurlandse	Vuurlandsen
+Marianen	Mariaan	Marianen	Mariaanse	Mariaansen
+inwoner	ingezetene	ingezetenen
+Bern	Berner	Berners	Bernerin	Bernerinnen
+Cambodja	Cambodjaan	Cambodjanen	Cambodjaanse	Cambodjaansen
+Amersfoort	Amersfoorter	Amersfoorters	Amersfoortse	Amersfoortsen
+Brussel	Brusselaar	Brusselaars	Brusselaren	Brusselse	Brusselsen
+Tsjechië	Tsjech	Tsjechen	Tsjechische	Tsjechischen
+Finland	Fin	Finnen	Finse	Finsen
+Mesopotamië	Mesopotamische	Mesopotamischen	Mesopotamiër	Mesopotamiërs
+Liechtenstein	Liechtensteiner	Liechtensteiners	Liechtensteinse	Liechtensteinsen
+Utrecht	Utrechter	Utrechters	Utrechtse	Utrechtsen
+Praag	Praagse	Praagsen	Prager	Pragers
+Litouwen	Litouwer	Litouwers	Litouwse	Litouwsen
+Guinee-Bissau	Guinee-Bissauer	Guinee-Bissauers	Guinee-Bissause	Guinee-Bissausen
+Peel	Peelse	Peelsen	Pelenaar	Pelenaars	Pelenaren
+Portugal	Portugees	Portugezen	Portugese	Portugesen
+Cyprus	Cyprioot	Cyprioten	Cypriotische	Cypriotischen
+Tilburg	Tilburger	Tilburgers	Tilburgse	Tilburgsen
+Zwitserland	Zwitser	Zwitsers	Zwitserse	Zwitsersen
+Turkije	Turk	Turken	Turkse	Turksen
+Dalmatië	Dalmatische	Dalmatischen	Dalmatiër	Dalmatiërs
+Slavonië	Slavonische	Slavonischen	Slavoniër	Slavoniërs
+Nieuw-Zeeland	Nieuw-Zeelander	Nieuw-Zeelanders	Nieuw-Zeelandse	Nieuw-Zeelandsen
+Nigeria	Nigeriaan	Nigerianen	Nigeriaanse	Nigeriaansen
+Ecuador	Ecuadoraan	Ecuadoranen	Ecuadoraanse	Ecuadoraansen
+Luanda	Luandees	Luandezen	Luandese	Luandesen
+Europa	Europeaan	Europeanen	Europese	Europesen
+Walachije	Walach	Walachen
+Baskenland	Bask	Basken	Baskische	Baskischen
+Balkan	Balkanees	Balkanezen	Balkanese	Balkanesen
+Faeröer	Faeröerder	Faeröerders	Faeröerse	Faeröersen
+Tokio	Tokiose	Tokiosen	Tokioër	Tokioërs
+Parijs	Parijse	Parijsen	Parijzenaar	Parijzenaars	Parijzenaren
+Brazilië	Braziliaan	Brazilianen	Braziliaanse	Braziliaansen
+Syrië	Syrische	Syrischen	Syriër	Syriërs
+Kaapverdië	Kaapverdische	Kaapverdischen	Kaapverdiër	Kaapverdiërs
+Sicilië	Siciliaan	Sicilianen	Siciliaanse	Siciliaansen
+Estland	Est	Esten	Estlander	Estse	Estsen
+Antillen	Antilliaan	Antillianen	Antilliaanse	Antilliaansen
+Egypte	Egyptenaar	Egyptenaars	Egyptenaren	Egyptische	Egyptischen
+Kosovo	Kosovaar	Kosovaren	Kosovaarse	Kosovaarsen
+Maastricht	Maastrichtenaar	Maastrichtenaren	Maastrichtenaars	Maastrichtse	Maastrichtsen
+Colombia	Colombiaan	Colombianen	Colombiaanse	Colombiaansen
+Alexandrië	Alexandrijn	Alexandrijnen	Alexandrijnse	Alexandrijnsen
+Achterhoek	Achterhoeker	Achterhoekers	Achterhoekse	Achterhoeksen
+Khartoem	Khartoemer	Khartoemers	Khartoemse	Khartoemsen
+Warschau	Warschauer	Warschauers	Warschause	Warschausen
+Bohemen	Boheemse	Boheemsen	Bohemer	Bohemers	Bohemerin	Bohemerinnen
+Koerdistan	Koerd	Koerden	Koerdische	Koerdischen
+Samaria	Samaritaan	Samaritanen	Samaritaanse	Samaritaansen
+Borneo	Borneose	Borneosen	Borneoër	Borneoërs
+Nepal	Nepalees	Nepalezen	Nepalese	Nepalesen
+staten	Balt	Balten	Baltische	Baltischen
+Zoetermeer	Zoetermeerder	Zoetermeerders	Zoetermeerse	Zoetermeersen
+Suriname	Surinaamse	Surinaamsen	Surinamer	Surinamers
+Filipijnen	Filipijn	Filipijnen	Filipijnse	Filipijnsen
+Willemstad	Willemstadse	Willemstadsen	Willemstatter	Willemstatters
+Athene	Atheense	Atheensen	Athener	Atheners
+Zagreb	Zagrebber	Zagrebbers	Zagrebse	Zagrebsen
+Australië	Australische	Australischen	Australiër	Australiërs
+Marshalleilanden	Marshalleilander	Marshalleilanders	Marshalleilandse	Marshalleilandsen
+Azerbeidzjan	Azerbeidzjaan	Azerbeidzjanen	Azerbeidzjaanse	Azerbeidzjaansen	Azeri	Azeri's
+Atjeh	Atjeese	Atjeesen	Atjeeër	Atjeeërs
+Eritrea	Eritreeër	Eritreeërs	Eritrese	Eritresen
+Kreta	Kretenzer	Kretenzers	Kretenzen	Kretenzische	Kretenzischen
+Zwolle	Zwollenaar	Zwollenaars	Zwollenaren	Zwolse	Zwolsen
+Dublin	Dublinner	Dublinners	Dublinse	Dublinsen
+Neder-Oostenrijk	Neder-Oostenrijker	Neder-Oostenrijkers
+Aarlen	Aarlenaar	Aarlenaars	Aarelnaren	Aarlense	Aarlensen
+Henegouwen	Henegouwer	Henegouwers	Henegouwse	Henegouwsen
+Frans-Guyana	Frans-Guyaan	Frans-Guyanen	Frans-Guyaanse	Frans-Guyaansen
+Niger	Nigeraan	Nigeranen	Nigeraanse	Nigeraansen
+Terschelling	Terschellinger	Terschellingers	Terschellingse	Terschellingsen
+Zeeuws-Vlaanderen	Zeeuws-Vlaamse	Zeeuws-Vlaamsen	Zeeuws-Vlaming	Zeeuws-Vlamingen
+Mexico	Mexicaan	Mexicanen	Mexicaanse	Mexicaansen
+Belgrado	Belgradose	Belgradosen	Belgradoër	Belgradoërs
+Madagaskar	Madagas	Madagassen	Madagaskische	Madagaskischen	Malagassische	Malagassischen	Malagassiër	Malagassiërs
+Accra	Accrase	Accrasen	Accraër	Accraërs
+Mongolië	Mongolische	Mongolischen	Mongoliër	Mongoliërs
+Hongkong	Hongkonger	Hongkongers	Hongkongse	Hongkongsen
+Hebriden	Hebridiaan	Hebridianen	Hebridiaanse	Hebridiaansen
+Vlaanderen	Vlaamse	Vlaamsen	Vlaming	Vlamingen
+Tirana	Tiranees	Tiranezen	Tiranese	Tiranesen
+Nazareth	Nazareense	Nazareensen	Nazareeër	Nazareeërs
+Krim	Krimmer	Krimmers	Krimse	Krimsen
+Bolivia	Boliviaan	Bolivianen	Boliviaanse	Boliviaansen
+Zaïre	Zaïrees	Zaïrezen	Zaïrese	Zaïresen
+Mallorca	Mallorcaan	Mallorcanen	Mallorcaanse	Mallorcaansen
+Boedapest	Boedapester	Boedapesters	Boedapestse	Boedapestsen
+Ghana	Ghanees	Ghanezen	Ghanese	Ghanesen
+Luik	Luikenaar	Luikenaars	Luikenaren	Luikse	Luiksen
+Oekraïne	Oekraïense	Oekraïensen	Oekraïner	Oekraïners
+Saksen	Saks	Saksen	Saksische	Saksischen
+Tasmanië	Tasmaanse	Tasmaansen	Tasmaniër	Tasmaniërs
+Guatemala	Guatemalaan	Guatemalanen	Guatemalaanse	Guatemalaansen
+Zimbabwe	Zimbabwaan	Zimbabwanen	Zimbabwaanse	Zimbabwaansen
+Maldiven	Maldivische	Maldivischen	Maldiviër	Maldiviërs
+Oostenrijk	Oostenrijker	Oostenrijkers	Oostenrijkse	Oostenrijksen
+Indonesië	Indonesische	Indonesischen	Indonesiër	Indonesiërs
+Salland	Sallander	Sallanders	Sallandse	Sallandsen
+Zweden	Zweed	Zweden	Zweedse	Zweedsen
+Lombardije	Lombard	Lombarden	Lombardijse	Lombardijsen
+Oman	Omaanse	Omaansen	Omani	Omani's
+Iberië	Iberische	Iberischen	Iberiër	Iberiërs
+Christmaseiland	Christmaseilander	Christmaseilanders	Christmaseilandse	Christmaseilandsen
+Rome	Romein	Romeinen	Romeinse	Romeinsen
+Gabon	Gabonees	Gabonezen	Gabonese	Gabonesen
+gebieden	Arabier	Arabieren	Arabische	Arabischen
+India	Indiase	Indiasen	Indiaër	Indiaërs	Indiër	Indiërs
+Lesotho	Lesothaan	Lesothanen	Lesothaanse	Lesothaansen
+Nijmegen	Nijmeegse	Nijmeegsen	Nijmegenaar	Nijmegenaars	Nijmegenaren
+Berlijn	Berlijner	Berlijners	Berlijnse	Berlijnsen
+Haïti	Haïtiaan	Haïtianen	Haïtiaanse	Haïtiaansen
+Noord-Europa	Germaan	Germanen
+Tripoli	Tripolitaan	Tripolitanen	Tripolitaanse	Tripolitaansen
+Damascus	Damasceense	Damasceensen	Damascener	Damasceners
+Groenland	Eskimo	Eskimo's	Groenlander	Groenlanders	Groenlandse	Groenlandsen	Inuit	Inuits
+Peru	Peruaan	Peruanen	Peruaanse	Peruaansen
+West-Vlaanderen	West-Vlaamse	West-Vlaamsen	West-Vlaming	West-Vlamingen
+Hongarije	Hongaar	Hongaren	Hongaarse	Hongaarsen
+Bissau	Bissauer	Bissauers	Bissause	Bissausen
+Benin	Beniner	Beniners	Beninse	Beninsen
+IJsland	IJslander	IJslanders	IJslandse	IJslandsen
+Ligurië	Ligurische	Ligurischen	Liguriër	Liguriërs
+Leiden	Leidenaar	Leidenaren	Leidenaars	Leidse	Leidsen
+Republiek	Centraal-Afrikaan	Centraal-Afrikanen	Centraal-Afrikaanse	Centraal-Afrikaansen	Dominicaan	Dominicanen	Dominicaanse	Dominicaansen
+China	Chinees	Chinezen	Chinese	Chinesen
+Aires	Buenos Airees	Buenos Airezen
+Georgië	Georgische	Georgischen	Georgiër	Georgiërs
+Roemenië	Roemeen	Roemenen	Roemeense	Roemeensen
+Tonga	Tongaan	Tonganen	Tongaanse	Tongaansen
+Arnhem	Arnhemmer	Arnhemmers	Arnhemse	Arnhemsen
+Breda	Bredase	Bredasen	Bredaër	Bredaërs
+Scandinavië	Scandinavische	Scandinavischen	Scandinaviër	Scandinaviërs
+Triëst	Triëster	Triësters	Triëstse	Triëstsen
+Mauritius	Mauritiaan	Mauritianen	Mauritiaanse	Mauritiaansen
+Tunesië	Tunesische	Tunesischen	Tunesiër	Tunesiërs
+Mali	Malinees	Malische	Malischen	Maliër	Maliërs
+Iran	Iraanse	Iraansen	Iraniër	Iraniërs
+Oezbekistan	Oezbeek	Oezbeken	Oezbeekse	Oezbeeksen
+Leuven	Leuvenaar	Leuvenaren	Leuvense	Leuvensen
+Angola	Angolees	Angolezen	Angolese	Angolesen
+Indië	Indische	Indischen
+Madrid	Madrileen	Madrilenen	Madrileense	Madrileensen
+Picardië	Picardische	Picardischen	Picardiër	Picardiërs
+Caymaneilanden	Caymaneilander	Caymaneilanders	Caymaneilandse	Caymaneilandsen
+Senegal	Senegalees	Senegalezen	Senegalese	Senegalesen
+Uganda	Ugandees	Ugandezen	Ugandese	Ugandesen
+Molukken	Molukker	Molukkers	Molukse	Moluksen
+Haag	Haagse	Haagsen	Hagenaar	Hagenaren	Haagenaars
+Brazzaville	Brazzaviller	Brazzavillers	Brazzavilse	Brazzavilsen
+Texel	Texelaar	Texelaars	Texelaren	Texelse	Texelsen
+Apulië	Apulische	Apulischen	Apuliër	Apuliërs
+Irak	Iraakse	Iraaksen	Irakees	Irakezen
+Gelderland	Gelderlander	Gelderlanders	Gelderse	Geldersen
+Emmen	Emmenaar	Emmenaren	Emmense	Emmensen
+Siberië	Siberische	Siberischen	Siberiër	Siberiërs
+v.d.Jordaan	Jordanees	Jordanezen
+Kiribati	Kiribatische	Kiribatischen	Kiribatiër	Kiribatiërs
+Servië	Servische	Servischen	Serviër	Serviërs
+Helsinki	Helsinkische	Helsinkischen	Helsinkiër	Helsinkiërs
+Gambia	Gambiaan	Gambianen	Gambiaanse	Gambiaansen
+Gent	Gentenaar	Gentenaars	Gentenaren	Gentse	Gentsen
+West-Java	Soendanees	Soendanezen	Soendanese	Soendanesen
+Ottawa	Ottawaan	Ottawanen	Ottawaanse	Ottawaansen
+Vlieland	Vlielander	Vlielanders	Vlielandse	Vlielandsen
+Cookeilanden	Cookeilander	Cookeilanders	Cookeilandse	Cookeilandsen
+Bogota	Bogotaan	Bogotanen	Bogotaanse	Bogotaansen
+Djibouti	Djiboutiaan	Djiboutianen	Djiboutiaanse	Djiboutiaansen
+Pitcairneilanden	Pitcairneilander	Pitcairneilanders	Pitcairneilandse	Pitcairneilandsen
+Keulen	Keulenaar	Keulenaars	Keulenaren	Keulse	Keulsen
+Lima	Limase	Limasen	Limaër	Limaërs
+Nicaragua	Nicaraguaan	Nicaraguanen	Nicaraguaanse	Nicaraguaansen
+Bergen	Bergenaar	Bergenaars	Bergenaren	Bergense	Bergensen
+Teheran	Teheraanse	Teheraansen	Teheraner	Teheraners
+Schotland	Schot	Schotten	Schotse	Schotsen
+Paz	Lapaceen	Lapacenen	Lapaceense	Lapaceensen
+Anatolië	Anatolische	Anatolischen	Anatoliër	Anatoliërs
+Pruisen	Pruis	Pruisen	Pruisische	Pruisischen
+Wallonië	Waal	Walen	Waalse	Waalsen
+Celebes	Celebische	Celebischen	Celebiër	Celebiërs
+Venezuela	Venezolaan	Venezolanen	Venezolaanse	Venezolaansen
+Ethiopië	Ethiopische	Ethiopischen	Ethiopiër	Ethiopiërs
+Noord-Holland	Noord-Hollander	Noord-Hollanders	Noord-Hollandse	Noord-Hollandsen
+Drenthe	Drent	Drenten	Drentse	Drentsen
+Catalonië	Catalaan	Catalanen	Catalaanse	Catalaansen
+Galilea	Galileeër	Galileeërs
+Opper-Oostenrijk	Opper-Oostenrijker	Opper-Oostenrijkers
+Zuid-Tirol	Zuid-Tiroler	Zuid-Tirolers	Zuid-Tiroolse	Zuid-Tiroolsen
+Noord-Ierland	Noord-Ier	Noord-Ieren	Noord-Ierse	Noord-Iersen
+Galicië	Galiciër	Galiciërs
+Falklandeilanden	Falklandeilander	Falklandeilanders	Falklandeilandse	Falklandeilandsen
+Zeeland	Zeeuw	Zeeuwen	Zeeuwse	Zeeuwsen
+Slowakije	Slowaak	Slowaken	Slowaakse	Slowaaksen
+Dordrecht	Dordrechtenaar	Dordrechtenaars	Dordrechtenaren	Dordrechtse	Dordrechtsen
+Genua	Genuees	Genuezen	Genuese	Genuesen
+Montserrat	Montserrataan	Montserratanen	Montserrataanse	Montserrataansen
+Haspengouw	Haspengouwer	Haspengouwers	Haspengouwse	Haspengouwsen
+Guyana	Guyaan	Guyanen	Guyaanse	Guyaansen
+Sleeswijk-Holstein	Sleeswijk-Holsteiner	Sleeswijk-Holsteiners	Sleeswijk-Holsteinse	Sleeswijk-Holsteinsen
+Asunción	Asuncionees	Asuncionezen	Asuncionese	Asuncionesen
+Honduras	Hondurees	Hondurezen	Hondurese	Honduresen
+Moldavië	Moldavische	Moldavischen	Moldaviër	Moldaviërs
+Sofia	Sofioot	Sofioten	Sofiotische	Sofiotischen
+Duinkerken	Duinkerkse	Duinkerksen
+Amsterdam	Amsterdammer	Amsterdammers	Amsterdamse	Amsterdamsen
+Turkmenistan	Turkmeen	Turkmenen	Turkmeense	Turkmeensen
+Attika	Attische	Attischen	Attiër	Attiërs
+Veluwe	Veluwenaar	Veluwenaars	Veluwenaren	Veluwse	Veluwsen
+Kaukasus	Kaukasische	Kaukasischen	Kaukasiër	Kaukasiërs
+Kroatië	Kroaat	Kroaten	Kroatische	Kroatischen
+Beiroet	Beiroeter	Beiroeters	Beiroetse	Beiroetsen
+Palestina	Palestijn	Palestijnen	Palestijnse	Palestijnsen
+Santiago	Santiagose	Santiagosen	Santiagoër	Santiagoërs
+Calabrië	Calabrese	Calabresen	Calabriër	Calabriërs
+Jutland	Jutlander	Jutlanders	Jutlandse	Jutlandsen
+Liberia	Liberiaan	Liberianen	Liberiaanse	Liberiaansen
+Havana	Havanees	Havanezen	Havanese	Havanesen
+Tanzania	Tanzaniaan	Tanzanianen	Tanzaniaanse	Tanzaniaansen
+Eilanden	Canarische	Canarischen	Canariër	Canariërs
+Zuid-Holland	Zuid-Hollander	Zuid-Hollanders	Zuid-Hollandse	Zuid-Hollandsen
+Zambia	Zambiaan	Zambianen	Zambiaanse	Zambiaansen
+Wit-Rusland	Wit-Rus	Wit-Russen	Wit-Russische	Wit-Russischen
+Monaco	Monegask	Monegasken	Monegaskische	Monegaskischen
+Korinthe	Korinthische	Korinthischen	Korinthiër	Korinthiërs
+Jeruzalem	Jeruzalemmer	Jeruzalemmers	Jeruzalemse	Jeruzalemsen
+Denemarken	Deen	Denen	Deense	Deensen
+Washington	Washingtonner	Washingtonners	Washingtonse	Washingtonsen
+Equatoriaal-Guinea	Equatoriaal-Guineeër	Equatoriaal-Guineeërs	Equatoriaal-Guinese	Equatoriaal-Guinesen
+Oost-Friesland	Oost-Fries	Oost-Friezen
+Paramaribo	Paramaribose	Paramaribosen	Paramariboër	Paramariboërs
+Afghanistan	Afghaan	Afghanen	Afghaanse	Afghaansen
+Caracas	Caraceen	Caracenen	Caraceense	Caraceensen
+Eindhoven	Eindhovenaar	Eindhovenaren	Eindhovenaars	Eindhovense	Eindhovensen
+Afrika	Afrikaan	Afrikanen	Afrikaanse	Afrikaansen
+Amman	Ammaniet	Ammanieten	Ammanitische	Ammanitischen
+Ameland	Amelander	Amelanders	Amelandse	Amelandsen
+Libië	Libische	Libischen	Libiër	Libiërs
+Malawi	Malawische	Malawischen	Malawiër	Malawiërs
+Frans-Polynesië	Frans-Polynesische	Frans-Polynesischen	Frans-Polynesiër	Frans-Polynesiërs
+Kameroen	Kameroener	Kameroeners	Kameroense	Kameroensen
+Overijssel	Overijsselaar	Overijsselaars	Overijsselaren	Overijsselse	Overijsselsen
+kilometer	bevolkingsdichtheid
+Jordaan	Jordanese	Jordanesen
+Jemen	Jemeniet	Jemenieten	Jemenitische	Jemenitischen
+Elzas	Elzasser	Elzassers	Elzasserin	Elzasserinnen
+Amerikaans-Samoa	Amerikaans-Samoaan	Amerikaans-Samoanen	Amerikaans-Samoaanse	Amerikaans-Samoaansen
+Londen	Londenaar	Londenaars	Londenaren	Londense	Londensen
+Pretoria	Pretoriaan	Pretorianen	Pretoriaanse	Pretoriaansen
+Leone	Sierraleoner	Sierraleoners	Sierraleonese	Sierraleonesen
+rijk	Romein	Romeinen
+Manilla	Manilleen	Manillenen	Manilleense	Manilleensen
+Schiermonnikoog	Schiermonnikoger	Schiermonnikogers	Schiermonnikoogse	Schiermonnikoogsen
+Kempen	Kempenaar	Kempenaars	Kempenaren	Kempense	Kempensen
+Milaan	Milanees	Milanezen	Milanese	Milanesen
+Micronesië	Micronesische	Micronesischen	Micronesiër	Micronesiërs
+Panama	Panamees	Panamezen	Panamese	Panamesen
+Koeweit	Koeweiter	Koeweiters	Koeweitse	Koeweitsen
+Hanoi	Hanoier	Hanoiers	Hanoise	Hanoisen
+Guinee	Guineese	Guinesen	Guineeër	Guineeërs
+Andorra	Andorraan	Andorranen	Andorraanse	Andorraansen
+Nubië	Nubische	Nubischen	Nubiër	Nubiërs
+Bosnië-Herzegovina	Bosnische	Bosnischen	Bosniër	Bosniërs
+Gibraltar	Gibraltarees	Gibraltarezen	Gibraltarese	Gibraltaresen
+Kanton	Kantonees	Kantonezen	Kantonese	Kantonesen
+Silezië	Silezische	Silezischen	Sileziër	Sileziërs
+Lesbos	Lesbische	Lesbischen	Lesbiër	Lesbiërs
+Zuid-Afrika	Zuid-Afrikaan	Zuid-Afrikanen	Zuid-Afrikaanse	Zuid-Afrikaansen
+Oranjestad	Oranjestadse	Oranjestadsen	Oranjestatter	Oranjestatters
+West-Friesland	West-Fries	West-Friezen	West-Friese	West-Friesen
+Bagdad	Bagdadder	Bagdadders	Bagdadse	Bagdadsen
+Flevoland	Flevolander	Flevolanders	Flevolandse	Flevolandsen
+Dolomieten	Dolomieter	Dolomieters
+Zuid-Korea	Zuid-Koreaan	Zuid-Koreanen	Zuid-Koreaanse	Zuid-Koreaansen
+Thailand	Thai	Thais	Thai	Thaise	Thaisen
+Belize	Belizaan	Belizanen	Belizaanse	Belizaansen
+Groningen	Groninger	Groningers	Groningse	Groningsen
+Algiers	Algierse	Algiersen	Algierser	Algiersers
+Wenen	Weense	Weensen	Wener	Weners
+Kleef	Klevenaar	Klevenaars	Klevenaren
+Mauritanië	Mauritanische	Mauritanischen	Mauritaniër	Mauritaniërs
+Kopenhagen	Kopenhaagse	Kopenhaagsen	Kopenhagenaar	Kopenhagenaars	Kopenhagenaren
+Apeldoorn	Apeldoornse	Apeldoornsen	Apeldorenaar	Apeldorenaren	Apeldorenaars
+Principe	Santomees	Santomezen	Santomese	Santomesen
+Boeotië	Boeotiër	Beotiërs
+Stockholm	Stockholmer	Stockholmers	Stockholmse	Stockholmsen
+Straatsburg	Straatsburger	Straatsburgers	Straatsburgse	Straatsburgsen
+Kirgizië	Kirgies	Kirgiezen	Kirgizische	Kirgizischen
+Taiwan	Taiwanees	Taiwanezen	Taiwanese	Taiwanesen
+Fiji	Fijische	Fijischen	Fijiër	Fijiërs
+Barbados	Barbadaan	Barbadanen	Barbadaanse	Barbadaansen
+Beieren	Beier	Beieren	Beierse	Beiersen
+Qatar	Qatarees	Qatarezen	Qatarese	Qataresen
+Frankrijk	Fransman	Fransen	Française	Françaises
+Sudan	Sudanees	Sudanezen	Sudanese	Sudanesen
+Kenia	Keniaan	Kenianen	Keniaanse	Keniaansen
+Hilversum	Hilversummer	Hilversummers	Hilversumse	Hilversumsen
+Micronesia	Micronesische	Micronesischen	Micronesiër	Micronesiërs
+Kabul	Kabuler	Kabulers	Kabulse	Kabulsen
+Anguilla	Anguillaan	Anguillanen	Anguillaanse	Anguillaansen
+Montevideo	Montevideaan	Montevideanen	Montevideaanse	Montevideaansen
+Umbrië	Umbrische	Umbrischen	Umbriër	Umbriërs
+Joegoslavië	Joegoslavische	Joegoslavischen	Joegoslavische	Joegoslavischen	Joegoslaviër	Joegoslaviërs	Joegoslaviër	Joegoslaviërs	ex-Joegoslaaf	ex-joegoslaven
+Azië	Aziaat	Aziaten	Aziatische	Aziatischen
+Karinthië	Karinthische	Karinthischen
+Bangkok	Bangkokker	Bangkokkers	Bangkokse	Bangkoksen
+Noord-Brabant	Noord-Brabander	Noord-Brabanders	Noord-Brabantse	Noord-Brabantsen
+Limburg	Limburger	Limburgers	Limburgse	Limburgsen
+Martinique	Martinikaan	Martinikanen	Martinikaanse	Martinikaansen
+Nassau	Nassauer	Nassauers	Nassause	Nassausen
+Belau	Belauer	Belauers	Belause	Belausen
+Sardinië	Sard	Sarden	Sardische	Sardischen
+Lanka	Srilankaan	Srilankanen	Srilankaanse	Srilankaansen
+Californië	Californische	Californischen	Californiër	Californiërs
+Turijn	Turijner	Turijners	Turijnse	Turijnsen
+Polynesië	Polynesische	Polynesischen	Polynesiër	Polynesiërs
+Salvador	Salvadoraan	Salvadoranen	Salvadoraanse	Salvadoraansen
+Jakarta	Jakartaan	Jakartanen	Jakartaanse	Jakartaansen
+Peking	Pekinees	Pekinezen	Pekinese	Pekinesen	Pekinger	Pekingers
+Guadeloupe	Guadelouper	Guadeloupers	Guadeloupse	Guadeloupsen
+Pommeren	Pommer	Pommeren
+Namen	Naamse	Naamsen	Namenaar	Namenaars	Namenaren
+Staten	Amerikaan	Amerikanen	Amerikaanse	Amerikaansen
+Congo	Congolees	Congolezen	Congolese	Congolesen
+Paraguay	Paraguayaan	Paraguayanen	Paraguayaanse	Paraguayaansen
+Moravië	Moravische	Moravischen	Moraviër	Moraviërs
+Botswana	Botswaan	Botswanen	Botswaanse	Botswaansen
+Oslo	Oslose	Oslosen	Osloër	Osloërs
+Aruba	Arubaan	Arubanen	Arubaanse	Arubaansen
+Nieuw-Caledonië	Nieuw-Caledonische	Nieuw-Caledonischen	Nieuw-Caledoniër	Nieuw-Caledoniërs
+Lucia	Saint-Luciaan	Saint-Lucianen	Saint-Luciaanse	Saint-Luciaansen
+Italië	Italiaan	Italianen	Italiaanse	Italiaansen
+Somalië	Somalische	Somalischen	Somaliër	Somaliërs
+Marino	Sanmarinees	Sanmarinezen	Sanmarinese	Sanmarinesen
+Armenië	Armeense	Armeensen	Armeniër	Armeniërs
+Noord-Amerika	Noord-Amerikaan	Noord-Amerikanen	Noord-Amerikaanse	Noord-Amerikaansen
+Pakistan	Pakistaan	Pakistanen	Pakistaanse	Pakistaansen	Pakistani
+Arcadië	Arcadiër	Arcadiërs
+Korfoe	Korfioot	Korfioten	Korfiotische	Korfiotischen
+Castilië	Castiliaan	Castilianen	Castiliaanse	Castiliaansen
+Maleisië	Maleisische	Maleisischen	Maleisiër	Maleisiërs
+Jamaica	Jamaicaan	Jamaicanen	Jamaicaanse	Jamaicaansen
+Leeuwarden	Leeuwardense	Leeuwardensen	Leeuwarder	Leeuwarders
+Ierland	Ier	Ieren	Ierse	Iersen
+Guam	Guamees	Guamezen	Guamese	Guamesen
+Kaapstad	Kaapstadse	Kaapstadsen	Kaapstatter	Kaapstatters
+Windhoek	Windhoeker	Windhoekers	Windhoekse	Windhoeksen
+Moskou	Moskouer	Moskouers	Moskouse	Moskousen
+Hasselt	Hasselaar	Hasselaars	Hasselaren	Hasseltse	Hasseltsen
+Java	Javaan	Javanen	Javaanse	Javaansen
+Bangladesh	Bengaal	Bengalen	Bengaalse	Bengaalsen
+Normandië	Normandische	Normandischen	Normandiër	Normandiërs
+Griekenland	Griek	Grieken	Griekse	Grieksen
+Tarente	Tarentijn	Tarentijnen	Tarentijnse	Tarentijnsen
+Rwanda	Rwandees	Rwandezen	Rwandese	Rwandesen
+Laos	Laotiaan	Laotianen	Laotiaanse	Laotiaansen
+Luxemburg	Luxemburger	Luxemburgers	Luxemburgse	Luxemburgsen
+Amerika	Indiaan	Indianen	Indiaanse	Indiaansen
+Quito	Quiteen	Quitenen	Quiteense	Quiteensen
+Cuba	Cubaan	Cubanen	Cubaanse	Cubaansen
+Engeland	Engelse	Engelsen	Engelsman	Engelsen
+Brabant	Brabander	Brabanders	Brabantse	Brabantsen
+Andalusië	Andalusische	Andalusischen	Andalusiër	Andalusiërs
+Slovenië	Sloveen	Slovenen	Sloveense	Sloveensen
+Middelburg	Middelburger	Middelburgers	Middelburgse	Middelburgsen
+Monrovia	Monroviaan	Monrovianen	Monroviaanse	Monroviaansen
+Andes	Andijn	Andijnen	Andijnse	Andijnsen
+Vietnam	Vietnamees	Vietnamezen	Vietnamese	Vietnamesen
+Tsjaad	Tsjaadse	Tsjaadsen	Tsjadiër	Tsjadiërs
+Melanesië	Melanesische	Melanesischen	Melanesiër	Melanesiërs
+Mekka	Mekkaan	Mekkanen	Mekkaanse	Mekkaansen
+Noord-Korea	Noord-Koreaan	Noord-Koreanen	Noord-Koreaanse	Noord-Koreaansen
+Albanië	Albanees	Albanezen	Albanese	Albanesen
+Kasjmir	Kasjmiri	Kasjmiri	Kasjmiri's	Kasjmirse	Kasjmirsen
+Bahama's	Bahamaan	Bahamanen	Bahamaanse	Bahamaansen
+Mozambique	Mozambikaan	Mozambikanen	Mozambikaanse	Mozambikaansen
+NO-Nederland	Saks	Saksen
+Tuvalu	Tuvaluaan	Tuvaluanen	Tuvaluaanse	Tuvaluaansen
+Japan	Japanner	Japanners	Japanse	Japansen
+Nieuw-Guinea	Nieuw-Guinese	Nieuw-Guinesen	Nieuw-Guineër	Nieuw-Guineërs
+Boekarest	Boekarester	Boekaresters	Boekarestse	Boekarestsen
+Perzië	Pers	Perzen	Perzische	Perzischen
+Rotterdam	Rotterdammer	Rotterdammers	Rotterdamse	Rotterdamsen
+Bosch	Bossche	Bosschen	Bosschenaar	Bosschenaren
+West-Samoa	West-Samoaan	West-Samoanen	West-Samoaanse	West-Samoaansen
+Oranje-Vrijstaat	Oranje-Vrijstater	Oranje-Vrijstaters
+Brunei	Bruneier	Bruneiers	Bruneise	Bruneisen
+Bali	Balinees	Balinezen	Balinese	Balinesen
+Sint-Helena	Sint-Helener	Sint-Heleners
+Karinthïe	Karinthiër	Karinthiërs
+België	Belg	Belgen	Belgische	Belgischen
+Saudi-Arabië	Saudische	Saudischen	Saudiër	Saudiërs
+Mantua	Mantuaanse	Mantuaansen	Mantuaner	Mantuaners
+Chili	Chileen	Chilenen	Chileense	Chileensen
+Patagonië	Patagonische	Patagonischen	Patagoniër	Patagoniërs
+Rangoon	Rangooner	Rangooners	Rangoonse	Rangoonsen
+Marokko	Marokkaan	Marokkanen	Marokkaanse	Marokkaansen
+Macedonië	Macedonische	Macedonischen	Macedoniër	Macedoniërs
+Grenada	Grenadaan	Grenadanen	Grenadaanse	Grenadaansen
+Thebe	Thebaan	Thebanen	Thebaanse	Thebaansen
+Spanje	Spaanse	Spaansen	Spanjaard	Spanjaarden
+Jordanië	Jordaanse	Jordaansen	Jordaniër	Jordaniërs
+Enschede	Enschedese	Enschedesen	Enschedeër	Enschedeërs
+Reykjavik	Reykjaviker	Reykjavikers	Reykjavikse	Reykjaviksen
+Uruguay	Uruguayaan	Uruguayanen	Uruguayaanse	Uruguayaansen
+Soedan	Soedanees
+Burundi	Burundees	Burundezen	Burundese	Burundesen
+Florence	Florentijn	Florentijnen	Florentijnse	Florentijnsen
+Haarlem	Haarlemmer	Haarlemmers	Haarlemse	Haarlemsen
+Seychellen	Seycheller	Seychellers
+Napels	Napolitaan	Napolitanen	Napolitaanse	Napolitaansen
+Bhutan	Bhutaan	Bhutanen
+Singapore	Singaporees	Singaporezen	Singaporese	Singaporesen
+Malta	Maltees	Maltezen	Maltese	Maltesen
+Algerije	Algerijn	Algerijnen	Algerijnse	Algerijnsen
+Transsylvanië	Transsylvanische	Transsylvanischen	Transsylvaniër	Transsylvaniërs
+Twente	Tukker	Tukkers	Twent	Twenten	Twentse	Twentsen
+Tadzjikistan	Tadzjiek	Tadzjieken	Tadzjiekse	Tadzjieksen
+Tibet	Tibetaan	Tibetanen	Tibetaanse	Tibetaansen
+Israël	Israëli	Israëlische	Israëlischen	Israëliër	Israëliërs
+Ankara	Ankarioot	Ankarioten	Ankariotische	Ankariotischen
+Brugge	Bruggeling	Bruggelingen	Brugse	Brugsen
+Venetië	Venetiaan	Venetianen	Venetiaanse	Venetiaansen
+Groot-Brittannië	Brit	Britten	Britse	Britsen
+Sint-Petersburg	Sint-Petersburger	Sint-Petersburgers	Sint-Petersburgse	Sint-Petersburgsen
+Lotharingen	Lotharinger	Lotharingers	Lotharingse	Lotharingsen
+Wellington	Wellingtonner	Wellingtonners	Wellingtonse	Wellingtonsen
+Lissabon	Lissabonner	Lissabonners	Lissabonse	Lissabonsen
+stad	stadsbevolking
+Namibië	Namibische	Namibischen	Namibiër	Namibiërs
+Seoul	Seouler	Seoulers	Seoulse	Seoulsen
+land	burger	burgers
+Toscane	Toscaan	Toscanen	Toscaanse	Toscaansen
+Myanmar	Birmees	Birmezen	Birmese	Birmesen	Myanmarees	Myanmarezen	Myanmarese	Myanmaresen
+Noorwegen	Noor	Noren	Noorse	Noorsen
+Duinkerke	Duinkerkenaar	Duinkerkenaars	Duinkerkenaren
+Oost-Europa	Slaven
+Duitsland	Duitse	Duitsen	Duitser	Duitsers
+Argentinië	Argentijn	Argentijnen	Argentijnse	Argentijnsen
+Ivoorkust	Ivoriaan	Ivorianen	Ivoriaanse	Ivoriaansen
+Bulgarije	Bulgaar	Bulgaren	Bulgaarse	Bulgaarsen
+Corsica	Corsicaan	Corsicanen	Corsicaanse	Corsicaansen

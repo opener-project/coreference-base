@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<KAF xml:lang="en" version="v1.opener">
+  <kafHeader>
+    <linguisticProcessors layer="text">
+      <lp name="ixa-pipe-tok-en" timestamp="2013-11-21 10:09:12" version="1.0" />
+    </linguisticProcessors>
+    <linguisticProcessors layer="terms">
+      <lp name="ixa-pipe-pos-en" timestamp="2013-11-21 10:09:12" version="1.0" />
+    </linguisticProcessors>
+    <linguisticProcessors layer="entities">
+      <lp name="ixa-pipe-nerc-en" timestamp="2013-11-21 10:09:13" version="1.0" />
+    </linguisticProcessors>
+    <linguisticProcessors layer="constituency">
+      <lp name="ixa-pipe-parse-en" timestamp="2013-11-21 10:09:13" version="1.0" />
+    </linguisticProcessors>
+  </kafHeader>
+  <text>
+    <wf wid="w1" sent="1" offset="0" length="6">Pierre</wf>
+    <wf wid="w2" sent="1" offset="7" length="6">Vinken</wf>
+    <wf wid="w3" sent="1" offset="13" length="1">,</wf>
+    <wf wid="w4" sent="1" offset="15" length="2">61</wf>
+    <wf wid="w5" sent="1" offset="18" length="5">years</wf>
+    <wf wid="w6" sent="1" offset="24" length="3">old</wf>
+    <wf wid="w7" sent="1" offset="27" length="1">,</wf>
+    <wf wid="w8" sent="1" offset="29" length="4">will</wf>
+    <wf wid="w9" sent="1" offset="34" length="4">join</wf>
+    <wf wid="w10" sent="1" offset="39" length="3">the</wf>
+    <wf wid="w11" sent="1" offset="43" length="5">board</wf>
+    <wf wid="w12" sent="1" offset="49" length="2">as</wf>
+    <wf wid="w13" sent="1" offset="52" length="1">a</wf>
+    <wf wid="w14" sent="1" offset="54" length="12">nonexecutive</wf>
+    <wf wid="w15" sent="1" offset="67" length="8">director</wf>
+    <wf wid="w16" sent="1" offset="76" length="3">Nov</wf>
+    <wf wid="w17" sent="1" offset="79" length="1">.</wf>
+    <wf wid="w18" sent="2" offset="81" length="2">29</wf>
+    <wf wid="w19" sent="2" offset="83" length="1">.</wf>
+    <wf wid="w20" sent="3" offset="85" length="3">Mr.</wf>
+    <wf wid="w21" sent="3" offset="89" length="6">Vinken</wf>
+    <wf wid="w22" sent="3" offset="96" length="2">is</wf>
+    <wf wid="w23" sent="3" offset="99" length="1">a</wf>
+    <wf wid="w24" sent="3" offset="101" length="8">chairman</wf>
+    <wf wid="w25" sent="3" offset="110" length="2">of</wf>
+    <wf wid="w26" sent="3" offset="113" length="8">Elsevier</wf>
+    <wf wid="w27" sent="3" offset="122" length="2">N.</wf>
+    <wf wid="w28" sent="4" offset="124" length="2">V.</wf>
+    <wf wid="w29" sent="4" offset="126" length="1">,</wf>
+    <wf wid="w30" sent="4" offset="128" length="3">the</wf>
+    <wf wid="w31" sent="4" offset="132" length="5">Dutch</wf>
+    <wf wid="w32" sent="4" offset="138" length="10">publishing</wf>
+    <wf wid="w33" sent="4" offset="149" length="5">group</wf>
+    <wf wid="w34" sent="4" offset="154" length="1">.</wf>
+  </text>
+  <terms>
+    <!--Pierre-->
+    <term tid="t1" type="close" lemma="Pierre" pos="R" morphofeat="NNP">
+      <span>
+        <target id="w1" />
+      </span>
+    </term>
+    <!--Vinken-->
+    <term tid="t2" type="close" lemma="Vinken" pos="R" morphofeat="NNP">
+      <span>
+        <target id="w2" />
+      </span>
+    </term>
+    <!--,-->
+    <term tid="t3" type="close" lemma="," pos="O" morphofeat=",">
+      <span>
+        <target id="w3" />
+      </span>
+    </term>
+    <!--61-->
+    <term tid="t4" type="close" lemma="61" pos="O" morphofeat="CD">
+      <span>
+        <target id="w4" />
+      </span>
+    </term>
+    <!--years-->
+    <term tid="t5" type="open" lemma="year" pos="N" morphofeat="NNS">
+      <span>
+        <target id="w5" />
+      </span>
+    </term>
+    <!--old-->
+    <term tid="t6" type="open" lemma="old" pos="G" morphofeat="JJ">
+      <span>
+        <target id="w6" />
+      </span>
+    </term>
+    <!--,-->
+    <term tid="t7" type="close" lemma="," pos="O" morphofeat=",">
+      <span>
+        <target id="w7" />
+      </span>
+    </term>
+    <!--will-->
+    <term tid="t8" type="close" lemma="will" pos="O" morphofeat="MD">
+      <span>
+        <target id="w8" />
+      </span>
+    </term>
+    <!--join-->
+    <term tid="t9" type="open" lemma="join" pos="V" morphofeat="VB">
+      <span>
+        <target id="w9" />
+      </span>
+    </term>
+    <!--the-->
+    <term tid="t10" type="close" lemma="the" pos="D" morphofeat="DT">
+      <span>
+        <target id="w10" />
+      </span>
+    </term>
+    <!--board-->
+    <term tid="t11" type="open" lemma="board" pos="N" morphofeat="NN">
+      <span>
+        <target id="w11" />
+      </span>
+    </term>
+    <!--as-->
+    <term tid="t12" type="close" lemma="as" pos="P" morphofeat="IN">
+      <span>
+        <target id="w12" />
+      </span>
+    </term>
+    <!--a-->
+    <term tid="t13" type="close" lemma="a" pos="D" morphofeat="DT">
+      <span>
+        <target id="w13" />
+      </span>
+    </term>
+    <!--nonexecutive-->
+    <term tid="t14" type="open" lemma="nonexecutive" pos="G" morphofeat="JJ">
+      <span>
+        <target id="w14" />
+      </span>
+    </term>
+    <!--director-->
+    <term tid="t15" type="open" lemma="director" pos="N" morphofeat="NN">
+      <span>
+        <target id="w15" />
+      </span>
+    </term>
+    <!--Nov-->
+    <term tid="t16" type="close" lemma="Nov" pos="R" morphofeat="NNP">
+      <span>
+        <target id="w16" />
+      </span>
+    </term>
+    <!--.-->
+    <term tid="t17" type="close" lemma="." pos="O" morphofeat=".">
+      <span>
+        <target id="w17" />
+      </span>
+    </term>
+    <!--29-->
+    <term tid="t18" type="close" lemma="29" pos="O" morphofeat="CD">
+      <span>
+        <target id="w18" />
+      </span>
+    </term>
+    <!--.-->
+    <term tid="t19" type="close" lemma="." pos="O" morphofeat=".">
+      <span>
+        <target id="w19" />
+      </span>
+    </term>
+    <!--Mr.-->
+    <term tid="t20" type="close" lemma="Mr." pos="R" morphofeat="NNP">
+      <span>
+        <target id="w20" />
+      </span>
+    </term>
+    <!--Vinken-->
+    <term tid="t21" type="close" lemma="Vinken" pos="R" morphofeat="NNP">
+      <span>
+        <target id="w21" />
+      </span>
+    </term>
+    <!--is-->
+    <term tid="t22" type="open" lemma="be" pos="V" morphofeat="VBZ">
+      <span>
+        <target id="w22" />
+      </span>
+    </term>
+    <!--a-->
+    <term tid="t23" type="close" lemma="a" pos="D" morphofeat="DT">
+      <span>
+        <target id="w23" />
+      </span>
+    </term>
+    <!--chairman-->
+    <term tid="t24" type="open" lemma="chairman" pos="N" morphofeat="NN">
+      <span>
+        <target id="w24" />
+      </span>
+    </term>
+    <!--of-->
+    <term tid="t25" type="close" lemma="of" pos="P" morphofeat="IN">
+      <span>
+        <target id="w25" />
+      </span>
+    </term>
+    <!--Elsevier-->
+    <term tid="t26" type="close" lemma="Elsevier" pos="R" morphofeat="NNP">
+      <span>
+        <target id="w26" />
+      </span>
+    </term>
+    <!--N.-->
+    <term tid="t27" type="close" lemma="N." pos="R" morphofeat="NNP">
+      <span>
+        <target id="w27" />
+      </span>
+    </term>
+    <!--V.-->
+    <term tid="t28" type="close" lemma="V." pos="R" morphofeat="NNP">
+      <span>
+        <target id="w28" />
+      </span>
+    </term>
+    <!--,-->
+    <term tid="t29" type="close" lemma="," pos="O" morphofeat=",">
+      <span>
+        <target id="w29" />
+      </span>
+    </term>
+    <!--the-->
+    <term tid="t30" type="close" lemma="the" pos="D" morphofeat="DT">
+      <span>
+        <target id="w30" />
+      </span>
+    </term>
+    <!--Dutch-->
+    <term tid="t31" type="close" lemma="Dutch" pos="R" morphofeat="NNP">
+      <span>
+        <target id="w31" />
+      </span>
+    </term>
+    <!--publishing-->
+    <term tid="t32" type="open" lemma="publishing" pos="N" morphofeat="NN">
+      <span>
+        <target id="w32" />
+      </span>
+    </term>
+    <!--group-->
+    <term tid="t33" type="open" lemma="group" pos="N" morphofeat="NN">
+      <span>
+        <target id="w33" />
+      </span>
+    </term>
+    <!--.-->
+    <term tid="t34" type="close" lemma="." pos="O" morphofeat=".">
+      <span>
+        <target id="w34" />
+      </span>
+    </term>
+  </terms>
+  <entities>
+    <entity eid="e1" type="person">
+      <references>
+        <!--Pierre Vinken-->
+        <span>
+          <target id="t1" />
+          <target id="t2" />
+        </span>
+      </references>
+    </entity>
+    <entity eid="e2" type="person">
+      <references>
+        <!--Elsevier N.-->
+        <span>
+          <target id="t26" />
+          <target id="t27" />
+        </span>
+      </references>
+    </entity>
+    <entity eid="e3" type="misc">
+      <references>
+        <!--Dutch-->
+        <span>
+          <target id="t31" />
+        </span>
+      </references>
+    </entity>
+  </entities>
+  <constituents>
+    <tree>
+      <!--Non-terminals-->
+      <nt id="nter1" label="TOP" />
+      <nt id="nter2" label="S" />
+      <nt id="nter3" label="NP" />
+      <nt id="nter4" label="NP" />
+      <nt id="nter5" label="NNP" />
+      <nt id="nter6" label="NNP" />
+      <nt id="nter7" label="," />
+      <nt id="nter8" label="ADJP" />
+      <nt id="nter9" label="NP" />
+      <nt id="nter10" label="CD" />
+      <nt id="nter11" label="NNS" />
+      <nt id="nter12" label="JJ" />
+      <nt id="nter13" label="," />
+      <nt id="nter14" label="VP" />
+      <nt id="nter15" label="MD" />
+      <nt id="nter16" label="VP" />
+      <nt id="nter17" label="VB" />
+      <nt id="nter18" label="NP" />
+      <nt id="nter19" label="DT" />
+      <nt id="nter20" label="NN" />
+      <nt id="nter21" label="PP" />
+      <nt id="nter22" label="IN" />
+      <nt id="nter23" label="NP" />
+      <nt id="nter24" label="DT" />
+      <nt id="nter25" label="JJ" />
+      <nt id="nter26" label="NN" />
+      <nt id="nter27" label="NNP" />
+      <nt id="nter28" label="." />
+      <!--Terminals-->
+      <!--Pierre-->
+      <t id="ter1">
+        <span>
+          <target id="t1" />
+        </span>
+      </t>
+      <!--Vinken-->
+      <t id="ter2">
+        <span>
+          <target id="t2" />
+        </span>
+      </t>
+      <!--,-->
+      <t id="ter3">
+        <span>
+          <target id="t3" />
+        </span>
+      </t>
+      <!--61-->
+      <t id="ter4">
+        <span>
+          <target id="t4" />
+        </span>
+      </t>
+      <!--years-->
+      <t id="ter5">
+        <span>
+          <target id="t5" />
+        </span>
+      </t>
+      <!--old-->
+      <t id="ter6">
+        <span>
+          <target id="t6" />
+        </span>
+      </t>
+      <!--,-->
+      <t id="ter7">
+        <span>
+          <target id="t7" />
+        </span>
+      </t>
+      <!--will-->
+      <t id="ter8">
+        <span>
+          <target id="t8" />
+        </span>
+      </t>
+      <!--join-->
+      <t id="ter9">
+        <span>
+          <target id="t9" />
+        </span>
+      </t>
+      <!--the-->
+      <t id="ter10">
+        <span>
+          <target id="t10" />
+        </span>
+      </t>
+      <!--board-->
+      <t id="ter11">
+        <span>
+          <target id="t11" />
+        </span>
+      </t>
+      <!--as-->
+      <t id="ter12">
+        <span>
+          <target id="t12" />
+        </span>
+      </t>
+      <!--a-->
+      <t id="ter13">
+        <span>
+          <target id="t13" />
+        </span>
+      </t>
+      <!--nonexecutive-->
+      <t id="ter14">
+        <span>
+          <target id="t14" />
+        </span>
+      </t>
+      <!--director-->
+      <t id="ter15">
+        <span>
+          <target id="t15" />
+        </span>
+      </t>
+      <!--Nov-->
+      <t id="ter16">
+        <span>
+          <target id="t16" />
+        </span>
+      </t>
+      <!--.-->
+      <t id="ter17">
+        <span>
+          <target id="t17" />
+        </span>
+      </t>
+      <!--Tree edges-->
+      <edge from="nter2" to="nter1" head="yes" />
+      <edge from="nter3" to="nter2" />
+      <edge from="nter4" to="nter3" head="yes" />
+      <edge from="nter5" to="nter4" />
+      <edge from="ter1" to="nter5" />
+      <edge from="nter6" to="nter4" head="yes" />
+      <edge from="ter2" to="nter6" />
+      <edge from="nter7" to="nter3" />
+      <edge from="ter3" to="nter7" />
+      <edge from="nter8" to="nter3" />
+      <edge from="nter9" to="nter8" />
+      <edge from="nter10" to="nter9" />
+      <edge from="ter4" to="nter10" />
+      <edge from="nter11" to="nter9" head="yes" />
+      <edge from="ter5" to="nter11" />
+      <edge from="nter12" to="nter8" head="yes" />
+      <edge from="ter6" to="nter12" />
+      <edge from="nter13" to="nter2" />
+      <edge from="ter7" to="nter13" />
+      <edge from="nter14" to="nter2" head="yes" />
+      <edge from="nter15" to="nter14" />
+      <edge from="ter8" to="nter15" />
+      <edge from="nter16" to="nter14" head="yes" />
+      <edge from="nter17" to="nter16" head="yes" />
+      <edge from="ter9" to="nter17" />
+      <edge from="nter18" to="nter16" />
+      <edge from="nter19" to="nter18" />
+      <edge from="ter10" to="nter19" />
+      <edge from="nter20" to="nter18" head="yes" />
+      <edge from="ter11" to="nter20" />
+      <edge from="nter21" to="nter16" />
+      <edge from="nter22" to="nter21" head="yes" />
+      <edge from="ter12" to="nter22" />
+      <edge from="nter23" to="nter21" />
+      <edge from="nter24" to="nter23" />
+      <edge from="ter13" to="nter24" />
+      <edge from="nter25" to="nter23" />
+      <edge from="ter14" to="nter25" />
+      <edge from="nter26" to="nter23" />
+      <edge from="ter15" to="nter26" />
+      <edge from="nter27" to="nter23" head="yes" />
+      <edge from="ter16" to="nter27" />
+      <edge from="nter28" to="nter2" />
+      <edge from="ter17" to="nter28" />
+    </tree>
+    <tree>
+      <!--Non-terminals-->
+      <nt id="nter29" label="TOP" />
+      <nt id="nter30" label="NP" />
+      <nt id="nter31" label="CD" />
+      <nt id="nter32" label="." />
+      <!--Terminals-->
+      <!--29-->
+      <t id="ter18">
+        <span>
+          <target id="t18" />
+        </span>
+      </t>
+      <!--.-->
+      <t id="ter19">
+        <span>
+          <target id="t19" />
+        </span>
+      </t>
+      <!--Tree edges-->
+      <edge from="nter30" to="nter29" head="yes" />
+      <edge from="nter31" to="nter30" head="yes" />
+      <edge from="ter18" to="nter31" />
+      <edge from="nter32" to="nter30" />
+      <edge from="ter19" to="nter32" />
+    </tree>
+    <tree>
+      <!--Non-terminals-->
+      <nt id="nter33" label="TOP" />
+      <nt id="nter34" label="S" />
+      <nt id="nter35" label="NP" />
+      <nt id="nter36" label="NNP" />
+      <nt id="nter37" label="NNP" />
+      <nt id="nter38" label="VP" />
+      <nt id="nter39" label="VBZ" />
+      <nt id="nter40" label="NP" />
+      <nt id="nter41" label="NP" />
+      <nt id="nter42" label="DT" />
+      <nt id="nter43" label="NN" />
+      <nt id="nter44" label="PP" />
+      <nt id="nter45" label="IN" />
+      <nt id="nter46" label="NP" />
+      <nt id="nter47" label="NNP" />
+      <nt id="nter48" label="NNP" />
+      <!--Terminals-->
+      <!--Mr.-->
+      <t id="ter20">
+        <span>
+          <target id="t20" />
+        </span>
+      </t>
+      <!--Vinken-->
+      <t id="ter21">
+        <span>
+          <target id="t21" />
+        </span>
+      </t>
+      <!--is-->
+      <t id="ter22">
+        <span>
+          <target id="t22" />
+        </span>
+      </t>
+      <!--a-->
+      <t id="ter23">
+        <span>
+          <target id="t23" />
+        </span>
+      </t>
+      <!--chairman-->
+      <t id="ter24">
+        <span>
+          <target id="t24" />
+        </span>
+      </t>
+      <!--of-->
+      <t id="ter25">
+        <span>
+          <target id="t25" />
+        </span>
+      </t>
+      <!--Elsevier-->
+      <t id="ter26">
+        <span>
+          <target id="t26" />
+        </span>
+      </t>
+      <!--N.-->
+      <t id="ter27">
+        <span>
+          <target id="t27" />
+        </span>
+      </t>
+      <!--Tree edges-->
+      <edge from="nter34" to="nter33" head="yes" />
+      <edge from="nter35" to="nter34" />
+      <edge from="nter36" to="nter35" />
+      <edge from="ter20" to="nter36" />
+      <edge from="nter37" to="nter35" head="yes" />
+      <edge from="ter21" to="nter37" />
+      <edge from="nter38" to="nter34" head="yes" />
+      <edge from="nter39" to="nter38" />
+      <edge from="ter22" to="nter39" />
+      <edge from="nter40" to="nter38" head="yes" />
+      <edge from="nter41" to="nter40" head="yes" />
+      <edge from="nter42" to="nter41" />
+      <edge from="ter23" to="nter42" />
+      <edge from="nter43" to="nter41" head="yes" />
+      <edge from="ter24" to="nter43" />
+      <edge from="nter44" to="nter40" />
+      <edge from="nter45" to="nter44" head="yes" />
+      <edge from="ter25" to="nter45" />
+      <edge from="nter46" to="nter44" />
+      <edge from="nter47" to="nter46" />
+      <edge from="ter26" to="nter47" />
+      <edge from="nter48" to="nter46" head="yes" />
+      <edge from="ter27" to="nter48" />
+    </tree>
+    <tree>
+      <!--Non-terminals-->
+      <nt id="nter49" label="TOP" />
+      <nt id="nter50" label="NP" />
+      <nt id="nter51" label="NP" />
+      <nt id="nter52" label="NNP" />
+      <nt id="nter53" label="," />
+      <nt id="nter54" label="NP" />
+      <nt id="nter55" label="DT" />
+      <nt id="nter56" label="JJ" />
+      <nt id="nter57" label="NN" />
+      <nt id="nter58" label="NN" />
+      <nt id="nter59" label="." />
+      <!--Terminals-->
+      <!--V.-->
+      <t id="ter28">
+        <span>
+          <target id="t28" />
+        </span>
+      </t>
+      <!--,-->
+      <t id="ter29">
+        <span>
+          <target id="t29" />
+        </span>
+      </t>
+      <!--the-->
+      <t id="ter30">
+        <span>
+          <target id="t30" />
+        </span>
+      </t>
+      <!--Dutch-->
+      <t id="ter31">
+        <span>
+          <target id="t31" />
+        </span>
+      </t>
+      <!--publishing-->
+      <t id="ter32">
+        <span>
+          <target id="t32" />
+        </span>
+      </t>
+      <!--group-->
+      <t id="ter33">
+        <span>
+          <target id="t33" />
+        </span>
+      </t>
+      <!--.-->
+      <t id="ter34">
+        <span>
+          <target id="t34" />
+        </span>
+      </t>
+      <!--Tree edges-->
+      <edge from="nter50" to="nter49" head="yes" />
+      <edge from="nter51" to="nter50" head="yes" />
+      <edge from="nter52" to="nter51" head="yes" />
+      <edge from="ter28" to="nter52" />
+      <edge from="nter53" to="nter50" />
+      <edge from="ter29" to="nter53" />
+      <edge from="nter54" to="nter50" />
+      <edge from="nter55" to="nter54" />
+      <edge from="ter30" to="nter55" />
+      <edge from="nter56" to="nter54" />
+      <edge from="ter31" to="nter56" />
+      <edge from="nter57" to="nter54" />
+      <edge from="ter32" to="nter57" />
+      <edge from="nter58" to="nter54" head="yes" />
+      <edge from="ter33" to="nter58" />
+      <edge from="nter59" to="nter50" />
+      <edge from="ter34" to="nter59" />
+    </tree>
+  </constituents>
+</KAF>
