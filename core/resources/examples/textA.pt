@@ -1,7 +1,0 @@
-(TOP (S (NP (NP=H (DT The) (NN=H sister)) (, ,) (NP (NN actress) (NNP Rebeca) (NNP=H Smith))) (, ,) (VP=H (VBZ=H is) (VP (VBG=H going) (PP (TO=H to) (NP (NNP=H Hollywood))))) (. .)))
-(TOP (S (NP (PRP=H I)) (VP=H (VBP=H go) (PP (TO=H to) (NP (NNP=H England)))) (. .)))
-(TOP (S (NP (DT The) (NN=H sister)) (VP=H (VBZ=H lives) (PP (IN=H in) (NP (NNP=H England)))) (. .)))
-(TOP (S (NP (NNP=H Mathews)) (VP=H (VBZ=H lives) (PP (IN=H in) (NP (NNP=H Stocholm)))) (. .)))
-(TOP (S (NP (NP=H (NP (NNP Israel) (POS=H 's)) (NNP Deputy) (NNP Defense) (NNP=H Minister)) (, ,) (NP (NNP Jhon) (NNP=H Abrams))) (, ,) (VP=H (VBD=H said) (NP (DT=H no))) (. .)))
-(TOP (S (PP (IN=H In) (NP (NP=H (DT the) (NN=H context)) (PP (IN=H of) (NP (NNP=H Earth))))) (, ,) (NP (PRP=H it)) (VP=H (VBZ=H refers) (PP (TO=H to) (NP (NP=H (CD one) (CC or) (DT=H all)) (PP (IN=H of) (NP (NP=H (DT the) (JJ major) (NNS=H divisions)) (PP (IN=H of) (NP (NP (DT the) (NN planet) (POS=H 's)) (NNP World) (NNP=H Ocean)))))))) (. .)))
-(TOP (S (NP (PRP=H They)) (VP=H (VBP=H are) (, ,) (PP (IN=H in) (NP (NP=H (VBG descending) (NN=H order)) (PP (IN=H of) (NP (NN=H area))))) (, ,) (NP (NP=H (DT the) (NNP=H Pacific)) (, ,) (NP (NNP=H Atlantic)) (, ,) (NP (NNP=H Indian)) (, ,) (NP (NP=H (NNP=H Southern)) (PRN (-LRB- -LRB-) (NP (NNP=H Antarctic)) (-RRB- -RRB-))) (, ,) (CC and) (NP (NNP Arctic) (NNP=H Oceans)))) (. .)))
