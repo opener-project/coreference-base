@@ -1,4 +1,0 @@
-(TOP (S (NP (NNP=H John)) (VP=H (VBZ=H is) (NP (DT a) (NN=H musician))) (. .)))
-(TOP (S (NP (PRP=H He)) (VP=H (VBD=H played) (NP (DT a) (JJ new) (NN=H song))) (. .)))
-(TOP (S (NP (DT A) (NN=H girl)) (VP=H (VBD=H was) (VP (VBG=H listening) (PP (TO=H to) (NP (DT the) (NN=H song))))) (. .)))
-(TOP (S (NP (NP=H (NN=H “)) (SBAR (S=H (NP (PRP=H It)) (VP=H (VBZ=H is) (NP (PRP$ my) (NN=H favorite)))))) (, ,) (NP (NNP ”) (NNP=H John)) (VP=H (VBD=H said) (PP (TO=H to) (NP (PRP=H her)))) (. .)))
