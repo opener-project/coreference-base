@@ -16,9 +16,7 @@ animate = ("io", "me", "mi", "mio", "noi", "voi", "loro", "ci", "vi", "nostro", 
 
 inanimate = ("esso", "essa", "quanto", "quando", "che", "come", "quale", "quali")
 
-indefinite = set(("altro", "altra", "altri", "altre", "nessuno", "nessuna", "ciascuno", "ciascuna",
- "qualcuno", "qualcuna", "ognuno", "tutto", "tutti", "tutte", "tutta" "uno", "una", "molti", "molte", "molta", "nulla", "alcuni", "alcuno", "alcune", "alcuna", "certo", "certi", "certa", "certe", "diverso", "diversa", "diversi", "diverse", "parecchio", "parecchi", "parecchia", "parecchie", "tale", "tali", "troppo", "troppa", "troppi", "troppe", "poco", "poca", "pochi", "poche", "qualcosa", "niente", "tanto", "tanti", "tanta", "tante", "vario", "vari", "varia", "varie", "meno", "altrettanti", "piu'", "più", 
-))
+indefinite = set(("altro", "altra", "altri", "altre", "nessuno", "nessuna", "ciascuno", "ciascuna", "qualcuno", "qualcuna", "ognuno", "tutto", "tutti", "tutte", "tutta" "uno", "una", "molti", "molte", "molta", "nulla", "alcuni", "alcuno", "alcune", "alcuna", "certo", "certi", "certa", "certe", "diverso", "diversa", "diversi", "diverse", "parecchio", "parecchi", "parecchia", "parecchie", "tale", "tali", "troppo", "troppa", "troppi", "troppe", "poco", "poca", "pochi", "poche", "qualcosa", "niente", "tanto", "tanti", "tanta", "tante", "vario", "vari", "varia", "varie", "meno", "altrettanti", "piu'", "più", ))
 
 
 relative = ("che", "chi", "quale", "quali ", "dove", "cui", "quando")

@@ -7,14 +7,12 @@ __date__ = '3/14/13'
 #plural = ("we", "us", "ourself", "ourselves", "ours", "our",  "yourselves", "they", "them",
 #          "themselves", "theirs", "their")
 
-plural = ("nous", "notre", "nous-mêmes", "nous", "notre", "nos", "vous", "ils", "eux",
-"en soi", "leur", "leur")
+plural = ("nous", "notre", "nous-mêmes", "nous", "notre", "nos", "vous", "ils", "eux", "en soi", "leur", "leur")
 
 #singular = ("i", "me", "myself", "mine", "my", "yourself", "he", "him", "himself", "his", "she",
 #            "herself", "hers", "her", "it", "itself", "its", "one", "oneself", "one's")
 
-singular = ("Je", "me", "moi", "mien", "mon", "vous", "il", "lui", "elle",
-  "elle-même", "sien", "son", "il", "elle", "un", "soi-même")
+singular = ("Je", "me", "moi", "mien", "mon", "vous", "il", "lui", "elle", "elle-même", "sien", "son", "il", "elle", "un", "soi-même")
 
 #female = ("her", "hers", "herself", "she")
 
@@ -35,12 +33,7 @@ neutral = ("il", "son", "même", "où", "ici", "il", "qui")
 #           "they", "them", "themselves", "themselves", "theirs", "their", "they", "them", "'em", "themselves",
 #           "who", "whom", "whose")
 
-animate = ("Je", "me", "moi", "mien", "mon",
-"nous", "notre", "vous", "nous", "notre", "nos",
-"vous", "vous", "vos", "votre", "vous",
-"il", "lui", "lui-même", "son", "elle", "elle", "elle", "sien", "son", "un", "soi-même",
-"ils", "eux", "leur", "ils", "eux",
-"qui", "qui")
+animate = ("Je", "me", "moi", "mien", "mon", "nous", "notre", "vous", "nous", "notre", "nos", "vous", "vous", "vos", "votre", "vous", "il", "lui", "lui-même", "son", "elle", "elle", "elle", "sien", "son", "un", "soi-même", "ils", "eux", "leur", "ils", "eux", "qui", "qui")
 
 #inanimate = ("it", "itself", "its", "where", "when", "which", "here", "there")
 
@@ -52,11 +45,7 @@ inanimate = ("il", "même", "son", "où", "quand", "qui", "ici", "là-bas")
 #    "few", "fewer", "many", "others", "several", "all", "any", "more", "most", "none",
 #    "some", "such"))
 
-indefinite = set(("autre", "quiconque", "quelqu'un", "rien", "chacun", "soit", "assez", "tous",
-    "tout le monde", "tout", "peu", "beaucoup", "ni", "nul", "personne",
-    "rien", "un", "autre", "beaucoup", "quelque chose", "deux",
-    "moins", "autres", "plusieurs", "tout", "une", "plus", "plupart", "none",
-    "certains", "tel"))
+indefinite = set(("autre", "quiconque", "quelqu'un", "rien", "chacun", "soit", "assez", "tous", "tout le monde", "tout", "peu", "beaucoup", "ni", "nul", "personne", "rien", "un", "autre", "beaucoup", "quelque chose", "deux", "moins", "autres", "plusieurs", "tout", "une", "plus", "plupart", "none", "certains", "tel"))
 
 #relative = ("that", "who", "which", "whom", "where", "whose")
 

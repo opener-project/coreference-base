@@ -3,46 +3,65 @@ __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
 from ..lambdas import equality_checker, list_checker, fail
 
-personal_pronoun = "pron" #"PRP"
-possessive_pronoun = "det" #"PRP$"
-wh_pronoun = "pron"
-wh_possessive_pronoun = "det"
-verbs_list= ("VB","VB","VB")
-noun = "noun"
-noun_plural = "noun"
+_personal_pronoun = "pron" #"PRP"
+_possessive_pronoun = "det" #"PRP$"
+_wh_pronoun = "pron"
+_wh_possessive_pronoun = "det"
+_wh_determiner = fail
+_wh_adverb = fail
+_verbs_list= ("VB",)
+_modal = fail
+_noun = "noun"
+_noun_plural = "noun"
+_interjection = fail
+_proper_noun = "name"
+_proper_noun_plural = "name"
 
-proper_noun = "name"
-proper_noun_plural = "name"
+_adjective = "adj"
+_adjective_comparative = "adj"
+_adjective_superlative = "adj"
 
-adjective = "adj"
-adjective_comparative = "adj"
-adjective_superlative = "adj"
+_conjunctions = ("vg",)
 
-conjunctions = ("CC",)
 
-adjetives = list_checker((adjective, adjective_comparative, adjective_superlative))
+# Usable functions
 
-personal_pronouns = list_checker((personal_pronoun, possessive_pronoun))
-relative_pronouns = list_checker((wh_pronoun, wh_possessive_pronoun))
+# features questions
 
-pronouns = list_checker((personal_pronoun, possessive_pronoun, wh_pronoun, wh_possessive_pronoun))
+female = fail
+male = fail
+neutral = fail
+singular = fail
 
-singular_noun = equality_checker("noun")
-proper_nouns = list_checker((proper_noun, proper_noun_plural))
-nouns = list_checker((noun, noun_plural))
-all_nouns = lambda x: nouns(x) or proper_nouns(x)
+#Adjectives
+adjectives = list_checker((_adjective, _adjective_comparative, _adjective_superlative))
 
-indefinite = fail
-
-verbs = list_checker(verbs_list)
-mod_forms = lambda x: nouns(x) or adjetives(x)
-
+#pronouns
+personal_pronouns = list_checker((_personal_pronoun, _possessive_pronoun))
+relative_pronouns = list_checker((_wh_pronoun, _wh_possessive_pronoun))
+pronouns = list_checker((_personal_pronoun, _possessive_pronoun, _wh_pronoun, _wh_possessive_pronoun))
 mention_pronouns = lambda x: relative_pronouns(x) or personal_pronouns(x)
 
-enumerable_mention_words = list_checker(("name","name"))
-conjuntion = equality_checker("vg")
 
-bare_plural= "noun"
+singular_common_noun = equality_checker(_noun)
+plural_common_noun = equality_checker(_noun_plural)
+proper_nouns = list_checker((_proper_noun, _proper_noun_plural))
+all_nouns = lambda x: singular_common_noun(x) or plural_common_noun(x) or proper_nouns(x)
+
+verbs = list_checker(_verbs_list)
+modals = equality_checker(_modal)
+mod_forms = lambda x: singular_common_noun(x) or plural_common_noun(x) or adjectives(x) or verbs(x) or cardinal(x)
+indefinite = fail
+
+# Enumerations
+enumerable_mention_words = list_checker((_proper_noun, "NML"))
+
+conjunction = equality_checker(_conjunctions)
+interjections = equality_checker(_interjection)
+cardinal = equality_checker("CD")
+wh_words = list_checker((_wh_pronoun, _wh_possessive_pronoun, _wh_determiner, _wh_adverb))
+
+
 head_rules = "noun", "name"
 
 

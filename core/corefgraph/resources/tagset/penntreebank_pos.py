@@ -44,7 +44,7 @@ male = fail
 neutral = fail
 singular = fail
 
-#Adecjtives
+#Adjectives
 adjectives = list_checker((_adjective, _adjective_comparative, _adjective_superlative))
 
 #pronouns

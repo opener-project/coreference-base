@@ -1,61 +1,48 @@
 # coding=utf-8
 __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
-from ..lambdas import equality_checker, list_checker
+from ..lambdas import equality_checker, list_checker, fail
 
 # Clauses
 
 """ simple declarative clause, i.e. one that is not introduced by a (possible empty) subordinating conjunction or a
 wh-word and that does not exhibit subject-verb inversion"""
-simple = "smain"
+_simple = "smain"
+"""Inverted yes/no question, or main clause of a wh-question, following the wh-phrase in SBARQ."""
+_inverted_question = "sv1" # SQ
 
 """Clause introduced by a (possibly empty) subordinating conjunction."""
-subordinated = "ssub"
+_subordinated = "ssub"
 
 """Direct question introduced by a wh-word or a wh-phrase. Indirect questions and relative clauses should be
 bracketed as SBAR, not SBARQ."""
-direct_question = "whq"   #"SBARQ"
+_direct_question = "whq"   #"SBARQ"
 
 """Inverted declarative sentence, i.e. one in which the subject follows the tensed verb or modal."""
-inverted_declarative = "sv1" #SINV
+_inverted_declarative = "sv1" #SINV
 
-"""Inverted yes/no question, or main clause of a wh-question, following the wh-phrase in SBARQ."""
-inverted_question = "sv1" # SQ
 
 # Phrases
 
-noun_phrase = "np"
-wh_noun_phrase = "np"
+_noun_phrase = "np"
+_wh_noun_phrase = "np"
 
-adjetival_phrase = "ap"
-adverb_phrase = "advp"
-conjuntion_phrase = "conj"
-fragment = "du"
-interjection = "du"
-list_marker = "" # "LST"
-not_a_constituent = "du"
-noun_phrase_mark = "np"
-prepositional_phrase = "pp"
-parenthetical = ""
-particle = ""  #"PRT"
-quantifier_phrase = "np"  # QP"
-reduced_relative_clause = ""  #"RRC"
-unlike_coordinated_phrase = "" #"UCP"
-verb_phrase = "smain"  #"VP"
-wh_adjective_phrase = "whq" #"WHADJP"
-wh_adverb = "whq"  ##" WHAVP"
-wh_prepositional_phrase = "whq"
-unknown = "X"
+_interjection = "du"
+_particle = fail  #"PRT"
+_verb_phrase = "smain"  #"VP"
+_location_constituent = fail 
 
-clauses = list_checker((simple, subordinated, direct_question, inverted_declarative, inverted_question))
-verb_phrases = equality_checker(verb_phrase)
-noun_phrases = equality_checker(noun_phrase)
+#
+clauses = list_checker((_simple, _subordinated, _direct_question, _inverted_declarative, _inverted_question))
+mention_constituents = list_checker((_noun_phrase, _wh_noun_phrase))
+ner_constituent = list_checker((_location_constituent,))
+noun_phrases = equality_checker(_noun_phrase)
+verb_phrases = equality_checker(_verb_phrase)
 
-mention_constituents = list_checker((noun_phrase, wh_noun_phrase))
-phrases = list_checker((noun_phrase, wh_noun_phrase, adjetival_phrase, adverb_phrase, conjuntion_phrase, fragment, interjection, list_marker,
-    not_a_constituent, noun_phrase_mark, prepositional_phrase, parenthetical, particle, quantifier_phrase,
-    reduced_relative_clause, unlike_coordinated_phrase, verb_phrase, wh_adjective_phrase, wh_adverb,
-    wh_prepositional_phrase, unknown))
+particle_constituents = equality_checker(_particle)
+past_participle_verb = equality_checker("VBN")
 
+interjections = equality_checker(_interjection)
+simple_or_sub_phrase = list_checker((_simple, _subordinated))
 
 root= list_checker(("root", "top", "ROOT", "TOP"))
