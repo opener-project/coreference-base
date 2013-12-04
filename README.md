@@ -48,20 +48,13 @@ Using specific install:
 
 ## Usage
 
-CorefGraph-en requires two inputs (you can see examples in the
-resources/examples directory):
-
-1. KAF with wf, terms and entities elements.
-2. Constituent syntactic analysis in Treebank format, one sentence per line
-   with heads marked.
-
 To run the program execute:
 
-    coreference-base -l (de|en|es|fr|it|nl) -i input.kaf input.treebank
+    coreference-base -l (de|en|es|fr|it|nl) -i input.kaf 
 
 Corefgraph will output KAF via standard output with the <coreference> clusters
 added to the KAF input received. Note that for the full functionality of
-CorefGraph you will need to provide the treebank input with the heads of (at
+CorefGraph you will need to provide the <constituents> elements with the heads of (at
 least) the Noun Phrases marked, as it can be seen in the treebank input
 examples in the resource/examples directory. If you do not provide heads, only
 Exact String Match will work properly, whereas Precise Constructs, Strict Head
@@ -77,16 +70,16 @@ other languages. Although we have try to keep the language dependent features
 to a minimum, you will still need to create some dictionaries for your own
 language and make some very minor changes in the code. Here is the list of very
 file in the Corefgraph module that needs to be changed.  Every change except
-one (see below) to be done in the **$project/resources** directory:
+one (see below) to be done in the **$project/core/corefgraph/resources** directory:
 
 * dictionaries/$lang\_determiners.py
 * dictionaries/$lang\_pronouns.py
 * dictionaries/$lang\_verbs.py
 * dictionaries/$lang\_stopwords.py
+* dictionaries/$lang\_temporals.py
 
 * tagset/$TAGSETNAME\_pos.py
 * tagset/$TAGSETNAME\_constituent.py
-* tagset/$TAGSETNAME\_ner.py
 
 * files/animate/$lang.animate.txt
 * files/animate/$lang.inanimate.txt
@@ -102,17 +95,3 @@ one (see below) to be done in the **$project/resources** directory:
 * files/number/$lang.plural.unigrams.txt
 * files/number/$lang.singular.unigrams.txt
 
-## Python Structure
-
-The contents of the CorefGraph module are the following:
-
-* core/features: Gender and Number feature extraction of pronouns
-* core/graph: Graph utils for traversal of Syntactic Trees. Used for Antecedent
-  Selection mainly.
-* core/multisieve: Implemented Sieve passes plus several dictionaries.
-* core/output: Various output utilities
-* core/process.py: Main module. Use this to execute the system.
-* core/pykaf: KAF output utilities
-* core/resources: Most dictionaries (gender, number, animacy, demonyms) are
-  placed here.
-* core/test: Testing funcionalities
