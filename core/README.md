@@ -1,3 +1,18 @@
+Core Installation
+-----------------
+
+1. Install pykaf: https://github.com/opener-project/pykaf
+
+2. In the coreference-base/core directory, execute: 
+
+    sudo python setup.py install 
+
+3. Without sudo rights: 
+    
+    python setup.py install --prefix=/choose/directory 
+
+In this case *remember* to actually add the above chosen directory to the PYTHONPATH. 
+
 Core Usage 
 ----------
 
