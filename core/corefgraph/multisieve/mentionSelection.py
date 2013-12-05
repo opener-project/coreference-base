@@ -131,8 +131,8 @@ class SentenceCandidateExtractor:
         # Remove bare NPs
         words = self.graph_builder.get_words(mention_candidate)
         if pos_tags.singular_common_noun(head_word_pos) and \
-                        head_form not in temporals.temporals and (
-                    len(words) == 1 or pos_tags.adjectives(words[0]["pos"])):
+            head_form not in temporals.temporals and (
+                len(words) == 1 or pos_tags.adjectives(words[0]["pos"])):
             return False
 
         # Remove mentions that contains non-words

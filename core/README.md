@@ -1,22 +1,9 @@
 Core Installation
 -----------------
 
-1. Install pykaf: https://github.com/opener-project/pykaf
+1. pip install --upgrade --user git+ssh://git@github.com/opener-project/pykaf.git
 2. pip install --upgrade --user networkx 
 3. pip install --upgrade --user pyYAML 
-4. pip install --upgrade --user lxml 
-
-(optional)
-
-5. In the coreference-base/core directory, execute: 
-
-    sudo python setup.py install 
-
-6. Without sudo rights: 
-    
-    python setup.py install --prefix=/choose/directory 
-
-In this case *remember* to actually add the above chosen directory to the PYTHONPATH. 
 
 Core Usage 
 ----------

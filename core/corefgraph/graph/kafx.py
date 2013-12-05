@@ -415,7 +415,6 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
         """
         constituents_by_id = dict()
         root = None
-        root_head = None
         for non_terminal in self.kaf.get_contituent_tree_non_terminals(sentence):
             constituent_id = non_terminal.attrib["id"]
             tag = non_terminal.attrib["label"]
@@ -443,17 +442,10 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
             # select link type in base of the source node type
             if source_id.startswith("n"):
                 source = constituents_by_id[source_id]
-                if target == root:
-                    if root_head is None or edge.attrib.get("head", False):
-                        root_head = source            
-                else:
-                    self.link_syntax_non_terminal(parent=target, child=source)
-                    # Set the head of the constituent
-                    if edge.attrib.get("head", False):
-                        try:
-                            self.set_head(parent=target, head=source)
-                        except:
-                            print target_id, target, source_id, source
+                self.link_syntax_non_terminal(parent=target, child=source)
+                # Set the head of the constituent
+                if edge.attrib.get("head", False):
+                    self.set_head(target, source)
             else:
                 source = terminals_words[source_id]
                 if len(source) == 1 and target["tag"] == source[0]["pos"]:
@@ -481,15 +473,9 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
 
         # Build constituent child based values
         for constituent in constituents:
-            if constituent == root:
-                continue
             children = self.get_words(constituent)
             children.sort(key=itemgetter("ord"))
-            head_word = self.get_head_word(constituent)
             content_text = self.expand_node(children)
-            constituent["doc_type"] = self.doc_type
-            constituent["utterance"] = head_word["utterance"]
-            constituent["quoted"] = head_word["quoted"]
             constituent["label"] = (" | ".join((content_text, constituent["tag"])))
             constituent["lemma"] = self.expand_node_lemma(children)
             constituent["form"] = content_text
@@ -499,15 +485,15 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
             constituent["span"] = constituent["ord"]
 
         # link the tree with the root
-        if root_head is None:
-            self.logger.warning("No ROOT found, used the first constituent, sentence:".format(
-                syntactic_root["sentence_order"]))
-            root_head = constituents[0]
-
-        self.link_syntax_non_terminal(parent=syntactic_root, child=root_head)
+        if root:
+            self.link_syntax_non_terminal(parent=syntactic_root, child=root)
+        else:
+            self.logger.warning(
+                "No ROOT found, used the first constituent, sentence:".format(syntactic_root["sentence_order"]))
+            self.link_syntax_non_terminal(parent=syntactic_root, child=constituents[0])
         # Set the head of the constituent
-        self.set_head(syntactic_root, root_head)
-        return root_head
+        self.set_head(syntactic_root, root)
+        return root
 
     def parse_syntax(self, sentence, syntactic_root):
         """ Parse the syntax of the sentence.
@@ -682,10 +668,6 @@ class SyntacticTreeUtils():
         self.graph_builder.set_head(entity, head)
         # Used in speaker sieve, The head word is the relevant info source
         entity["constituent"] = constituent
-        entity["doc_type"] = constituent["doc_type"]
-        entity["utterance"] = constituent["utterance"]
-        entity["quoted"] = constituent["quoted"]
-
         self.graph_builder.link_root(entity, self.graph_builder.get_root(constituent))
         #entity["root"] = constituent["root"]
         return constituent

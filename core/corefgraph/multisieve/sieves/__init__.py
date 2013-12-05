@@ -1,5 +1,3 @@
-
-
 __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
 from . import speakertMatch

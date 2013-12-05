@@ -31,16 +31,16 @@ class GenderNumberExtractor():
     use_bergsma_gender_lists = True
     use_bergsma_number_lists = True
     use_names_list = True
-    use_probabilistic_gender_classification = True
+    use_probabilistic_gender_classification = "probabilistic_gender"
 
     prominence_boost = 0.5
     threshold = 2
 
     all_pronouns = female_pronouns, male_pronouns, neutral_pronouns
 
-    def __init__(self, logger=logger):
+    def __init__(self, probabilistic_gender=False):
         self.counter = None
-        self.logger = logger
+        self.probabilistic_gender_classification = probabilistic_gender
 
     def count(self, form):
         """ Count the male, female, neutral and plural occurrences in Bersmas(Bergmas an lin) list.
@@ -51,86 +51,97 @@ class GenderNumberExtractor():
         male, female, neutral, plural = self.counter.get(form, (0, 0, 0, 0))
         return int(male), int(female), int(neutral), int(plural)
 
-    def get_gender(self, head_form, pos):
-        """Determines the gender of the referent and return a constant."""
+    def get_gender(self, word_form, word_pos):
+        """Determines the gender of the word.
+        @param word_form: The form of the word
+        @param word_pos: The POS of the word
+        """
         # If if a pronoun search in the pronouns list for a mach
-        head_form = head_form.lower()
-        pos = pos
+        word_form = word_form.lower()
+        word_pos = word_pos
         # Use the mention POS to determine the feature
-        if male_pos(pos):
+        if male_pos(word_pos):
             return self.MALE
-        if female_pos(pos):
+        if female_pos(word_pos):
             return self.FEMALE
-        if neutral_pos(pos):
+        if neutral_pos(word_pos):
             return self.NEUTRAL
         # Pronoun search
-        if pos == pos_tags.pronouns or head_form in pronouns.all:
-            self.logger.debug("Is a pronoun")
-            if head_form in male_pronouns:
+        if word_pos == pos_tags.pronouns or word_form in pronouns.all:
+            logger.debug("Is a pronoun")
+            if word_form in male_pronouns:
                 return self.MALE
-            if head_form in female_pronouns:
+            if word_form in female_pronouns:
                 return self.FEMALE
-            if head_form in neutral_pronouns:
+            if word_form in neutral_pronouns:
                 return self.NEUTRAL
-        elif self.use_probabilistic_gender_classification:
-            self.logger.debug("Using Bergmas an lin 2006 probabilistic gender classification")
-            male, female, neutral, plural = self.count(head_form)
+
+        elif self.use_names_list:
+            logger.debug("Using name List")
+            if word_form in female_names:
+                return self.FEMALE
+            elif word_form in male_names:
+                return self.MALE
+        # WILD ZONE
+        elif self.use_bergsma_gender_lists:
+            logger.debug("Using Bergsma List")
+            if word_form in male_words:
+                return self.MALE
+            if word_form in female_words:
+                return self.FEMALE
+            if word_form in neutral_words:
+                return self.NEUTRAL
+                # Bergmas 2005 list search
+
+        elif self.probabilistic_gender_classification:
+            logger.debug("Using Bergmas an lin 2006 probabilistic gender classification")
+            male, female, neutral, plural = self.count(word_form)
             if (male * self.prominence_boost > female + neutral) and (male > self.threshold):
                 return self.MALE
             elif (female * self.prominence_boost > male + neutral) and (female > self.threshold):
                 return self.FEMALE
             elif (neutral * self.prominence_boost > male + female) and (neutral > self.threshold):
                 return self.NEUTRAL
-        # Bergmas 2005 list search
-        elif self.use_bergsma_gender_lists:
-            self.logger.debug("Using Bergsma List")
-            if head_form in male_words:
-                return self.MALE
-            if head_form in female_words:
-                return self.FEMALE
-            if head_form in neutral_words:
-                return self.NEUTRAL
-        elif self.use_names_list:
-            self.logger.debug("Using name List")
-            if head_form in female_names:
-                return self.FEMALE
-            elif head_form in male_names:
-                return self.MALE
-            # WILD ZONE
+
         return self.UNKNOWN
 
-    def get_number(self, head_form, pos, ner):
+    def get_number(self, word_form, word_pos, word_ner):
+        """Determines the number of the word and return a constant.
+        @param word_ner: The ner of the word
+        @param word_form: The form of the word
+        @param word_pos: The POS of the word
+        """
         # Normalize parameters
-        ner = ner
-        head_form = head_form.lower()
-        pos = pos
+        word_ner = word_ner
+        word_form = word_form.lower()
+        word_pos = word_pos
 
         # Use the mention POS to determine the feature
-        if singular_pos(pos):
+        if singular_pos(word_pos):
             return self.SINGULAR
-        if plural_pos(pos):
+        if plural_pos(word_pos):
             return self.PLURAL
         # Pronouns
-        if pos_tags.pronouns(pos) or head_form in pronouns.all:
-            if head_form in plural_pronouns:
+        if pos_tags.pronouns(word_pos) or word_form in pronouns.all:
+            if word_form in plural_pronouns:
                 return self.PLURAL
-            elif head_form in singular_pronouns:
+            elif word_form in singular_pronouns:
                 return self.SINGULAR
                 # Bergsma Lists
         if self.use_bergsma_number_lists:
-            if head_form in singular_words:
+            if word_form in singular_words:
                 return self.SINGULAR
-            if head_form in plural_words:
+            if word_form in plural_words:
                 return self.PLURAL
                 # WILD ZONE
         # NER
-        if singular_ne(ner):
+        if singular_ne(word_ner):
             # Ner are singular by default except organizations
             return self.SINGULAR
         # NOUNS
-        # TODO move this to regular expresions
-        if pos.startswith("n"):
-            if pos.endswith("s"):
+        # TODO mote this to first rule
+        if word_pos.startswith("n"):
+            if word_pos.endswith("s"):
                 return self.PLURAL
             else:
                 return self.SINGULAR
@@ -144,16 +155,21 @@ class GenderNumberExtractor():
 #                number = Number.PLURAL
         return self.UNKNOWN
 
-    def get_animacy(self, head_form, pos, ner):
+    def get_animacy(self, word_form, word_pos, word_ner):
+        """Determines the gender of the word.
+        @param word_ner: The ner of the word
+        @param word_form: The form of the word
+        @param word_pos: The POS of the word
+        """
         # Normalize parameters
-        normalized_ner = ner.lower()
-        normalized_form = head_form.lower()
+        normalized_ner = word_ner.lower()
+        normalized_form = word_form.lower()
         normalized_form = re.sub("\d", "0", normalized_form)
-        normalized_pos = pos.replace("$", "")
+        normalized_pos = word_pos.replace("$", "")
         # Use the mention POS to determine the feature
-        if inanimate_pos(pos):
+        if inanimate_pos(word_pos):
             return self.INANIMATE
-        if animate_pos(pos):
+        if animate_pos(word_pos):
             return self.ANIMATE
         # Pronouns
         if pos_tags.pronouns(normalized_pos) or normalized_form in pronouns.all:
@@ -165,9 +181,9 @@ class GenderNumberExtractor():
                 return self.UNKNOWN
                 # Bergsma Lists
         elif self.use_bergsma_number_lists:
-            if head_form in animate_words:
+            if word_form in animate_words:
                 return self.ANIMATE
-            if head_form in inanimate_words:
+            if word_form in inanimate_words:
                 return self.INANIMATE
         # NER
         elif normalized_ner and normalized_ner != ner_tags.no_ner:

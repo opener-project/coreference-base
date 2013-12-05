@@ -399,24 +399,23 @@ class BaseGraphBuilder(object):
         """
         if element["type"] == self.word_node_type:
             return element
-        head = GraphWrapper.get_out_neighbour_by_relation_type(self.graph, element, self.head_word_edge_type)
-        if head is None:
-            head = self.get_words(element)[-1]
-        return head
+        return GraphWrapper.get_out_neighbour_by_relation_type(self.graph, element, self.head_word_edge_type)
 
-
-    def set_head(self, parent, head):
+    def set_head(self, parent, child):
         """ Set a child as parent head and inverse inherit some values.
         @param parent: The parent constituent
-        @param head: The child constituent or word
+        @param child: The child constituent or word
         """
         # Inverse inherit
 
-        head[self.head_edge_type] = True
+        child[self.head_edge_type] = True
 
+        parent["doc_type"] = child["doc_type"]
+        parent["utterance"] = child["utterance"]
+        parent["quoted"] = child["quoted"]
         # link
-        self.set_head_word(parent, self.get_head_word(head))
-        GraphWrapper.link(self.graph, parent, head, self.head_edge_type)
+        self.set_head_word(parent, self.get_head_word(child))
+        GraphWrapper.link(self.graph, parent, child, self.head_edge_type)
 
     def get_head(self, element):
         """Get the head of the element. If a word id passed by error the word itself is returned.

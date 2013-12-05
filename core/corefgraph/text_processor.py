@@ -29,7 +29,8 @@ class TextProcessor:
         # Graph builder and manager
         self.graph = None
         self.graph_builder = KafAndTreeGraphBuilder()
-        self.gender_extractor = GenderNumberExtractor()
+        self.gender_extractor = GenderNumberExtractor(
+            probabilistic_gender=GenderNumberExtractor.use_probabilistic_gender_classification in extractor_options)
         literator = Literator(graph=self.graph, graph_builder=self.graph_builder)
         self.speaker_extractor = literator.speaker_extractor
         self.speech_extractor = literator.speech_extractor
@@ -71,36 +72,36 @@ class TextProcessor:
             if self.verbose:
                 widgets = ['Setting gender ', Fraction()]
                 progress_bar = ProgressBar(widgets=widgets, maxval=len(candidatures) or 1, force_update=True).start()
-            with open("mentions.out", "a") as out:
-                for index, entity in enumerate(candidatures):
-                    # The entities are singletons yet
-                    mention = self.graph.node[entity[0]]
-                    ner = self.graph_builder.get_ner(mention)
-                    head_word = self.graph_builder.get_head_word(mention)
-                    if head_word:
-                        head_word_form = head_word["form"]
-                        pos = head_word["pos"]
-                    else:
-                        error_message = True
-                        head_word_form = mention["form"]
-                        pos = mention["pos"]
 
-                    mention["gender"] = self.gender_extractor.get_gender(
-                        head_form=head_word_form, pos=pos)
-                    mention["number"] = self.gender_extractor.get_number(
-                        head_form=head_word_form, pos=pos, ner=ner)
-                    mention["animacy"] = self.gender_extractor.get_animacy(
-                        head_form=head_word_form, pos=pos, ner=ner)
-                    #mention["speech"] = self.speech_extractor(mention, head_word)
-                    mention["speaker"] = self.speaker_extractor(mention, head_word)
-                    if "id" in mention["speaker"]:
-                        mention["is_speaker"] = True
-                    if self.verbose:
-                        progress_bar.update(index + 1)
-                    # Send a warning if not all head found
-                    self.logger.debug(" # ".join((mention["form"],
-                        str(mention["span"][0] - 1), str(mention["span"][1]),
-                        head_word_form, mention["gender"], mention["number"], mention["animacy"], "\n")))
+            for index, entity in enumerate(candidatures):
+                # The entities are singletons yet
+                mention = self.graph.node[entity[0]]
+                ner = self.graph_builder.get_ner(mention)
+                head_word = self.graph_builder.get_head_word(mention)
+                if head_word:
+                    head_word_form = head_word["form"]
+                    pos = head_word["pos"]
+                else:
+                    error_message = True
+                    head_word_form = mention["form"]
+                    pos = mention["pos"]
+
+                mention["gender"] = self.gender_extractor.get_gender(
+                    word_form=head_word_form, word_pos=pos)
+                mention["number"] = self.gender_extractor.get_number(
+                    word_form=head_word_form, word_pos=pos, word_ner=ner)
+                mention["animacy"] = self.gender_extractor.get_animacy(
+                    word_form=head_word_form, word_pos=pos, word_ner=ner)
+                #mention["speech"] = self.speech_extractor(mention, head_word)
+                mention["speaker"] = self.speaker_extractor(mention, head_word)
+                if "id" in mention["speaker"]:
+                    mention["is_speaker"] = True
+                if self.verbose:
+                    progress_bar.update(index + 1)
+                # Send a warning if not all head found
+                self.logger.debug(" # ".join((mention["form"],
+                    str(mention["span"][0] - 1), str(mention["span"][1]),
+                    head_word_form, mention["gender"], mention["number"], mention["animacy"], "\n")))
             if self.verbose:
                 progress_bar.finish()
             if error_message:
@@ -126,7 +127,7 @@ class TextProcessor:
         """
         writer = KafDocument(stream=stream)
         writer.store(self.graph, encoding=encoding, language=language, version=version, linguistic_parsers=[
-            (lp_name, lp_version, lp_layer)],time_stamp=time_stamp)
+            (lp_name, lp_version, lp_layer)], time_stamp=time_stamp)
 
     def store_analysis_conll(self, stream, document_id, part_id):
         """ Stores a corpus analysis results into conll files.
