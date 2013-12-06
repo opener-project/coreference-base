@@ -11,7 +11,7 @@ Core Installation
 Core Usage 
 ----------
 
-If you did not do 5. or 6. above, from $repo/core directory, execute: 
+For coreference resolution, execute: 
 
     cat input.kaf | python -m corefgraph.process.file --language (de|en|es|fr|it|nl) 
 
