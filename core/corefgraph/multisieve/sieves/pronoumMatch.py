@@ -25,7 +25,7 @@ class PronounMatch(Sieve):
             #print "NO", mention["form"], mention["span"]
             return False
         if not super(self.__class__, self).validate(mention, mention_index):
-            print "X", mention["form"], mention["span"]
+            #print "X", mention["form"], mention["span"]
             return False
         #print mention["form"], mention["span"]
         return True
