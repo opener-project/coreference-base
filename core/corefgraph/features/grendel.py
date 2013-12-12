@@ -112,9 +112,7 @@ class GenderNumberExtractor():
         @param word_pos: The POS of the word
         """
         # Normalize parameters
-        word_ner = word_ner
         word_form = word_form.lower()
-        word_pos = word_pos
 
         # Use the mention POS to determine the feature
         if singular_pos(word_pos):
@@ -138,14 +136,9 @@ class GenderNumberExtractor():
         if singular_ne(word_ner):
             # Ner are singular by default except organizations
             return self.SINGULAR
-        # NOUNS
-        # TODO mote this to first rule
-        if word_pos.startswith("n"):
-            if word_pos.endswith("s"):
-                return self.PLURAL
-            else:
-                return self.SINGULAR
-        # TODO manage the AND causes
+        #TODO manage the AND causes
+
+
         # Mention sub tree : maneja los casos con and
 #        enumerationPattern = r"NP < (NP=tmp $.. (/,|CC/ $.. NP))";
 #        tgrepPattern = re.compile(enumerationPattern)

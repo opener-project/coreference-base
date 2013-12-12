@@ -31,7 +31,7 @@ def process(config, text, parse_tree, speakers_list, output):
     :param output: The stream where the output is write.
     """
     # This is because properties is used to spread the language all over the module
-    logger.info("Setting language to {}".format(config.language))
+    logger.info("Setting language to {0}".format(config.language))
     properties.set_lang(config.language)
     from corefgraph.text_processor import TextProcessor
     # End of voodoo

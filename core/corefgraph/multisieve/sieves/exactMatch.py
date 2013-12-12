@@ -15,7 +15,7 @@ class ExactMatch(Sieve):
     NO_PRONOUN = True
     NO_STOP_WORDS = True
 
-    DEBUG = True
+    DEBUG = False
 
     def are_coreferent(self, entity, mention, candidate):
         """ Candidate an primary mention have same form

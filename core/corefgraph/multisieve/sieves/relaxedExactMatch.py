@@ -16,7 +16,7 @@ class RelaxedExactMatch(Sieve):
     NO_PRONOUN = True
     NO_STOP_WORDS = True
 
-    DEBUG = True
+    DEBUG = False
 
     def relaxed_form(self, mention):
         """ Return the form of the mention without the words after the head word.

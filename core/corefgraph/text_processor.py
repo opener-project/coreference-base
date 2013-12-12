@@ -127,7 +127,7 @@ class TextProcessor:
         """
         writer = KafDocument(stream=stream)
         writer.store(self.graph, encoding=encoding, language=language, version=version, linguistic_parsers=[
-            (lp_name, lp_version, lp_layer)], time_stamp=time_stamp)
+            (lp_name, lp_version, lp_layer)],time_stamp=time_stamp)
 
     def store_analysis_conll(self, stream, document_id, part_id):
         """ Stores a corpus analysis results into conll files.
