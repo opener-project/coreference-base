@@ -41,6 +41,8 @@ def process(config, text, parse_tree, speakers_list, output):
 
     document = (text, parse_tree, speakers_list)
     processor.process_text(document)
+    if not config.linguistic_parser_name:
+	config.linguistic_parser_name="corefgraph-"+config.language
     if config.conll:
         processor.store_analysis_conll(stream=output, document_id=config.document_id, part_id=config.part_id)
     else:
@@ -100,7 +102,7 @@ def generate_parser():
     parser.add_argument('--version', dest='version', action='store', default="v1.opener")
     parser.add_argument('--encoding', dest='encoding', action='store', default="UTF-8")
     parser.add_argument('--linguisticParserName', dest='linguistic_parser_name',
-                        action='store', default="corefgraphEN")
+                        action='store', default=None)
     parser.add_argument('--linguisticParserVersion', dest='linguistic_parser_version',
                         action='store', default="0.8")
     parser.add_argument('--linguisticParserLayer', dest='linguistic_parser_layer',

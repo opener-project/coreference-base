@@ -17,7 +17,7 @@ For coreference resolution, execute, from $core directory:
 
 for singleton clusters (automatic markables in annotation jargon): 
 
-    cat input.kaf | python -m corefgraph.process.file --language (de|en|es|fr|it|nl) --singleton 
+    cat input.kaf | python -m corefgraph.process.file --language (de|en|es|fr|it|nl) --singleton --sieves NO
 
 for drone.io testing: 
 

@@ -11,7 +11,7 @@ import time
 class KafDocument(BaseDocument):
     """ Store the document in a KAF format(2.1).
     """
-    time_format = "%y-%m-%dT%H:%M:%S"
+    time_format = "%Y-%m-%dT%H:%M:%S"
 
     def store(self, graph, encoding, language=None, version=None, linguistic_parsers=(),
               time_stamp=None):
