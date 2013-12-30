@@ -15,7 +15,7 @@ class SpeakerSieve(Sieve):
     ONLY_FIRST_MENTION = False
     NO_PRONOUN = False
 
-    # Default behaivor.
+    # Default behavior.
     configs = set(["SPEAKER_WE_WE", "SPEAKER_I_I", "SPEAKER_YOU_YOU", "SPEAKER_I", "SPEAKER_I_YOU", "SPEAKER_REFLEX"])
     WE_MATCH = False
     I_MATCH = True
@@ -27,6 +27,7 @@ class SpeakerSieve(Sieve):
 
     def __init__(self, multi_sieve_processor, options):
         Sieve.__init__(self, multi_sieve_processor, options)
+        self.logger.debug("Options: %s", options)
         if len(self.configs.intersection(set(options))):
             # If exist any config rewrite options in other case use default
             self.WE_MATCH = "SPEAKER_WE_WE" in options
@@ -35,6 +36,8 @@ class SpeakerSieve(Sieve):
             self.SPEAKER_I_MATCH = "SPEAKER_I" in options
             self.YOU_I_MATCH = "SPEAKER_I_YOU" in options
             self.SPEAKER_REFLEX = "SPEAKER_REFLEX" in options
+        else:
+            self.logger.debug("SPEAKER Default options")
 
     def are_coreferent(self, entity, mention, candidate):
         """ Mention and candidate are the same person in a Discourse.
@@ -42,19 +45,19 @@ class SpeakerSieve(Sieve):
         if not super(self.__class__, self).are_coreferent(entity, mention, candidate):
             return False
         if self.SPEAKER_REFLEX and self.reflexive(mention, candidate):
+            self.logger.debug("SPEAKER_REFLEX: %s %s", mention["form"], candidate["form"])
             return True
-        #TODO WE and the speaker??
         # "I" and the speaker
         if self.SPEAKER_I_MATCH and self.is_I(candidate) and self.is_speaker(mention):
             if self.are_speaker_speech(speaker=mention, speech=candidate):
-                self.print_(mention, candidate)
+                self.logger.debug("SPEAKER_I_MATCH: %s %s", mention["form"], candidate["form"])
                 return True
             else:
                 self.invalid(mention, candidate)
 
         if self.SPEAKER_I_MATCH and self.is_I(mention) and self.is_speaker(candidate):
             if self.are_speaker_speech(speaker=candidate, speech=mention):
-                self.print_(mention, candidate)
+                self.logger.debug("SPEAKER_I_MATCH: %s %s", mention["form"], candidate["form"])
                 return True
             else:
                 self.invalid(mention, candidate)
@@ -62,7 +65,7 @@ class SpeakerSieve(Sieve):
         # Two "I" in the same speaker speech
         if self.I_MATCH and self.is_I(mention) and self.is_I(candidate):
             if self.same_speaker(mention, candidate):
-                self.print_(mention, candidate)
+                self.logger.debug("SPEAKER_I_I_MATCH: %s %s", mention["form"], candidate["form"])
                 return True
             else:
                 self.invalid(mention, candidate)
@@ -70,7 +73,7 @@ class SpeakerSieve(Sieve):
         # Two "We" in the same speaker speech
         if self.WE_MATCH and self.is_we(mention) and self.is_we(candidate):
             if self.same_speaker(mention, candidate):
-                self.print_(mention, candidate)
+                self.logger.debug("SPEAKER_WE_WE_MATCH: %s %s", mention["form"], candidate["form"])
                 return True
             else:
                 self.invalid(mention, candidate)
@@ -79,17 +82,16 @@ class SpeakerSieve(Sieve):
         if self.YOU_MATCH and  \
                 self.is_you(mention) and self.is_you(candidate):
             if self.same_speaker(mention, candidate):
-                self.print_(mention, candidate)
+                self.logger.debug("SPEAKER_YOU_YOU_MATCH: %s %s", mention["form"], candidate["form"])
                 return True
             else:
                 self.invalid(mention, candidate)
-        #TODO Search in paper and in code
         # previous I - you or previous you - I in two person conversation (NOT IN PAPER)
         if self.YOU_I_MATCH and mention["doc_type"] == "conversation" and \
                 ((self.is_you(mention) and self.is_I(candidate)) or
                 (self.is_I(mention) and self.is_you(candidate))):
             if not self.same_speaker(mention, candidate) and (abs(mention["utterance"] - candidate["utterance"] == 1)):
-                self.print_(mention, candidate)
+                self.logger.debug("SPEAKER_YOU_I_MATCH: %s %s", mention["form"], candidate["form"])
                 return True
             else:
                 self.invalid(mention, candidate)
@@ -118,29 +120,23 @@ class SpeakerSieve(Sieve):
         return False
 
     def are_speaker_speech(self, speaker, speech):
-        #TODO improve this Only heads??
-        speaker_words = [word["id"] for word in self.graph_builder.get_words(speaker)]
-        return "id" in speech["speaker"] and speech["speaker"]["id"] in speaker_words
+        speech_speaker = speech["speaker"]
+        if type(speech_speaker) is not dict:
+            return False
+        #TODO check this Only heads??
+        speaker_words_ids = [word["id"] for word in self.graph_builder.get_words(speaker)]
+        return speech_speaker["id"] in speaker_words_ids
 
     def is_speaker(self, mention):
+        #TODO check if only head
         speaker_words = self.graph_builder.get_words(mention)
         for word in speaker_words:
-            if ("is_speaker" in word) and word["is_speaker"]:
+            if word.get("is_speaker", False):
                 return True
         return False
 
     def is_speech(self, mention):
-        return "speech" in mention and mention["speech"]
+        return mention.get("quoted", False)
 
     def invalid(self, mentionA, mentionB):
         pass
-    
-    def print_(self, mention, candidate):
-        if self.DEBUG:
-            print "#"
-            mention_sentence = self.graph_builder.get_root(mention)
-            candidate_sentence = self.graph_builder.get_root(candidate)
-            print mention_sentence["form"], mention["form"], mention["speaker"], mention["doc_type"]
-            print candidate_sentence["form"], candidate["form"], candidate["speaker"], candidate["doc_type"]
-
-

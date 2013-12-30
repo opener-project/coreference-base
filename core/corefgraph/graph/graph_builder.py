@@ -404,7 +404,6 @@ class BaseGraphBuilder(object):
             head = self.get_words(element)[-1]
         return head
 
-
     def set_head(self, parent, head):
         """ Set a child as parent head and inverse inherit some values.
         @param parent: The parent constituent

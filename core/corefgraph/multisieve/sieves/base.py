@@ -11,6 +11,7 @@ from ...graph.xutils import GraphWrapper
 from ...features.grendel import GenderNumberExtractor
 from ...resources.dictionaries import pronouns, stopwords
 from ...resources.tagset import ner_tags
+from logging import getLogger
 
 
 class Sieve(object):
@@ -28,6 +29,7 @@ class Sieve(object):
     UNKNOWN = set((GenderNumberExtractor.UNKNOWN, ner_tags.no_ner, ner_tags.other))
 
     def __init__(self, multi_sieve_processor, options):
+        self.logger = getLogger("sieves")
         self.multi_sieve_processor = multi_sieve_processor
         self.graph = self.multi_sieve_processor.graph
         self.graph_builder = GraphWrapper.get_graph_property(self.graph, "graph_builder")

@@ -9,7 +9,7 @@ from ..multisieve.mentionSelection import SentenceCandidateExtractor
 from ..output.progressbar import ProgressBar, Fraction
 from . import sieves
 
-import logging
+from logging import getLogger
 
 
 class MultiSieveProcessor():
@@ -17,12 +17,16 @@ class MultiSieveProcessor():
     """
 
     def __init__(self, graph, lang_code, sieves_list, sieves_options):
-        if not sieves_list or len(sieves_list) < 0:
+        self.logger = getLogger("arquitecture")
+        if not sieves_list or len(sieves_list) < 1:
+            self.logger.debug("Default sieves")
             sieves_list = sieves.default
         if "NO" in sieves_list:
+            self.logger.debug("No sieves")
             sieves_list = []
         self.graph = graph
         self.lang_code = lang_code.lower()
+        self.logger.debug("Sieves options: %s", sieves_options)
         self.sieves_instances = [sieves.sieves[sieve_class](self, sieves_options)
                                  for sieve_class in sieves_list]
 
@@ -44,7 +48,7 @@ class CoreferenceProcessor:
 
     def __init__(self, graph, lang,
                  sieves_list, sieves_options,
-                 extractor_options, singletons, logger=logging.getLogger("sieves"), verbose=False):
+                 extractor_options, singletons, logger=getLogger("sieves"), verbose=False):
         self.verbose = verbose
         self.logger = logger
 

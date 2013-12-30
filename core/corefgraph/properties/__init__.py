@@ -14,7 +14,7 @@ __date__ = '10/30/13'
 import logging
 import logging.config
 import os
-
+import sys
 
 default_ner_tag_set = "default"
 default_dep_tag_set = "default"
@@ -22,12 +22,15 @@ default_dep_tag_set = "default"
 
 try:
     import yaml
-    config_filename = os.path.abspath(os.path.join(__path__[0], 'logging.conf'))
-    logging.config.dictConfig(yaml.load(open(config_filename)))
-
+    try:
+        config_filename = os.path.abspath(os.path.join(__path__[0], 'logging.conf'))
+        logging.config.dictConfig(yaml.load(open(config_filename)))
+    except Exception as ex:
+        import sys
+        print "NO LOGGING: {0} \nfails: {1}".format(config_filename, ex)
 except Exception as ex:
-    import sys
-    print "NO LOGGING: {0} \nfails: {1}".format(config_filename, ex)
+    sys.stdout.write("Error importing yalm: " + str(ex))
+
 
 lang = None
 

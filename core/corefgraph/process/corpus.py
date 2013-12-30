@@ -76,7 +76,7 @@ def file_processor(file_name, config):
     base_name = os.path.join(path, name)
 
     store_file = base_name + "." + config.result
-    kaf_filename = base_name + ".kaf" + config.post_fix
+    kaf_filename = base_name + ext + config.post_fix
     if config.use_external_tree_files:
         logger.info("Using TreeBank trees")
         tree_filename = base_name + ".spt" + config.post_fix

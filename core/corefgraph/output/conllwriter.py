@@ -16,8 +16,7 @@ class ConllDocument(BaseDocument):
         self.graph_builder = graph.graph["graph_builder"]
         for coref_index, entity in enumerate(self.graph_builder.get_all_entities(graph), 1):
             self.annotate_mentions(self.graph_builder.get_all_entity_mentions(entity), coref_index)
-            print coref_index, entity, [x["id"] for x in self.graph_builder.get_all_entity_mentions(entity)]
-
+            self.logger.debug(coref_index, entity, [x["id"] for x in self.graph_builder.get_all_entity_mentions(entity)])
 
         self.file.write("#begin document ({0}); part {1}".format(document_id, part_id))
         sentences_roots = self.graph_builder.get_all_sentences(graph)

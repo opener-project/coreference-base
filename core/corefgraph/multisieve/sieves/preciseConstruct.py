@@ -42,6 +42,7 @@ class AppositiveConstruction(Sieve):
         if candidate["constituent"] == self.tree_utils.get_syntactic_parent(mention["constituent"]):
             if self.filter_apposition:
                 mention["purge"] = True
+            self.logger.debug("APPOSITIVE CONSTRUCTION MATCH: %s %s", mention["form"], candidate["form"])
             return True
         return False
 
@@ -72,6 +73,7 @@ class RoleAppositiveConstruction(Sieve):
         if self.tree_utils.is_role_appositive(candidate, mention):
             if self.filter_role_apposition:
                 mention["purge"] = True
+            self.logger.debug("ROLE APPOSITIVE CONSTRUCTION MATCH: %s %s", mention["form"], candidate["form"])
             return True
         return False
 
@@ -152,16 +154,25 @@ class PredicativeNominativeConstruction(Sieve):
             candidate = candidate["constituent"]
         if mention["type"] == "named_entity":
             mention = mention["constituent"]
-        # TODO TALK with Rodrigo about THIS
         if self.graph_builder.same_sentence(mention, candidate):
-            # "S < (NP=m1 $.. (VP < ((/VB/ < /^(am|are|is|was|were|'m|'re|'s|be)$/) $.. NP=m2)))";
-            # "S < (NP=m1 $.. (VP < (VP < ((/VB/ < /^(be|been|being)$/) $.. NP=m2))))";
+            # S < (NP=m1 $.. (VP < ((/VB/ < /^(am|are|is|was|were|'m|'re|'s|be)$/) $.. NP=m2)))
+            # S < (NP=m1 $.. (VP < (VP < ((/VB/ < /^(be|been|being)$/) $.. NP=m2))))
             mention_parent = self.graph_builder.get_syntactic_parent(mention)
-            additional_parent = self.graph_builder.get_syntactic_parent(mention_parent)
-            if constituent_tags.verb_phrases(additional_parent["tag"]):
-                siblings = self.graph_builder.get_syntactic_sibling(additional_parent)
+            mention_grandparent = self.graph_builder.get_syntactic_parent(mention_parent)
+            if constituent_tags.verb_phrases(mention_grandparent["tag"]):
+                enclosing_verb_phrase = mention_parent
             else:
-                siblings = self.graph_builder.get_syntactic_sibling(mention_parent)
+                return False
+            if constituent_tags.verb_phrases(mention_grandparent["tag"]):
+                enclosing_verb_phrase = mention_grandparent
+            if self.graph_builder.get_syntactic_sibling(mention)[0]["form"] not in dictionaries.verbs.copulative:
+                return False
+            siblings = []
+            enclosing_verb_phrase_id = enclosing_verb_phrase["id"]
+            for sibling in self.graph_builder.get_syntactic_sibling(enclosing_verb_phrase):
+                if sibling["id"] == enclosing_verb_phrase_id:
+                    break
+                siblings.append(sibling)
             siblings = [sibling["id"] for sibling in siblings]
             # or siblings[X] == candidate?
             if candidate["id"] in siblings:

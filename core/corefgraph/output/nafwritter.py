@@ -4,7 +4,7 @@ __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
 from .basewriter import BaseDocument
 
-from pykaf import KafDocument as Kaf
+from pynaf import NAFDocument as Kaf
 import time
 
 

@@ -22,10 +22,9 @@ class PronounMatch(Sieve):
     def validate(self, mention, mention_index):
         """ Only pronouns can be used for this sieve"""
         if mention["mention"] != "pronoun_mention":
-            #print "NO", mention["form"], mention["span"]
             return False
         if not super(self.__class__, self).validate(mention, mention_index):
-            #print "X", mention["form"], mention["span"]
+            self.logger.debug("Pronoun filtered: {0} | {1}", mention["form"], mention["span"])
             return False
         #print mention["form"], mention["span"]
         return True

@@ -16,7 +16,6 @@ class RelaxedExactMatch(Sieve):
     NO_PRONOUN = True
     NO_STOP_WORDS = True
 
-    DEBUG = False
 
     def relaxed_form(self, mention):
         """ Return the form of the mention without the words after the head word.
@@ -65,10 +64,7 @@ class RelaxedExactMatch(Sieve):
             if (mention_x_form == candidate_form) or \
                     (mention_x_form + " 's" == candidate_form)or \
                     (mention_x_form == candidate_form + " 's"):
-                self._print(mention_x["form"] + mention_x_form, candidate["form"] + candidate_form)
+                self.logger.debug("Relaxed exact match: %s %s", mention_x_form, candidate_form)
                 return True
         return False
 
-    def _print(self, mention, candidate):
-        if self.DEBUG:
-            print "R ", mention, candidate

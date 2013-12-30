@@ -61,50 +61,53 @@ class SentenceCandidateExtractor:
         if mention_candidate["id"] in self.named_entities_by_constituent:
             # Silently insert the Named entity and fails mention
             for named_entity_mention in self.named_entities_by_constituent.pop(mention_candidate["id"]):
-                if self._filter_candidate(named_entity_mention):
+                if self._filter_candidate(named_entity_mention, named_entity=True):
                     self._add_mention(named_entity_mention)
-        span = mention_candidate["span"]
 
-        if span in self.candidates_span or self._inside_ne(span):
+        mention_span = mention_candidate["span"]
+        mention_pos = mention_candidate.get("pos", "")
+        mention_tag = mention_candidate.get("tag", "")
+
+        if mention_span in self.candidates_span or self._inside_ne(mention_span):
             return False
 
         # Pass filters
         first_filter = False
         # it's a pronoun
-        if ("pos" in mention_candidate and pos_tags.personal_pronouns(mention_candidate["pos"])) or \
-                (mention_candidate["form"] in pronouns.all):
+        if pos_tags.personal_pronouns(mention_pos) or (mention_candidate["form"] in pronouns.all):
             first_filter = True
 
         # it's a Valid constituent
-        elif "tag" in mention_candidate and \
-                constituent_tags.mention_constituents(mention_candidate["tag"]):
+        elif constituent_tags.mention_constituents(mention_tag):
             first_filter = True
 
         # it's part of a enumeration
         #TODO Check if this have to be promoted to first check
-        elif ("pos" in mention_candidate and pos_tags.enumerable_mention_words(mention_candidate["pos"])) or \
-                ("tag" in mention_candidate and constituent_tags.noun_phrases(mention_candidate["tag"])):
+        elif pos_tags.enumerable_mention_words(mention_pos)or constituent_tags.noun_phrases(mention_tag):
             mention_candidate_parent = self.graph_builder.get_syntactic_parent(mention_candidate)
-            if "tag" in mention_candidate_parent and constituent_tags.noun_phrases(mention_candidate_parent["tag"]):
+            if constituent_tags.noun_phrases(mention_candidate_parent.get("tag", "")):
+                # Search if the next brothers are suitable list candidates
                 next_siblings = [sibling for sibling in self.graph_builder.get_syntactic_sibling(mention_candidate)
                                  if sibling["span"] > mention_candidate["span"]]
-
-                # Search if the next brothers are suitable list candidates
-                #next_siblings = siblings[siblings.index(mention_candidate):]
                 # If a coma or a conjunction if found search for a enumerable
                 for index, brother in enumerate(next_siblings):
-                    if "pos" in brother and (pos_tags.conjunction(brother["pos"]) or brother["pos"] == ","):
-                        for brother in next_siblings[index:]:
-                            if ("pos" in brother and pos_tags.enumerable_mention_words(brother["pos"])) or \
-                                    ("tag" in brother and constituent_tags.noun_phrases(brother["tag"])):
-                                return True
-            # Is a plausible Mention?
+                    brother_pos = brother.get("pos", "")
+                    if pos_tags.conjunction(brother_pos):
+                        # Check if next to comma exist a enumerable sibling
+                        for post_comma_brother in next_siblings[index:]:
+                            brother_pos = post_comma_brother.get("pos", "")
+                            brother_tag = post_comma_brother.get("tag", "")
+                            if pos_tags.enumerable_mention_words(brother_pos) or \
+                                    constituent_tags.noun_phrases(brother_tag):
+                                first_filter = True
+        # Is a plausible Mention?
         if not first_filter:
             return False
+        # Filter mentions
         result = self._filter_candidate(mention_candidate)
         return result
 
-    def _filter_candidate(self, mention_candidate):
+    def _filter_candidate(self, mention_candidate, named_entity=False):
         """ Check if the mention candidate is valid.
 
         Remove pleonastic It.
@@ -180,7 +183,7 @@ class SentenceCandidateExtractor:
             if form.endswith(start):
                 return False
 
-        if not self.filter_same_head_word:
+        if not self.filter_same_head_word or named_entity:
             return True
             # Avoid mention if it have the same head word of bigger sentence, except apposition and enumeration.
         for prev_mention in self.sentence_mentions_bft_order:
@@ -193,7 +196,7 @@ class SentenceCandidateExtractor:
                 #        return True
                 if relative_span[1] + 1 < len(sentence_words):
                     next_word = sentence_words[relative_span[1] + 1]
-                    if next_word["pos"] == "," or pos_tags.conjunction(next_word["pos"]):
+                    if pos_tags.conjunction(next_word["pos"]):
                         return True
                 return False
         return True
@@ -350,11 +353,9 @@ class SentenceCandidateExtractor:
         # Prepare the Named entities before the tree traversal
         self._process_named_entities(sentence)
         # Skip useless Root nodes
-        #TODO reactivate
-        #syntax_root = self.tree_utils.skip_root(sentence)
-
+        syntax_root = self.tree_utils.skip_root(sentence)
         # Thought the rabbit hole
-        self._process_constituent_bfst(s_chunk=sentence)
+        self._process_constituent_bfst(s_chunk=syntax_root)
         # Text appearance order
         sentence_mentions_textual_order = [
             mention["id"] for mention in sorted(

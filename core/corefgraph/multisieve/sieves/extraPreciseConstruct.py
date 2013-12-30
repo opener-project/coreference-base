@@ -19,8 +19,11 @@ class DemonymMatch(Sieve):
             return False
         candidate_form = candidate["form"].lower()
         mention_form = mention["form"].lower()
-        return (candidate_form in locations_and_demonyms) and \
-               ((mention_form in demonym_by_location and
+        if ((candidate_form in locations_and_demonyms) and
+                ((mention_form in demonym_by_location and
                  mention_form in demonym_by_location[mention_form]) or
                 (candidate_form in demonym_by_location and
-                 mention_form in demonym_by_location[candidate_form]))
+                 mention_form in demonym_by_location[candidate_form]))):
+            self.logger.debug("DEMONYM MATCH: %s %s", mention_form, candidate_form)
+            return True
+        return False

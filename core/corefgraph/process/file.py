@@ -35,7 +35,7 @@ def process(config, text, parse_tree, speakers_list, output):
     properties.set_lang(config.language)
     from corefgraph.text_processor import TextProcessor
     # End of voodoo
-    processor = TextProcessor(verbose=config.verbose, lang=config.language,
+    processor = TextProcessor(verbose=config.verbose, reader=config.reader, lang=config.language,
                               sieves=config.sieves, sieves_options=config.sieves_options,
                               extractor_options=config.extractor_options, singleton=config.singleton)
 
@@ -46,10 +46,16 @@ def process(config, text, parse_tree, speakers_list, output):
     if config.conll:
         processor.store_analysis_conll(stream=output, document_id=config.document_id, part_id=config.part_id)
     else:
-        processor.store_analysis(
-            stream=output, encoding=config.encoding, language=config.language, version=config.version,
-            lp_name=config.linguistic_parser_name, lp_version=config.linguistic_parser_version,
-            lp_layer=config.linguistic_parser_layer, time_stamp=config.time_stamp)
+        if config.reader == "NAF":
+            processor.store_analysis_naf(
+                stream=output, encoding=config.encoding, language=config.language, version=config.version,
+                lp_name=config.linguistic_parser_name, lp_version=config.linguistic_parser_version,
+                lp_layer=config.linguistic_parser_layer, time_stamp=config.time_stamp)
+        elif config.reader == "KAF":
+            processor.store_analysis_kaf(
+                stream=output, encoding=config.encoding, language=config.language, version=config.version,
+                lp_name=config.linguistic_parser_name, lp_version=config.linguistic_parser_version,
+                lp_layer=config.linguistic_parser_layer, time_stamp=config.time_stamp)
 
 
 def main():
@@ -91,11 +97,12 @@ def generate_parser():
     parser.add_argument('--treebank', dest='parse_tree', action='store', default=None)
     parser.add_argument('--speakers', dest='speakers', action='store', default=None)
     parser.add_argument('--language', dest='language', action='store', default="en")
+    parser.add_argument('--reader', dest='reader', action='store', default="KAF")
     parser.add_argument('--conll', dest='conll', action='store_true')
     parser.add_argument('--no_filter_same_head', dest='no_filter_same_head', action='store_true')
     parser.add_argument('--sieves', dest='sieves', nargs='*', action="store", default=[],
                         help="The plain name of the sieves that must be used.")
-    parser.add_argument('--sieves_options', dest='sieves_options', nargs='*', action="store", default=[],
+    parser.add_argument('--sieves_options', dest='sieves_options', action="append", default=[],
                         help="The options passed to the sieves.")
     parser.add_argument('--extractor_options', dest='extractor_options', nargs='*', action="store", default=[],
                         help="The options used during mention extraction.")

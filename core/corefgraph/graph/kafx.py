@@ -12,10 +12,11 @@ from ..resources import tree
 from ..resources.dictionaries import verbs, pronouns
 from ..resources.tagset import ner_tags, pos_tags, constituent_tags
 
-from pykaf import KafDocument
+
 from collections import defaultdict, deque
 from operator import itemgetter
 import logging
+READER = None
 
 
 class KafAndTreeGraphBuilder(BaseGraphBuilder):
@@ -24,8 +25,20 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
     kaf_id_property = "kaf_id"
     kaf_offset_property = "offset"
 
-    def __init__(self, logger=logging.getLogger("KafGraphBuilder")):
+    def __init__(self, reader_name, logger=logging.getLogger("GraphBuilder")):
         super(KafAndTreeGraphBuilder, self).__init__()
+        if reader_name == "NAF":
+            import pynaf
+            reader = pynaf
+            self.document_reader = reader.NAFDocument
+        elif reader_name == "KAF":
+            import pykaf
+            reader = pykaf
+            self.document_reader = reader.KafDocument
+        else:
+            raise Exception("Unknown Reader")
+        global READER
+        READER= reader
         self.logger = logger
         self.syntax_count = 0
         self.leaf_count = 0
@@ -109,7 +122,7 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
 
         self.terms_pool = []
         # Store original kaf for further recreation
-        self.kaf = KafDocument(kaf_stream=kaf_string)
+        self.kaf = self.document_reader(input_stream=kaf_string)
         GraphWrapper.set_graph_property(self.graph, self.kaf_document_property, self.kaf)
         self.set_terms(self.kaf)
         self.set_entities(self.kaf)
@@ -161,7 +174,7 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
         self.entities = list()
         for kaf_entity in kaf.get_entities():
             entity_type = kaf_entity.attrib["type"]
-            entity_id = kaf_entity.attrib["eid"]
+            entity_id = kaf_entity.attrib[READER.NAMED_ENTITY_ID_ATTRIBUTE]
             for reference in kaf.get_entity_references(kaf_entity):
                 # Fetch terms
                 entity_terms = sorted(
@@ -200,7 +213,8 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
         @param kaf: The kaf file manager
         """
         # Words
-        kaf_words = dict([(kaf_word.attrib["wid"], kaf_word) for kaf_word in kaf.get_words()])
+        kaf_words = dict([
+            (kaf_word.attrib[READER.WORD_ID_ATTRIBUTE], kaf_word) for kaf_word in kaf.get_words()])
         # Terms
         self.term_by_id = dict()
         self.term_by_word_id = dict()
@@ -208,24 +222,25 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
         inside_utterance = deque()
         inside_plain_quotes = False
         for term in kaf.get_terms():
-            term_id = term.attrib["tid"]
+            term_id = term.attrib[READER.TERM_ID_ATTRIBUTE]
             # Fetch the words of the term values
             term_words = sorted((kaf_words[word.attrib["id"]] for word in kaf.get_terms_words(term)),
                                 key=lambda x: x.attrib[self.kaf_offset_property])
             # Build term attributes
             form = self.expand_kaf_word(term_words)
-            order = int(term_words[0].attrib["wid"][1:]), int(term_words[-1].attrib["wid"][1:])
+            order = int(term_words[0].attrib[READER.WORD_ID_ATTRIBUTE][1:]), \
+                    int(term_words[-1].attrib[READER.WORD_ID_ATTRIBUTE][1:])
             span = order
             begin = int(term_words[0].attrib[self.kaf_offset_property])
             end = int(term_words[-1].attrib[self.kaf_offset_property]) + int(term_words[-1].attrib["length"]) - 1
             # We want pennTreeBank tagging no kaf tagging
-            pos = term.attrib["morphofeat"]
-            kaf_id = "{0}#{1}".format(term_id, "|".join([word.attrib["wid"] for word in term_words]))
+            pos = term.attrib[READER.MORPHOFEAT_ATTRIBUTE]
+            kaf_id = "{0}#{1}".format(term_id, "|".join([word.attrib[READER.WORD_ID_ATTRIBUTE] for word in term_words]))
             # Clear unicode problems
             if isinstance(form, unicode):
                 form = form.encode("utf8")
             try:
-                lemma = term.attrib["lemma"]
+                lemma = term.attrib[READER.LEMMA_ATTRIBUTE]
                 if lemma == "-":
                     raise KeyError
             except KeyError:
@@ -279,7 +294,7 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
             # Store term
             # ONLY FOR STANFORD DEPENDENCIES IN KAF
             for word in term_words:
-                self.term_by_word_id[word.attrib["wid"]] = word_node
+                self.term_by_word_id[word.attrib[READER.WORD_ID_ATTRIBUTE]] = word_node
             self.term_by_id[term_id] = word_node
             self.terms_pool.append(word_node)
             self.statistics_word_up()
@@ -291,9 +306,9 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
         @param kaf: The kaf file manager
         """
         for dependency in kaf.get_dependencies():
-            dependency_from = dependency.attrib["from"]
-            dependency_to = dependency.attrib["to"]
-            dependency_type = dependency.attrib["rfunc"]
+            dependency_from = dependency.attrib[READER.DEPENDENCY_FROM_ATTRIBUTE]
+            dependency_to = dependency.attrib[READER.DEPENDENCY_TO_ATTRIBUTE]
+            dependency_type = dependency.attrib[READER.DEPENDENCY_FUNCTION_ATTRIBUTE]
             #IFS For STANFORD DEPENDENCIES IN KAF
             if dependency_from[0] == "w":
                 dependency_from = self.term_by_word_id[dependency_from]
@@ -567,10 +582,14 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
 
 
 class SyntacticTreeUtils():
-    def __init__(self, graph):
+    """ A collection of functions that resolves complex operations in the graph representation of syntactic tree
+
+    """
+    def __init__(self, graph, logger=logging.getLogger("GraphBuilder")):
         self.graph = graph
         self.graph_builder = GraphWrapper.get_graph_property(self.graph, 'graph_builder')
         self.graph.graph["utils"] = self
+        self.logger = logger
 
     def skip_root(self, sentence_root):
         """Get the first chunk of the sentence (usually S) Skip al ROOT nodes,created by the parser o the graph builder.
@@ -579,8 +598,10 @@ class SyntacticTreeUtils():
         """
         chunk = sentence_root
         while chunk and (chunk["tag"] == self.graph_builder.root_pos):
-            chunk = self.graph_builder.get_syntactic_children(chunk)[0]
-            #TODO Warning if more than one child
+            children = self.graph_builder.get_syntactic_children(chunk)[0]
+            if len(children) > 1:
+                return chunk
+            chunk = children[0]
         return chunk
 
 # Allocation of Named Entities
@@ -610,6 +631,9 @@ class SyntacticTreeUtils():
 
         #  head word assignment preferences for NP cases:
         # "NN", "NNP", "NNPS", "NNS", "NX", "JJR", "POS"
+
+        @param words: A list of words
+        @return A word
         """
 
         head_words = [word for word in words if self.graph_builder.is_head(word)]
@@ -670,15 +694,17 @@ class SyntacticTreeUtils():
         valid_constituent = self.get_span_constituent(sentence, entity_span)
         if valid_constituent:
             head = self.graph_builder.get_head(valid_constituent)
+            constituent = valid_constituent
         else:
             # Use the head finder
             head = self.get_plausible_head_word(self.graph_builder.get_words(entity))
-        if not head:
-            #TODO Change into warning
-            raise Exception("Unable to fit NE")
-            #TODO check if this is useful with a previous constituent
-        # With the artificial Terminal head find a plausible NP constituent
-        constituent = self.get_plausible_constituent(head)
+            if not head:
+                self.logger.warning("Unable to fit NE: {0}".format(entity))
+                head = self.graph_builder.get_words(entity)[-1]
+            # With the artificial Terminal head find a plausible NP constituent
+            constituent = self.get_plausible_constituent(head)
+
+
         self.graph_builder.set_head(entity, head)
         # Used in speaker sieve, The head word is the relevant info source
         entity["constituent"] = constituent
@@ -687,31 +713,34 @@ class SyntacticTreeUtils():
         entity["quoted"] = constituent["quoted"]
 
         self.graph_builder.link_root(entity, self.graph_builder.get_root(constituent))
-        #entity["root"] = constituent["root"]
         return constituent
 
 # Syntax complex relations
-    def is_role_appositive(self, candidate, mention):
-        """ Return if the candidate is the role appositive of the mention.
+    def is_role_appositive(self, first_constituent, second_constituent):
+        """Check if are in a role appositive construction.
+
+        @param first_constituent:
+        @param second_constituent:
+        @return: True or False
         """
-        if not self.graph_builder.same_sentence(mention, candidate):
+        if not self.graph_builder.same_sentence(second_constituent, first_constituent):
             return False
         # If candidate or mention are NE use their constituent
-        if candidate["type"] == "named_entity":
-            candidate = candidate["constituent"]
-        if mention["type"] == "named_entity":
-            mention = mention["constituent"]
+        if first_constituent["type"] == "named_entity":
+            first_constituent = first_constituent["constituent"]
+        if second_constituent["type"] == "named_entity":
+            second_constituent = second_constituent["constituent"]
 
         # The Candidate is headed by a noun.
-        candidate_head = self.graph_builder.get_head_word(candidate)
+        candidate_head = self.graph_builder.get_head_word(first_constituent)
         if not candidate_head or not pos_tags.all_nouns(candidate_head["pos"]):
             return False
             # The Candidate appears as a modifier of a NP
-        candidate_syntactic_father = self.graph_builder.get_syntactic_parent(candidate)
+        candidate_syntactic_father = self.graph_builder.get_syntactic_parent(first_constituent)
         if not constituent_tags.noun_phrases(candidate_syntactic_father["tag"]):
             return False
             # The NP whose head is the mention
-        return mention["id"] == self.graph_builder.get_head(candidate_syntactic_father)["id"]
+        return second_constituent["id"] == self.graph_builder.get_head(candidate_syntactic_father)["id"]
 
     def is_appositive_construction_child(self, constituent):
         """ Check if the mention is in a appositive construction.
@@ -723,7 +752,7 @@ class SyntacticTreeUtils():
 
         @param constituent: The mention to check
         """
-        if "contituent" in constituent:
+        if constituent["type"] == "named_entity":
             constituent = constituent["constituent"]
 
         # TODO Improve the precision
@@ -772,7 +801,36 @@ class SyntacticTreeUtils():
         @return: Boolean
         """
         span = constituent["span"]
-        return (span[0] - span[1] == 0) and pos_tags.bare_plurals(self.graph_builder.get_constituent_words(constituent)[0]["pos"])
+        return (span[0] - span[1] == 0) and \
+            pos_tags.bare_plurals(self.graph_builder.get_constituent_words(constituent)[0]["pos"])
+
+    def is_enumeration(self, constituent):
+        """ Check if the constituent is a enumeration.
+        @param constituent: The constituent to check
+        @return: True or False
+        """
+        coordination = False
+        np_pre_coordination = False
+        for children in self.graph_builder.get_syntactic_children(constituent):
+            children_tag = children.get("tag", "")
+            if constituent_tags.noun_phrases(children_tag):
+                if coordination:
+                    return True
+                else:
+                    np_pre_coordination = True
+            else:
+                children_pos = children.get("pos")
+                if pos_tags.conjunction(children_pos) and np_pre_coordination:
+                    coordination = True
+        return False
+
+        # Mention sub tree : maneja los casos con and
+        #        enumerationPattern = r"NP < (NP=tmp $.. (/,|CC/ $.. NP))";
+        #        tgrepPattern = re.compile(enumerationPattern)
+        #        match= tgrepPattern.matcher(this.mentionSubTree)
+        #        while  m.find():
+        #            if(this.mentionSubTree==m.getNode("tmp") and this.spanToString().toLowerCase().contains(" and ")):
+        #                number = Number.PLURAL
 
     def is_relative_pronoun(self, first_constituent, second_constituent):
         """ Check if tho constituents are in relative pronoun construction. Also mark they.
@@ -786,6 +844,8 @@ class SyntacticTreeUtils():
             return False
         if second_constituent["form"].lower() not in pronouns.relative:
             return False
+        if first_constituent["span"] > second_constituent["span"]:
+            return False
         enclosing_np = self.graph_builder.get_syntactic_parent(first_constituent)
 
         upper = self.graph_builder.get_syntactic_parent(second_constituent)
@@ -794,7 +854,6 @@ class SyntacticTreeUtils():
                 upper = self.graph_builder.get_syntactic_parent(upper)
             elif upper["id"] == enclosing_np["id"]:
                 #TODO check path element
-                #TODO m1 and m2 order
                 return True
             else:
                 return False
@@ -805,11 +864,19 @@ class SyntacticTreeUtils():
         #     set(filter(lambda X: X["tag"] in
         #                          constituent_tags.subordinated, candidate.out_neighbours())))
 
-    def check_sibling_property(self, base_index, siblings, _property, check_function):
+    @staticmethod
+    def check_sibling_property(base_index, siblings, _property, check_function):
+        """ Return the forward siblings and return the first that fulfill the property
+        @param base_index: The index of the original sibling
+        @param siblings: The ordered list of siblings
+        @param _property: The name of the property to check
+        @param check_function: The function used to check the property
+        @return: the sibling that fulfill the property and its index.
+        """
         constituent = None
         index = 0
         for index, sibling in enumerate(siblings[base_index:]):
-            if _property in sibling and  check_function(sibling[_property]):
+            if _property in sibling and check_function(sibling[_property]):
                 constituent = sibling
                 break
         return constituent, index
@@ -829,8 +896,10 @@ class SyntacticTreeUtils():
 
             "NP < (PRP=m1) $.. (VP < (MD $.. (VP < ((/^V.*/ < /^(?:be|become)/) $.. (VP < (VBN $.. /S|SBAR/))))))"
 
-            "NP < (PRP=m1) $.. (VP < (MD $.. (VP < ((/^V.*/ < /^(?:be|become)/) $.. (ADJP $.. (/S|SBAR/))))))" // extraposed. OK 1/2 correct; need non-adverbial case
-            "NP < (PRP=m1) $.. (VP < (MD $.. (VP < ((/^V.*/ < /^(?:be|become)/) $.. (ADJP < (/S|SBAR/))))))" // OK: 3/3 good matches on dev; but 3/4 wrong on WSJ
+            "NP < (PRP=m1) $.. (VP < (MD $.. (VP < ((/^V.*/ < /^(?:be|become)/) $.. (ADJP $.. (/S|SBAR/))))))"
+                // extraposed. OK 1/2 correct; need non-adverbial case
+            "NP < (PRP=m1) $.. (VP < (MD $.. (VP < ((/^V.*/ < /^(?:be|become)/) $.. (ADJP < (/S|SBAR/))))))"
+                // OK: 3/3 good matches on dev; but 3/4 wrong on WSJ
 
             "NP < (PRP=m1) $.. (VP < (MD $.. (VP < ((/^V.*/ < /^(?:be|become)/) $.. (NP < /S|SBAR/)))))"
             "NP < (PRP=m1) $.. (VP < (MD $.. (VP < ((/^V.*/ < /^(?:be|become)/) $.. (NP $.. ADVP $.. /S|SBAR/)))))"
@@ -843,57 +912,57 @@ class SyntacticTreeUtils():
         # Is a "it" pronoun
         if mention["form"].lower() in pronouns.pleonastic:
             return False
-        constituent = ('constituent'in mention and mention['constituent']) or mention
+        constituent = mention.get('constituent', mention)
         father = self.graph_builder.get_syntactic_parent(constituent)
         # Is a child of a NP
         if not constituent_tags.noun_phrases(father["form"]):
             return False
 
         # Have a (next) sibling that is a VP
-        wrapper_NP_siblings = self.graph_builder.get_syntactic_children(father)
-        wrapper_NP_index = wrapper_NP_siblings.index(father)
+        wrapper_np_siblings = self.graph_builder.get_syntactic_children(father)
+        wrapper_np_index = wrapper_np_siblings.index(father)
 
         #(VP <
         verb_phrase, verb_phrase_index = self.check_sibling_property(
-            wrapper_NP_index, wrapper_NP_siblings, "tag", constituent_tags.verb_phrases)
+            wrapper_np_index, wrapper_np_siblings, "tag", constituent_tags.verb_phrases)
 
         if not verb_phrase:
             return False
 
         #((/^V.*/ < /^(?:is|was|become|became)/)
-        VP_constituents = self.graph_builder.get_syntactic_children(verb_phrase)
+        vp_constituents = self.graph_builder.get_syntactic_children(verb_phrase)
         valid_verb, valid_verb_index = self.check_sibling_property(
-            0, VP_constituents, "form", lambda x: x in verbs.pleonastic_verbs)
+            0, vp_constituents, "form", lambda x: x in verbs.pleonastic_verbs)
 
         if not valid_verb:
             #((/^V.*/ < /^(?:seems|appears|means|follows)/)
             alternative_a_valid_verb, alternative_a_valid_verb_index = self.check_sibling_property(
-                0, VP_constituents, "form", lambda x: x in verbs.alternative_a_pleonastic_verbs)
+                0, vp_constituents, "form", lambda x: x in verbs.alternative_a_pleonastic_verbs)
             if alternative_a_valid_verb:
                 #  $.. /S|SBAR/)
                 sbar, sbar_index = self.check_sibling_property(
-                    VP_constituents, alternative_a_valid_verb_index, "tag", constituent_tags.simple_or_sub_phrase)
+                    vp_constituents, alternative_a_valid_verb_index, "tag", constituent_tags.simple_or_sub_phrase)
                 return sbar
             alternative_b_valid_verb, alternative_b_valid_verb_index = self.check_sibling_property(
-                0, VP_constituents, "form", lambda x: x in verbs.alternative_b_pleonastic_verbs)
+                0, vp_constituents, "form", lambda x: x in verbs.alternative_b_pleonastic_verbs)
             if alternative_b_valid_verb:
                 # $.. PRT $.. /S|SBAR/))
                 particle, particle_index = self.check_sibling_property(
-                    VP_constituents, alternative_b_valid_verb_index, "tag", constituent_tags.particle_constituents)
+                    vp_constituents, alternative_b_valid_verb_index, "tag", constituent_tags.particle_constituents)
                 sbar, sbar_index = self.check_sibling_property(
-                    VP_constituents, particle_index, "tag", constituent_tags.simple_or_sub_phrase)
+                    vp_constituents, particle_index, "tag", constituent_tags.simple_or_sub_phrase)
                 return sbar
 
         #(MD $.. (VP < ((/^V.*/ < /^(?:be|become)/)
         if not valid_verb:
             auxiliar_verb, auxiliar_verb_index = self.check_sibling_property(
-                0, VP_constituents, "pos", pos_tags.modals)
+                0, vp_constituents, "pos", pos_tags.modals)
             if auxiliar_verb:
                 verb_phrase, verb_phrase_index = self.check_sibling_property(
-                    wrapper_NP_index, wrapper_NP_siblings, "tag", constituent_tags.verb_phrases)
-                VP_constituents = self.graph_builder.get_syntactic_children(verb_phrase)
+                    wrapper_np_index, wrapper_np_siblings, "tag", constituent_tags.verb_phrases)
+                vp_constituents = self.graph_builder.get_syntactic_children(verb_phrase)
                 valid_verb, valid_verb_index = self.check_sibling_property(
-                    0, VP_constituents, "form", lambda x: x in verbs.pleonastic_verbs)
+                    0, vp_constituents, "form", lambda x: x in verbs.pleonastic_verbs)
 
         if not valid_verb:
             return False
@@ -903,7 +972,7 @@ class SyntacticTreeUtils():
 
         #$.. (@VP < (VBN $.. @S|SBAR))))
         second_verb, second_verb_index = self.check_sibling_property(
-            valid_verb_index, VP_constituents, "tag", constituent_tags.verb_phrases)
+            valid_verb_index, vp_constituents, "tag", constituent_tags.verb_phrases)
         if second_verb:
             children = self.graph_builder.get_syntactic_children(second_verb)
             verb_form = self.check_sibling_property(
@@ -915,23 +984,23 @@ class SyntacticTreeUtils():
         # $.. (ADJP $.. (/S|SBAR/))))
         # $.. (ADJP < (/S|SBAR/))))
         adjectival_phrase, adjectival_phrase_index = self.check_sibling_property(
-            valid_verb_index, VP_constituents, "tag", constituent_tags.adjectival_prhases)
+            valid_verb_index, vp_constituents, "tag", constituent_tags.adjectival_prhases)
         if second_verb:
             children = self.graph_builder.get_syntactic_children(adjectival_phrase)
-            constituents_pri, constituents_pri_index = (VP_constituents, adjectival_phrase_index)
+            constituents_pri, constituents_pri_index = (vp_constituents, adjectival_phrase_index)
             constituents_sec, constituents_sec_index = (children, 0)
 
         # $.. (NP < /S|SBAR/)))
         # $.. (NP $.. ADVP $.. /S|SBAR/)))
         noun_phrase, noun_phrase_index = self.check_sibling_property(
-            valid_verb_index, VP_constituents, "tag", constituent_tags.noun_phrases)
+            valid_verb_index, vp_constituents, "tag", constituent_tags.noun_phrases)
         if second_verb:
             children = self.graph_builder.get_syntactic_children(noun_phrase)
             constituents_pri, constituents_pri_index = (0, children)
             adverbial_phrase, adverbial_phrase_index = self.check_sibling_property(
-                noun_phrase_index, VP_constituents, "tag", constituent_tags.noun_phrases)
+                noun_phrase_index, vp_constituents, "tag", constituent_tags.noun_phrases)
             if adjectival_phrase:
-                constituents_sec, constituents_sec_index = (VP_constituents, adverbial_phrase_index)
+                constituents_sec, constituents_sec_index = (vp_constituents, adverbial_phrase_index)
 
         sbar1, sbar1_index = self.check_sibling_property(
             constituents_pri_index, constituents_pri, "tag", constituent_tags.simple_or_sub_phrase)

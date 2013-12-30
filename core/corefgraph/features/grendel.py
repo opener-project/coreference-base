@@ -136,16 +136,6 @@ class GenderNumberExtractor():
         if singular_ne(word_ner):
             # Ner are singular by default except organizations
             return self.SINGULAR
-        #TODO manage the AND causes
-
-
-        # Mention sub tree : maneja los casos con and
-#        enumerationPattern = r"NP < (NP=tmp $.. (/,|CC/ $.. NP))";
-#        tgrepPattern = re.compile(enumerationPattern)
-#        match= tgrepPattern.matcher(this.mentionSubTree)
-#        while  m.find():
-#            if(this.mentionSubTree==m.getNode("tmp") and this.spanToString().toLowerCase().contains(" and ")):
-#                number = Number.PLURAL
         return self.UNKNOWN
 
     def get_animacy(self, word_form, word_pos, word_ner):
