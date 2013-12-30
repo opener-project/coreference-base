@@ -1,7 +1,7 @@
 Core Installation
 -----------------
 
-1. pip install --upgrade --user git+ssh://git@github.com/opener-project/pykaf.git
+1. pip install --upgrade --user hg+https://bitbucket.org/Josu/pykaf#egg=pykaf
 2. pip install --upgrade --user networkx 
 
 (optional if logging is wanted)
