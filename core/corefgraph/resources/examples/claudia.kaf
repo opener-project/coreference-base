@@ -801,7 +801,7 @@
       </references>
     </entity>
   </entities>
-  <constituents>
+  <constituency>
     <tree>
       <!--Non-terminals-->
       <nt id="nter1" label="TOP" />
@@ -1969,5 +1969,5 @@
       <edge from="nter206" to="nter165" />
       <edge from="ter105" to="nter206" />
     </tree>
-  </constituents>
+  </constituency>
 </KAF>
