@@ -20,13 +20,13 @@ class Sieve(object):
 
     """
     sort_name = "XXX"
-
+    #Filter options
     ONLY_FIRST_MENTION = True
     NO_PRONOUN = True
     DISCOURSE_SALIENCE = True
     NO_STOP_WORDS = False
 
-    UNKNOWN = set((GenderNumberExtractor.UNKNOWN, ner_tags.no_ner, ner_tags.other))
+    UNKNOWN = {GenderNumberExtractor.UNKNOWN, ner_tags.no_ner, ner_tags.other}
 
     def __init__(self, multi_sieve_processor, options):
         self.logger = getLogger("sieves")
@@ -40,17 +40,26 @@ class Sieve(object):
 
     def are_coreferent(self, entity, mention, candidate):
         """ Determine if the candidate is a valid entity coreferent.
-        :param candidate: The candidate that is going evaluated.
-        :param mention: The index of the first mention of the entity that is valid for this sieve.
+        :param candidate: The candidate that may corefer the entity.
+        :param mention: The selected mention to represent the entity.
         :param entity: The entity that is going to be evaluated.
         """
+        if candidate["id"] in entity:
+            self.debug("LINK FILTERED already linked. Candidate: -%s-",
+                       candidate['form'])
+            return False
         if candidate["generic"] and self.is_you(candidate):
+            self.debug("LINK FILTERED Generic Candidate. Candidate: -%s-",
+                       candidate['form'])
             return False
-        # filter this
         if(mention["form"].lower() == "this") and (self.graph_builder.sentence_distance(mention, candidate) > 3):
+            self.debug("LINK FILTERED too far this. Candidate: -%s-",
+                       candidate['form'])
             return False
-        if self.graph_builder.is_inside(mention["span"], candidate["span"]) or \
+        if self.graph_builder.is_inside(mention["span"],  candidate["span"]) or \
                 self.graph_builder.is_inside(candidate["span"], mention["span"]):
+            self.debug("LINK FILTERED Inside. Candidate: -%s-",
+                       candidate['form'])
             return False
         return True
 
@@ -68,30 +77,38 @@ class Sieve(object):
 
     def validate(self, mention, mention_index):
         """ Determine if the mention is valid for this sieve.
+
         :param mention: The mention to check.
         :param mention_index: Index of the mention inside entity:
         """
         # Filter all no first mentions
         if self.ONLY_FIRST_MENTION and mention_index > 0:
+            self.debug("MENTION FILTERED Not first one: %s", mention["form"])
             return False
         if self.NO_PRONOUN and self.is_pronoun(mention):
+            self.debug("MENTION FILTERED Is a pronoun: %s", mention["form"])
             return False
         # Filter Narrative you
         if self.narrative_you(mention=mention):
+            self.debug("MENTION FILTERED is a narrative you: %s", mention["form"])
             return False
         # filter generics
         if mention["generic"]:
+            self.debug("MENTION FILTERED is generic: %s", mention["form"])
             return False
         # Filter stopWords
         if self.NO_STOP_WORDS and mention["form"].lower() in stopwords.stop_words:
+            self.debug("MENTION FILTERED is a stop word: %s", mention["form"])
             return False
         if self.DISCOURSE_SALIENCE:
             # Filter indefinites
             if self.is_undefined(mention):
+                self.debug("MENTION FILTERED is undefined: %s", mention["form"])
                 return False
             # Filter if start with indefinite article and not in a construction
             if not mention["appositive"] and not mention["predicative_nominative"] and \
                     mention["started_by_undefined_mention"]:
+                self.debug("MENTION FILTERED starts with undefined: %s", mention["form"])
                 return False
         return True
 
@@ -143,15 +160,23 @@ class Sieve(object):
         :param register: A register of de merges of each cluster
         """
         self.clusters = clusters
-
         #widgets = ['Passing sieve {0}: '.format(self.__class__), Fraction()]
         #progress_bar = ProgressBar(widgets=widgets, maxval=len(clusters) or 1, force_update=True).start()
+        self.debug("Resolving %d clusters", len(clusters), indent=0)
         for cluster_index, entity in enumerate(clusters):
             # Get the first mention of the entity that is valid for the sieve
+            self.debug("Resolving cluster: -%s-", entity, indent=1)
             mentions = self.valid_mention(entity)
-            for mention in mentions:
-                for candidate in candidates_per_mention[mention]:
-                    if self.are_coreferent(entity, self.graph.node[mention], self.graph.node[candidate]):
+            self.debug("Valid mentions: -%s-", mentions, indent=2)
+            for mention_id in mentions:
+                mention = self.graph.node[mention_id]
+                speaker = self.get_speaker_id(mention)
+                self.debug("Mention-%s- speaker %s utt %s quo %s",
+                           mention["form"], speaker, mention["utterance"],
+                           mention["quoted"], indent=2)
+                self.debug("candidates: -%s-", candidates_per_mention[mention_id], indent=2)
+                for candidate in candidates_per_mention[mention_id]:
+                    if self.are_coreferent(entity, mention, self.graph.node[candidate]):
                         # If passed the sieve link candidate and stop search for that entity
                         self._link(entity, candidate)
                         # Break the search of candidates for this mention. Only one is elected
@@ -214,33 +239,55 @@ class Sieve(object):
         """
         return mention["doc_type"] == "article" and mention["speaker"] == "PER0" and self.is_you(mention=mention)
 
-    def is_I(self, mention):
+    @staticmethod
+    def is_first_person(mention):
         """ The mention is a first person singular pronoun.
+
+        @param mention: The mention for check.
         """
         form = mention["form"].lower()
         return form in pronouns.first_person and form in pronouns.singular
 
-    def is_we(self, mention):
+    @staticmethod
+    def is_we(mention):
         """ The Mention is a first person plural pronoun.
+
+        @param mention: The mention for check.
         """
         form = mention["form"].lower()
         return form in pronouns.first_person and form in pronouns.plural
 
-    def is_you(self, mention):
-        """ The mention is a second person pronoun.
+    @staticmethod
+    def is_you(mention):
+        """ The mention is a second person pronoun?
+
+        @param mention: The mention for check.
         """
         return mention["form"].lower() in pronouns.second_person
 
     @staticmethod
     def is_pronoun(mention):
+        """ The mentions is a pronoun mention?
+
+        @param mention: The mention for check.
+        """
         return mention["mention"] == "pronoun_mention"
 
     @staticmethod
     def is_undefined(mention):
+        """ The mentions is am undefined mention?
+
+        @param mention: The mention for check.
+        """
         return mention["mention"] == "undefined_mention"
 
-    def is_location(self, mention):
-        return ner_tags.location(mention["ner"])
+    @staticmethod
+    def is_location(mention):
+        """ The mentions is a location?
+
+        @param mention: The mention for check.
+        """
+        return ner_tags.location(mention.get("ner", ner_tags.no_ner))
 
     def agree_attributes(self, entity, candidate):
         """ All attributes are compatible. Its mean the attributes of each are a subset one of the another.
@@ -342,3 +389,24 @@ class Sieve(object):
             if speaker_token == mention_head_form:
                 return True
         return False
+
+    @staticmethod
+    def get_speaker_id(candidate):
+        """ Get a string ID for a speaker. MAy be a  plain name or a node ID.
+
+        @param candidate: The mention whose speaker is needed
+        @return: A string, may be a node ID or a plain name.
+        """
+        try:
+            speaker = candidate["speaker"]["id"]
+        except TypeError:
+            speaker = candidate["speaker"]
+        return speaker
+
+    def debug(self, message, *args, **kwargs):
+        """  You a preformated debug for sieve logger.
+        @param message: The message to show
+        @param args: The message filling variables
+        @param kwargs: Check for indent, for message indentation,
+        """
+        self.logger.debug("{0:5}{1}{2}".format(self.sort_name, '\t' * kwargs.get('indent', 3), message), *args)

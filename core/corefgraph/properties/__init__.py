@@ -22,12 +22,12 @@ default_dep_tag_set = "default"
 
 try:
     import yaml
+    config_filename = os.path.abspath(os.path.join(__path__[0], 'logging.conf'))
     try:
-        config_filename = os.path.abspath(os.path.join(__path__[0], 'logging.conf'))
         logging.config.dictConfig(yaml.load(open(config_filename)))
     except Exception as ex:
         import sys
-        print "NO LOGGING: {0} \nfails: {1}".format(config_filename, ex)
+        sys.stderr.write("NO LOGGING: {0} \nError loading configuration: {1}".format(config_filename, ex))
 except Exception as ex:
     sys.stdout.write("Error importing yalm: " + str(ex))
 
@@ -44,6 +44,8 @@ module_path = os.path.join(os.path.split(__path__[0])[0], "resources")
 def set_lang(lang_code):
     """ set the module properties from  a specific language properties
 
+
+    @param lang_code: A string that determines de language used in the system. lowercase and
     """
     lang_properties = __import__("properties_{0}".format(lang_code), globals=globals(), locals=locals())
     global lang

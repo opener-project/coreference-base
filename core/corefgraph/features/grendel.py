@@ -76,12 +76,6 @@ class GenderNumberExtractor():
             if word_form in neutral_pronouns:
                 return self.NEUTRAL
 
-        elif self.use_names_list:
-            logger.debug("Using name List")
-            if word_form in female_names:
-                return self.FEMALE
-            elif word_form in male_names:
-                return self.MALE
         # WILD ZONE
         elif self.use_bergsma_gender_lists:
             logger.debug("Using Bergsma List")
@@ -92,6 +86,13 @@ class GenderNumberExtractor():
             if word_form in neutral_words:
                 return self.NEUTRAL
                 # Bergmas 2005 list search
+
+        elif self.use_names_list:
+            logger.debug("Using name List")
+            if word_form in female_names:
+                return self.FEMALE
+            elif word_form in male_names:
+                return self.MALE
 
         elif self.probabilistic_gender_classification:
             logger.debug("Using Bergmas an lin 2006 probabilistic gender classification")

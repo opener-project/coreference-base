@@ -25,7 +25,7 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
     kaf_id_property = "kaf_id"
     kaf_offset_property = "offset"
 
-    def __init__(self, reader_name, logger=logging.getLogger("GraphBuilder")):
+    def __init__(self, reader_name, secure_tree=True, logger=logging.getLogger("GraphBuilder")):
         super(KafAndTreeGraphBuilder, self).__init__()
         if reader_name == "NAF":
             import pynaf
@@ -38,7 +38,8 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
         else:
             raise Exception("Unknown Reader")
         global READER
-        READER= reader
+        READER = reader
+        self.secure_tree = secure_tree
         self.logger = logger
         self.syntax_count = 0
         self.leaf_count = 0
@@ -119,7 +120,6 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
         """ Parse al tha kaf info tho the graph except of sentence parsing.
         @param kaf_string:
         """
-
         self.terms_pool = []
         # Store original kaf for further recreation
         self.kaf = self.document_reader(input_stream=kaf_string)
@@ -218,7 +218,7 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
         # Terms
         self.term_by_id = dict()
         self.term_by_word_id = dict()
-        prev_speaker = None
+        prev_speaker = "NO"
         inside_utterance = deque()
         inside_plain_quotes = False
         for term in kaf.get_terms():
@@ -229,7 +229,7 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
             # Build term attributes
             form = self.expand_kaf_word(term_words)
             order = int(term_words[0].attrib[READER.WORD_ID_ATTRIBUTE][1:]), \
-                    int(term_words[-1].attrib[READER.WORD_ID_ATTRIBUTE][1:])
+                int(term_words[-1].attrib[READER.WORD_ID_ATTRIBUTE][1:])
             span = order
             begin = int(term_words[0].attrib[self.kaf_offset_property])
             end = int(term_words[-1].attrib[self.kaf_offset_property]) + int(term_words[-1].attrib["length"]) - 1
@@ -259,12 +259,15 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
             if self.speakers:
                 speaker = self.speakers.pop(0)
                 if prev_speaker != speaker:
-                    self.utterance += 1
-                    prev_speaker = speaker
+                    if prev_speaker != "NO":
+                        self.utterance += 1
             else:
                 speaker = "PER{0}".format(self.utterance)
             if not speaker or speaker == "-":
                 speaker = "PER{0}".format(self.utterance)
+
+            if prev_speaker != speaker:
+                    prev_speaker = speaker
 
             # Manage Quotation
             # TODO improve  nested quotation
@@ -279,7 +282,7 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
                 try:
                     inside_utterance.pop()
                 except IndexError:
-                    self.logger.error("Unbalanced quotes")
+                    self.logger.warning("Unbalanced quotes")
 
             if len(inside_utterance):
                 word_node["utterance"] = inside_utterance[-1]
@@ -397,19 +400,27 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
             self.link_syntax_non_terminal(parent=parent_node, child=new_constituent)
             if head:
                 self.set_head(parent_node, new_constituent)
-            # Add in tree named entities to entities in graph
-            if constituent_tags.ner_constituent(tag):
-                self.add_mention_of_named_entity(sentence=syntactic_root, mention=new_constituent)
-                new_constituent["constituent"] = new_constituent
+            head_word = self.get_head_word(new_constituent)
+
             content_text = self.expand_node(children)
             new_constituent["tree"] = branch
             new_constituent["label"] = (" | ".join((content_text, tag)))
             new_constituent["lemma"] = content_text
             new_constituent["form"] = content_text
+
+            new_constituent["doc_type"] = self.doc_type
+            new_constituent["utterance"] = head_word["utterance"]
+            new_constituent["quoted"] = head_word["quoted"]
             new_constituent["begin"] = children[0]["begin"]
             new_constituent["end"] = children[-1]["end"]
             new_constituent["ord"] = (children[0]["span"][0], children[-1]["span"][1])
             new_constituent["span"] = new_constituent["ord"]
+
+            # Add in tree named entities to entities in graph
+            if constituent_tags.ner_constituent(tag):
+                self.add_mention_of_named_entity(sentence=syntactic_root, mention=new_constituent)
+                new_constituent["constituent"] = new_constituent
+
             return new_constituent
 
         # Determine if the syntactic tree Node is as branch or a leaf
@@ -431,6 +442,7 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
         constituents_by_id = dict()
         root = None
         root_head = None
+        node_process_list = []
         for non_terminal in self.kaf.get_contituent_tree_non_terminals(sentence):
             constituent_id = non_terminal.attrib["id"]
             tag = non_terminal.attrib["label"]
@@ -444,18 +456,32 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
             constituents_by_id[constituent_id] = constituent
         constituents = constituents_by_id.values()
         terminals = self.kaf.get_contituent_tree_terminals(sentence)
-        terminals_words = dict([
-            (terminal.attrib["id"], [self.term_by_id[target_term.attrib["id"]]
-                                     for target_term in self.kaf.get_contituent_terminal_words(terminal)])
-            for terminal in terminals])
-        edges = self.kaf.get_contituent_tree_edges(sentence)
-        edges.reverse()
-        for edge in edges:
+        terminals_words = dict()
+        for terminal in terminals:
+            terminal_id = terminal.attrib["id"]
+            node_process_list.append(terminal_id)
+            terminals_words[terminal_id] = [
+                self.term_by_id[target_term.attrib["id"]]
+                for target_term in self.kaf.get_contituent_terminal_words(terminal)]
+        edges_by_departure_node = {}
+        edges_list = self.kaf.get_contituent_tree_edges(sentence)
+        for edge in edges_list:
+            edges_by_departure_node[edge.attrib["from"]] = edge
+
+        if self.secure_tree:
+            node_process_list = [edge.attrib["from"] for edge in edges_list]
+            node_process_list.reverse()
+
+        while len(node_process_list):
+            edge = edges_by_departure_node[node_process_list.pop(0)]
             # The edges have a down-top direction
             target_id = edge.attrib["to"]
             source_id = edge.attrib["from"]
             target = constituents_by_id[target_id]
             # select link type in base of the source node type
+            if target != root and not self.secure_tree:
+                if target_id not in node_process_list:
+                    node_process_list.append(target_id)
             if source_id.startswith("n"):
                 source = constituents_by_id[source_id]
                 if target == root:
@@ -467,9 +493,11 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
                     if edge.attrib.get("head", False):
                         try:
                             self.set_head(parent=target, head=source)
-                        except:
-                            print target_id, target, source_id, source
+                        except Exception as ex:
+                            self.logger.warning("Error setting a head: Source %s ID#%s Target %s ID#%s Error: %s",
+                                              target_id, target, source_id, source, ex)
             else:
+                node_process_list.append(target_id)
                 source = terminals_words[source_id]
                 if len(source) == 1 and target["tag"] == source[0]["pos"]:
                     word = source[0]
@@ -480,7 +508,6 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
                     constituents.remove(nexus_constituent)
                     self.link_word(sentence=syntactic_root, word=word)
                     # Enlist entities that appears in the phrase
-
                     for mention in self.entities_by_word.get(word["id"], []):
                         self.add_mention_of_named_entity(sentence=syntactic_root, mention=mention)
                 else:
@@ -515,8 +542,8 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
 
         # link the tree with the root
         if root_head is None:
-            self.logger.warning("No ROOT found, used the first constituent, sentence:".format(
-                syntactic_root["sentence_order"]))
+            self.logger.warning("No ROOT found, used the first constituent, sentence: %s",
+                                syntactic_root["sentence_order"])
             root_head = constituents[0]
 
         self.link_syntax_non_terminal(parent=syntactic_root, child=root_head)
@@ -699,18 +726,17 @@ class SyntacticTreeUtils():
             # Use the head finder
             head = self.get_plausible_head_word(self.graph_builder.get_words(entity))
             if not head:
-                self.logger.warning("Unable to fit NE: {0}".format(entity))
+                self.logger.warning("Unable to fit NE: %s", entity)
                 head = self.graph_builder.get_words(entity)[-1]
             # With the artificial Terminal head find a plausible NP constituent
             constituent = self.get_plausible_constituent(head)
 
-
         self.graph_builder.set_head(entity, head)
         # Used in speaker sieve, The head word is the relevant info source
         entity["constituent"] = constituent
-        entity["doc_type"] = constituent["doc_type"]
-        entity["utterance"] = constituent["utterance"]
-        entity["quoted"] = constituent["quoted"]
+        entity["doc_type"] = head["doc_type"]
+        entity["utterance"] = head["utterance"]
+        entity["quoted"] = head["quoted"]
 
         self.graph_builder.link_root(entity, self.graph_builder.get_root(constituent))
         return constituent
@@ -786,13 +812,12 @@ class SyntacticTreeUtils():
         """
         # The constituent is in a VP that start with a copulative verb
         parent = self.graph_builder.get_syntactic_parent(constituent)
-        if constituent_tags.verb_phrases(parent["tag"]):
+        if constituent_tags.verb_phrases(parent.get("tag", False)):
             for child in self.graph_builder.get_syntactic_children(parent):
-                if child["span"] < constituent["span"] \
-                        and "pos" in child \
-                        and pos_tags.verbs(child["pos"]) \
-                        and child["form"] in verbs.copulative:
-                    return True
+                if child["span"] < constituent["span"]:
+                    if pos_tags.verbs(child.get("pos", False)):
+                        if child["form"] in verbs.copulative:
+                            return True
         return False
 
     def is_bare_plural(self, constituent):

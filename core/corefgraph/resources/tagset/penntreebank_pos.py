@@ -31,7 +31,7 @@ _adjective = "JJ"
 _adjective_comparative = "JJR"
 _adjective_superlative = "JJS"
 
-_conjunctions = ("CC",)
+_conjunctions = ("CC", ",")
 
 #comma = equality_checker(",")
 
@@ -43,8 +43,11 @@ female = fail
 male = fail
 neutral = fail
 singular = fail
+plural = fail
+plural = matcher("NNP?S")
 
-#Adjectives
+
+#Adecjtives
 adjectives = list_checker((_adjective, _adjective_comparative, _adjective_superlative))
 
 #pronouns
@@ -67,10 +70,9 @@ indefinite = fail
 # Enumerations
 enumerable_mention_words = list_checker((_proper_noun, "NML"))
 
-conjunction = equality_checker(_conjunctions)
+conjunction = list_checker(_conjunctions)
 interjections = equality_checker(_interjection)
 cardinal = equality_checker("CD")
 wh_words = list_checker((_wh_pronoun, _wh_possessive_pronoun, _wh_determiner, _wh_adverb))
 
-#TODO Adapt to semantic heads
 head_rules = "NN", "NNP", "NNPS", "NNS", "NX", "JJR", "POS"

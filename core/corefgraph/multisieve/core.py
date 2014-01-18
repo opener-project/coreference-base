@@ -17,7 +17,7 @@ class MultiSieveProcessor():
     """
 
     def __init__(self, graph, lang_code, sieves_list, sieves_options):
-        self.logger = getLogger("arquitecture")
+        self.logger = getLogger("multisieve")
         if not sieves_list or len(sieves_list) < 1:
             self.logger.debug("Default sieves")
             sieves_list = sieves.default
@@ -26,6 +26,8 @@ class MultiSieveProcessor():
             sieves_list = []
         self.graph = graph
         self.lang_code = lang_code.lower()
+        self.logger.warning("Lang code: %s", self.lang_code)
+        self.logger.debug("Sieves: %s ", [sieve for sieve in sieves_list])
         self.logger.debug("Sieves options: %s", sieves_options)
         self.sieves_instances = [sieves.sieves[sieve_class](self, sieves_options)
                                  for sieve_class in sieves_list]
@@ -48,9 +50,9 @@ class CoreferenceProcessor:
 
     def __init__(self, graph, lang,
                  sieves_list, sieves_options,
-                 extractor_options, singletons, logger=getLogger("sieves"), verbose=False):
+                 extractor_options, singletons, verbose=False):
+        self.logger = getLogger("multisieve")
         self.verbose = verbose
-        self.logger = logger
 
         self.singletons = singletons
         self.graph_builder = graph.graph["graph_builder"]
@@ -138,7 +140,7 @@ class CoreferenceProcessor:
             if singletons or len(mentions) > 1:
                 # Add the entity
                 self.graph_builder.add_entity(
-                    entity_id="EN{0}".format(index), mentions=entity, label=self.register[index])
+                    entity_id="EN{0}".format(index), mentions=mentions, label=self.register[index])
                 indexed_clusters += 1
         # Log the accepted clusters
         if self.verbose:

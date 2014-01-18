@@ -10,6 +10,7 @@ from ...multisieve.sieves.base import Sieve
 class DemonymMatch(Sieve):
     """ A demonym is coreferent to their location."""
     sort_name = "DMC"
+    #Filter options
     DISCOURSE_SALIENCE = False
     ONLY_FIRST_MENTION = False
 
@@ -24,6 +25,7 @@ class DemonymMatch(Sieve):
                  mention_form in demonym_by_location[mention_form]) or
                 (candidate_form in demonym_by_location and
                  mention_form in demonym_by_location[candidate_form]))):
-            self.logger.debug("DEMONYM MATCH: %s %s", mention_form, candidate_form)
+            self.debug("LINK MATCH: %s", candidate_form)
             return True
+        self.debug("LINK IGNORED: %s ", candidate["form"])
         return False

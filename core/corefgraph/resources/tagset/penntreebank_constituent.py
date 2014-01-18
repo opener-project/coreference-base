@@ -31,5 +31,7 @@ past_participle_verb = equality_checker("VBN")
 
 interjections = equality_checker(_interjection)
 simple_or_sub_phrase = list_checker((_simple, _subordinated))
-
 root= list_checker(("root", "top", "ROOT", "TOP"))
+
+
+

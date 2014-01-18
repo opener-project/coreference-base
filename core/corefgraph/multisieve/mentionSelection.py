@@ -12,6 +12,7 @@ from ..resources.demonym import demonyms
 from ..resources.dictionaries import stopwords, determiners, temporals, pronouns, verbs
 from ..resources.tagset import pos_tags, constituent_tags, ner_tags
 
+from logging import getLogger
 from collections import defaultdict
 
 
@@ -27,9 +28,13 @@ class SentenceCandidateExtractor:
     #no_mention = "no_mention"
 
     def __init__(self, graph, graph_builder, options=None, order_property="ord"):
+        self.logger = getLogger("mentions")
         if options:
             self.filter_same_head_word = not options.no_filter_same_head
+            self.logger.debug("Filter same head: %s", self.filter_same_head_word)
+
         else:
+            self.logger.debug("No filter same head.")
             self.filter_same_head_word = True
         self.filter_same_head_word = True
         self.order_property = order_property
@@ -62,13 +67,19 @@ class SentenceCandidateExtractor:
             # Silently insert the Named entity and fails mention
             for named_entity_mention in self.named_entities_by_constituent.pop(mention_candidate["id"]):
                 if self._filter_candidate(named_entity_mention, named_entity=True):
-                    self._add_mention(named_entity_mention)
+                    self._add_mention(named_entity_mention, named_entity_mention["constituent"])
+                    self.logger.debug("Mention accepted: -%s- %s NAME ENTITY %s", named_entity_mention["form"],
+                                      named_entity_mention["id"], named_entity_mention.get('ner', "XXX"))
 
         mention_span = mention_candidate["span"]
         mention_pos = mention_candidate.get("pos", "")
         mention_tag = mention_candidate.get("tag", "")
 
-        if mention_span in self.candidates_span or self._inside_ne(mention_span):
+        if mention_span in self.candidates_span:
+            self.logger.debug("Mention filtered cloned span: %s", mention_candidate["form"])
+            return False
+        if self._inside_ne(mention_span):
+            self.logger.debug("Mention filtered is inside NE: %s", mention_candidate["form"])
             return False
 
         # Pass filters
@@ -105,6 +116,12 @@ class SentenceCandidateExtractor:
             return False
         # Filter mentions
         result = self._filter_candidate(mention_candidate)
+        if result:
+            self.logger.debug("Mention accepted: -%s- %s %s", mention_candidate["form"], mention_candidate["id"],
+                              mention_candidate.get('pos', None) or mention_candidate.get('tag', None))
+        else:
+            self.logger.debug("Mention rejected: -%s- %s %s", mention_candidate["form"], mention_candidate["id"],
+                              mention_candidate.get('pos', None) or mention_candidate.get('tag', None))
         return result
 
     def _filter_candidate(self, mention_candidate, named_entity=False):
@@ -164,7 +181,7 @@ class SentenceCandidateExtractor:
         # Money and perceptual NEs
         if "%" in head_word["form"]:
             return False
-        if ner_tags.no_mention_ner(self.graph_builder.get_ner(mention_candidate)):
+        if ner_tags.no_mention_ner(mention_candidate.get("ner", ner_tags.no_ner)):
             return False
         # Remove interjections
         if pos_tags.interjections(head_word_pos) or constituent_tags.interjections(tag):
@@ -240,7 +257,7 @@ class SentenceCandidateExtractor:
         head = self.graph_builder.get_head_word(mention)
         head_pos = head["pos"]
         head_form = head["form"].lower()
-        head_ner = self.graph_builder.get_ner(head)
+        head_ner = head.get(ner_tags.no_ner)
         first_pos = words[0]["pos"]
         first_form = words[0]["form"].lower()
         if determiners.indefinite_articles(first_form):
@@ -249,7 +266,7 @@ class SentenceCandidateExtractor:
             mention[self.started_by_indefinite] = False
         # Pronoun mention
         if pos_tags.mention_pronouns(head_pos) or \
-                (len(words) == 1 and head_form in pronouns.all and ner_tags.no_mention_ner(head_ner)):
+                (len(words) == 1 and head_form in pronouns.all and not ner_tags.mention_ner(head_ner)):
             return self.pronoun_mention
         # Indefinite Mention
         if len(words) > 1 and (
@@ -259,7 +276,7 @@ class SentenceCandidateExtractor:
         # In other case is nominal
         return self.nominal_mention
 
-    def _add_mention(self, mention):
+    def _add_mention(self, mention, constituent=None):
         """ Add mention to the sentence mention cluster.
         Assign the HeadWord of the mention.
         Set if the mention is generics
@@ -268,8 +285,8 @@ class SentenceCandidateExtractor:
         mention_type = self._select_mention_type(mention)
 
         self._set_generics(mention)
-        self._set_appositive(mention)
-        self._set_predicative_nominative(mention)
+        self._set_appositive(mention, constituent)
+        self._set_predicative_nominative(mention, constituent)
         self._set_mention_type(mention, mention_type)
 
         self.sentence_mentions_bft_order.append(mention)
@@ -366,14 +383,14 @@ class SentenceCandidateExtractor:
                                             for mention_list in self.sentence_mentions_bft_constituent_order_lists]
         return sentence_mentions_bst_order, sentence_mentions_textual_order, sentence_mentions_bst_order_list
 
-    def _set_appositive(self, mention):
+    def _set_appositive(self, mention, constituent):
         """ Set the mention as appositive.
         @param mention: The mention that is appositive
         """
-        mention["appositive"] = self.tree_utils.is_appositive_construction_child(mention)
+        mention["appositive"] = self.tree_utils.is_appositive_construction_child(constituent or mention)
 
-    def _set_predicative_nominative(self, mention):
+    def _set_predicative_nominative(self, mention, constituent):
         """ Set the mention as predicative-nominative.
         @param mention: The mention that is predicative-nominative.
         """
-        mention["predicative_nominative"] = self.tree_utils.is_predicative_nominative(mention)
+        mention["predicative_nominative"] = self.tree_utils.is_predicative_nominative(constituent or mention)

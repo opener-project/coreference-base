@@ -49,13 +49,17 @@ def generate_parser():
     parser.add_argument('--metrics', dest='metrics', nargs="*", action='store',
                         default=["muc", "bcub", "ceafm", "ceafe", "blanc"],
                         help="The metric of the evaluation.")
-    parser.add_argument('--post_fix', dest='post_fix', action='store', default="",
-                        help="A mark put in the end of the files to be read like 'file.spt_all_sieves'")
-    parser.add_argument('--caption', dest='caption', action='store', default="",
+    parser.add_argument('--speaker', dest='caption', action='store', default="",
                         help="The name of the configuration pack'")
+    parser.add_argument('--output_eval_name', dest='caption', action='store', default="",
+                        help="The name of the configuration pack")
+    parser.add_argument('--speaker_extension', dest='speaker_extension', action='store', default=None,
+                        help="")
+    parser.add_argument('--treebank_extension', dest='treebank_extension', action='store', default=None,
+                        help="")
     parser.add_argument('--evaluation_script', dest='evaluation_script', action='store', default="",
                         help="The script of evaluation'")
-    parser.add_argument('--golden', dest='golden', action='store', default="",
+    parser.add_argument('--gold', dest='golden', action='store', default="",
                         help="The golden annotation.'")
     parser.add_argument('--external_tree', dest='use_external_tree_files', action='store_true')
     return parser
@@ -69,46 +73,54 @@ def file_processor(file_name, config):
     :param config: The configuration for the coreference module.
     :return: NOTHING
     """
-    logger.info("Start parsing {0}".format(file_name))
+    logger.info("Start parsing %s", file_name)
     # Create the file names in base of original file name
     path, full_name = os.path.split(file_name)
     name, ext = os.path.splitext(full_name)
     base_name = os.path.join(path, name)
 
     store_file = base_name + "." + config.result
-    kaf_filename = base_name + ext + config.post_fix
-    if config.use_external_tree_files:
+    kaf_filename = base_name + ext
+    logger.debug("Reading KAF from: %s", kaf_filename)
+    #files
+    if config.treebank_extension:
         logger.info("Using TreeBank trees")
-        tree_filename = base_name + ".spt" + config.post_fix
+        tree_filename = base_name + config.treebank_extension
+        try:
+            trees = codecs.open(tree_filename, mode="r").read()
+        except IOErrro as ex:
+            trees = None
+            logger.warning("Error in treebank file %s: %s", tree_filename, ex)
     else:
         logger.info("Using kaf trees")
-        tree_filename = None
-    speaker_filename = base_name + ".spk" + config.post_fix
+        trees = None
 
-    logger.debug("Stored in: {0}\n Kaf: {1} Treebank:{2} Speaker{3}".format(
-        store_file, kaf_filename, tree_filename, speaker_filename))
+    if config.speaker_extension:
+        speaker_filename = base_name + config.speaker_extension
+        try:
+            speakers = codecs.open(speaker_filename, mode="r").read()
+        except IOError as ex:
+            logger.warning("Error in speaker file %s: %s", speaker_filename, ex)
+            speakers = None
+    else:
+        speakers = None
+        logger.debug("NO speaker file")
 
     # If is a Conll file add the document and part info
     if config.conll:
         #"--conll", "--document_id", document_id, "--part_id", part_id]
         config.__dict__["document_id"] = name.split("#")[0]
         config.__dict__["part_id"] = name.split("#")[1]
-    #files
-    try:
-        speakers = codecs.open(speaker_filename, mode="r").read()
-    except IOError as ex:
-        logger.warning("Error in speaker file {0}".format(ex))
-        speakers = None
 
     # Open the files and pass the data to the module
+    logger.info("Parsing stored in %s", store_file)
     with codecs.open(store_file, "w") as output_file:
         process_file(
             config=config,
             text=codecs.open(kaf_filename, mode="r").read(),
-            parse_tree=tree_filename and codecs.open(tree_filename, mode="r").read(),
+            parse_tree=trees,
             speakers_list=speakers,
             output=output_file)
-    logger.info("Parsing stored in {0}".format(store_file))
 
 
 def evaluate(general_config, experiment_config):
@@ -117,7 +129,7 @@ def evaluate(general_config, experiment_config):
     @param general_config: The configuration applicable to all corpus
     @param experiment_config: the configuration applicable to this file.
     """
-    logger.info("Evaluating: {0}".format(experiment_config.metrics))
+    logger.info("Evaluating: %s", experiment_config.metrics)
     path, script = os.path.split(experiment_config.evaluation_script)
     for metric in experiment_config.metrics:
         command = [
@@ -127,11 +139,11 @@ def evaluate(general_config, experiment_config):
             os.path.abspath(experiment_config.golden),
             experiment_config.result,
             metric]
-        logger.info("Metric: {0}".format(metric))
-        logger.debug("Command: {0}".format(command))
+        logger.info("Metric: %s", metric)
+        logger.debug("Command: %s", command)
         err, out = pycorpus.CorpusProcessor.launch_with_output(command, cwd=os.path.abspath(path))
         store_file = "{0}.{1}.{2}".format(NAME_START, experiment_config.caption, metric)
-        logger.info("Evaluation stored in {0}".format(store_file))
+        logger.info("Evaluation stored in %s", store_file)
         with codecs.open(store_file, "w") as output_file:
             output_file.write(err)
             output_file.write(out)

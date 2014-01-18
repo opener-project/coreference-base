@@ -16,7 +16,7 @@ class TextProcessor:
     """ Process a single text or corpus with several NLP stages managing the result as graphs.
     """
 
-    def __init__(self, verbose, reader, lang, sieves, sieves_options, extractor_options, singleton,
+    def __init__(self, verbose, reader, secure_tree, lang, sieves, sieves_options, extractor_options, singleton,
                  logger=logging.getLogger("arquitecture")):
         self.verbose = verbose
         self.logger = logger
@@ -27,7 +27,7 @@ class TextProcessor:
         self.extractor_options = extractor_options
         # Graph builder and manager
         self.graph = None
-        self.graph_builder = KafAndTreeGraphBuilder(reader)
+        self.graph_builder = KafAndTreeGraphBuilder(reader, secure_tree)
         self.gender_extractor = GenderNumberExtractor(
             probabilistic_gender=GenderNumberExtractor.use_probabilistic_gender_classification in extractor_options)
         #literator =  SpeakerExtractor(graph=self.graph, graph_builder=self.graph_builder)
@@ -48,8 +48,7 @@ class TextProcessor:
         self.tree_utils = self.graph_builder.get_graph_utils()
         self.coreference_processor = CoreferenceProcessor(
             graph=graph, lang=self.lang, sieves_list=self.sieves, sieves_options=self.sieves_options,
-            extractor_options=self.extractor_options, singletons=self.singleton,
-            logger=self.logger, verbose=self.verbose)
+            extractor_options=self.extractor_options, singletons=self.singleton, verbose=self.verbose)
 
     def build_graph(self, document):
         """Build a graph form external parser.
@@ -79,7 +78,7 @@ class TextProcessor:
             for index, entity in enumerate(candidatures):
                 # The entities are singletons yet
                 mention = self.graph.node[entity[0]]
-                ner = self.graph_builder.get_ner(mention)
+                ner = mention.get("ner", "")
                 head_word = self.graph_builder.get_head_word(mention)
                 if head_word:
                     head_word_form = head_word["form"]

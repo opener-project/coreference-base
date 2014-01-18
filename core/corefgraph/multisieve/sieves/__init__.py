@@ -1,8 +1,11 @@
+# coding=utf-8
 __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
+""" All the sieves are published here for the multi-sieve system. They are accessible to the multi-sieve system by their
+sort name. Also the default sieve pack is defined here.
+"""
 
 from . import speakertMatch
-from . import exactMatch
-from . import relaxedExactMatch
+from . import stringMatch
 from . import preciseConstruct
 from . import extraPreciseConstruct
 from . import strictHeadMatching
@@ -11,10 +14,10 @@ from . import pronoumMatch
 sieves = {
     speakertMatch.SpeakerSieve.sort_name:
     speakertMatch.SpeakerSieve,
-    exactMatch.ExactMatch.sort_name:
-    exactMatch.ExactMatch,
-    relaxedExactMatch.RelaxedExactMatch.sort_name:
-    relaxedExactMatch.RelaxedExactMatch,
+    stringMatch.ExactStringMatch.sort_name:
+    stringMatch.ExactStringMatch,
+    stringMatch.RelaxedStringMatch.sort_name:
+    stringMatch.RelaxedStringMatch,
     preciseConstruct.AppositiveConstruction.sort_name:
     preciseConstruct.AppositiveConstruction,
     preciseConstruct.RoleAppositiveConstruction.sort_name:

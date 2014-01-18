@@ -31,18 +31,18 @@ def process(config, text, parse_tree, speakers_list, output):
     :param output: The stream where the output is write.
     """
     # This is because properties is used to spread the language all over the module
-    logger.info("Setting language to {0}".format(config.language))
+    logger.info("Setting language to %s", config.language)
     properties.set_lang(config.language)
     from corefgraph.text_processor import TextProcessor
     # End of voodoo
-    processor = TextProcessor(verbose=config.verbose, reader=config.reader, lang=config.language,
-                              sieves=config.sieves, sieves_options=config.sieves_options,
+    processor = TextProcessor(verbose=config.verbose, reader=config.reader, secure_tree=config.secure_tree,
+                              lang=config.language, sieves=config.sieves, sieves_options=config.sieves_options,
                               extractor_options=config.extractor_options, singleton=config.singleton)
 
     document = (text, parse_tree, speakers_list)
     processor.process_text(document)
     if not config.linguistic_parser_name:
-	config.linguistic_parser_name="corefgraph-"+config.language
+        config.linguistic_parser_name = "corefgraph-"+config.language
     if config.conll:
         processor.store_analysis_conll(stream=output, document_id=config.document_id, part_id=config.part_id)
     else:
@@ -97,6 +97,7 @@ def generate_parser():
     parser.add_argument('--treebank', dest='parse_tree', action='store', default=None)
     parser.add_argument('--speakers', dest='speakers', action='store', default=None)
     parser.add_argument('--language', dest='language', action='store', default="en")
+    parser.add_argument('--unsafe_tree', dest='secure_tree', action='store_false')
     parser.add_argument('--reader', dest='reader', action='store', default="KAF")
     parser.add_argument('--conll', dest='conll', action='store_true')
     parser.add_argument('--no_filter_same_head', dest='no_filter_same_head', action='store_true')

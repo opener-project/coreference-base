@@ -52,7 +52,7 @@ def bergma_split(filename):
                     data[form] = tuple([int(x) for x in stats.split()])
                 except Exception as ex:
                     pass
-                    logger.debug("line sipped: {0}: {1}".format(line, ex))
+                    logger.debug("line sipped: %s: %s", line, ex)
             try:
                 with open(marshal_filename, 'w') as data_file:
                     marshal.dump(data, data_file, -1)

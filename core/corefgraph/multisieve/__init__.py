@@ -1,5 +1,5 @@
 # coding=utf-8
-""" A coreference resloution module based on Stanford Multisieve System for multi language. The system is not an exact
+""" A coreference resolution module based on Stanford Multisieve System for multi language. The system is not an exact
 replica of the system described in the papers.
 
 

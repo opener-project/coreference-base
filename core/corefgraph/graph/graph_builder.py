@@ -74,13 +74,6 @@ class BaseGraphBuilder(object):
         """
         constituent["ner"] = ner_type
 
-    @staticmethod
-    def get_ner(constituent):
-        """ Get the NER type to a constituent.
-        @param constituent: The constituent
-        """
-        return constituent.get("ner", ner_tags.no_ner)
-
     #Sentence Related
     def add_sentence(self, root_index, sentence_form, sentence_label, sentence_id):
         """ Create a new sentence in the graph. Also link it to the previous sentence.
@@ -410,9 +403,7 @@ class BaseGraphBuilder(object):
         @param head: The child constituent or word
         """
         # Inverse inherit
-
         head[self.head_edge_type] = True
-
         # link
         self.set_head_word(parent, self.get_head_word(head))
         GraphWrapper.link(self.graph, parent, head, self.head_edge_type)
@@ -423,8 +414,11 @@ class BaseGraphBuilder(object):
         """
         if element["type"] == self.word_node_type:
             return element
-        return GraphWrapper.get_out_neighbour_by_relation_type(
+        head = GraphWrapper.get_out_neighbour_by_relation_type(
             graph=self.graph, node=element, relation_type=self.head_edge_type)
+        if head is None:
+            return self.get_syntactic_children(element=element)[-1]
+        return head
 
     def is_head(self, element):
         """ Determines if the constituent is head or its parent.
