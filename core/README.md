@@ -23,6 +23,10 @@ for drone.io testing:
 
     cat input.kaf | python -m corefgraph.process.file --language (de|en|es|fr|it|nl) --time_stamp now 
 
+if unsure that the constituent parsing KAF layer is well-formattted: 
+
+   cat input.kaf | python -m corefgraph.process.file --language (de|en|es|fr|it|nl) --unsafe_tree
+
 for help: 
 
     python -m corefgraph.process.file --help
