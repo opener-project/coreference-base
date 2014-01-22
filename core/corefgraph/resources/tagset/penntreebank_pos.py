@@ -9,7 +9,7 @@ Elements starting with _ is only for internal use.
 __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
 
-from ..lambdas import equality_checker, list_checker, fail
+from ..lambdas import equality_checker, list_checker, matcher, fail
 
 
 # Inner usage only

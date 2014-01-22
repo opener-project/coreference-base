@@ -1,11 +1,11 @@
 # coding=utf-8
-__author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
+__author__ = 'Rodrigo Agerri <rodrigo.agerri@ehu.es>'
 
 from ..lambdas import equality_checker, list_checker, fail
 
 _personal_pronoun = "PPER"
 _possessive_pronoun = "PPOS"
-_wh_pronoun = "PWS" #Also PWAT
+_wh_pronoun = "PWS" 
 _wh_possessive_pronoun = "PWAV"
 _wh_determiner = fail
 _wh_adverb = fail
@@ -21,7 +21,7 @@ _adjective = "ADJA" #Also ADJD
 _adjective_comparative = "ADJD"
 _adjective_superlative = "ADJD"
 
-_conjunctions = ("KON",) ##Also KOUS KOUI and KOKOM
+_conjunctions = ("KON","KOUS","KOUI","KOKOM") 
 
 # features questions
 
@@ -36,7 +36,7 @@ adjectives = list_checker((_adjective, _adjective_comparative, _adjective_superl
 #pronouns
 personal_pronouns = list_checker((_personal_pronoun, _possessive_pronoun))
 relative_pronouns = list_checker((_wh_pronoun, _wh_possessive_pronoun, 'PWAT'))
-pronouns = list_checker((_personal_pronoun, _possessive_pronoun, _wh_pronoun, _wh_possessive_pronoun))
+pronouns = list_checker((_personal_pronoun, _possessive_pronoun, _wh_pronoun, _wh_possessive_pronoun,"PWAT"))
 mention_pronouns = lambda x: relative_pronouns(x) or personal_pronouns(x)
 
 
@@ -57,4 +57,4 @@ interjections = equality_checker(_interjection)
 cardinal = equality_checker("CD")
 wh_words = list_checker((_wh_pronoun, _wh_possessive_pronoun, _wh_determiner, _wh_adverb))
 
-head_rules = "NN", "NE"
+head_rules = "NN", "NE", "MPN", "NP", "CNP", "PN", "CAR"

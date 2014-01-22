@@ -1,7 +1,7 @@
 # coding=utf-8
 __author__ = 'Rodrigo Agerri <rodrigo.agerri@ehu.es>'
 
-from ..lambdas import equality_checker, list_checker, fail
+from ..lambdas import equality_checker, list_checker, matcher, fail
 
 ## INNER 
 # Clauses
@@ -23,8 +23,8 @@ _direct_question = "S"
 """Inverted declarative sentence, i.e. one in which the subject follows the tensed verb or modal."""
 _inverted_declarative = "S"
 
-_noun_phrase = "NP"
-_wh_noun_phrase = "NP"
+_noun_phrase = matcher("NP.*")
+_wh_noun_phrase = matcher("NP.*")
 
 _interjection = "ITJ"
 _particle = "PTKZU"  #Also  PTKNEG, PTVZ, PTKSNT, PTKA
@@ -32,13 +32,13 @@ _verb_phrase = "VP"  # Also VZ
 _location_constituent = fail
 
 #
-clauses = list_checker((_simple, _subordinated, _direct_question, _inverted_declarative, _inverted_question))
-mention_constituents = list_checker((_noun_phrase, _wh_noun_phrase))
+clauses = list_checker((_simple,"OC", _subordinated, _direct_question, _inverted_declarative, _inverted_question))
+mention_constituents = matcher("C?NP.*|MPN")
 ner_constituent = list_checker((_location_constituent,))
 noun_phrases = equality_checker(_noun_phrase)
-verb_phrases = equality_checker(_verb_phrase)
+verb_phrases = list_checker((_verb_phrase,"VZ"))
 
-particle_constituents = equality_checker(_particle)
+particle_constituents = list_checker(("PTKZU","PTKNEG","PTVZ","PTKSNT","PTKA"))
 past_participle_verb = equality_checker("VBN")
 
 interjections = equality_checker(_interjection)
