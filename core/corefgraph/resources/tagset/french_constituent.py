@@ -26,7 +26,8 @@ _location_constituent = fail
 
 #
 clauses = list_checker((_simple, _subordinated, _direct_question, _inverted_declarative, _inverted_question))
-mention_constituents = list_checker((_noun_phrase, _wh_noun_phrase))
+#mention_constituents = list_checker((_noun_phrase, _wh_noun_phrase))
+mention_constituents = matcher("NP.*|WHNP")
 ner_constituent = list_checker((_location_constituent,))
 noun_phrases = equality_checker(_noun_phrase)
 verb_phrases = equality_checker(_verb_phrase)
