@@ -2,7 +2,7 @@
 __author__ = 'Valeria Quochi <valeria.quochi@ilc.cnr.it>'
 __date__= '5/16/2013'
 
-from ..lambdas import equality_checker, list_checker, fail
+from ..lambdas import equality_checker, list_checker, matcher, fail
 
 ## INNER 
 # Clauses

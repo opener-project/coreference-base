@@ -1,7 +1,7 @@
 # coding=utf-8
 __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
-from ..lambdas import equality_checker, list_checker, fail
+from ..lambdas import equality_checker, list_checker, matcher, fail
 
 ## INNER
 # Clauses
