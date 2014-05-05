@@ -1,4 +1,5 @@
 require 'open3'
+require 'nokogiri'
 
 require_relative 'base/version'
 
@@ -29,6 +30,7 @@ module Opener
       #  underlying Java code.
       #
       def initialize(options = {})
+        
         @args    = options.delete(:args) || []
         @options = options
       end
@@ -39,7 +41,7 @@ module Opener
       # @return [String]
       #
       def command
-        return "python -E -O #{kernel} -l #{language} #{args.join(' ')}"
+        return "#{adjust_python_path} python -E -OO -m #{kernel} #{args.join(' ')}"
       end
 
       ##
@@ -49,12 +51,11 @@ module Opener
       # @param [String] input The input to process.
       # @return [Array]
       #
-      def run(input = nil)
-        unless File.file?(kernel)
-          raise "The Python kernel (#{kernel}) does not exist"
+      def run(input)
+        @args << ["--language #{language(input)}"]
+        Dir.chdir(core_dir) do
+          capture(input)
         end
-
-        return Open3.capture3(command, :stdin_data => input, :chdir => core_dir)
       end
 
       ##
@@ -76,12 +77,22 @@ module Opener
       end
 
       protected
-
       ##
       # @return [String]
       #
-      def language
-        return options[:language] || DEFAULT_LANGUAGE
+      def adjust_python_path
+        site_packages =  File.join(core_dir, 'site-packages')
+        "env PYTHONPATH=#{site_packages}:$PYTHONPATH"
+      end
+      
+      def capture(input)
+        Open3.popen3(*command.split(" ")) {|i, o, e, t|
+          out_reader = Thread.new { o.read }
+          err_reader = Thread.new { e.read }
+          i.write input
+          i.close
+          [out_reader.value, err_reader.value, t.value]
+        }
       end
 
       ##
@@ -95,7 +106,16 @@ module Opener
       # @return [String]
       #
       def kernel
-        return File.join(core_dir, 'process.py')
+        return 'corefgraph.process.file'
+      end
+      
+      ##
+      # @return the language from the KAF
+      #
+      def language(input)
+        document = Nokogiri::XML(input)
+        language = document.at('KAF').attr('xml:lang')
+        return language
       end
     end # Base
   end # Coreferences
