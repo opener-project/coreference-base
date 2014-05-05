@@ -7,14 +7,23 @@ Implements Stanford Multi-Sieve Pass Coreference System as their 2013 Computatio
 
 __author__ = 'Josu Bermúdez <josu.bermudez@deusto.es>, Rodrigo Agerri <rodrigo.agerri@ehu.es>'
 
+import sys
+import getopt
+import os
+
+this_folder = os.path.dirname(os.path.realpath(__file__))
+
+# This updates the load path to ensure that the local site-packages directory
+# can be used to load packages (e.g. a locally installed copy of lxml).
+sys.path.append(os.path.join(this_folder, '../../site-packages/pre_build'))
+sys.path.append(os.path.join(this_folder, '../../site-packages/pre_install'))
+
 from corefgraph import properties
 
 
 import argparse
 import logging
 import logging.config
-
-import sys
 import codecs
 
 
