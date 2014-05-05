@@ -1,18 +1,14 @@
 Given /^the kaf file "(.*?)"$/ do |filename|
-  @kaf_input    = fixture_file(filename)
-  @kaf_filename = filename
-end
-
-Given /^the tree file "(.*?)"$/ do |filename|
-  @tree_input    = fixture_file(filename)
-  @tree_filename = filename
+  @input    = fixture_file(filename)
+  @filename = filename
 end
 
 Given /^I put them through the kernel$/ do
   tmp_filename = "output_#{rand(1000)}_#{@kaf_filename}_#{@tree_filename}"
   @output      = tmp_file(tmp_filename)
-  args         = ["-files #{@kaf_input} #{@tree_input}"]
-  output, _    = kernel(args).run
+  input        = File.read(@input)
+  args         = ["--time_stamp *"]
+  output, _    = kernel(args).run(input)
 
   File.open(@output, 'w') do |handle|
     handle.write(output)
