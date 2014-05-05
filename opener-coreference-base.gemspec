@@ -17,6 +17,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'rake'
   gem.add_dependency 'opener-build-tools', ['>= 0.2.7']
+  gem.add_dependency 'nokogiri'
 
   gem.add_development_dependency 'cucumber'
   gem.add_development_dependency 'rspec'
