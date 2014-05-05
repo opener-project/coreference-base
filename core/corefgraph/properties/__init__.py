@@ -29,7 +29,7 @@ try:
         import sys
         sys.stderr.write("NO LOGGING: {0} \nError loading configuration: {1}".format(config_filename, ex))
 except Exception as ex:
-    sys.stdout.write("Error importing yalm: " + str(ex))
+    sys.stderr.write("Error importing yaml: " + str(ex))
 
 
 lang = None
