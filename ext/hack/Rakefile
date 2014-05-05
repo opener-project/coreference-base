@@ -4,9 +4,14 @@ require_relative 'support'
 desc 'Verifies the requirements'
 task :requirements do
   verify_requirements
+  require_executable("make")
 end
 
-task :default => :requirements do
+task :compile => :requirements do
+  compile_vendored_code
+end
+
+task :default => [:compile] do
   path = File.join(PYTHON_SITE_PACKAGES, 'pre_install')
 
   pip_install(PRE_INSTALL_REQUIREMENTS, path)
