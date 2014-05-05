@@ -7,9 +7,7 @@ task :requirements do
   require_executable("make")
 end
 
-task :compile => :requirements do
-  compile_vendored_code
-end
+task :compile => :requirements
 
 task :default => [:compile] do
   path = File.join(PYTHON_SITE_PACKAGES, 'pre_install')
