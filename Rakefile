@@ -24,13 +24,8 @@ task :clean => [
   'clean:gems'
 ]
 
-desc 'Compile all C code'
-task :compile_c do
-  compile_vendored_code
-end
-
 desc 'Compiles everything'
-task :compile => [:compile_c, 'python:compile']
+task :compile => ['python:compile']
 
 desc 'Runs the tests'
 task :test => :compile do
