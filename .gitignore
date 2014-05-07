@@ -23,6 +23,5 @@ Gemfile.lock
 .rvmrc
 
 core/site-packages/pre_install/*
-core/site-packages/pre_build/*
 
 !.gitkeep

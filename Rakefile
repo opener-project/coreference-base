@@ -6,7 +6,7 @@ require_relative 'ext/hack/support'
 
 desc 'Lists all the files of the Gemspec'
 task :files do
-  gemspec = Gem::Specification.load('opener-coreference-base.gemspec')
+  gemspec = Gem::Specification.load('opener-opinion-detector-basic.gemspec')
 
   puts gemspec.files.sort
 end
@@ -25,7 +25,7 @@ task :clean => [
 ]
 
 desc 'Compiles everything'
-task :compile => ['python:compile']
+task :compile => 'python:compile'
 
 desc 'Runs the tests'
 task :test => :compile do
