@@ -36,7 +36,7 @@ desc 'Performs preparations for building the Gem'
 task :before_build => [:requirements, 'python:clean:bytecode'] do
   path = File.join(PYTHON_SITE_PACKAGES, 'pre_build')
 
-  pip_install(PRE_BUILD_REQUIREMENTS, path)
+  install_python_packages(PRE_BUILD_REQUIREMENTS, path)
 end
 
 task :build   => :before_build
