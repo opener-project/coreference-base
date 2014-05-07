@@ -1,7 +1,7 @@
 module Opener
   module Coreferences
     class Base
-      VERSION = '0.7.4'
+      VERSION = '0.7.5'
     end # Base
   end # Coreferences
 end # Opener
