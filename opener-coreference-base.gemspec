@@ -1,5 +1,7 @@
 require File.expand_path('../lib/opener/coreferences/base/version', __FILE__)
 
+generated = Dir.glob('core/site-packages/pre_build/**/*')
+
 Gem::Specification.new do |gem|
   gem.name        = 'opener-coreference-base'
   gem.version     = Opener::Coreferences::Base::VERSION
@@ -11,7 +13,7 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = '>= 1.9.2'
 
-  gem.files       = `git ls-files`.split("\n").sort
+  gem.files       = (`git ls-files`.split("\n") + generated).sort
   gem.executables = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files  = gem.files.grep(%r{^(test|spec|features)/})
 
