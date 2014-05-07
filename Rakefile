@@ -33,7 +33,7 @@ task :test => :compile do
 end
 
 desc 'Performs preparations for building the Gem'
-task :before_build => :requirements, 'python:clean:bytecode'
+task :before_build => [:requirements, 'python:clean:bytecode']
 
 task :build   => :before_build
 task :default => :test
