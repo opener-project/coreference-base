@@ -1,2 +1,4 @@
 networkx
 pyyaml
+git+https://github.com/opener-project/VU-kaf-parser.git#egg=VUKafParserPy
+hg+https://bitbucket.org/Josu/pykaf#egg=pykaf
