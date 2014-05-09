@@ -15,6 +15,7 @@ import logging
 import logging.config
 import os
 import sys
+from dictconfig import *
 
 default_ner_tag_set = "default"
 default_dep_tag_set = "default"
@@ -24,7 +25,7 @@ try:
     import yaml
     config_filename = os.path.abspath(os.path.join(__path__[0], 'logging.conf'))
     try:
-        logging.config.dictConfig(yaml.load(open(config_filename)))
+        dictconfig.dictConfig(yaml.load(open(config_filename)))
     except Exception as ex:
         import sys
         sys.stderr.write("NO LOGGING: {0} \nError loading configuration: {1}".format(config_filename, ex))
