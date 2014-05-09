@@ -23,6 +23,6 @@ Gemfile.lock
 .rvmrc
 
 core/site-packages/pre_install/*
-core/site-packages/pre_build/*
+core/site-packages/pre_build/VUKafParserPy/*
 
 !.gitkeep
