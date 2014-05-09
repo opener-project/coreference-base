@@ -20,7 +20,8 @@ class SpeakerSieve(Sieve):
     NO_PRONOUN = False
 
     # Default behavior.
-    configs = {"SPEAKER_WE_WE", "SPEAKER_I_I", "SPEAKER_YOU_YOU", "SPEAKER_I", "SPEAKER_I_YOU", "SPEAKER_REFLEX"}
+    config_array = ["SPEAKER_WE_WE", "SPEAKER_I_I", "SPEAKER_YOU_YOU", "SPEAKER_I", "SPEAKER_I_YOU", "SPEAKER_REFLEX"]
+    configs = set(x for x in config_array)
     WE_MATCH = False
     I_MATCH = True
     YOU_MATCH = True

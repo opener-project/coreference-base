@@ -26,7 +26,8 @@ class Sieve(object):
     DISCOURSE_SALIENCE = True
     NO_STOP_WORDS = False
 
-    UNKNOWN = {GenderNumberExtractor.UNKNOWN, ner_tags.no_ner, ner_tags.other}
+    unknown_array = [GenderNumberExtractor.UNKNOWN, ner_tags.no_ner, ner_tags.other]
+    UNKNOWN = set(x for x in unknown_array)
 
     def __init__(self, multi_sieve_processor, options):
         self.logger = getLogger("sieves")

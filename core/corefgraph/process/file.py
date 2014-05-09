@@ -20,12 +20,11 @@ sys.path.append(os.path.join(this_folder, '../../site-packages/pre_install'))
 
 from corefgraph import properties
 
-
+from lxml import etree
 import argparse
 import logging
 import logging.config
 import codecs
-
 
 logger = logging.getLogger("FILE_PROCESSOR")
 
