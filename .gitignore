@@ -24,5 +24,6 @@ Gemfile.lock
 
 core/site-packages/pre_install/*
 core/site-packages/pre_build/VUKafParserPy/*
+core/mentions.out
 
 !.gitkeep
