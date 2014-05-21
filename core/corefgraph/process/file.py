@@ -16,7 +16,6 @@ this_folder = os.path.dirname(os.path.realpath(__file__))
 # This updates the load path to ensure that the local site-packages directory
 # can be used to load packages (e.g. a locally installed copy of lxml).
 sys.path.append(os.path.join(this_folder, '../../vendor'))
-sys.path.append(os.path.join(this_folder, '../../site-packages/pre_build'))
 sys.path.append(os.path.join(this_folder, '../../site-packages/pre_install'))
 
 from corefgraph import properties
