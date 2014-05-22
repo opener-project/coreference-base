@@ -12,7 +12,9 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = '>= 1.9.2'
 
   gem.files = Dir.glob([
+    'core/corefgraph/**/*',
     'core/site-packages/pre_build/**/*',
+    'vendor/**/*',
     'ext/**/*',
     'lib/**/*',
     '*.gemspec',
