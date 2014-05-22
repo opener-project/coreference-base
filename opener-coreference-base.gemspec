@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
   gem.files = Dir.glob([
     'core/corefgraph/**/*',
     'core/site-packages/pre_build/**/*',
-    'vendor/**/*',
+    'core/vendor/**/*',
     'ext/**/*',
     'lib/**/*',
     '*.gemspec',
