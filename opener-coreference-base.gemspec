@@ -13,7 +13,6 @@ Gem::Specification.new do |gem|
 
   gem.files = Dir.glob([
     'core/corefgraph/**/*',
-    'core/site-packages/pre_build/**/*',
     'core/vendor/**/*',
     'ext/**/*',
     'lib/**/*',
