@@ -24,8 +24,8 @@ Gem::Specification.new do |gem|
   gem.executables = Dir.glob('bin/*').map { |file| File.basename(file) }
 
   gem.add_dependency 'rake'
-  gem.add_dependency 'opener-build-tools', ['>= 0.2.7']
   gem.add_dependency 'nokogiri'
+  gem.add_dependency 'cliver'
 
   gem.add_development_dependency 'cucumber'
   gem.add_development_dependency 'rspec', '~> 3.0'

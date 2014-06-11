@@ -1,16 +1,8 @@
-require 'rake'
-require_relative 'support'
+import File.expand_path('../../../task/requirements.rake', __FILE__)
+import File.expand_path('../../../task/python.rake', __FILE__)
 
-desc 'Verifies the requirements'
-task :requirements do
-  verify_requirements
-  require_executable("make")
-end
-
-task :compile => :requirements
-
-task :default => [:compile] do
-  path = File.join(PYTHON_SITE_PACKAGES, 'pre_install')
-
-  pip_install(PRE_INSTALL_REQUIREMENTS, path)
+task :default => :requirements do
+  Dir.chdir(File.expand_path('../../../', __FILE__)) do
+    Rake::Task['core/site-packages/pre_install'].invoke
+  end
 end
