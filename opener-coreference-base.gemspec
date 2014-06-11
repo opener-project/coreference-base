@@ -18,7 +18,8 @@ Gem::Specification.new do |gem|
     'lib/**/*',
     '*.gemspec',
     '*_requirements.txt',
-    'README.md'
+    'README.md',
+    'task/*'
   ]).select { |file| File.file?(file) }
 
   gem.executables = Dir.glob('bin/*').map { |file| File.basename(file) }
