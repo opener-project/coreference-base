@@ -12,6 +12,9 @@
     <linguisticProcessors layer="constituents">
       <lp name="ehu-parse-it" timestamp="now" version="1.0" />
     </linguisticProcessors>
+    <linguisticProcessors layer="entities">
+      <lp name="ehu-nerc-it" timestamp="now" version="1.0" />
+    </linguisticProcessors>
   </kafHeader>
   <text>
     <wf wid="w1" sent="1" para="1" offset="0" length="2">La</wf>
@@ -822,6 +825,18 @@
       </span>
     </term>
   </terms>
+  <entities>
+    <entity eid="e1" type="organization">
+      <references>
+        <!--Università di Akron-->
+        <span>
+          <target id="t91" />
+          <target id="t92" />
+          <target id="t93" />
+        </span>
+      </references>
+    </entity>
+  </entities>
   <constituency>
     <tree>
       <!--Non-terminals-->

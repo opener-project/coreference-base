@@ -9,8 +9,11 @@
     <linguisticProcessors layer="terms">
       <lp name="ehu-pos-es" timestamp="now" version="1.0" />
     </linguisticProcessors>
-    <linguisticProcessors layer="constituents">
+    <linguisticProcessors layer="constituency">
       <lp name="ehu-parse-es" timestamp="now" version="1.0" />
+    </linguisticProcessors>
+    <linguisticProcessors layer="entities">
+      <lp name="ehu-nerc-es" timestamp="now" version="1.0" />
     </linguisticProcessors>
   </kafHeader>
   <text>
@@ -465,6 +468,47 @@
       </span>
     </term>
   </terms>
+  <entities>
+    <entity eid="e1" type="misc">
+      <references>
+        <!--premio Príncipe de Asturias de Comunicación-->
+        <span>
+          <target id="t28" />
+          <target id="t29" />
+          <target id="t30" />
+          <target id="t31" />
+          <target id="t32" />
+          <target id="t33" />
+        </span>
+      </references>
+    </entity>
+    <entity eid="e2" type="location">
+      <references>
+        <!--Humanidades-->
+        <span>
+          <target id="t35" />
+        </span>
+      </references>
+    </entity>
+    <entity eid="e3" type="person">
+      <references>
+        <!--Buster Keaton-->
+        <span>
+          <target id="t42" />
+          <target id="t43" />
+        </span>
+      </references>
+    </entity>
+    <entity eid="e4" type="location">
+      <references>
+        <!--Buenos Aires-->
+        <span>
+          <target id="t55" />
+          <target id="t56" />
+        </span>
+      </references>
+    </entity>
+  </entities>
   <constituency>
     <tree>
       <!--Non-terminals-->

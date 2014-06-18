@@ -12,6 +12,9 @@
     <linguisticProcessors layer="constituents">
       <lp name="ehu-parse-fr" timestamp="now" version="1.0" />
     </linguisticProcessors>
+    <linguisticProcessors layer="entities">
+      <lp name="ehu-nerc-fr" timestamp="now" version="1.0" />
+    </linguisticProcessors>
   </kafHeader>
   <text>
     <wf wid="w1" sent="1" para="1" offset="0" length="7">Au-delà</wf>
@@ -829,6 +832,25 @@
       </span>
     </term>
   </terms>
+  <entities>
+    <entity eid="e1" type="date">
+      <references>
+        <!--2014-->
+        <span>
+          <target id="t77" />
+        </span>
+      </references>
+    </entity>
+    <entity eid="e2" type="person">
+      <references>
+        <!--Sébastien Balibar-->
+        <span>
+          <target id="t93" />
+          <target id="t94" />
+        </span>
+      </references>
+    </entity>
+  </entities>
   <constituency>
     <tree>
       <!--Non-terminals-->

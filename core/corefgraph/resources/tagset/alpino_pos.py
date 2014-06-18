@@ -3,25 +3,25 @@ __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
 from ..lambdas import equality_checker, list_checker, fail
 
-_personal_pronoun = "pron" #"PRP"
-_possessive_pronoun = "det" #"PRP$"
-_wh_pronoun = "pron"
-_wh_possessive_pronoun = "det"
+_personal_pronoun = "Pron" #"PRP"
+_possessive_pronoun = "Det" #"PRP$"
+_wh_pronoun = "Pron"
+_wh_possessive_pronoun = "Det"
 _wh_determiner = fail
 _wh_adverb = fail
 _verbs_list= ("VB",)
 _modal = fail
-_noun = "noun"
-_noun_plural = "noun"
+_noun = "Noun"
+_noun_plural = "Noun"
 _interjection = fail
-_proper_noun = "name"
-_proper_noun_plural = "name"
+_proper_noun = "Name"
+_proper_noun_plural = "Name"
 
-_adjective = "adj"
-_adjective_comparative = "adj"
-_adjective_superlative = "adj"
+_adjective = "Adj"
+_adjective_comparative = "Adj"
+_adjective_superlative = "Adj"
 
-_conjunctions = ("vg",)
+_conjunctions = ("Vg",)
 
 
 # Usable functions
