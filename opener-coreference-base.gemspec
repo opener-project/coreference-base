@@ -8,6 +8,7 @@ Gem::Specification.new do |gem|
   gem.description = gem.summary
   gem.has_rdoc    = 'yard'
   gem.extensions  = ['ext/hack/Rakefile']
+  gem.license     = 'Apache 2.0'
 
   gem.required_ruby_version = '>= 1.9.2'
 
@@ -19,6 +20,7 @@ Gem::Specification.new do |gem|
     '*.gemspec',
     '*_requirements.txt',
     'README.md',
+    'LICENSE.txt',
     'task/*'
   ]).select { |file| File.file?(file) }
 
