@@ -845,8 +845,9 @@ class SyntacticTreeUtils():
                     np_pre_coordination = True
             else:
                 children_pos = children.get("pos")
-                if pos_tags.conjunction(children_pos) and np_pre_coordination:
-                    coordination = True
+                if children_pos != None:
+                    if pos_tags.conjunction(children_pos) and np_pre_coordination:
+                        coordination = True
         return False
 
         # Mention sub tree : maneja los casos con and
