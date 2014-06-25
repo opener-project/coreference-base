@@ -30,7 +30,7 @@ module Opener
       #  underlying Java code.
       #
       def initialize(options = {})
-        
+
         @args    = options.delete(:args) || []
         @options = options
       end
@@ -41,7 +41,7 @@ module Opener
       # @return [String]
       #
       def command
-        return "#{adjust_python_path} python -E -OO -m #{kernel} #{args.join(' ')}"
+        return "#{adjust_python_path} python -E -m #{kernel} #{args.join(' ')}"
       end
 
       ##
@@ -84,7 +84,7 @@ module Opener
         site_packages =  File.join(core_dir, 'site-packages')
         "env PYTHONPATH=#{site_packages}:$PYTHONPATH"
       end
-      
+
       def capture(input)
         Open3.popen3(*command.split(" ")) {|i, o, e, t|
           out_reader = Thread.new { o.read }
@@ -108,7 +108,7 @@ module Opener
       def kernel
         return 'corefgraph.process.file'
       end
-      
+
       ##
       # @return the language from the KAF
       #
