@@ -484,7 +484,8 @@ class KafAndTreeGraphBuilder(BaseGraphBuilder):
                     node_process_list.append(target_id)
             if source_id.startswith("n"):
                 source = constituents_by_id[source_id]
-                if target == root:
+                # Alpino also attaches punctuation to roots, avoid these becoming root_head (HACK)
+                if target == root and source["label"] != "punct":
                     if root_head is None or edge.attrib.get("head", False):
                         root_head = source            
                 else:

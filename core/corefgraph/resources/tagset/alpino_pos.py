@@ -3,25 +3,25 @@ __author__ = 'Josu Bermudez <josu.bermudez@deusto.es>'
 
 from ..lambdas import equality_checker, list_checker, fail
 
-_personal_pronoun = "Pron" #"PRP"
-_possessive_pronoun = "Det" #"PRP$"
-_wh_pronoun = "Pron"
-_wh_possessive_pronoun = "Det"
+_personal_pronoun = "VNW(pers)" #"PRP"
+_possessive_pronoun = "VNW(bez)" #"PRP$"
+_wh_pronoun = "VNW(vb)"
+_wh_possessive_pronoun = "VNW(vb)"
 _wh_determiner = fail
 _wh_adverb = fail
-_verbs_list= ("VB",)
+_verbs_list= ("WW(pv)","WW(vd)","WW(inf)")
 _modal = fail
-_noun = "Noun"
-_noun_plural = "Noun"
+_noun = "N(soort)"
+_noun_plural = "N(soort,mv)"
 _interjection = fail
-_proper_noun = "Name"
-_proper_noun_plural = "Name"
+_proper_noun = "N(eigen)"
+_proper_noun_plural = "N(eigen,mv)"
 
-_adjective = "Adj"
-_adjective_comparative = "Adj"
-_adjective_superlative = "Adj"
+_adjective = "ADJ(basis)"
+_adjective_comparative = "ADJ(comp)"
+_adjective_superlative = "ADJ(sup)"
 
-_conjunctions = ("Vg",)
+_conjunctions = ("VG(neven)",)
 
 
 # Usable functions
