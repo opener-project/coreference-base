@@ -411,35 +411,35 @@
     <entity eid="e1" type="misc">
       <references>
         <span>
-          <target id="t28" />
-          <target id="t29" />
-          <target id="t30" />
-          <target id="t31" />
-          <target id="t32" />
-          <target id="t33" />
+          <target id="t28"/>
+          <target id="t29"/>
+          <target id="t30"/>
+          <target id="t31"/>
+          <target id="t32"/>
+          <target id="t33"/>
         </span>
       </references>
     </entity>
     <entity eid="e2" type="location">
       <references>
         <span>
-          <target id="t35" />
+          <target id="t35"/>
         </span>
       </references>
     </entity>
     <entity eid="e3" type="person">
       <references>
         <span>
-          <target id="t42" />
-          <target id="t43" />
+          <target id="t42"/>
+          <target id="t43"/>
         </span>
       </references>
     </entity>
     <entity eid="e4" type="location">
       <references>
         <span>
-          <target id="t55" />
-          <target id="t56" />
+          <target id="t55"/>
+          <target id="t56"/>
         </span>
       </references>
     </entity>
@@ -493,92 +493,92 @@
       <nt id="nter45" label="FP" />
       <t id="ter1">
         <span>
-          <target id="t1" />
+          <target id="t1"/>
         </span>
       </t>
       <t id="ter2">
         <span>
-          <target id="t2" />
+          <target id="t2"/>
         </span>
       </t>
       <t id="ter3">
         <span>
-          <target id="t3" />
+          <target id="t3"/>
         </span>
       </t>
       <t id="ter4">
         <span>
-          <target id="t4" />
+          <target id="t4"/>
         </span>
       </t>
       <t id="ter5">
         <span>
-          <target id="t5" />
+          <target id="t5"/>
         </span>
       </t>
       <t id="ter6">
         <span>
-          <target id="t6" />
+          <target id="t6"/>
         </span>
       </t>
       <t id="ter7">
         <span>
-          <target id="t7" />
+          <target id="t7"/>
         </span>
       </t>
       <t id="ter8">
         <span>
-          <target id="t8" />
+          <target id="t8"/>
         </span>
       </t>
       <t id="ter9">
         <span>
-          <target id="t9" />
+          <target id="t9"/>
         </span>
       </t>
       <t id="ter10">
         <span>
-          <target id="t10" />
+          <target id="t10"/>
         </span>
       </t>
       <t id="ter11">
         <span>
-          <target id="t11" />
+          <target id="t11"/>
         </span>
       </t>
       <t id="ter12">
         <span>
-          <target id="t12" />
+          <target id="t12"/>
         </span>
       </t>
       <t id="ter13">
         <span>
-          <target id="t13" />
+          <target id="t13"/>
         </span>
       </t>
       <t id="ter14">
         <span>
-          <target id="t14" />
+          <target id="t14"/>
         </span>
       </t>
       <t id="ter15">
         <span>
-          <target id="t15" />
+          <target id="t15"/>
         </span>
       </t>
       <t id="ter16">
         <span>
-          <target id="t16" />
+          <target id="t16"/>
         </span>
       </t>
       <t id="ter17">
         <span>
-          <target id="t17" />
+          <target id="t17"/>
         </span>
       </t>
       <t id="ter18">
         <span>
-          <target id="t18" />
+          <target id="t18"/>
         </span>
       </t>
       <edge from="nter2" id="tre2" to="nter1" />
@@ -710,132 +710,132 @@
       <nt id="nter108" label="FP" />
       <t id="ter19">
         <span>
-          <target id="t19" />
+          <target id="t19"/>
         </span>
       </t>
       <t id="ter20">
         <span>
-          <target id="t20" />
+          <target id="t20"/>
         </span>
       </t>
       <t id="ter21">
         <span>
-          <target id="t21" />
+          <target id="t21"/>
         </span>
       </t>
       <t id="ter22">
         <span>
-          <target id="t22" />
+          <target id="t22"/>
         </span>
       </t>
       <t id="ter23">
         <span>
-          <target id="t23" />
+          <target id="t23"/>
         </span>
       </t>
       <t id="ter24">
         <span>
-          <target id="t24" />
+          <target id="t24"/>
         </span>
       </t>
       <t id="ter25">
         <span>
-          <target id="t25" />
+          <target id="t25"/>
         </span>
       </t>
       <t id="ter26">
         <span>
-          <target id="t26" />
+          <target id="t26"/>
         </span>
       </t>
       <t id="ter27">
         <span>
-          <target id="t27" />
+          <target id="t27"/>
         </span>
       </t>
       <t id="ter28">
         <span>
-          <target id="t28" />
+          <target id="t28"/>
         </span>
       </t>
       <t id="ter29">
         <span>
-          <target id="t29" />
+          <target id="t29"/>
         </span>
       </t>
       <t id="ter30">
         <span>
-          <target id="t30" />
+          <target id="t30"/>
         </span>
       </t>
       <t id="ter31">
         <span>
-          <target id="t31" />
+          <target id="t31"/>
         </span>
       </t>
       <t id="ter32">
         <span>
-          <target id="t32" />
+          <target id="t32"/>
         </span>
       </t>
       <t id="ter33">
         <span>
-          <target id="t33" />
+          <target id="t33"/>
         </span>
       </t>
       <t id="ter34">
         <span>
-          <target id="t34" />
+          <target id="t34"/>
         </span>
       </t>
       <t id="ter35">
         <span>
-          <target id="t35" />
+          <target id="t35"/>
         </span>
       </t>
       <t id="ter36">
         <span>
-          <target id="t36" />
+          <target id="t36"/>
         </span>
       </t>
       <t id="ter37">
         <span>
-          <target id="t37" />
+          <target id="t37"/>
         </span>
       </t>
       <t id="ter38">
         <span>
-          <target id="t38" />
+          <target id="t38"/>
         </span>
       </t>
       <t id="ter39">
         <span>
-          <target id="t39" />
+          <target id="t39"/>
         </span>
       </t>
       <t id="ter40">
         <span>
-          <target id="t40" />
+          <target id="t40"/>
         </span>
       </t>
       <t id="ter41">
         <span>
-          <target id="t41" />
+          <target id="t41"/>
         </span>
       </t>
       <t id="ter42">
         <span>
-          <target id="t42" />
+          <target id="t42"/>
         </span>
       </t>
       <t id="ter43">
         <span>
-          <target id="t43" />
+          <target id="t43"/>
         </span>
       </t>
       <t id="ter44">
         <span>
-          <target id="t44" />
+          <target id="t44"/>
         </span>
       </t>
       <edge from="nter47" id="tre65" to="nter46" />
@@ -981,102 +981,102 @@
       <nt id="nter159" label="FP" />
       <t id="ter45">
         <span>
-          <target id="t45" />
+          <target id="t45"/>
         </span>
       </t>
       <t id="ter46">
         <span>
-          <target id="t46" />
+          <target id="t46"/>
         </span>
       </t>
       <t id="ter47">
         <span>
-          <target id="t47" />
+          <target id="t47"/>
         </span>
       </t>
       <t id="ter48">
         <span>
-          <target id="t48" />
+          <target id="t48"/>
         </span>
       </t>
       <t id="ter49">
         <span>
-          <target id="t49" />
+          <target id="t49"/>
         </span>
       </t>
       <t id="ter50">
         <span>
-          <target id="t50" />
+          <target id="t50"/>
         </span>
       </t>
       <t id="ter51">
         <span>
-          <target id="t51" />
+          <target id="t51"/>
         </span>
       </t>
       <t id="ter52">
         <span>
-          <target id="t52" />
+          <target id="t52"/>
         </span>
       </t>
       <t id="ter53">
         <span>
-          <target id="t53" />
+          <target id="t53"/>
         </span>
       </t>
       <t id="ter54">
         <span>
-          <target id="t54" />
+          <target id="t54"/>
         </span>
       </t>
       <t id="ter55">
         <span>
-          <target id="t55" />
+          <target id="t55"/>
         </span>
       </t>
       <t id="ter56">
         <span>
-          <target id="t56" />
+          <target id="t56"/>
         </span>
       </t>
       <t id="ter57">
         <span>
-          <target id="t57" />
+          <target id="t57"/>
         </span>
       </t>
       <t id="ter58">
         <span>
-          <target id="t58" />
+          <target id="t58"/>
         </span>
       </t>
       <t id="ter59">
         <span>
-          <target id="t59" />
+          <target id="t59"/>
         </span>
       </t>
       <t id="ter60">
         <span>
-          <target id="t60" />
+          <target id="t60"/>
         </span>
       </t>
       <t id="ter61">
         <span>
-          <target id="t61" />
+          <target id="t61"/>
         </span>
       </t>
       <t id="ter62">
         <span>
-          <target id="t62" />
+          <target id="t62"/>
         </span>
       </t>
       <t id="ter63">
         <span>
-          <target id="t63" />
+          <target id="t63"/>
         </span>
       </t>
       <t id="ter64">
         <span>
-          <target id="t64" />
+          <target id="t64"/>
         </span>
       </t>
       <edge from="nter110" id="tre154" to="nter109" />
@@ -1155,14 +1155,14 @@
     <coref coid="co1">
       <!--Buenos Aires-->
       <span>
-        <target id="t55" />
-        <target id="t56" />
+        <target id="t55"/>
+        <target id="t56"/>
       </span>
       <!--redacción de Buenos-->
       <span>
-        <target id="t53" />
-        <target id="t54" />
-        <target id="t55" />
+        <target id="t53"/>
+        <target id="t54"/>
+        <target id="t55"/>
       </span>
     </coref>
   </coreferences>
