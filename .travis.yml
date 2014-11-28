@@ -3,6 +3,9 @@ language: ruby
 
 script: bundle exec rake
 
+before_install:
+  - sudo pip install lxml
+
 rvm:
   - 2.1
 
