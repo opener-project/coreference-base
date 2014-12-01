@@ -1,5 +1,3 @@
-[![Build Status](https://drone.io/github.com/opener-project/coreference-base/status.png)](https://drone.io/github.com/opener-project/coreference-base/latest)
-
 # Coreference
 
 This Gem provides coreference resolution for various languages such as English
@@ -94,4 +92,3 @@ one (see below) to be done in the **$project/core/corefgraph/resources** directo
 
 * files/number/$lang.plural.unigrams.txt
 * files/number/$lang.singular.unigrams.txt
-
